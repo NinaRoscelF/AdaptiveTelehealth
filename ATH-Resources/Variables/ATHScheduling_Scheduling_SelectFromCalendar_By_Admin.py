@@ -1,0 +1,5 @@
+MyPatient="Mary Ellis"
+Time4="2:00 - 3:00"
+PtcpName="Beyonce Halo ( Patient )"
+PtcpName2="Ginger Taylor ( Patient )"
+Description="Automation test"

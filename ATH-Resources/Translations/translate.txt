@@ -1,0 +1,25 @@
+FieldName	English US	Spanish	Dutch	Italian	Japanese	German	French
+Company	Company	Sociedad	Bedrijf	Azienda	会社	Unternehmen	Société
+Preferences	Preferences	Preferencias	Voorkeuren	Preferiti	設定	Einstellungen	Préférences
+Account Settings	Account Settings	Configuración de la cuenta	Accountinstellingen	Impostazioni account	アカウント設定	Kontoeinstellungen
+Language	Language	Idioma	Taal	Lingua	言語	Sprache	Langue
+Submit Changes	Submit Changes	Enviar cambios	Wijzigingen indienen	Inviare modifiche	変更を送信	Änderungen senden	Soumettre les modifications
+Dashboard	Dashboard	Panel	Dashboard	Cambia	ダッシュボード	Anzeige
+Employees	Employees	Empleados	Medewerkers	Dipendenti	従業員	Mitarbeiter
+Payroll	Payroll	Nómina	Afrekening	Retribuzione	給与	Abrechnung
+Integration	Integration	Integración	Integratie	Integrazione	統合	Integration
+Config	Config	Configuración de cliente	Clientconfiguratie	Config	クライアント構成	Kundenkonfiguration
+Admin	Admin	Administración de producto	Productadministratie	Ammin	製品管理	Produktadministration
+Assistant	Assistant	Asistente	Assistent	Assistente	助手	Assistent
+Documents	Documents	Documentos	Documenten	Documenti	>ドキュメント	Dokumente
+Time Zone	Time Zone	Huso horario	Tijdzone	Fuso orario	タイム ゾーン	Zeitzone
+May	May	may	mei	mag	5月	Mai
+Pay	Pay	Spanish	Salaris	Italian	Japanese	German	Paie
+Payroll Profile	Payroll Profile	Spanish	Salarisprofiel	Italian	Japanese	German	Profil de paie
+Document	Document	Documents	Document	Documents	Documents	Documents	Document
+PayGroup	PayGroup	Nómina	Afrekening	Payroll	給与	Abrechnung	Groupe de paie
+Search	Search	Search	Search	Search	Search	Abrechnung	Recherche
+ClearAll	ClearAll	Nómina	Afrekening	Payroll	給与	Abrechnung	Vider les filtres
+Request	Request	Request	Aanvraag	Request	Request	Request	Requête
+My Tickets	My Tickets	My Tickets	Mijn tickets	My Tickets 	My Tickets 	My Tickets	Mes tickets
+Cancel	Cancel	Nómina	Afrekening	Cancellare	給与	Abrechnung	Vider les filtres

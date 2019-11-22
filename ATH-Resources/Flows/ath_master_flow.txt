@@ -1,0 +1,19 @@
+*** Settings ***
+Library	String
+Library	Collections
+Library	OperatingSystem
+Library	DateTime
+Library	C:/Adaptive_Telehealth/ATH-Framework/ATHLibrary
+
+
+*** Variables***
+${BROWSER}	Chrome
+${URL}	https://groups1.secure.adaptivetelehealth.com/index.php/login
+${AutoTherapist}	ninaf+therapist@adaptivetelehealth.com
+${AutoSupervisor}	ninaf+supervisor@adaptivetelehealth.com
+${AutoClient}	ninaf+client@adaptivetelehealth.com
+${AutoAdmin}	ninaf+admin@adaptivetelehealth.com
+${AutoClient2}	beyoncehalo@mailinator.com
+${TestEnv}	Secure
+${Password}	Password123!!!
+

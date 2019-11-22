@@ -1,0 +1,100 @@
+*** Settings ***
+Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/ath_master_flow.txt
+
+
+**** Keywords ****
+
+# ATH_Logon
+# 	[arguments]	${BROWSER}	${URL}	${username}	${TestEnv}
+# 	Open Browser	${URL}	${BROWSER}	ff_profile_dir=profiledir
+# 	Maximize Browser Window
+# 	Input Email Address	${username}
+# 	Input Password	${Password}
+# 	Click Login Button
+# 	Perform Login Checks
+
+Input Email Address
+	[arguments]	${emailadd}
+	ath_input_text_value	//*[normalize-space()="Registered email address"]/input 	${emailadd}
+
+Input Password
+	[arguments]	${pwd}
+	ath_input_text_value	//input[@placeholder='Password']	${pwd}
+
+
+Click Login Button
+	ath click button	xpath=//button[normalize-space()="Login"]
+	Sleep	1.0
+
+
+Perform Login Checks
+	# ath click button	xpath=//button[normalize-space()="Login"]
+	# Sleep	1.0
+	Run Keyword and Ignore Error	Select From List	//*[@class="modal-body"]/descendant::*/descendant::label[contains(text(),'State')]/following::select 	Alabama
+	Run Keyword and Ignore Error	Input Text	//input[@name="nearest_emerg_facility"]	St. Lukes
+	Run Keyword and Ignore Error	Click Button	//button[text()="Save"]
+	Sleep	2.0
+	Run Keyword and Ignore Error	ath_click_icon	//*[@id="modalUploadProfileImage"]/descendant::button/span[normalize-space()="×"]
+#	ath_wait_until_element_is_present	xpath=//*[@class="nav-bar"]	120
+
+
+Select Messaging Menu
+#	ath_navigate_to_main_menu	Messaging
+	ath click icon	xpath=//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Messaging']
+
+
+Select Scheduling Menu
+	ath_click_icon	//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Scheduling']
+
+Select System Preferences icon
+	ath click icon 	xpath=//div[@class='element hidden-xs']//a[@class='combo-button']
+	Sleep 	2.0
+
+Verify System Preferences page displayed
+	ath_verify_element_is_visible	xpath=//*[@id="system_preferences"]
+
+
+Check Label Existence
+	[Arguments]	${labellist}	${index}=1	${attr}=textContent	${isPositive}=true
+	@{lblitems}	Split String	${labellist}	,
+	:FOR	${lblval}	IN	@{lblitems}
+	\	@{label}	Split String	${lblval}	separator=,
+	\	log	${lblval}
+	\	Ath Check Label	${lblval}	${index}	${attr}	${isPositive}
+	\	Capture Page Screenshot
+
+
+Generate Date and Time Today
+	[arguments]	${Format}=%Y-%m-%d
+	${DTime}	ath_GetDateTime	<<TODAY>>	${Format}
+	[return]	${DTime}
+
+
+Add/Subtract Days from Input Date
+	# DateFormatted should be in this format %Y-%m-%d
+	[arguments]	${DateFormatted}	${Operator}	${Days}	${OutputFormat}=%Y-%m-%d
+	${GeneratedDate}	Run Keyword If	'${Operator}' == 'SUBTRACT'	Subtract Time From Date	${DateFormatted}	${Days} days	result_format=${OutputFormat}
+	...	ELSE	Run Keyword If	'${Operator}' == 'ADD'	Add Time To Date	${DateFormatted}	${Days} days	result_format=${OutputFormat}
+	[return]	${GeneratedDate}
+
+
+Move to Next Page
+	ath Click Link	xpath=(//*[@class="pagination"]/descendant::*[@class="next"]/a)[1]
+	Sleep	5.0
+	ath wait until loaded	30
+
+Move to Previous Page
+	ath Click Link	xpath=(//*[@class="pagination"]/descendant::*[@class="prev"]/a)[1]
+	Sleep	2.0
+	ath wait until loaded	30
+
+Select Page Number
+	[arguments]	${PageNumber}
+	ath wait until loaded	30
+	ath Click Link	xpath=(//*[@class="pagination"]/descendant::a[contains(text(),'${PageNumber}')])[1]
+	Sleep 	1.0
+	ath wait until loaded	30
+
+Logout from Application
+	Run Keyword and Ignore Error	click element	//span[text()="Logout"]/ancestor::a
+	Run Keyword and Ignore Error	Page Should Contain Element	//h3[@class="box-title"][normalize-space()="Login"]

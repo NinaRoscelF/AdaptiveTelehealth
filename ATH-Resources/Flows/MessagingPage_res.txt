@@ -1,0 +1,387 @@
+*** Settings ***
+Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/CommonPage_res.txt
+
+**** Keywords ****
+Messaging.Click New Message Button
+	ath_click_button	xpath=(//*[contains(@class,'slideMessageBox')])[1]
+
+
+Messaging.Verify Alert Message Received
+	ath_verify_element_is_visible	//*[@class="fa fa-envelope-o"]/../span
+
+
+Messaging.Verify Message Page Displayed
+	[arguments]	${isTrue}=true
+	ath_verify_element_is_visible	//div[@id="messaging"]	${isTrue}
+
+
+Messaging.Verify New Message Widget Displayed
+	[arguments]	${isTrue}=true
+	ath_verify_element_is_visible	//*[@class="section send-message"]	${isTrue}
+
+
+Messaging.Verify New Message Widget Not Displayed
+	ath_verify_element_is_visible	//*[@class="section send-message"]/descendant::input[@type="hidden"]
+
+
+
+Messaging.Input Recipient
+	[arguments]	${receiver}
+	Execute Javascript	var element = document.evaluate("//*[normalize-space()='Send To:']/following::input[1]/.." ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	ath_wait_until_element_staleness	//*[normalize-space()='Send To:']/following::input[1]/.. 	60
+	Sleep	1.0
+	ath click icon	xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[normalize-space(.)='${receiver}']
+	ath_wait_until_loaded	30
+
+Messaging.Input Subject
+	[arguments]	${subject}
+	ath click icon	//input[@name="subject"]/..
+	ath_input_text_value	//input[@name="subject"]	${subject}
+	Sleep	1.0
+
+Messaging.Input Message
+	[arguments]	${message}
+	ath_input_text_value	//*[@class="message"][normalize-space()="Message:"]/descendant::textarea	${message}
+
+
+Messaging.Click Send Message Button
+	ath_click_button	Send
+	Sleep	2.0
+
+
+Messaging.Click Save to Draft Button
+	ath_click_button	Save to Draft
+	Sleep	2.0
+
+
+Messaging.Click Close Button
+	ath_click_button	Close
+	Sleep	2.0
+
+
+Messaging.Cancel Delete Action
+	ath click button	//*[normalize-space()="The selected conversations will be deleted."]/ancestor::div[@class="modal-dialog"]/descendant::div[@class="modal-footer"]/descendant::button[normalize-space()="Close"]
+	Sleep	1.0
+	ath wait until loaded	30
+
+
+Messaging.Verify Send To Message Error Displayed
+	Ath Verify Element Is Visible	//*[contains(@class,'alert-danger')][contains(text(),'Field "Send To" can not be empty.')]
+
+
+Messaging.Verify Subject Message Error Displayed
+	Ath Verify Element Is Visible	//*[contains(@class,'alert-danger')][contains(text(),'Field "Subject" can not be empty.')]
+
+Messaging.Verify Message Error Displayed
+	Ath Verify Element Is Visible	//*[contains(@class,'alert-danger')][contains(text(),'Field "Message" can not be empty.')]
+
+
+Messaging.Confirm Message Sent successfully
+	Ath Verify Element Is Visible	//*[@class="alert alert-success"][contains(text(),'The data was saved. Email notification sent and logged.')]
+
+
+Messaging.Confirm Draft Message Saved successfully
+	Ath Verify Element Is Visible	//*[@class="alert alert-success"][contains(text(),'The draft was saved.')]
+
+
+Messaging.Confirm Message Moved to Trash
+	Ath Verify Element Is Visible	//*[@class="alert alert-success"][contains(text(),'All selected messages were sent to trash.')]
+	ath wait until loaded 	30
+
+
+Messaging.Confirm Message Permanently Deleted
+	Ath Verify Element Is Visible	//*[@class="alert alert-success"][contains(text(),'All selected messages were permanently deleted.')]
+
+Messaging.Confirm Message is Restored
+	Ath Verify Element Is Visible	//*[@class="alert alert-success"][contains(text(),'All selected messages were restored.')]
+
+
+Messaging.Clear Recipient Contents
+	Click Element	//a[@class="search-choice-close"]
+
+
+Messaging.Select Sent Menu
+	Execute Javascript	var element = document.evaluate("//a[normalize-space()='Sent']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	Sleep 	3.0
+	ath wait until loaded	30
+
+Messaging.Select Inbox Menu
+	Execute Javascript	var element = document.evaluate("//a[normalize-space()='Inbox']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	Sleep 	3.0
+	ath wait until loaded	30
+
+Messaging.Select Draft Menu
+	Execute Javascript	var element = document.evaluate("//a[normalize-space()='Draft']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	Sleep 	3.0
+	ath wait until loaded	30
+
+Messaging.Select Trash Menu
+	Execute Javascript	var element = document.evaluate("//a[normalize-space()='Trash']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	Sleep 	3.0
+	ath wait until loaded	30
+
+
+Messaging.Sort To Column
+	Fail
+
+Messaging.Sort From Column
+	Fail
+
+Messaging.Sort Subject Column
+	Fail
+
+Messaging.Sort Date Column
+	${datelist}	Create List
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Date"]
+#	${count}	Get Matching Xpath Count	(//table/descendant::tr[not(contains(@role,'row'))][contains(@class,'message')])
+	${count}	Get Matching Xpath Count	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[4])
+#	${rowcount}	Evaluate	${count}/2
+	:FOR	${index}	IN RANGE	1	${count} + 1
+	\	ath_wait_until_element_staleness	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[4])[${index}]
+	\	${text}	Get Element Attribute	xpath=((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[4])[${index}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+
+Messaging.Sort Time Column
+	${timelist}	Create List
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Time"]
+#	${count}	Get Matching Xpath Count	(//table/descendant::tr[not(contains(@role,'row'))][contains(@class,'message')])
+	${count}	Get Matching Xpath Count	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])
+#	${rowcount}	Evaluate	${count}/2
+	:FOR	${index}	IN RANGE	1	${count} + 1
+	\	ath_wait_until_element_staleness	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])[${index}]
+	\	${text}	Get Element Attribute	xpath=((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])[${index}]@textContent
+	\	Log	${text}
+	\	Append To List	${timelist}	${text}
+	Sort List	${timelist}
+	Log	${timelist}
+
+Messaging.Sort Status Column
+	[return]	Pass
+
+
+Messaging.Sort Type Column
+	[return]	Pass
+
+
+Messaging.Sort Day Column
+	[return]	Pass
+
+
+Messaging.Sort Actions Column
+	[return]	Pass
+
+Messaging.Sent.Verify Message is Sent
+	[arguments]	${message}
+	Ath Verify Element Is Visible	xpath=(//tr/td[normalize-space()="${message}"])[1]
+
+Messaging.Sent.Verify Message is Moved to Trash
+	[arguments]	${message}
+	Ath Verify Element Is Visible	xpath=(//tr/td[normalize-space()="${message}"])[1]
+
+
+Messaging.Select Document Attachment
+	[arguments]	${document}
+	Execute Javascript	var element = document.evaluate("//*[normalize-space()='Documents:']/following::input[1]/.." ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	ath_wait_until_element_staleness	//*[normalize-space()='Document:']/following::input[1]/..
+	click element	xpath=(//*[contains(@class,'chosen-results')])[2]/descendant::li[normalize-space(.)='${document}']
+	Sleep	1.0
+
+
+Messaging.Inbox.Read Nessage
+	[arguments]	${messageSubject}
+	Ath click icon	xpath=(//tr/td[normalize-space()="${messageSubject}"])[1]
+	ath wait until loaded	30
+
+
+Messaging.Inbox.Click View Calendar link
+	Ath click link	View Calendar
+	ath wait until loaded	30
+
+
+Messaging.Inbox.Verify Message Details and Reply Button Is Visible
+	Ath Verify Element Is Visible	//td[@class="my-details"]
+	Ath Verify Element Is Visible	//a[normalize-space()="Reply"]
+
+
+Messaging.Inbox.Verify Font is Normal Style
+	[arguments]	${index}=1
+	Ath Verify Element Is Visible	xpath=(//tr[contains(@style,'bolder')])[1]/descendant::td[text()="read"]	false
+
+
+Messaging.Inbox.Click Confirm Button
+	ath click button	Confirm
+	Sleep 	5.0
+	ath wait until loaded	60
+
+
+Messaging.Inbox.Click Reply Button
+	Ath click button	Reply
+	ath_wait_until_element_is_present	//form[@id="reply_draft"]
+	Sleep 	2.0
+	ath wait until loaded	30
+
+Messaging.Inbox.Verify Reply Icon is Visible
+	ath wait until loaded	30
+	Ath Verify Element Is Visible	xpath=(//*[@class="fa fa-reply"])[1]
+
+
+Messaging.Reply.Input Reply Message
+	[arguments]	${messagereply}
+	ath set text area value	Message	${messagereply}
+	ath wait until loaded	30
+
+
+Messaging.Reply.Click Send button
+	Ath click button	Send	2
+	Sleep 	2.0
+	ath wait until loaded	30
+
+
+Messaging.Reply.Click Save to Draft button
+	Ath click button	Save to Draft	2
+	Sleep 	2.0
+	ath wait until loaded	30
+
+
+Messaging.Reply.Click Close button
+	Ath click button	xpath=(//div[@class="modal-content"]/descendant::button/span[normalize-space()="×"])[3]
+	Sleep 	2.0
+	ath wait until loaded	30
+
+
+Messaging.Inbox.Select Unread message
+	[arguments]	${msgSubject}=unread	${value}=True	${index}=1
+	ath set checkbox	xpath=(//tr/td[normalize-space()="${msgSubject}"])[1]/../td[1]/div	${value}	${index}
+#	ath set checkbox 	${msgSubject}	${value}	${index}
+
+Messaging.Inbox.Select Read message
+	[arguments]	${msgSubject}=read	${value}=True	${index}=1
+	ath set checkbox	xpath=(//tr/td[normalize-space()="${msgSubject}"])[1]/../td[1]/div	${value}	${index}
+#	ath set checkbox 	${msgSubject}	${value}	${index}
+
+Messaging.Inbox.Select checkbox of first Message
+	[arguments]	${value}=True	${index}=1
+	ath set checkbox	xpath=(//div[normalize-space()="Inbox"]/../following::div/descendant::table/descendant::tr/td/../td[1]/div)[1]	${value}	${index}
+
+
+Messaging.Inbox.Click Read/Unread Icon
+	ath click button	Mark read/unread
+	Sleep	3.0
+	ath wait until loaded	30
+
+Messaging.Inbox.Move to Trash Icon
+	ath click button	Move to trash
+	Sleep	1.0
+	ath wait until loaded	30
+
+Messaging.Confirm Move to Trash Action
+	ath click button	Save Changes
+	Sleep	3.0
+	ath wait until loaded	30
+
+
+
+Messaging.Cancel Move to Trash Action
+	ath click button	//*[normalize-space()="The selected conversations will be moved to trash."]/ancestor::div[@class="modal-dialog"]/descendant::div[@class="modal-footer"]/descendant::button[normalize-space()="Close"]
+	Sleep	1.0
+	ath wait until loaded	30
+
+Messaging.Inbox.Select all Messages
+	ath set checkbox	All
+	Sleep	1.0
+	ath wait until loaded	30
+
+Messaging.Sent.Select checkbox of first Message
+	ath set checkbox	xpath=(//div[normalize-space()="sent box"]/../following::div/descendant::table/descendant::tr/td/../td[1]/div)[1]
+
+Messaging.Sent.Select all Messages
+	ath set checkbox	All	true	2
+	Sleep	1.0
+	ath wait until loaded	30
+
+Messaging.Sent.Move to Trash Icon
+	ath click button	Move to trash	2
+	Sleep	1.0
+	ath wait until loaded	30
+
+
+Messaging.Draft.Get Subject Column of Selected Message
+	${isSubj}	Get Element Attribute 	xpath=(//div[normalize-space()="Draft"]/../following::div/descendant::table/descendant::tr[4]/td)[3]@textContent
+	[return]	${isSubj}
+
+Messaging.Draft.Read Message
+	[arguments]	${messageSubject}
+	Ath click icon	xpath=(//div[normalize-space()="Draft"]/../following::div/descendant::table/descendant::tr/td/../td[2][normalize-space()="${messageSubject}"])[1]
+	Sleep	2.0
+	ath wait until loaded	30
+
+Messaging.Draft.Select all Messages
+	ath set checkbox	All	true	3
+	Sleep	1.0
+	ath wait until loaded	30
+
+Messaging.Draft.Select checkbox of first Message
+	ath set checkbox	xpath=(//div[normalize-space()="Draft"]/../following::div/descendant::table/descendant::tr/td/../td[1]/div)[1]
+
+Messaging.Draft.Move to Trash Icon
+	ath click button	Move to trash	3
+	Sleep	1.0
+	ath wait until loaded	30
+
+
+Messaging.Trash.Verify Message is Deleted
+	[arguments]	${message}
+	Ath Verify Element Is Visible	xpath=(//tr/td[normalize-space()="${message}"])[1]
+
+Messaging.Trash.Select all Messages
+	ath set checkbox	All	true	4
+	Sleep	1.0
+	ath wait until loaded	30
+
+Messaging.Trash.Select checkbox of first Message
+	ath set checkbox	xpath=(//div[normalize-space()="Trash"]/../following::div/descendant::table/descendant::tr/td/../td[1]/div)[1]
+
+Messaging.Trash.Click Restore Icon
+	ath click button	Restore
+	Sleep	3.0
+	ath wait until loaded	30
+
+Messaging.Trash.Click Delete Icon
+	ath click button	Delete
+	Sleep	3.0
+	ath wait until loaded	30
+
+
+
+Messaging.Trash.Confirm Restore Action
+	ath click button	Save Changes
+	Sleep	3.0
+	ath wait until loaded	30
+
+Messaging.Trash.Cancel Restore Action
+	ath click button	//*[normalize-space()="The selected conversations will be restored."]/ancestor::div[@class="modal-dialog"]/descendant::div[@class="modal-footer"]/descendant::button[normalize-space()="Close"]
+	Sleep	1.0
+	ath wait until loaded	30
+
+Messaging.Inbox.Get Read/Unread Messages Count
+	[arguments]	${msgSubject}=read
+	${read}	Get Matching Xpath Count	xpath=//tr/td[normalize-space()="${msgSubject}"]
+	[return]	${read}
+
+
+Messaging.Inbox.Verify Messages were read/unread
+	[arguments]	${prevCount}	${msgSubject}=read
+	${read}	Get Matching Xpath Count	xpath=//tr/td[normalize-space()="${msgSubject}"]
+	Run Keyword and Continue on Failure	Should not be equal	${read}	${prevCount}
+
+
+Messaging.Draft.Click Edit Button
+	[arguments]	${idx}=1
+	ath click button	xpath=(//div[normalize-space()="Draft"]/../following::div/descendant::table/descendant::tr/td/../td[normalize-space()="Edit"]/button)[${idx}]
+	Sleep	3.0
+	ath wait until loaded	30
+

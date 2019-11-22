@@ -1,0 +1,539 @@
+*** Settings ***
+Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/CommonPage_res.txt
+
+
+**** Keywords ****
+Scheduling. Verify Schedule widget display
+	[arguments]	${isTrue}=true
+	ath_verify_element_is_visible	//div[@class='row schedule_patient_avaliable_meetings_box']	${isTrue}
+
+
+Scheduling. Verify My Meetings widget display
+	[arguments]	${isTrue}=true
+	ath_verify_element_is_visible	//div[@class='row schedule_patient_my_meetings_box']	${isTrue}
+
+
+Scheduling.Select Therapist Calendar
+	[arguments]	${isTherapist}
+	ath click link 	//a[normalize-space()="${isTherapist}"]
+	sleep 	1.0
+	ath wait until loaded 	30
+
+Scheduling.AdminRole.TherapistTimezone.Click OK button
+	ath click button 	xpath=//h4[text()="Information"]/ancestor::div[@class="modal-dialog"]/descendant::*[text()="Ok"]
+
+Scheduling.Preferences.Verify Widget display
+	ath_verify_element_is_visible	//*[@id="schedules-settings-tabs-content"]
+
+Scheduling. Expand Schedule Menu Settings
+	ath click icon	xpath=//*[@class="fa fa-plus"]/preceding::a[text()="Schedule"]
+	ath wait until loaded 	30
+
+
+Scheduling. Expand Account Settings Menu
+	ath click icon	xpath=//*[@class="fa fa-plus"]/preceding::a[text()="Schedule"]
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Select Time Blocks Tab
+	ath click link	Time Blocks
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Verify Time Blocks Tab Displayed
+	ath verify element is visible	//div[@id='tab-calendar']
+
+
+Scheduling.Preferences.Select Days/Hours Tab
+	ath click link	Days/Hours
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Verify Days/Hours Tab Displayed
+	ath verify element is visible	//div[@id='office_hours_segments']
+
+
+Scheduling.Preferences.Select Exceptions Tab
+	ath click link	Exceptions
+	ath wait until loaded	30
+	ath wait until element is present	//form[@id='form_for_send']
+
+
+Scheduling.Preferences.Verify Exceptions Tab Displayed
+	ath wait until loaded	30
+	ath verify element is visible	//div[@id='schedule_preferences']
+
+
+Scheduling.Preferences.Select Confirmations Tab
+	ath click link	Confirmations
+	ath wait until element is present	//form[@id='ukrsol_form_Confirmation']	60
+
+
+Scheduling.Preferences.Verify Confirmations Tab Displayed
+	ath wait until loaded	30
+	ath verify element is visible	//div[@id='tab-confirmations']
+
+Scheduling.Preferences.Select Cancellation Messages Tab
+	ath click link	Cancellation Messages
+	ath wait until element is present	//form[@name='schedule-cancellation-messages']
+
+
+Scheduling.Preferences.Verify Cancellation Messages Tab Displayed
+	ath wait until loaded	30
+	ath verify element is visible	 //div[@id='schedules-settings-tabs-content']
+
+Scheduling.Preferences.Select Time Zone Tab
+	ath click link	Time Zone
+	ath wait until loaded	30
+	ath wait until element is present	//div[@id='tab-time-zone']
+
+Scheduling.Preferences.Verify Time Zone Tab Displayed
+	ath click link	Time Zone
+	ath verify element is visible	 //div[@id='tab-time-zone']
+
+Scheduling.Preferences.TimeZone.Select Time Zone
+	[arguments] 	${value}
+	ath select drop down field value	xpath=//select[@id='therapist_time_zone_list']	${value}
+
+Scheduling.Preferences.TimeBlocks.Click Add New Time Block Button
+	ath click button	Add Time block
+
+
+Scheduling.Preferences.TimeBlocks.Add new Time Block value
+	[arguments] 	${value}	${idx}=1
+	ath select drop down field value	xpath=(//select[@name='time_per_appointment'])[${idx}]	${value}
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.TimeBlocks.Verify Fields are Required
+	ath_verify_element_is_visible	//*[@class="alert alert-daner"][contains(text(),'All selected messages were restored.')]
+
+
+Scheduling.Preferences.TimeBlocks.Apply Time Block
+	[arguments] 	${idx}=1
+	ath click button	xpath=//button[contains(@class,'update_time_per_appointment')][text()="Apply"]
+	sleep 	1.0
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.TimeBlocks.Remove Time Block
+	[arguments] 	${idx}=1
+	ath click button	Remove	${idx}
+	sleep 	1.0
+	ath wait until loaded 	30
+
+Scheduling.Preferences.TimeBlocks.Change Time Block
+	[arguments] 	${idx}=1
+	ath click button	Change
+	sleep 	1.0
+	ath wait until loaded 	30
+
+Scheduling.Preferences.TimeBlocks.Verify Duplicate Time Block not allowed
+	ath check label	Duplicate time blocks are not allowed.
+
+
+Scheduling.Preferences.TimeBlocks.Close Duplicate Popup
+	ath click button	OK
+	ath wait until loaded 	30
+
+Scheduling.Preferences.TimeBlocks.Add Field 1
+	[arguments] 	${value}	${idx}=1
+	ath input text value	xpath=(//*[@name="custom_field_value_1"])[${idx}]	${value}
+
+
+Scheduling.Preferences.TimeBlocks.Add Field 2
+	[arguments] 	${value}	${idx}=1
+	ath input text value	xpath=(//*[@name="custom_field_value_2"])[${idx}]	${value}
+
+
+Scheduling.Preferences.Days/Hours.Get Table Count
+	[arguments]	${count}=1
+	${iscount}	Get Matching Xpath Count	xpath=//div[@id='office_hours_segments']/descendant::table/descendant::tr/td/select[@name="days"]
+	[return]	${iscount}
+
+Scheduling.Preferences.Days/Hours.Click Save Button
+	ath click button	Save
+	sleep 	1.0
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Days/Hours.Click New Office Hour Button
+	ath click button	New Office Hour Segment
+	sleep 	1.0
+	ath wait until loaded 	30
+
+Scheduling.Preferences.Days/Hours.Verify New Office Hour Popup is Displayed
+	ath verify element is visible	//div[@class="modal-header"]/descendant::h4[normalize-space()="New Office Hour Segment"]
+
+Scheduling.Preferences.Days/Hours.Click Add button
+	ath click button	//div[@class="modal-footer"]/descendant::button[normalize-space()="Add"]
+	sleep 	1.0
+	ath wait until loaded 	30
+
+Scheduling.Preferences.Days/Hours.Click Cancel button
+	ath click button	//div[@class="modal-footer"]/descendant::button[normalize-space()="Cancel"]
+	ath wait until loaded 	30
+	sleep 	1.0
+
+
+Scheduling.Preferences.Days/Hours.Select Day from dropdown
+	[arguments]	${day}
+	Ath Select Drop Down Field Value	//select[@name='day']	${day}
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Days/Hours.Click Set Start Time
+	Ath click icon	//div[@class='modal-body form-inline']//input[@placeholder='Start Time']
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Days/Hours.Click Set End Time
+	Ath click icon	//div[@class='modal-body form-inline']//input[@placeholder='End Time']
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Days/Hours.Select Time hours from dropdown
+	[arguments]	${time}
+	:FOR 	${idx}	IN RANGE	1	${time}
+	\	${isvalue}	Get Element Attribute	xpath=//span[@class='TimePickerMR_H']/s[@hours]@textContent
+	\	${isvalue2}	Get Element Attribute	xpath=//s[@hours]@textContent
+	\	${status}	Run Keyword And Return Status	Should be Equal	${isvalue}	${time}
+	\	Run Keyword If	${status}	Exit For Loop
+	\	Ath click icon	//span[@class='TimePickerMR_H']/i[@up]
+	\	${isvalue}	Get Element Attribute	xpath=//span[@class='TimePickerMR_H']/s[@hours]@textContent
+	\	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Days/Hours.Select Time minutes from dropdown
+	[arguments]	${time}
+	:FOR 	${idx}	IN RANGE	1	4
+	\	${isvalue}	Get Element Attribute	xpath=//span[@class='TimePickerMR_M']/s[@minutes]@textContent
+	\	${status}	Run Keyword And Return Status	Should be Equal	${isvalue}	${time}
+	\	Run Keyword If	${status}	Exit For Loop
+	\	Ath click icon	//span[@class='TimePickerMR_M']/i[@up]
+	\	${isvalue}	Get Element Attribute	xpath=//span[@class='TimePickerMR_M']/s[@minutes]@textContent
+	\	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Days/Hours.SetTimePopup.Click Set button
+	ath click button 	Set
+	sleep 	1.0
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Days/Hours.SetTimePopup.Click Cancel button
+	ath click button 	Cancel
+	sleep 	1.0
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Days/Hours.Select Time per Appointment for newly added entry
+	[arguments]	${latestrow} 	${appt}
+	Ath Select Drop Down Field Value	//div[@id='tab-officeHours']//tr[${latestrow}]//td[4]/select 	${appt}
+	sleep 	1.0
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Days/Hours.Select Time per Appointment for existing entry
+	[arguments]	${rowindx}
+	Ath Select Drop Down Field Value	//div[@id='tab-officeHours']//tr[${rowindx}]//td[4]/select
+	sleep 	1.0
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Days/Hours.Select Meeting Type for newly added entry
+	[arguments]	${latestrow} 	${meetingType}
+	Ath Select Drop Down Field Value	//div[@id='tab-officeHours']//tr[${latestrow}]//td[5]/select	${meetingType}
+	sleep 	1.0
+	ath wait until loaded 	30
+
+Scheduling.Preferences.Days/Hours.Select Meeting Break for newly added entry
+	[arguments]	${latestrow} 	${meetingBrk}
+	Ath Select Drop Down Field Value	//div[@id='tab-officeHours']//tr[${latestrow}]//td[6]/select	${meetingBrk}
+	sleep 	1.0
+	ath wait until loaded 	30
+
+Scheduling.Preferences.Days/Hours.Click Delete for newly added entry
+	[arguments]	${latestrow}
+	ath click button	//div[@id='tab-officeHours']//tr[${latestrow}]//td[7]/input[@value="Delete"]
+
+
+Scheduling.Preferences.Days/Hours.Click Delete for first entry
+	ath click button	//div[@id='tab-officeHours']//tr[1]//td[7]/input[@value="Delete"]
+
+#Scheduling.Preferences.Days/Hours.Click Save Button
+#	ath click button	//button[@id='save_working_hours_modal']
+Scheduling.Preferences.Days/Hours.Save.Click Select Timeframe Button
+	ath click button	Select Timeframe
+	sleep 	1.0
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Days/Hours.Save.Click Just Save Office Hours Button
+	ath click button	Just save office hours
+	sleep 	1.0
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Days/Hours.Timeframe.Click Apply Button
+	ath click button	//button[@id='ukrsol_aplly_default_week']
+	sleep 	1.0
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Days/Hours.Timeframe.Select Date From
+	[arguments]	${isMonth}	${isDay}
+	ath click icon	xpath=//input[@id='schedule_default_week_from']
+	_selectMonth	${isMonth}
+	ath click icon 	//td[@data-handler="selectDay"]/a[text()="${isDay}"]
+
+
+Scheduling.Preferences.Days/Hours.Timeframe.Select Date To
+	[arguments]	${isMonth}	${isDay}
+	ath click icon	xpath=//input[@id='schedule_default_week_to']
+	_selectMonth	${isMonth}
+	ath click icon 	//td[@data-handler="selectDay"]/a[text()="${isDay}"]
+
+_selectMonth
+	[arguments]	${CalMonth}
+	:FOR 	${idx}	IN RANGE	1	12
+	\	${myMonth}	Get Element Attribute	//span[@class='ui-datepicker-month']@textContent
+	\	${status}	Run Keyword and Return Status 	Should be Equal	${myMonth}	${CalMonth}
+	\	Run Keyword unless	${status}	ath click icon 	//span[@class='ui-icon ui-icon-circle-triangle-e']
+	[return]	${myMonth}
+
+Scheduling.Preferences.TimeZone.Apply Time Block
+	[arguments] 	${idx}=1
+	ath click button	xpath=//input[contains(@id,'different-timezone-apply')][@value="Apply"]
+	sleep 	1.0
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Confirm TimeZone Changes Saved successfully
+	Ath Verify Element Is Visible	//*[@class="alert alert-success"][contains(text(),'Timezone successfully modified.')]
+
+
+Scheduling.Preferences.Confirm Apply Changes Saved successfully
+	Ath Verify Element Is Visible	//*[@class="alert alert-success"][contains(text(),'Changes have been successfully saved.')]
+
+
+Scheduling.Preferences.Confirm Working Days Saved successfully
+	Ath Verify Element Is Visible	//*[@class="alert alert-success"][contains(text(),'The working days was saved successfully.')]
+
+Scheduling.Preferences.Confirm Office Hours Saved successfully
+	Ath Verify Element Is Visible	//*[@class="alert alert-success"][contains(text(),'Office hours have been changed.')]
+
+Scheduling.Preferences.Exceptions.Click Select Button
+	ath click button	Select
+	sleep 	1.0
+	ath wait until loaded 	30
+
+Scheduling.Select Appointment DateTime
+	[arguments]	${mydate}	${time}
+	## date and time format should be 2019-09-27/01:00PM - 02:00PM
+	ath click icon	xpath=(//td[not(contains(normalize-space(),'No Openings'))]/button[@data-day="${mydate}"][normalize-space()="${time}"])[1]
+	Sleep 	2.0
+
+Scheduling.TherapistRole.Select Appointment DateTime
+	[arguments]	${time}	${index}=1
+#	run keyword and Ignore Error	Execute Javascript	var element = document.evaluate("(//*[contains(@class,'open_meeting')]/descendant::div[@class="fc-time"]/descendant::span[normalize-space()='${time}'])[2]/../.." ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+#	run keyword and Ignore Error	click element	xpath=((//*[contains(@class,'open_meeting')]/descendant::div[@class="fc-time"]/descendant::span[normalize-space()="${time}"])[2]/../..)[1]
+	run keyword and Ignore Error	ath click icon	xpath=(//*[contains(@class,'open_meeting')]/descendant::*[@class="fc-time"]/span[normalize-space()="${time}"])[${index}]
+	run keyword and Ignore Error	Execute Javascript	var element = document.evaluate("(//*[contains(@class,'open_meeting')]/descendant::*[@class="fc-time"]/span[normalize-space()="${time}"])[${index}]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+
+
+
+Scheduling.Select Appointment Type
+	[arguments]	${type}	${isdate}	${time}
+	${status}	Run Keyword and Return Status	Element Should Not Be Visible	//div[@id='ukrsol_confirm_reschedule']
+	Run Keyword If	${status}	ath_select_drop_down_field_value	xpath=(//*[contains(text(),"Type")]/ancestor::div[contains(@class,"form-group")]/descendant::select)[1]	${type}	ELSE	Scheduling.Cancel Appointment
+	Run Keyword Unless	${status}	Scheduling.Select Appointment DateTime	${isdate}	${time}
+	Run Keyword Unless	${status}	ath_select_drop_down_field_value	xpath=(//*[contains(text(),"Type")]/ancestor::div[contains(@class,"form-group")]/descendant::select)[1]	${type}
+
+Scheduling.Check OK button is enabled
+	ath_verify_element_is_visible	xpath=//button[normalize-space()="Ok"][contains(@class,'ukrsol_enroll')]
+
+
+Scheduling.Check OK button is disabled
+	ath_verify_element_is_visible	xpath=//button[normalize-space()="Ok"][contains(@class,'ukrsol_enroll')][@disabled]
+
+
+Scheduling.Cancel Appointment
+	ath click button	//button[text()="Continue Cancellation"]
+	Sleep	1.0
+	ath_wait_until_element_is_present	//*[contains(text(),'select another time')] 	60
+	Run Keyword and Ignore Error	ath click button	//*[contains(text(),'select another time')]/../../descendant::div[@class="modal-footer"]/button
+	Sleep 	5.0
+
+Scheduling.SchedulingAppointmentPopup.Select Continue
+	ath_wait_until_element_is_present	//*[contains(@class,'dialog-titlebar')]/following-sibling::div[contains(normalize-space(),'Are you sure that you would like')]	60
+	ath click button	Continue
+
+Scheduling.Input Message
+	[arguments]	${message}
+	ath_input_text_value	//*[@class="modal-body"]/descendant::form/descendant::label[contains(text(),'Message')]/following::textarea	${message}
+
+
+Scheduling.Select Reminder Checkbox
+	ath_set_checkbox	xpath=//*[contains(text(),'Receive a reminder alert for this appointment.')]/../descendant::ins 	true
+	Capture Page Screenshot
+
+
+
+Scheduling.Select Reminder Time
+	[arguments]	${time}
+	ath_select_drop_down_field_value	xpath=(//*[@class="modal-body"]/descendant::form/descendant::*[contains(text(),'Prior to meeting')]/following::select)[1]	${time}
+
+
+Scheduling.Submit Survey popup
+	ath click button	//*[contains(@class,'survey_button')]/button[text()="Submit"]
+	Sleep	5.0
+
+
+Scheduling.Select Schedule appointment Checkbox
+#	ath_set_checkbox	Scheduling this appointment	true
+	ath_set_checkbox	xpath=//*[contains(text(),'Scheduling this appointment')]/div 	true
+
+
+Scheduling.Click OK Button
+	ath click button	//*[contains(@id,'confirm_enroll')]/descendant::div[@class="modal-footer"]/button[text()="Ok"]
+	Sleep	5.0
+	Reload Page
+
+
+Scheduling.Click Cancel Button
+	ath click button	//*[contains(@id,'confirm_enroll')]/descendant::div[@class="modal-footer"]/button[text()="Cancel"]
+	Sleep	2.0
+
+
+
+Scheduling. Verify Online Appointment is in Calendar
+	[arguments]	${timesched}
+	Run Keyword and Ignore Error	ath_verify_element_is_visible	xpath=(//*[contains(@class,'online_meeting')]/descendant::div[1]/div/span[normalize-space()="${timesched}"])[1]
+
+Scheduling. Verify In-Person Appointment is in Calendar
+	[arguments]	${timesched}
+	Run Keyword and Ignore Error	ath_verify_element_is_visible	xpath=(//*[contains(@class,'inPerson_meeting')]/descendant::div[1]/div/span[normalize-space()="${timesched}"])[1]
+
+
+Scheduling. Verify Appointment Time is Open
+	[arguments]	${timesched} 	${datesched}
+	ath_verify_element_is_visible	xpath=(//*[contains(@class,'fc-event open_meeting')][normalize-space()="${timesched}"][@data-day="${datesched}"])[1]
+
+
+Scheduling.Select Meeting from Calendar
+	[arguments]	${timesched}
+	ath click icon	xpath=//*[contains(@class,'ukrsol_reschedule')][normalize-space()="${timesched}"]
+
+Scheduling.CancelMeeting.Click Continue Cancellation
+	ath click button	Continue Cancellation
+	Sleep 	2.0
+	ath wait until loaded	30
+
+Scheduling.CancelMeeting.Click Discontinue Cancellation
+	ath click button	Discontinue Cancellation
+	Sleep 	3.0
+
+
+Scheduling.CancelMeeting.Click OK from Reschedule popup
+	ath click button	xpath=(//*[contains(text(),'Please select another time')])[1]/../../div[@class="modal-footer"]/button[normalize-space()="OK"]
+
+
+Scheduling.CancelMeeting.Cancellation Message Displayed
+	[arguments]	${cancellationMsg}
+	Ath Verify Element Is Visible	//*[contains(@class,'alert-danger')][contains(text(),'${cancellationMsg}')]
+
+Scheduling.TherapistRole.Move Calendar Display to Next Page
+	ath click icon	xpath=//button[@class='fc-next-button fc-button fc-state-default fc-corner-right']
+	Sleep 	2.0
+	ath wait until loaded	60
+
+Scheduling.TherapistRole.Move Calendar Display to Previous Page
+	ath click icon	xpath=//button[@class='fc-prev-button fc-button fc-state-default fc-corner-left']
+	Sleep 	2.0
+	ath wait until loaded	60
+
+Scheduling.Move Calendar Display to Next Page
+	ath click icon 	xpath=//*[contains(@class,'chevron-right')]
+	ath wait until loaded	60
+
+Scheduling.Move Calendar Display to Previous Page
+	ath click icon 	xpath=//*[contains(@class,'chevron-left')]
+	ath wait until loaded	60
+
+
+Scheduling.MyMeetings.Verify Columns Display
+	[arguments]	${columnhdr}	${index}=1	${attr}=textContent	${isPositive}=true
+	@{colitems}	Split String	${columnhdr}	,
+	:FOR 	${items}	IN	@{colitems}
+	\	@{label}	Split String	${items}	separator=,
+	\	log	${items}
+	\	ath Check Label	//th[normalize-space()="${items}"]	${index}	${attr}	${isPositive}
+
+Scheduling.MyMeetings.Verify Meetings Display
+	ath_verify_element_is_visible	xpath=//div[@id='myMeetingsList']
+	ath wait until loaded	30
+
+
+Scheduling.MyMeetings.Select Records per Page dropdown
+	[arguments]	${recordno}
+	ath select drop down field value	Records per page 	${recordno}
+	#//*[text()="Records per page "]/select
+	ath wait until loaded	30
+
+
+Scheduling.MyMeetings.Verify Table Row same as Records per Page
+	[arguments]	${recordno}
+	${iscount}	Get Matching Xpath Count	xpath=//tbody[@role="alert"]/tr
+	Should Be Equal As Integers 	${iscount}	${recordno}
+
+
+Scheduling.MyMeetings.Verify Appointment Display
+	[arguments]	${datesched} 	${timesched} 
+	##datesched="%m-%d-%Y" - timesched="0300 - 04:00"
+	ath_verify_element_is_visible	xpath=//table[contains(@class,'my-meetings')]/descendant::td[text()="${datesched}"]/following-sibling::td[contains(text(),'${timesched}')]
+
+
+Scheduling.MyMeetings.Verify Appointment in Approved Status
+	[arguments]	${datesched}	${timesched}
+	##datesched="%m-%d-%Y" - timesched="0300 - 04:00"
+	ath_verify_element_is_visible	xpath=(//table[contains(@class,'my-meetings')]/descendant::td[text()="${datesched}"]/following-sibling::td[contains(text(),'${timesched}')]/following::td[normalize-space()="Approved"])[1]
+
+Scheduling.MyMeetings.Verify Appointment in Cancelled by Me Status
+	[arguments]	${datesched}	${timesched}
+	ath_verify_element_is_visible	xpath=(//table[contains(@class,'my-meetings')]/descendant::td[text()="${datesched}"]/following-sibling::td[contains(text(),'${timesched}')]/following::td[normalize-space()="Cancelled by me"])[1]
+
+Scheduling.MyMeetings.Verify Reschedule Button Display
+	[arguments]	${datesched}	${timesched}
+	ath_verify_element_is_visible	xpath=//table[contains(@class,'my-meetings')]/descendant::td[text()="${datesched}"]/following-sibling::td[contains(text(),'${timesched}')]/../descendant::td/button[normalize-space()="Reschedule"]
+
+
+Scheduling.MyMeetings.Verify Cancel Button Display
+	[arguments]	${datesched}	${timesched}
+	ath_verify_element_is_visible	xpath=//table[contains(@class,'my-meetings')]/descendant::td[text()="${datesched}"]/following-sibling::td[contains(text(),'${timesched}')]/../descendant::td/button[normalize-space()="Cancel"]
+
+
+Scheduling.MyMeetings.Click Reschedule Button Display
+	[arguments]	${datesched}	${timesched}
+	ath_click button	xpath=//table[contains(@class,'my-meetings')]/descendant::td[text()="${datesched}"]/following-sibling::td[contains(text(),'${timesched}')]/../descendant::td/button[normalize-space()="Reschedule"]
+
+
+Scheduling.MyMeetings.Click Cancel Button Display
+	[arguments]	${datesched} 	${timesched}
+	ath_click button	xpath=//table[contains(@class,'my-meetings')]/descendant::td[text()="${datesched}"]/following-sibling::td[contains(text(),'${timesched}')]/../descendant::td/button[normalize-space()="Cancel"]
+
+
+Scheduling.MyMeetings.Click Cancel Button
+	ath click button 	Cancel
+	ath wait until loaded 	60
+
+
+Scheduling.MyMeetings.Click Reschedule Button
+	ath click button 	Reschedule
+	ath wait until loaded 	60
+
+
+
+
+
+

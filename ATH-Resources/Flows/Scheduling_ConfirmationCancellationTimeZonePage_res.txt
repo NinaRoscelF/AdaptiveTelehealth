@@ -1,0 +1,178 @@
+*** Settings ***
+Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/CommonPage_res.txt
+
+
+**** Keywords ****
+Scheduling.Preferences.Confirmations.Select Very First Time Checkbox
+	[arguments]	${value}=true
+	ath set checkbox	Very first time scheduling only.	${value}
+	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Confirmations.Select Patient from List
+	[arguments]	${patient}
+	ath_click icon	xpath=//select[@name='ukrsol_select_client[]']
+	ath_click icon	xpath=//select[@name='ukrsol_select_client[]']/option[normalize-space()=${patient}]
+
+
+Scheduling.Preferences.Confirmations.Click Apply
+	ath_click button	Apply
+	ath wait until loaded 	60
+
+
+Scheduling.Preferences.CancellationMessages.Select Cancellation RadioButton
+	[arguments]	${value}
+	ath_select_radio_button	${value}
+	ath wait until loaded 	60
+
+
+Scheduling.Preferences.Input Message Hours
+	[arguments]	${label}	${input}
+	ath_set_text_area_value	${label}	${input}
+	ath wait until loaded 	60
+
+
+Scheduling.Calendar.Verify Calendar Meeting is Displayed
+	ath_verify_element_is_visible	//*[@id="calendar_view"]
+	ath wait until loaded 	30
+
+Scheduling.Calendar.Select Any Open Meeting
+	[arguments]	${idx}=1
+	Run Keyword and Ignore Error	ath click icon	xpath=(//*[contains(@class,'open_meeting')]/div)[${idx}]
+	Run Keyword and Ignore Error	Execute Javascript	var element = document.evaluate("(//*[contains(@class,'open_meeting')]/div)[${idx}]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	ath wait until element is present	//*[@class="modal-header"]/descendant::h5[contains(normalize-space(),'Appointment Details')]
+
+
+Scheduling.Calendar.Verify Meeting is displayed in Calendar
+	[arguments]	${timesched} 	${apptAttendee}
+	${status}	Run Keyword and Return Status	ath_verify_element_is_visible	xpath=(//*[@class="fc-time"][normalize-space()="${timesched}"]/../descendant::div[@class="fc-title"][normalize-space()="Appointment - ${apptAttendee}"])[1]
+	Run Keyword Unless	${status}	ath_verify_element_is_visible	xpath=(//*[@class="fc-time"][normalize-space()="${timesched}"]/../descendant::div[@class="fc-title"][normalize-space()="Open - ${apptAttendee}"])[1]
+
+Scheduling.Calendar.Verify Meeting is Reopened in Calendar
+	[arguments]	${timesched}
+	ath_verify_element_is_visible	xpath=(//*[@class="fc-time"][normalize-space()="${timesched}"]/../descendant::div[@class="fc-title"][normalize-space()="Open"])
+
+
+Scheduling.Calendar.Select Meeting from Calendar
+	[arguments]	${timesched} 	${apptAttendee}
+	${status}	Run Keyword and Return Status	ath click icon	xpath=(//*[@class="fc-time"]/descendant::span[text()="${timesched}"]/../../descendant::div[@class="fc-title"][contains(normalize-space(),'Appointment - ${apptAttendee}')]/ancestor::a)[1]
+	Run Keyword Unless	${status}	ath click icon	xpath=(//*[@class="fc-time"][normalize-space()="${timesched}"]/../descendant::div[@class="fc-title"][normalize-space()="Open - ${apptAttendee}"]/ancestor::a)[1]
+
+
+
+Scheduling.Calendar.Verify Client Calendar Meeting Display
+	ath_verify_element_is_visible	xpath=//*[contains(@class,'open_meeting')]/descendant::div[normalize-space()="Open"]/../div[@class="fc-time"]
+
+
+Scheduling.Calendar.Close Edit Appointment Popup
+	ath click icon	xpath=(//button[@class="close"]/span[normalize-space()="×"])[1]
+	ath wait until loaded 	30
+
+
+Scheduling.Calendar.Select Any Online Meeting from Calendar
+	[arguments]	${index}=1
+	Execute Javascript	var element = document.evaluate("(//*[contains(@class,'online_meeting')]/div)[${index}]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	ath wait until loaded 	30
+
+Scheduling.Calendar.Select Any Personal Meeting from Calendar
+	[arguments]	${index}=1
+	Execute Javascript	var element = document.evaluate("(//*[contains(@class,'inPerson_meeting')]/div)[${index}]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	ath wait until loaded 	30
+
+Scheduling.Calendar.Appointment Popup.Verify Participant Name
+	[arguments]	${participantName}
+	ath_verify_element_is_visible	xpath=//*[@class="participant-name"]/descendant::div[normalize-space()="${participantName}"]
+
+
+Scheduling.Calendar.Appointment Popup.Verify Time Schedule
+	[arguments]	${schedtimeFrom} 	${schedtimeTo}
+	## format time 3:00 pm to 4:00 pm
+	ath_verify_element_is_visible	xpath=//div[@class='ng-binding'][contains(normalize-space(),'${schedtimeFrom} to ${schedtimeTo}')]
+
+
+Scheduling.Calendar.Appointment Popup.Select Status Dropdown
+	[arguments]	${status}
+	ath select drop down field value	xpath=(//*[contains(text(),"Status")]/ancestor::div[contains(@class,"form-group")]/descendant::select)[1]	${status}
+
+
+Scheduling.Calendar.Appointment Popup.Click Edit Meeting
+	ath click icon	xpath=//a[@title="Edit Meeting"]/i
+	ath wait until loaded 	30
+
+
+Scheduling.Calendar.Verify Edit Meeting Popup displayed
+	[arguments]	${participantsName}
+	ath_verify_element_is_visible	xpath=//*[contains(normalize-space(),'Edit Appointment - ${participantsName}')]
+
+
+Scheduling.Calendar.EditMeetingPopup.Input Meeting Title
+	[arguments]	${description}
+#	ath_input_text_value	//input[contains(@placeholder,'This text box (Title only) is NOT secure.')]	${description}
+	ath_input_text_value	xpath=//*[text()="Title"]/following-sibling::input	${description}
+
+Scheduling.Calendar.EditMeetingPopup.Input description
+	[arguments]	${description}
+	ath_input_text_value	Description...	${description}
+
+Scheduling.Calendar.Appointment Popup.Add Participants
+	[arguments]	${ptcpts}
+	ath click link	Add participants
+	ath wait until loaded 	30
+	ath click icon	xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[normalize-space(.)='${ptcpts}']
+
+
+Scheduling.Calendar.Appointment Popup.Click Change Meeting Button
+	ath click button 	Change Meeting
+	Sleep 	15.0
+	Ath Wait Until Element Is Present	//*[@class="ui-dialog-title"][normalize-space()="Processing..."]
+
+Scheduling.Calendar.Appointment Popup.Click Delete Meeting
+	ath click icon	xpath=//a[@title="Cancel Meeting"]/i
+	Sleep 	5.0
+	ath wait until loaded 	30
+
+Scheduling.Calendar.Appointment.DeletePopup.Click Continue
+	ath click button 	Continue
+	Sleep 	10.0
+	ath wait until loaded 	30
+
+
+Scheduling.Calendar.Appointment.DeletePopup.Verify Meeting is Deleted successfully
+	Run Keyword and Ignore Error	ath_verify_element_is_visible	xpath=//div[contains(@class,'cg-notify-message-center')]/descendant::div[1][normalize-space()="Meeting Cancelled."]
+	ath wait until loaded 	30
+
+
+Scheduling.Calendar.Verify Edit Open Meeting windown is Displayed
+	ath_verify_element_is_visible	xpath=//h4[@class='modal-title ng-binding'][contains(normalize-space(),'Edit Open ')]
+
+
+Scheduling.Calendar.EditOpenPopup.Click Cancel Button
+	ath Click Button	Cancel
+	ath wait until loaded 	30
+
+
+Scheduling.Calendar.EditOpenPopup.Select Appointment Type
+	[arguments]	${apptType}
+#	ath_select_radio_button	${apptType}
+	ath wait until element is present	//h4[@class='modal-title ng-binding'][contains(normalize-space(),'Edit Open ')]
+	ath_select_radio_button	xpath=(.//*[normalize-space(text()) and normalize-space(.)='Type'])[1]/following::label[1]
+	ath wait until loaded 	30
+
+Scheduling.Calendar.EditOpenPopup.Select Reminder Checkbox
+	ath_set_checkbox	xpath=//*[@id="app_reminder"]/following-sibling::ins	true
+	Capture Page Screenshot
+
+
+Scheduling.Calendar.EditOpenPopup.Select Send a Reminder
+	[arguments]	${reminderTime}
+	ath_select_drop_down_field_value	Please send a reminder in	${reminderTime}
+	ath wait until loaded 	30
+
+
+Scheduling.Calendar.EditOpenPopup.Meeting Updated successfully
+	Run Keyword and Ignore Error	Ath Verify Element Is Visible	xpath=//div[contains(@class,'cg-notify-message-center')]/descendant::span[contains(text(),'Meeting has been successfully updated')]
+	Sleep 	3.0
+
+
+Scheduling.Calendar.EditOpenPopup.Validation No Participants
+	Fail
