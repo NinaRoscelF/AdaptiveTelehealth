@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/CommonPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/CommonPage_res.txt
 
 
 **** Keywords ****
@@ -36,7 +36,7 @@ Scheduling. Expand Account Settings Menu
 
 
 Scheduling.Preferences.Select Time Blocks Tab
-	ath click link	Time Blocks
+	ath click link	//a[@id='tab-calendar-a']
 	ath wait until loaded 	30
 
 
@@ -45,7 +45,7 @@ Scheduling.Preferences.Verify Time Blocks Tab Displayed
 
 
 Scheduling.Preferences.Select Days/Hours Tab
-	ath click link	Days/Hours
+	ath click link	xpath=//a[@id='tab-officeHours-a']
 	ath wait until loaded 	30
 
 
@@ -54,7 +54,7 @@ Scheduling.Preferences.Verify Days/Hours Tab Displayed
 
 
 Scheduling.Preferences.Select Exceptions Tab
-	ath click link	Exceptions
+	ath click link	xpath=//a[@id='tab-weeks-a']
 	ath wait until loaded	30
 	ath wait until element is present	//form[@id='form_for_send']
 
@@ -65,7 +65,8 @@ Scheduling.Preferences.Verify Exceptions Tab Displayed
 
 
 Scheduling.Preferences.Select Confirmations Tab
-	ath click link	Confirmations
+	ath click link	xpath=//*[@id='tab-confirmations-a']
+	Execute Javascript	var element = document.evaluate("//*[@id='tab-confirmations-a']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
 	ath wait until element is present	//form[@id='ukrsol_form_Confirmation']	60
 
 
@@ -74,7 +75,7 @@ Scheduling.Preferences.Verify Confirmations Tab Displayed
 	ath verify element is visible	//div[@id='tab-confirmations']
 
 Scheduling.Preferences.Select Cancellation Messages Tab
-	ath click link	Cancellation Messages
+	ath click link	xpath=//a[@id='tab-messages-a']
 	ath wait until element is present	//form[@name='schedule-cancellation-messages']
 
 
@@ -83,12 +84,12 @@ Scheduling.Preferences.Verify Cancellation Messages Tab Displayed
 	ath verify element is visible	 //div[@id='schedules-settings-tabs-content']
 
 Scheduling.Preferences.Select Time Zone Tab
-	ath click link	Time Zone
+	ath click link 	xpath=//a[@id='tab-time-zone-a']
 	ath wait until loaded	30
 	ath wait until element is present	//div[@id='tab-time-zone']
 
 Scheduling.Preferences.Verify Time Zone Tab Displayed
-	ath click link	Time Zone
+	ath wait until loaded	30
 	ath verify element is visible	 //div[@id='tab-time-zone']
 
 Scheduling.Preferences.TimeZone.Select Time Zone
@@ -153,7 +154,7 @@ Scheduling.Preferences.Days/Hours.Get Table Count
 
 Scheduling.Preferences.Days/Hours.Click Save Button
 	ath click button	Save
-	sleep 	1.0
+	sleep 	5.0
 	ath wait until loaded 	30
 
 

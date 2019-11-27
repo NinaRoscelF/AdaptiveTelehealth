@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/ath_master_flow.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/ath_master_flow.txt
 
 
 **** Keywords ****
