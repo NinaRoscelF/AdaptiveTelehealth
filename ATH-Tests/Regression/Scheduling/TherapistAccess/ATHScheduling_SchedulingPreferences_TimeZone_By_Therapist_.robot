@@ -1,7 +1,7 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/SchedulingPage_res.txt
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/Scheduling_ConfirmationCancellationTimeZonePage_res.txt
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/SchedulingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/Scheduling_ConfirmationCancellationTimeZonePage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
 Suite Teardown	Close All Browsers
 
 
@@ -18,6 +18,8 @@ SchedulingTherapist_025
 	ath click button	Calendar Preferences
 	Scheduling.Preferences.Select Confirmations Tab
 	Scheduling.Preferences.Verify Confirmations Tab Displayed
+	Sleep 	5.0
+	Capture Page Screenshot
 
 # SchedulingTherapist_026
 # #apply w/out select client
@@ -27,7 +29,7 @@ SchedulingTherapist_025
 
 SchedulingTherapist_027
 #sekect client
-	Scheduling. Expand Schedule Menu Settings
+#	Scheduling. Expand Schedule Menu Settings
 	ath click link 	Schedule preferences
 	Capture Page Screenshot
 	Scheduling.Preferences.Select Confirmations Tab
@@ -59,6 +61,8 @@ SchedulingTherapist_029
 
 SchedulingTherapist_030
 #Cancellation Message - If client cancels less than 1
+	Scheduling. Expand Schedule Menu Settings
+	Reload Page
 	ath click link 	Schedule preferences
 	Scheduling.Preferences.Select Cancellation Messages Tab
 	Scheduling.Preferences.CancellationMessages.Select Cancellation RadioButton	If client cancels less than
@@ -68,6 +72,9 @@ SchedulingTherapist_030
 
 SchedulingTherapist_031
 #Cancellation Message - If client cancels less than 24
+#	Scheduling. Expand Schedule Menu Settings
+	Reload Page
+	Scheduling. Expand Schedule Menu Settings
 	ath click link 	Schedule preferences
 	Scheduling.Preferences.Select Cancellation Messages Tab
 	Scheduling.Preferences.CancellationMessages.Select Cancellation RadioButton	If client cancels less than 24
@@ -76,6 +83,8 @@ SchedulingTherapist_031
 
 SchedulingTherapist_032
 #Cancellation Message - If client cancels the same day
+	Reload Page
+	Scheduling. Expand Schedule Menu Settings
 	ath click link 	Schedule preferences
 	Scheduling.Preferences.Select Cancellation Messages Tab
 	Scheduling.Preferences.CancellationMessages.Select Cancellation RadioButton	If client cancels the same day
@@ -84,6 +93,9 @@ SchedulingTherapist_032
 
 SchedulingTherapist_042
 #timezone tab
+	Reload Page
+	Scheduling. Expand Schedule Menu Settings
+	ath click link 	Schedule preferences
 	Scheduling.Preferences.Select Time Zone Tab
 	Scheduling.Preferences.Verify Time Zone Tab Displayed
 

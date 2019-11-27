@@ -1,9 +1,9 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/SchedulingPage_res.txt
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/Scheduling_ConfirmationCancellationTimeZonePage_res.txt
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
-Variables	C:/Adaptive_Telehealth/ATH-Resources/Variables/ATHScheduling_Scheduling_SelectFromInbox_By_Therapist.py
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/SchedulingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/Scheduling_ConfirmationCancellationTimeZonePage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHScheduling_Scheduling_SelectFromInbox_By_Therapist.py
 Suite Teardown	Close All Browsers
 
 
@@ -79,20 +79,22 @@ SchedulingTherapist_041
 	Scheduling.Calendar.EditMeetingPopup.Input description	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpWithoutZoom}
 	Scheduling.Calendar.Appointment Popup.Click Change Meeting Button
-	Run KEyword and Ignore Error	ath_verify_element_is_visible	xpath=//*[contains(@class,'cg-notify-message-danger')]
+	ath_verify_element_is_visible	xpath=//*[contains(@class,'cg-notify-message-danger')]
 
 SchedulingTherapist_042
 #delete
+	Reload Page
 	Scheduling.Calendar.Select Meeting from Calendar	${TimeConfirm2}	Multiple Clients
 	Scheduling.Calendar.Appointment Popup.Click Delete Meeting
 	Scheduling.Calendar.Appointment.DeletePopup.Click Continue
-	Run Keyword and Ignore Error	Scheduling.Calendar.Verify Meeting is Reopened in Calendar 	${TimeConfirm2}
+	Scheduling.Calendar.Verify Meeting is Reopened in Calendar 	${TimeConfirm2}
+	Reload Page
 #	OPen email
 
 
 SchedulingTherapist_046
 #Php Error on System Preferences
-	Scheduling.Calendar.Close Edit Appointment Popup
+#	Scheduling.Calendar.Close Edit Appointment Popup
 	Select System Preferences icon
 	Verify System Preferences page displayed
 	Logout from Application

@@ -1,8 +1,7 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/SchedulingPage_res.txt
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/Scheduling_ConfirmationCancellationTimeZonePage_res.txt
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
-Variables	C:/Adaptive_Telehealth/ATH-Resources/Variables/ATHScheduling_Scheduling_SelectFromCalendar_By_Admin.py
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/SchedulingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/Scheduling_ConfirmationCancellationTimeZonePage_res.txt
+Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHScheduling_Scheduling_SelectFromCalendar_By_Admin.py
 Suite Teardown	Close All Browsers
 
 
@@ -28,6 +27,20 @@ SchedulingAdmin_002
 
 SchedulingAdmin_003
 #delete personal
+	${DTToday}	Generate Date and Time Today
+	${DateFormat}	Generate Date and Time Today	%m-%d-%Y
+	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%Y-%m-%d
+	${DateAddFormat}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%m-%d-%Y
+	Scheduling.TherapistRole.Select Appointment DateTime	2:00 - 3:00 	2
+	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	OFFLINE
+	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
+	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}
+	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName2}
+	Scheduling.Calendar.EditOpenPopup.Select Reminder Checkbox
+	Scheduling.Calendar.EditOpenPopup.Select Send a Reminder 	5 minutes
+	Scheduling.Calendar.Appointment Popup.Click Change Meeting Button
+	${status}	Run Keyword and Return Status 	ath verify element is visible	//*[contains(@class,'dialog-titlebar')]/following-sibling::div[contains(normalize-space(),'Are you sure that you would like')]
+	Run Keyword If	${status}	Scheduling.SchedulingAppointmentPopup.Select Continue
 	Scheduling.Calendar.Select Any Personal Meeting from Calendar
 	Scheduling.Calendar.Appointment Popup.Click Delete Meeting
 	Scheduling.Calendar.Appointment.DeletePopup.Click Continue

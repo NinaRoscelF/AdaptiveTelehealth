@@ -1,6 +1,6 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/SchedulingPage_res.txt
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/SchedulingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
 Suite Teardown	Close All Browsers
 
 

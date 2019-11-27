@@ -1,9 +1,9 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/SchedulingPage_res.txt
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/Scheduling_ConfirmationCancellationTimeZonePage_res.txt
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
-Variables	C:/Adaptive_Telehealth/ATH-Resources/Variables/ATHScheduling_Scheduling_SelectFromCalendar_By_Therapist.py
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/SchedulingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/Scheduling_ConfirmationCancellationTimeZonePage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHScheduling_Scheduling_SelectFromCalendar_By_Therapist.py
 Suite Teardown	Close All Browsers
 
 
