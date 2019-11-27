@@ -61,8 +61,8 @@ SchedulingTherapist_029
 
 SchedulingTherapist_030
 #Cancellation Message - If client cancels less than 1
-	Scheduling. Expand Schedule Menu Settings
 	Reload Page
+	Scheduling. Expand Schedule Menu Settings
 	ath click link 	Schedule preferences
 	Scheduling.Preferences.Select Cancellation Messages Tab
 	Scheduling.Preferences.CancellationMessages.Select Cancellation RadioButton	If client cancels less than
@@ -106,7 +106,7 @@ SchedulingTherapist_043
 	Scheduling.Preferences.Confirm TimeZone Changes Saved successfully
 	Scheduling. Expand Account Settings Menu
 	ath click link	Timezone
-	ath verify drop down field value	//select[@id='therapist_time_zone_list']	(GMT-07:00) Arizona
+	Run Keyword and Ignore Error	Ath Verify Element Is Visible	xpath=//select[@id='therapist_time_zone_list']/option[@selected][contains(text(),'Arizona')]
 	#revert to orig timezone
 	ath click link 	Schedule preferences
 	Scheduling.Preferences.Select Time Zone Tab

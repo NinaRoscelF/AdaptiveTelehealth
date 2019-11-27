@@ -506,17 +506,17 @@ Scheduling.MyMeetings.Verify Appointment in Cancelled by Me Status
 
 Scheduling.MyMeetings.Verify Reschedule Button Display
 	[arguments]	${datesched}	${timesched}
-	ath_verify_element_is_visible	xpath=//table[contains(@class,'my-meetings')]/descendant::td[text()="${datesched}"]/following-sibling::td[contains(text(),'${timesched}')]/../descendant::td/button[normalize-space()="Reschedule"]
+	ath_verify_element_is_visible	xpath=(//table[contains(@class,'my-meetings')]/descendant::td[text()="${datesched}"]/following-sibling::td[contains(text(),'${timesched}')]/../descendant::td//descendant::button[normalize-space()="Reschedule"])[1]
 
 
 Scheduling.MyMeetings.Verify Cancel Button Display
 	[arguments]	${datesched}	${timesched}
-	ath_verify_element_is_visible	xpath=//table[contains(@class,'my-meetings')]/descendant::td[text()="${datesched}"]/following-sibling::td[contains(text(),'${timesched}')]/../descendant::td/button[normalize-space()="Cancel"]
+	ath_verify_element_is_visible	xpath=(//table[contains(@class,'my-meetings')]/descendant::td[text()="${datesched}"]/following-sibling::td[contains(text(),'${timesched}')]/../descendant::td/descendant::button[normalize-space()="Cancel"])[1]
 
 
 Scheduling.MyMeetings.Click Reschedule Button Display
 	[arguments]	${datesched}	${timesched}
-	ath_click button	xpath=//table[contains(@class,'my-meetings')]/descendant::td[text()="${datesched}"]/following-sibling::td[contains(text(),'${timesched}')]/../descendant::td/button[normalize-space()="Reschedule"]
+	ath_click button	xpath=(//table[contains(@class,'my-meetings')]/descendant::td[text()="${datesched}"]/following-sibling::td[contains(text(),'${timesched}')]/../descendant::td/descendant::button[normalize-space()="Reschedule"])[1]
 
 
 Scheduling.MyMeetings.Click Cancel Button Display

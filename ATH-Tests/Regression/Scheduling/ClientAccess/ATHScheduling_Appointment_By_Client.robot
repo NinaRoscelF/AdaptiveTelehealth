@@ -118,19 +118,25 @@ SchedulingClient_009
 #	Scheduling.CancelMeeting.Click OK from Reschedule popup
 	Scheduling. Verify In-Person Appointment is in Calendar	${Time3}
 
-SchedulingClient_008
-#Cancel Scheduled Appointment from calendar- continue cancellation
-	Scheduling.Select Meeting from Calendar	${Time4}
-	Scheduling.CancelMeeting.Click Continue Cancellation
-	Scheduling.CancelMeeting.Click OK from Reschedule popup
-	Scheduling.MyMeetings.Verify Appointment in Cancelled by Me Status	${DateAdd}	${TimeCalendar}
-	Scheduling. Verify Appointment Time is Open 	${Time4}	${DateAdd}
-
 SchedulingClient_010
 	Scheduling.Move Calendar Display to Next Page
+	Sleep 	5.0
 	Capture Page Screenshot
 
 SchedulingClient_011
 	Scheduling.Move Calendar Display to Previous Page
+	Sleep 	5.0
 	Capture Page Screenshot
+
+SchedulingClient_008
+#Cancel Scheduled Appointment from calendar- continue cancellation
+	Scheduling.Select Meeting from Calendar	${Time4}
+	Scheduling.CancelMeeting.Click Continue Cancellation
+	Sleep	1.0
+	Scheduling.CancelMeeting.Click OK from Reschedule popup
+	Reload Page
+	Scheduling.MyMeetings.Select Records per Page dropdown	50
+	Scheduling.MyMeetings.Verify Appointment in Cancelled by Me Status	${DateAddFormat}	${TimeCalendar}
+	Scheduling. Verify Appointment Time is Open 	${Time4}	${DateAdd}
+
 	Logout from Application

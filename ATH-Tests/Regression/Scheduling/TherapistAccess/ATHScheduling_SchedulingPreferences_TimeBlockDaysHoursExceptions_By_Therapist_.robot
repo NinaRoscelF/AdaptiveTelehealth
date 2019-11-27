@@ -38,6 +38,7 @@ SchedulingClient_003
 SchedulingClient_005
 #remove time block
 	Scheduling.Preferences.TimeBlocks.Remove Time Block
+	Sleep 	2.0
 	ath check button existence	Change	1	false
 	ath check button existence	Apply
 	Capture Page Screenshot
@@ -58,7 +59,7 @@ SchedulingClient_006
 
 SchedulingClient_007
 #apply time block
-	Scheduling.Preferences.TimeBlocks.Add new Time Block value	120
+	Scheduling.Preferences.TimeBlocks.Add new Time Block value	60
 	Scheduling.Preferences.TimeBlocks.Add Field 1	Auto Test 1
 	Scheduling.Preferences.TimeBlocks.Add Field 2	Auto Test 2
 	RUn Keyword and Ignore Error	Scheduling.Preferences.TimeBlocks.Close Duplicate Popup
@@ -66,20 +67,16 @@ SchedulingClient_007
 	RUn Keyword and Ignore Error	Scheduling.Preferences.TimeBlocks.Close Duplicate Popup
 	Scheduling. Expand Schedule Menu Settings
 	ath click link 	Schedule preferences
-	RUn Keyword and Ignore Error	ath check button existence	Change	1
-
+	${status}	RUn Keyword and Return Status	ath check button existence	Change	1
+	Set Suite Variable 	${status}
 SchedulingClient_008
-#apply time block
+#change time block
 	# Scheduling. Expand Schedule Menu Settings
 	# ath click link 	Schedule preferencesvv
-	Scheduling.Preferences.TimeBlocks.Change Time Block
-	Scheduling.Preferences.TimeBlocks.Add Field 1	Auto Test 3
-	Scheduling.Preferences.TimeBlocks.Change Time Block
+	Run Keyword If	${status}	Scheduling.Preferences.TimeBlocks.Change Time Block
+	Run Keyword If	${status}	Scheduling.Preferences.TimeBlocks.Add Field 1	Auto Test 3
+	Run Keyword If	${status}	Scheduling.Preferences.TimeBlocks.Change Time Block
 	Capture Page Screenshot
-
-SchedulingClient_009
-#change time block
-	Scheduling.Preferences.TimeBlocks.Remove Time Block
 
 SchedulingClient_010
 #days/hours tab
@@ -120,6 +117,7 @@ SchedulingClient_015
 #days/hours tab_new office hour add with day and no time
 	${mycurCount}	Scheduling.Preferences.Days/Hours.Get Table Count
 	Scheduling.Preferences.Days/Hours.Click New Office Hour Button
+	Sleep 	2.0
 	Scheduling.Preferences.Days/Hours.Select Day from dropdown	Mon
 	Scheduling.Preferences.Days/Hours.Click Set Start Time
 	Scheduling.Preferences.Days/Hours.Select Time hours from dropdown 	5

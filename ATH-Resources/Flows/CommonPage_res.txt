@@ -98,3 +98,40 @@ Select Page Number
 Logout from Application
 	Run Keyword and Ignore Error	click element	//span[text()="Logout"]/ancestor::a
 	Run Keyword and Ignore Error	Page Should Contain Element	//h3[@class="box-title"][normalize-space()="Login"]
+
+
+Login to Mailinator
+	[Arguments]	${UserName}
+	${UserNamer}	Fetch From Left	${UserName}	@
+	Sleep	10.0
+	Open Browser	https://www.mailinator.com/v3/index.jsp?zone=public&query=${UserNamer}	FF 	mailinator	ff_profile_dir=firefoxprofile
+	Maximize Browser Window
+	Ath Wait Until Loaded	30
+
+
+Get Code From Mailinator
+	Capture Page Screenshot
+	Ath Wait Until Loaded 	30
+	Ath Wait Until Element Is Present 	//tr[@ng-repeat='email in emails']/descendant::td[4]
+	Sleep 	1.0
+	Ath Wait Until Loaded 	30
+	Sleep	5.0
+	Reload Page
+	Ath Click Link	xpath=//td[contains(normalize-space(),'Invitation')]
+	Sleep	5.0
+	Ath Wait Until Element Is Present	//*[@id="msgpane"]/descendant::iframe[@id="msg_body"]	60
+	Capture Page Screenshot
+	Select Frame	xpath=//*[@id="msgpane"]/descendant::iframe[@id="msg_body"]
+	Capture Page Screenshot
+	ath click link	//*[normalize-space()="Click here"]
+	Unselect Frame
+	[return]	${Token}
+
+Complete registration Process
+	[Arguments]	${FirstName}	${LastName}	${Email}
+	ath input text vale 	First Name	${FirstName}
+	ath input text vale 	First Name	${LastName}
+	ath input text vale 	Password	Password123!!!
+	ath input text vale 	Confirm Password	Password123!!!
+	ath input text vale 	Confirm Email	${Email}
+	ath input text vale 	First Name 	${FirstName}
