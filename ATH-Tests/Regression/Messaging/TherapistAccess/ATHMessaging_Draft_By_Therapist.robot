@@ -1,15 +1,30 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
 Suite Teardown	Close All Browsers
 
 
 ***Variable***
+${Recipient1}	Daniella Demoss ( Group Therapist )
 
 
 ***Test Cases***
 MessagingTherapist_041
 #Select one move to trash
-	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}
+	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
+	Perform Login Checks
+	Select Messaging Menu
+	Messaging.Select Draft Menu
+	:FOR 	${idx}	IN RANGE	1	10
+	\	Messaging.Click New Message Button
+	\	Messaging.Input Recipient	${Recipient1}
+	\	Messaging.Input Subject	Automation Message
+	\	Messaging.Input Message	Automation Test Message
+	\	Messaging.Input Message	AutomationDraft Test Message
+	\	Messaging.Click Save to Draft Button
+	\	Sleep 	3.0
+	Logout from Application
+
+	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Draft Menu
@@ -64,7 +79,7 @@ MessagingTherapist_050
 
 MessagingTherapist_051
 #Expand Details
-	Messaging.Draft.Read Message	Ginger Taylor
+	Messaging.Draft.Expand First message
 	Ath Verify Element Is Visible	//td[@class="my-details"]
 	Capture Page Screenshot
 

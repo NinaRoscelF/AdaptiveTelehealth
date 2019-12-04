@@ -1,14 +1,14 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
 Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${Filelocation}	C:/Adaptive_Telehealth/ATH-Resources
+${Filelocation}	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources
 ${Filename}	dummy1.pdf
 ${Filename2}	dummy25.pdf
 ${FileType}	pdf
-${Recipient1}	Mary Ellis ( Group Therapist )
+${Recipient1}	Random Automation Therapist ( Group Therapist )
 
 
 ***Test Cases***
@@ -43,7 +43,7 @@ MessagingSupervisor_006
 
 MessagingSupervisor_007
 	Messaging.Clear Recipient Contents
-	Messaging.Input Recipient	All Groups Company
+	Messaging.Input Recipient	All Group Therapist
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
 	Messaging.Confirm Message Sent successfully
@@ -59,7 +59,7 @@ MessagingSupervisor_008
 	Select Messaging Menu
 	Messaging.Click New Message Button
 	Messaging.Input Recipient	${Recipient1}
-	Messaging.Input Recipient	Andrew Hall ( Groups Company ) 
+	Messaging.Input Recipient	Groups testing_providers
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
@@ -70,10 +70,10 @@ MessagingSupervisor_008
 	Messaging.Sent.Verify Message is Sent	${DTToday}
 
 
-MessagingSupervisor_009
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
-	Perform Login Checks
-	Select Messaging Menu
+# MessagingSupervisor_009
+# 	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+# 	Perform Login Checks
+# 	Select Messaging Menu
 # 	Messaging.Click New Message Button
 # 	Messaging.Input Recipient	${Recipient1} 
 # 	Messaging.Select Document Attachment	${Filename}
@@ -102,8 +102,11 @@ MessagingSupervisor_009
 
 
 MessagingSupervisor_011
+	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Perform Login Checks
+	Select Messaging Menu
 	Messaging.Click New Message Button
-	Messaging.Input Recipient	${Recipient1} 
+	Messaging.Input Recipient	${Recipient1}
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Save to Draft Button

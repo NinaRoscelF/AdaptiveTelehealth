@@ -31,7 +31,7 @@ SchedulingAdmin_003
 	${DateFormat}	Generate Date and Time Today	%m-%d-%Y
 	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%Y-%m-%d
 	${DateAddFormat}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%m-%d-%Y
-	Scheduling.TherapistRole.Select Appointment DateTime	2:00 - 3:00 	2
+	Scheduling.TherapistRole.Select Appointment DateTime	2:00 - 3:00 
 	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	OFFLINE
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}
@@ -41,6 +41,9 @@ SchedulingAdmin_003
 	Scheduling.Calendar.Appointment Popup.Click Change Meeting Button
 	${status}	Run Keyword and Return Status 	ath verify element is visible	//*[contains(@class,'dialog-titlebar')]/following-sibling::div[contains(normalize-space(),'Are you sure that you would like')]
 	Run Keyword If	${status}	Scheduling.SchedulingAppointmentPopup.Select Continue
+	Sleep	10.0 	wait for process to finish
+	Reload Page
+	Scheduling.AdminRole.TherapistTimezone.Click OK button
 	Scheduling.Calendar.Select Any Personal Meeting from Calendar
 	Scheduling.Calendar.Appointment Popup.Click Delete Meeting
 	Scheduling.Calendar.Appointment.DeletePopup.Click Continue
@@ -63,7 +66,7 @@ SchedulingAdmin_004
 
 SchedulingAdmin_005
 #create meeting
-	Scheduling.TherapistRole.Select Appointment DateTime	${Time4}	3
+	Scheduling.TherapistRole.Select Appointment DateTime	${Time4}
 	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	OFFLINE
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}

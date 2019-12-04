@@ -1,10 +1,10 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
 Suite Teardown	Close All Browsers
 
 
 ***Variable***
-
+${Recipient1}	Random Automation Therapist ( Group Therapist )
 
 ***Test Cases***
 MessagingSupervisor_041
@@ -78,6 +78,7 @@ MessagingSupervisor_053
 MessagingSupervisor_054
 #Edit draft and save to draft
 	Messaging.Draft.Click Edit Button
+	Messaging.Input Recipient	${Recipient1}
 	Messaging.Input Message	AutomationDraft Test Message
 	Messaging.Click Save to Draft Button
 	Messaging.Confirm Draft Message Saved successfully
@@ -90,6 +91,14 @@ MessagingSupervisor_052
 
 
 MessagingSupervisor_044
+	:FOR 	${idx}	IN RANGE	1	11
+	\	Messaging.Click New Message Button
+	\	Messaging.Input Recipient	${Recipient1}
+	\	Messaging.Input Subject	Automation Message
+	\	Messaging.Input Message	Automation Test Message
+	\	Messaging.Input Message	AutomationDraft Test Message
+	\	Messaging.Click Save to Draft Button
+
 	Move to Next Page
 
 MessagingSupervisor_045

@@ -1,10 +1,10 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
 Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${Filelocation}	C:/Adaptive_Telehealth/ATH-Resources
+${Filelocation}	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources
 ${Filename}	dummy1.pdf
 ${Filename2}	dummy25.pdf
 ${FileType}	pdf
@@ -48,21 +48,28 @@ MessagingClient_028
 
 MessagingClient_016
 #Select all and tag all
+	Sleep 	2.0
 	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count	read
 	Capture Page Screenshot
 	Messaging.Inbox.Select all Messages
-	Messaging.Inbox.Click Read/Unread Icon
+	Capture Page Screenshot
+	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
+	Capture Page Screenshot
+	Sleep 	3.0
 	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isUnread}
 
 
 MessagingClient_014
 #Select unread and tag as read
 	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count 	unread
-	Messaging.Inbox.Select Unread message	Automation Message
-	Messaging.Inbox.Select Unread message	Automation Message	index=2
-	Messaging.Inbox.Select Unread message	Automation Message	index=3
 	Capture Page Screenshot
-	Messaging.Inbox.Click Read/Unread Icon
+	Messaging.Inbox.Select Unread message
+	Messaging.Inbox.Select Unread message	unread	True	2
+	Messaging.Inbox.Select Unread message	unread	True	3
+	Capture Page Screenshot
+	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
+	Capture Page Screenshot
+	Sleep 	3.0
 	Messaging.Inbox.Verify Messages were read/unread	${isUnread}	unread
 
 
@@ -70,11 +77,13 @@ MessagingClient_015
 #Select read adn tag as unread
 	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count	read
 	Messaging.Inbox.Select Read message
-	Messaging.Inbox.Select Read message	index=2
-	Messaging.Inbox.Select Read message	index=3
+	Messaging.Inbox.Select Read message	read	True	2
+	Messaging.Inbox.Select Read message	read	True	3
 	Capture Page Screenshot
-	Messaging.Inbox.Click Read/Unread Icon
-	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isUnread} 	read
+	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
+	Capture Page Screenshot
+	Sleep 	3.0
+	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isUnread}	read
 
 
 MessagingClient_017
@@ -106,13 +115,13 @@ MessagingClient_019
 	Messaging.Inbox.Move to Trash Icon
 	Messaging.Cancel Move to Trash Action
 
-MessagingClient_023
-#Sort From
-	Messaging.Sort From Column
+# MessagingClient_023
+# #Sort From
+# 	Messaging.Sort From Column
 
-MessagingClient_024
-#Sort Subject
-	Messaging.Sort Subject Column
+# MessagingClient_024
+# #Sort Subject
+# 	Messaging.Sort Subject Column
 
 MessagingClient_025
 #Sort Date

@@ -1,10 +1,10 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
 Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${Filelocation}	C:/Adaptive_Telehealth/ATH-Resources
+${Filelocation}	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources
 ${Filename}	dummy1.pdf
 ${Filename2}	dummy25.pdf
 ${FileType}	pdf
@@ -48,19 +48,23 @@ MessagingSupervisor_028
 
 MessagingSupervisor_016
 #Select all and tag all
+	Sleep 	2.0
 	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count	read
 	Capture Page Screenshot
 	Messaging.Inbox.Select all Messages
+	Capture Page Screenshot
 	Messaging.Inbox.Click Read/Unread Icon
+	Capture Page Screenshot
 	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isUnread}
 
 
 MessagingSupervisor_014
 #Select unread and tag as read
 	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count 	unread
+	Capture Page Screenshot
 	Messaging.Inbox.Select Unread message
-	Messaging.Inbox.Select Unread message	index=2
-	Messaging.Inbox.Select Unread message	index=3
+	Messaging.Inbox.Select Unread message	unread	True	2
+	Messaging.Inbox.Select Unread message	unread	True	3
 	Capture Page Screenshot
 	Messaging.Inbox.Click Read/Unread Icon
 	Messaging.Inbox.Verify Messages were read/unread	${isUnread}	unread
@@ -74,7 +78,7 @@ MessagingSupervisor_015
 	Messaging.Inbox.Select Read message	index=3
 	Capture Page Screenshot
 	Messaging.Inbox.Click Read/Unread Icon
-	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isUnread} 	read
+	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isUnread}	read
 
 
 MessagingSupervisor_017

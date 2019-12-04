@@ -1,10 +1,10 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
 Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${Filelocation}	C:/Adaptive_Telehealth/ATH-Resources
+${Filelocation}	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources
 ${Filename}	dummy1.pdf
 ${Filename2}	dummy25.pdf
 ${FileType}	pdf
@@ -12,7 +12,7 @@ ${FileType}	pdf
 ***Test Cases***
 MessagingTherapist_013
 #Select an unread and verify
-	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}
+	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Inbox Menu

@@ -1,15 +1,15 @@
 *** Settings ***
-Resource	C:/Adaptive_Telehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
 Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${Filelocation}	C:/Adaptive_Telehealth/ATH-Resources
+${Filelocation}	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources
 ${Filename}	dummy1.pdf
 ${Filename2}	dummy25.pdf
 ${FileType}	pdf
 ${Recipient1}	Mary Ellis ( Group Therapist )
-
+${Recipient2}	Meghan Ruiz ( Groups Supervisor )
 
 ***Test Cases***
 MessagingClient_001
@@ -49,7 +49,7 @@ MessagingClient_006
 MessagingClient_007
 #Send Message to any of the following: All Staff/All Group Therpaist/All Guest/All Group Company
 	Messaging.Clear Recipient Contents
-	Messaging.Input Recipient	testsupervisor adaptive ( Groups Supervisor )
+	Messaging.Input Recipient	${Recipient2}
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
 	Messaging.Confirm Message Sent successfully
@@ -66,7 +66,7 @@ MessagingClient_008
 	Select Messaging Menu
 	Messaging.Click New Message Button
 	Messaging.Input Recipient	${Recipient1}
-	Messaging.Input Recipient	testsupervisor adaptive ( Groups Supervisor )
+	Messaging.Input Recipient	${Recipient2}
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
