@@ -1,0 +1,173 @@
+*** Settings ***
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/CommonPage_res.txt
+
+
+**** Keywords ****
+
+Complete registration Process
+	[Arguments]	${FirstName}	${LastName}	${Email}
+	Dashboard.NewUser.Input First Name	${FirstName}
+	Dashboard.NewUser.Input Last Name	${LastName}
+	Dashboard.NewUser.Input Password	Password123!!!
+	Dashboard.NewUser.Input Confirm Password	Password123!!!
+	Dashboard.NewUser.Input Confirm Email	${Email}
+	ath click button	Next
+
+
+Dashboard.Click New Client Button
+	ath click button	xpath=//a[@id='button_client']
+
+
+Dashboard.Click New Therapist Button
+	ath click button	xpath=//span[contains(text(),'New Therapist')]
+	Sleep 	2.0
+	ath_wait_until_element_is_present	xpath=//h4[contains(text(),'New Therapist')] 	160
+
+
+Dashboard.Click New Supervisor Button
+	ath click button	xpath=//span[contains(text(),'New Supervisor')]
+	Sleep 	5.0
+	ath_wait_until_element_is_present	xpath=//h4[contains(text(),'New Supervisor')]	60
+
+Dashboard.NewClient.Input Group Company Email
+	[Arguments]	${Email}
+	ath input text value	Enter Groups Company's Email Address	${Email}
+
+
+Dashboard.NewClient.Click Invite Groups Company Button
+	ath click button 	Invite Groups Company
+	Sleep 	3.0
+
+Dashboard.NewClient.Verify Client is Invited
+	[Arguments]	${Email}
+	ath verify element is visible	xpath=//*[text()="Successfully Sent"]
+	ath verify element is visible	xpath=//*[text()="Groups Company's email:"]
+	ath verify element is visible	xpath=//*[normalize-space()="${Email}"]
+	Capture Page Screenshot
+
+Dashboard.NewClient.Click Login to Platform
+	ath click link	//a[text()="login to the platform here"]
+	Sleep 	2.0
+	ath wait until element is present	//h3[@class="box-title"][normalize-space()="Login"]
+
+
+Dashboard.NewUser.Input First Name
+	[Arguments]	${FirstName}
+	ath input text value	First Name	${FirstName}
+
+Dashboard.NewUser.Input Last Name
+	[Arguments]	${FirstName}
+	ath input text value	Last Name	${FirstName}
+
+Dashboard.NewUser.Input Password
+	[Arguments]	${Password}
+	ath input text value	Password	${Password}
+
+Dashboard.NewUser.Input Confirm Password
+	[Arguments]	${confpwd}
+	ath input text value	Confirm Password	${confpwd}
+
+Dashboard.NewUser.Input Confirm Email
+	[Arguments]	${Email}
+	ath input text value	Confirm Email	${Email}
+
+Dashboard.NewUser.Input City
+	[Arguments]	${City}
+	ath input text value	City	Hollywood
+
+Dashboard.NewUser.Input Address
+	[Arguments]	${Address}
+	ath input text value	Address	${Address}
+
+Dashboard.NewUser.Input Zip
+	[Arguments]	${zipCode}
+	ath input text value	Zip	${zipCode}
+
+Dashboard.NewUser.Input Email
+	[Arguments]	${Email}
+	ath input text value	xpath=(//label[text()="Email:"]/../following-sibling::div/input)[1] 	${Email}
+
+Dashboard.NewUser.Input NPI
+	[Arguments]	${NPI}
+	ath input text value	NPI	${NPI}
+
+Dashboard.NewUser.Input Registration Code
+	[Arguments]	${RegCode}
+	ath input text value	xpath=(//label[text()="Registration Code:"]/../following-sibling::div/input)[1]	${RegCode}
+
+Dashboard.NewUser.Select Supervisor
+	[Arguments]	${Supervisor}
+	ath select drop down field value	Assign Supervisor	${Supervisor}
+
+Dashboard.NewUser.Select Gender
+	[Arguments]	${Gender}
+	ath select drop down field value	Gender	${Gender}
+
+
+Dashboard.NewUser.Input Phone Number1
+	[Arguments]	${PhoneNumber1}
+	ath input text value	Phone Number1:	${PhoneNumber1}
+
+Dashboard.NewUser.Select I agree checkboxes
+	ath_set_checkbox	xpath=(//*[contains(text(),'Yes, I agree')])[1]/../descendant::ins
+	ath_set_checkbox	xpath=(//*[contains(text(),'Yes, I agree')])[2]/../descendant::ins
+
+Dashboard.NewUser.Input Full Name
+	[Arguments]	${FullName}
+	ath input text value	Full Name	${FullName}
+
+Dashboard.NewUser.Click OK button
+	ath click button	Ok
+	Ath wait until loaded 	30
+
+Dashboard.NewUser.Click Set User Function button
+	ath click button	Set User Functions Access
+
+Dashboard.NewUser.Select Check/Uncheck All checkbox
+	ath set checkbox 	Check/Uncheck All	true
+
+Dashboard.NewUser.SetUserFunction.Click Save Button
+	ath click button 	Save
+
+Dashboard.NewUser.Click Add New Therapist Button
+	ath click button 	xpath=(//input[@value="Add new therapist"])
+	Sleep 	5.0
+	ath wait until loaded 	30
+
+Dashboard.NewUser.Click Add New Supervisor Button
+	ath click button 	xpath=(//input[@value="Add new supervisor"])
+	Sleep 	5.0
+	ath wait until loaded 	30
+
+
+Dashboard.NewUser.Is Read Only Supervisor
+	[Arguments]	${ReadOnly}
+	ath select drop down field value	Read Only Supervisor?	${ReadOnly}
+
+Dashboard.NewUser.Is Super Care Coordinator
+	[Arguments]	${SuperCare}
+	ath select drop down field value	Super Care Coordinator?	${SuperCare}
+
+Dashboard.NewUser.Verify Supervisor Is saved successfully
+	ath verify element is visible	xpath=//*[contains(text(),'Supervisor added and email sent.')]
+	# ' Warning: Failed adding Zoom user. Zoom error: Email domain is blocked"]
+	# Supervisor added and email sent. Warning: Failed adding Zoom user. Zoom error: Cannot add the following user at this time. Contact 
+
+
+Dashboard.NewUser.Verify Therapist saved successfully
+	ath verify element is visible	xpath=//*[contains(@class,'alert-success')][text()="Therapist added and email sent."]
+	ath verify element is visible	xpath=//*[text()="Therapist successfully assigned to Supervisor."]
+
+Dashboard.ProvidersWidget.Select Newly Created Provider
+	[Arguments]	${FirstName}
+	ath verify element is visible	xpath=//div[@id='providers_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
+	ath click link	xpath=//div[@id='providers_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
+
+
+Dashboard.NewUser.Verify Is Assigned to Supervisor
+	[Arguments]	${Supervisor}
+	ath verify element is visible	xpath=//p[contains(normalize-space(),'${Supervisor}')]
+
+Dashboard.NewUser.Verify Supervisor Profile is Created
+	ath verify element is visible	xpath=//h1[contains(text(),'Supervisor Profile')]
+	ath check button existence	Update Supervisor Data

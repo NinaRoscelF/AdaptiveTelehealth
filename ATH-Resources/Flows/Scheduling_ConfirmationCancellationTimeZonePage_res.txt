@@ -137,7 +137,7 @@ Scheduling.Calendar.Appointment Popup.Click Delete Meeting
 	ath wait until loaded 	30
 
 Scheduling.Calendar.Appointment.DeletePopup.Click Continue
-	ath click button 	Continue
+	ath click button	xpath=//div[@id='delete_meeting_modal']//button[@class='btn btn-danger'][contains(text(),'Continue')]
 	Sleep 	10.0
 	ath wait until loaded 	30
 

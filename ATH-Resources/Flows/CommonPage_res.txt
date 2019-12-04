@@ -27,6 +27,9 @@ Click Login Button
 	Sleep	1.0
 
 
+Wait for Nav Bar to display
+	ath_wait_until_element_is_present	xpath=//*[@class="nav-bar"]	120
+
 Perform Login Checks
 	# ath click button	xpath=//button[normalize-space()="Login"]
 	# Sleep	1.0
@@ -104,12 +107,12 @@ Login to Mailinator
 	[Arguments]	${UserName}
 	${UserNamer}	Fetch From Left	${UserName}	@
 	Sleep	10.0
-	Open Browser	https://www.mailinator.com/v3/index.jsp?zone=public&query=${UserNamer}	FF 	mailinator	ff_profile_dir=firefoxprofile
+	Open Browser	https://www.mailinator.com/v3/index.jsp?zone=public&query=${UserNamer}	Chrome 	mailinator	ff_profile_dir=firefoxprofile
 	Maximize Browser Window
 	Ath Wait Until Loaded	30
 
 
-Get Code From Mailinator
+Continue User Invitation
 	Capture Page Screenshot
 	Ath Wait Until Loaded 	30
 	Ath Wait Until Element Is Present 	//tr[@ng-repeat='email in emails']/descendant::td[4]
@@ -117,7 +120,7 @@ Get Code From Mailinator
 	Ath Wait Until Loaded 	30
 	Sleep	5.0
 	Reload Page
-	Ath Click Link	xpath=//td[contains(normalize-space(),'Invitation')]
+	Ath Click Link	xpath=//td[contains(normalize-space(),'Adaptive Telehealth')]
 	Sleep	5.0
 	Ath Wait Until Element Is Present	//*[@id="msgpane"]/descendant::iframe[@id="msg_body"]	60
 	Capture Page Screenshot
@@ -125,13 +128,13 @@ Get Code From Mailinator
 	Capture Page Screenshot
 	ath click link	//*[normalize-space()="Click here"]
 	Unselect Frame
-	[return]	${Token}
 
-Complete registration Process
-	[Arguments]	${FirstName}	${LastName}	${Email}
-	ath input text vale 	First Name	${FirstName}
-	ath input text vale 	First Name	${LastName}
-	ath input text vale 	Password	Password123!!!
-	ath input text vale 	Confirm Password	Password123!!!
-	ath input text vale 	Confirm Email	${Email}
-	ath input text vale 	First Name 	${FirstName}
+Select Timezone for Newly Created User
+	[Arguments]	${Timezone}
+	Ath select drop down field value	Timezone	${Timezone}
+	ath click button	Submit
+	Ath Wait Until Loaded 	30
+
+
+Close Upload Image Popup
+	Run Keyword and Ignore Error	ath_click_icon	//*[@id="modalUploadProfileImage"]/descendant::button/span[normalize-space()="×"]

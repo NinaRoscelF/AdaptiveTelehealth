@@ -14,6 +14,7 @@ ${AutoSupervisor}	ninaf+supervisor@adaptivetelehealth.com
 ${AutoClient}	ninaf+client@adaptivetelehealth.com
 ${AutoAdmin}	ninaf+admin@adaptivetelehealth.com
 ${AutoClient2}	beyoncehalo@mailinator.com
+${AutoSystemAdmin}	seerapup+dv380g2@yopmail.com
 ${TestEnv}	Secure
 ${Password}	Password123!!!
 

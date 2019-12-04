@@ -51,13 +51,13 @@ Messaging.Click Send Message Button
 
 Messaging.Click Save to Draft Button
 	ath_click_button	Save to Draft
-	Sleep	2.0
-
+	Sleep	3.0
+	ath_wait_until_loaded	30
 
 Messaging.Click Close Button
 	ath_click_button	Close
 	Sleep	2.0
-
+	ath_wait_until_loaded	30
 
 Messaging.Cancel Delete Action
 	ath click button	//*[normalize-space()="The selected conversations will be deleted."]/ancestor::div[@class="modal-dialog"]/descendant::div[@class="modal-footer"]/descendant::button[normalize-space()="Close"]
@@ -81,7 +81,7 @@ Messaging.Confirm Message Sent successfully
 
 
 Messaging.Confirm Draft Message Saved successfully
-	Ath Verify Element Is Visible	//*[@class="alert alert-success"][contains(text(),'The draft was saved.')]
+	Ath Verify Element Is Visible	xpath=//*[@class="alert alert-success"][contains(text(),'The draft was saved.')]
 
 
 Messaging.Confirm Message Moved to Trash
@@ -255,12 +255,12 @@ Messaging.Reply.Click Close button
 
 Messaging.Inbox.Select Unread message
 	[arguments]	${msgSubject}=unread	${value}=True	${index}=1
-	ath set checkbox	xpath=(//tr/td[normalize-space()="${msgSubject}"])[1]/../td[1]/div	${value}	${index}
+	ath set checkbox	xpath=(//tr/td[normalize-space()="${msgSubject}"])[${index}]/../td[1]/div	${value}
 #	ath set checkbox 	${msgSubject}	${value}	${index}
 
 Messaging.Inbox.Select Read message
 	[arguments]	${msgSubject}=read	${value}=True	${index}=1
-	ath set checkbox	xpath=(//tr/td[normalize-space()="${msgSubject}"])[1]/../td[1]/div	${value}	${index}
+	ath set checkbox	xpath=(//tr/td[normalize-space()="${msgSubject}"])[${index}]/../td[1]/div	${value}
 #	ath set checkbox 	${msgSubject}	${value}	${index}
 
 Messaging.Inbox.Select checkbox of first Message
@@ -326,6 +326,9 @@ Messaging.Draft.Select all Messages
 
 Messaging.Draft.Select checkbox of first Message
 	ath set checkbox	xpath=(//div[normalize-space()="Draft"]/../following::div/descendant::table/descendant::tr/td/../td[1]/div)[1]
+
+Messaging.Draft.Expand First message
+	Ath click icon	xpath=(//div[normalize-space()="Draft"]/../following::div/descendant::table/descendant::tr/td[2])[1]
 
 Messaging.Draft.Move to Trash Icon
 	ath click button	Move to trash	3

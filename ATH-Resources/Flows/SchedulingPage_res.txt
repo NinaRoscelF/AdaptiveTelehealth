@@ -368,7 +368,7 @@ Scheduling.Cancel Appointment
 
 Scheduling.SchedulingAppointmentPopup.Select Continue
 	ath_wait_until_element_is_present	//*[contains(@class,'dialog-titlebar')]/following-sibling::div[contains(normalize-space(),'Are you sure that you would like')]	60
-	ath click button	Continue
+	ath click button	xpath=//span[@class='ui-button-text'][contains(text(),'Continue')]
 
 Scheduling.Input Message
 	[arguments]	${message}
