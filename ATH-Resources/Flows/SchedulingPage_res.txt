@@ -98,6 +98,8 @@ Scheduling.Preferences.TimeZone.Select Time Zone
 
 Scheduling.Preferences.TimeBlocks.Click Add New Time Block Button
 	ath click button	Add Time block
+	Sleep	3.0
+	ath wait until loaded	30
 
 
 Scheduling.Preferences.TimeBlocks.Add new Time Block value
@@ -112,7 +114,7 @@ Scheduling.Preferences.TimeBlocks.Verify Fields are Required
 
 Scheduling.Preferences.TimeBlocks.Apply Time Block
 	[arguments] 	${idx}=1
-	ath click button	xpath=//button[contains(@class,'update_time_per_appointment')][text()="Apply"]
+	ath click button	xpath=(//button[contains(@class,'update_time_per_appointment')][text()="Apply"])[${idx}]
 	sleep 	1.0
 	ath wait until loaded 	30
 
@@ -324,10 +326,28 @@ Scheduling.Preferences.Confirm Working Days Saved successfully
 Scheduling.Preferences.Confirm Office Hours Saved successfully
 	Ath Verify Element Is Visible	//*[@class="alert alert-success"][contains(text(),'Office hours have been changed.')]
 
+Scheduling.Preferences.Exceptions.Select DisplayFrom Date
+	[arguments]	${isdate}
+	ath click icon	xpath=//input[@id='schedule_preferences_from']
+	ath click icon 	xpath=//*[@class="ui-datepicker-calendar"]/descendant::a[text()="${isdate}"]
+	Capture Page Screenshot
+
+Scheduling.Preferences.Exceptions.Select DisplayTo Date
+	[arguments]	${isdate}
+	ath click icon	xpath=//input[@id='schedule_preferences_to']
+	ath click icon 	xpath=//*[@class="ui-datepicker-calendar"]/descendant::a[text()="${isdate}"]
+	Capture Page Screenshot
+
 Scheduling.Preferences.Exceptions.Click Select Button
 	ath click button	Select
 	sleep 	1.0
 	ath wait until loaded 	30
+
+
+Scheduling.Preferences.Exceptions.Verify Selected Date Applied
+	[arguments]	${isdate}
+	ath verify element is visible	//*[@id="form_for_send"]/descendant::td[contains(text(),'${isdate}')]
+	Capture Page Screenshot
 
 Scheduling.Select Appointment DateTime
 	[arguments]	${mydate}	${time}
