@@ -38,7 +38,7 @@ SchedulingClient_003
 SchedulingClient_005
 #remove time block
 	Scheduling.Preferences.TimeBlocks.Remove Time Block
-	Sleep 	2.0
+	Sleep 	3.0
 	ath check button existence	Change	1	false
 	ath check button existence	Apply
 	Capture Page Screenshot
@@ -59,9 +59,12 @@ SchedulingClient_006
 
 SchedulingClient_007
 #apply time block
-	Scheduling.Preferences.TimeBlocks.Add new Time Block value	60
+	Scheduling.Preferences.TimeBlocks.Add new Time Block value	10
 	Scheduling.Preferences.TimeBlocks.Add Field 1	Auto Test 1
 	Scheduling.Preferences.TimeBlocks.Add Field 2	Auto Test 2
+	Scheduling.Preferences.TimeBlocks.Click Add New Time Block Button
+	Scheduling.Preferences.TimeBlocks.Add new Time Block value	20	2
+	Scheduling.Preferences.TimeBlocks.Apply Time Block 	2
 	RUn Keyword and Ignore Error	Scheduling.Preferences.TimeBlocks.Close Duplicate Popup
 	Run Keyword and Ignore Error	Scheduling.Preferences.TimeBlocks.Apply Time Block
 	RUn Keyword and Ignore Error	Scheduling.Preferences.TimeBlocks.Close Duplicate Popup
@@ -69,13 +72,18 @@ SchedulingClient_007
 	ath click link 	Schedule preferences
 	${status}	RUn Keyword and Return Status	ath check button existence	Change	1
 	Set Suite Variable 	${status}
+
 SchedulingClient_008
 #change time block
 	# Scheduling. Expand Schedule Menu Settings
 	# ath click link 	Schedule preferencesvv
+	Run Keyword If	${status}	Scheduling.Preferences.TimeBlocks.Add new Time Block value	15
 	Run Keyword If	${status}	Scheduling.Preferences.TimeBlocks.Change Time Block
-	Run Keyword If	${status}	Scheduling.Preferences.TimeBlocks.Add Field 1	Auto Test 3
-	Run Keyword If	${status}	Scheduling.Preferences.TimeBlocks.Change Time Block
+	RUn Keyword and Ignore Error	Scheduling.Preferences.TimeBlocks.Close Duplicate Popup
+	Capture Page Screenshot
+	Scheduling.Preferences.TimeBlocks.Click Add New Time Block Button
+	Scheduling.Preferences.TimeBlocks.Add new Time Block value	60	2
+	Scheduling.Preferences.TimeBlocks.Apply Time Block
 	Capture Page Screenshot
 
 SchedulingClient_010
@@ -90,6 +98,7 @@ SchedulingClient_011
 
 SchedulingClient_012
 #days/hours tab_new office hour popup
+	Capture Page Screenshot
 	Scheduling.Preferences.Select Days/Hours Tab
 	${curCount}	Scheduling.Preferences.Days/Hours.Get Table Count
 	Scheduling.Preferences.Days/Hours.Click New Office Hour Button
@@ -198,7 +207,24 @@ SchedulingClient_023
 
 SchedulingClient_024
 #exceptions
-	${isFrom}	Generate Date and Time Today 	%Y-%m-%d
-	${DateAdd}	Add/Subtract Days from Input Date 	${isFrom}	SUBTRACT	5 	%d-%B-%Y
-	${SubDay}	${month}	${year}	Split String	${DateAdd}	-
+	${isFrom}	Generate Date and Time Today	%Y-%m-%d
+	${FromDate}	Add/Subtract Days from Input Date 	${isFrom}	ADD	1	%Y-%m-%d
+	${FromFormat}	Add/Subtract Days from Input Date 	${isFrom}	ADD	1	%m-%d-%Y
+	${ToDate}	Add/Subtract Days from Input Date 	${isFrom}	ADD	5	%Y-%m-%d
+	${ToFormat}	Add/Subtract Days from Input Date 	${isFrom}	ADD	5	%m-%d-%Y
+
+	${year}	${month}	${dateFrom}	Split String	${FromDate}	-
+	${iszero}	Fetch From Left 	${dateFrom}	0
+	${stringFrom}	Run Keyword if	"${iszero}" == "${EMPTY}"	Replace String	${dateFrom}	0	${EMPTY}	ELSE	Set Variable	${dateFrom}
+
+	${year}	${month}	${dateFrom}	Split String	${ToDate}	-
+	${iszero}	Fetch From Left 	${dateFrom}	0
+	${stringTo}	Run Keyword if	"${iszero}" == "${EMPTY}"	Replace String	${dateFrom}	0	${EMPTY}	ELSE	Set Variable	${dateFrom}
+
+	Scheduling.Preferences.Exceptions.Select DisplayFrom Date	${stringFrom}
+	Scheduling.Preferences.Exceptions.Select DisplayTo Date	${stringTo}
+
 	Scheduling.Preferences.Exceptions.Click Select Button
+	Scheduling.Preferences.Exceptions.Verify Selected Date Applied	${FromFormat}
+	Scheduling.Preferences.Exceptions.Verify Selected Date Applied	${ToFormat}
+	Logout from Application
