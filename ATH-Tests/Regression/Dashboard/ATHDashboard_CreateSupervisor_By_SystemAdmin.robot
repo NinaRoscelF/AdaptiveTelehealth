@@ -5,7 +5,7 @@ Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${Gender}	Male
+${Gender}	Female
 
 
 ***Test Cases***
@@ -19,25 +19,28 @@ Dashboard_CreateSupervisor_By_SystemAdmin
 	Dashboard.Click New Supervisor Button
 	Sleep 	3.0
 #	Select Frame	//div[@id='newSupervisor']//div[@class='modal-content']
-	Dashboard.NewUser.Input First Name	${FirstName}
-	Dashboard.NewUser.Input Last Name	${LastName}
-	Dashboard.NewUser.Input City	${City}
-	Dashboard.NewUser.Input Address	${Address}
-	Dashboard.NewUser.Input Zip	${Zip}
-	Dashboard.NewUser.Input Email	${Firstname}@mailinator.com
-	Dashboard.NewUser.Select Gender	${Gender}
-	Dashboard.NewUser.Input NPI	${RegCode}
-	Dashboard.NewUser.Input Registration Code	${RegCode}
-	Dashboard.NewUser.Is Read Only Supervisor	No
+	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="first_name"]	${FirstName}
+	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="last_name"]	${LastName}
+	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="city"]	${City}
+	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="address"]	${Address}
+	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="zip"]	${Zip}
+	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="email"]	${Firstname}@mailinator.com
+	ath select drop down field value	//div[@class='names']//select[@name='gender']	${Gender}
+	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="NPI"]	${RegCode}
+	Dashboard.NewUser.Is Read Only Supervisor	Yes: Viewing as Supervisor Automation Automation
 	Dashboard.NewUser.Is Super Care Coordinator	No
+
 	Dashboard.NewUser.Click Set User Function button
+	ath click icon	xpath=//div[@id='newSupervisor']//span[contains(text(),'×')]
 	Dashboard.NewUser.Select Check/Uncheck All checkbox
 	Capture Page Screenshot
 	Dashboard.NewUser.SetUserFunction.Click Save Button
 	Dashboard.NewUser.Click Add New Supervisor Button
 	Dashboard.NewUser.Verify Supervisor Is saved successfully
-	Dashboard.ProvidersWidget.Select Newly Created Provider	${Firstname}
+	Sleep 	3.0
+	Dashboard.ProvidersWidget.Select Newly Created Care Coordinators	${Firstname}
 	Dashboard.NewUser.Verify Supervisor Profile is Created
+	ath_verify_textbox_value	//input[@name='email']	${Firstname}@mailinator.com
 	Go Back
 	Wait for Nav Bar to display
 	Logout from Application
