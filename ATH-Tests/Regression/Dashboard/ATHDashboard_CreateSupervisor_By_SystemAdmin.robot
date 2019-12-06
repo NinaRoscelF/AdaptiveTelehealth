@@ -10,7 +10,7 @@ ${Gender}	Female
 
 ***Test Cases***
 Dashboard_CreateSupervisor_By_SystemAdmin
-#create client not working
+#create supervisor
 	${Firstname}	Generate Random String	8	[LETTERS]
 	${RegCode}	Generate Random String	10	[NUMBERS]
 
@@ -18,7 +18,6 @@ Dashboard_CreateSupervisor_By_SystemAdmin
 	Wait for Nav Bar to display
 	Dashboard.Click New Supervisor Button
 	Sleep 	3.0
-#	Select Frame	//div[@id='newSupervisor']//div[@class='modal-content']
 	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="first_name"]	${FirstName}
 	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="last_name"]	${LastName}
 	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="city"]	${City}

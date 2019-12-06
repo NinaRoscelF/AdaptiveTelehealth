@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20191206 23:10:50.635" generator="Robot 3.0.4 (Python 2.7.11 on win32)">
+<suite source="C:\ATH.Git\AdaptiveTelehealth\ATH-Tests\Regression\Dashboard\ATHDashboard_CreateAdmin_By_SystemAdmin.robot" id="s1" name="ATHDashboard CreateAdmin By SystemAdmin">
+<test id="s1-t1" name="Dashboard_CreateAdmin_By_SystemAdmin">
+<kw name="Generate Random String" library="String">
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<arguments>
+<arg>8</arg>
+<arg>[LETTERS]</arg>
+</arguments>
+<assign>
+<var>${Firstname}</var>
+</assign>
+<msg timestamp="20191206 23:10:50.973" level="INFO">${Firstname} = HGRtnjOp</msg>
+<status status="PASS" endtime="20191206 23:10:50.973" starttime="20191206 23:10:50.972"></status>
+</kw>
+<kw name="Generate Random String" library="String">
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<arguments>
+<arg>10</arg>
+<arg>[NUMBERS]</arg>
+</arguments>
+<assign>
+<var>${RegCode}</var>
+</assign>
+<msg timestamp="20191206 23:10:50.974" level="INFO">${RegCode} = 3869085131</msg>
+<status status="PASS" endtime="20191206 23:10:50.974" starttime="20191206 23:10:50.973"></status>
+</kw>
+<kw name="Ath Logon" library="ATHLibrary">
+<arguments>
+<arg>${BROWSER}</arg>
+<arg>${URL}</arg>
+<arg>${AutoSystemAdmin}</arg>
+<arg>${TestEnv}</arg>
+</arguments>
+<msg timestamp="20191206 23:10:50.975" level="INFO">Opening browser 'Chrome' to base url 'https://groups1.secure.adaptivetelehealth.com/index.php/login'</msg>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191206 23:10:51.027" level="FAIL">No browser is open</msg>
+<status status="FAIL" endtime="20191206 23:10:51.027" starttime="20191206 23:10:50.986"></status>
+</kw>
+<msg timestamp="20191206 23:10:51.027" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20191206 23:10:56.029" level="INFO">Opening browser 'Chrome' to base url 'https://groups1.secure.adaptivetelehealth.com/index.php/login'</msg>
+<msg timestamp="20191206 23:10:56.084" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+</msg>
+<status status="FAIL" endtime="20191206 23:10:56.084" starttime="20191206 23:10:50.974"></status>
+</kw>
+<status status="FAIL" endtime="20191206 23:10:56.086" critical="yes" starttime="20191206 23:10:50.970">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+</status>
+</test>
+<kw type="teardown" name="Close All Browsers" library="ATHLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" endtime="20191206 23:10:56.090" starttime="20191206 23:10:56.090"></status>
+</kw>
+<status status="FAIL" endtime="20191206 23:10:56.090" starttime="20191206 23:10:50.658"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="0">Critical Tests</stat>
+<stat fail="1" pass="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="1" id="s1" name="ATHDashboard CreateAdmin By SystemAdmin" pass="0">ATHDashboard CreateAdmin By SystemAdmin</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20191206 23:10:51.027" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+</errors>
+</robot>
