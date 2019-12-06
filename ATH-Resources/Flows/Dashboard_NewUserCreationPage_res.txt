@@ -163,6 +163,11 @@ Dashboard.ProvidersWidget.Select Newly Created Provider
 	ath verify element is visible	xpath=//div[@id='providers_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
 	ath click link	xpath=//div[@id='providers_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
 
+Dashboard.ProvidersWidget.Select Newly Created Care Coordinators
+	[Arguments]	${FirstName}
+	ath verify element is visible	xpath=//div[@id='carecoordinators_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
+	ath click link	xpath=//div[@id='carecoordinators_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
+
 
 Dashboard.NewUser.Verify Is Assigned to Supervisor
 	[Arguments]	${Supervisor}
