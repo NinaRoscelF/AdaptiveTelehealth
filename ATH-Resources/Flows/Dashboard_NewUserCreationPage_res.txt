@@ -29,6 +29,13 @@ Dashboard.Click New Supervisor Button
 	Sleep 	5.0
 	ath_wait_until_element_is_present	xpath=//h4[contains(text(),'New Supervisor')]	60
 
+
+Dashboard.Click New Admin Button
+	ath click button	xpath=//span[contains(text(),'New Admin (Or Biller)')]
+	Sleep 	5.0
+	ath_wait_until_element_is_present	xpath=//h4[contains(text(),'New Supervisor')]	60
+
+
 Dashboard.NewClient.Input Group Company Email
 	[Arguments]	${Email}
 	ath input text value	Enter Groups Company's Email Address	${Email}
@@ -139,6 +146,10 @@ Dashboard.NewUser.Click Add New Supervisor Button
 	Sleep 	5.0
 	ath wait until loaded 	30
 
+Dashboard.NewUser.Click Add New User Button
+	ath click button 	xpath=(//input[@value="Add new user"])
+	Sleep 	5.0
+	ath wait until loaded 	30
 
 Dashboard.NewUser.Is Read Only Supervisor
 	[Arguments]	${ReadOnly}
@@ -148,10 +159,21 @@ Dashboard.NewUser.Is Super Care Coordinator
 	[Arguments]	${SuperCare}
 	ath select drop down field value	Super Care Coordinator?	${SuperCare}
 
+Dashboard.NewUser.Is Biller Role
+	[Arguments]	${BillerRole}
+	ath select drop down field value	Biller Role?	${BillerRole}
+
+Dashboard.NewUser.AssignSupervisor to Admin
+	[Arguments]	${Supervisor}
+	ath select drop down field value	//*[@id="addNewAdmin"]/descendant::select[@name="supervisor"]	${Supervisor}
+
 Dashboard.NewUser.Verify Supervisor Is saved successfully
 	ath verify element is visible	xpath=//*[contains(text(),'Supervisor added and email sent.')]
 	# ' Warning: Failed adding Zoom user. Zoom error: Email domain is blocked"]
 	# Supervisor added and email sent. Warning: Failed adding Zoom user. Zoom error: Cannot add the following user at this time. Contact 
+
+Dashboard.NewUser.Verify User Is saved successfully
+	ath verify element is visible	xpath=//*[contains(text(),'User added and email sent.')]
 
 
 Dashboard.NewUser.Verify Therapist saved successfully
@@ -168,6 +190,10 @@ Dashboard.ProvidersWidget.Select Newly Created Care Coordinators
 	ath verify element is visible	xpath=//div[@id='carecoordinators_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
 	ath click link	xpath=//div[@id='carecoordinators_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
 
+Dashboard.AdminsWidget.Select Newly Created Admin
+	[Arguments]	${FirstName}
+	ath verify element is visible	xpath=//div[@id='admins_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
+	ath click link	xpath=//div[@id='admins_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
 
 Dashboard.NewUser.Verify Is Assigned to Supervisor
 	[Arguments]	${Supervisor}
@@ -176,3 +202,16 @@ Dashboard.NewUser.Verify Is Assigned to Supervisor
 Dashboard.NewUser.Verify Supervisor Profile is Created
 	ath verify element is visible	xpath=//h1[contains(text(),'Supervisor Profile')]
 	ath check button existence	Update Supervisor Data
+
+
+Dashboard.NewUser.Verify Admin Data Displayed
+	[Arguments]	${FirstName}
+	ath verify element is visible	xpath=//h1[contains(text(),'${FirstName}')]
+	ath check button existence	Create Chat Credentials
+
+
+Dashboard.NewUser.Verify Supervisor Assigned to Admin
+	[Arguments]	${Supervisor}
+	ath verify element is visible	xpath=//p[contains(normalize-space(),'${Supervisor}')]
+	ath check links displayed	//a[text()="Deassign"]
+	ath check button existence	Update Admin Data
