@@ -1,0 +1,1143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20191212 20:38:11.259" generator="Robot 3.0.4 (Python 2.7.11 on win32)">
+<suite source="C:\ATH.Git\AdaptiveTelehealth\ATH-Tests\Regression\Messaging\ClientAccess\ATHMessaging_Draft_By_Client.robot" id="s1" name="ATHMessaging Draft By Client">
+<test id="s1-t1" name="MessagingClient_044">
+<kw name="Ath Logon" library="ATHLibrary">
+<arguments>
+<arg>${BROWSER}</arg>
+<arg>${URL}</arg>
+<arg>${AutoClient}</arg>
+<arg>${TestEnv}</arg>
+</arguments>
+<msg timestamp="20191212 20:38:14.731" level="INFO">Opening browser 'Chrome' to base url 'https://groups1.secure.adaptivetelehealth.com/index.php/login'</msg>
+<msg timestamp="20191212 20:38:42.462" level="INFO">login file: C:\Ath.Git\AdaptiveTelehealth\ATH-Framework\ATHLibrary\../../ATH-Resources\LoginData\logins.txt</msg>
+<msg timestamp="20191212 20:38:43.698" level="INFO">Typing text 'ninaf+client@adaptivetelehealth.com' into text field 'OR:ath_login_username' with typing_delay='0.05'</msg>
+<msg timestamp="20191212 20:38:49.828" level="INFO">Typing password into text field 'OR:ath_login_password'</msg>
+<msg timestamp="20191212 20:38:51.411" level="INFO">Clicking element 'OR:ath_login_button'.</msg>
+<status status="PASS" endtime="20191212 20:38:52.162" starttime="20191212 20:38:14.729"></status>
+</kw>
+<kw name="Perform Login Checks" library="CommonPage_res">
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Select From List</arg>
+<arg>//*[@class="modal-body"]/descendant::*/descendant::label[contains(text(),'State')]/following::select</arg>
+<arg>Alabama</arg>
+</arguments>
+<kw name="Select From List" library="ATHLibrary">
+<doc>Selects `*items` from list identified by `locator`</doc>
+<arguments>
+<arg>//*[@class="modal-body"]/descendant::*/descendant::label[contains(text(),'State')]/following::select</arg>
+<arg>Alabama</arg>
+</arguments>
+<msg timestamp="20191212 20:38:52.296" level="INFO">Selecting option(s) 'Alabama' from list '//*[@class="modal-body"]/descendant::*/descendant::label[contains(text(),'State')]/following::select'.</msg>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191212 20:39:14.512" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20191212 20:39:14.513" starttime="20191212 20:38:52.318"></status>
+</kw>
+<msg timestamp="20191212 20:39:14.767" level="FAIL">ValueError: Element locator '//*[@class="modal-body"]/descendant::*/descendant::label[contains(text(),'State')]/following::select' did not match any elements.</msg>
+<status status="FAIL" endtime="20191212 20:39:14.768" starttime="20191212 20:38:52.296"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:14.768" starttime="20191212 20:38:52.295"></status>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Input Text</arg>
+<arg>//input[@name="nearest_emerg_facility"]</arg>
+<arg>St. Lukes</arg>
+</arguments>
+<kw name="Input Text" library="ATHLibrary">
+<doc>Override Selenium2Library's Input Text command to support delays</doc>
+<arguments>
+<arg>//input[@name="nearest_emerg_facility"]</arg>
+<arg>St. Lukes</arg>
+</arguments>
+<msg timestamp="20191212 20:39:14.769" level="INFO">Typing text 'St. Lukes' into text field '//input[@name="nearest_emerg_facility"]' with typing_delay='0.05'</msg>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191212 20:39:15.251" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20191212 20:39:15.251" starttime="20191212 20:39:14.826"></status>
+</kw>
+<msg timestamp="20191212 20:39:15.637" level="FAIL">ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=79.0.3945.79)
+</msg>
+<status status="FAIL" endtime="20191212 20:39:15.637" starttime="20191212 20:39:14.769"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:15.637" starttime="20191212 20:39:14.768"></status>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Click Button</arg>
+<arg>//button[text()="Save"]</arg>
+</arguments>
+<kw name="Click Button" library="ATHLibrary">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>//button[text()="Save"]</arg>
+</arguments>
+<msg timestamp="20191212 20:39:15.638" level="INFO">Clicking button '//button[text()="Save"]'.</msg>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191212 20:39:16.119" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20191212 20:39:16.120" starttime="20191212 20:39:15.712"></status>
+</kw>
+<msg timestamp="20191212 20:39:16.245" level="FAIL">ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=79.0.3945.79)
+</msg>
+<status status="FAIL" endtime="20191212 20:39:16.245" starttime="20191212 20:39:15.638"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:16.246" starttime="20191212 20:39:15.637"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2.0</arg>
+</arguments>
+<msg timestamp="20191212 20:39:18.247" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20191212 20:39:18.247" starttime="20191212 20:39:16.246"></status>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>ath_click_icon</arg>
+<arg>//*[@id="modalUploadProfileImage"]/descendant::button/span[normalize-space()="×"]</arg>
+</arguments>
+<kw name="Ath Click Icon" library="ATHLibrary">
+<arguments>
+<arg>//*[@id="modalUploadProfileImage"]/descendant::button/span[normalize-space()="×"]</arg>
+</arguments>
+<msg timestamp="20191212 20:39:18.248" level="INFO">Waiting for locator - //*[@id="modalUploadProfileImage"]/descendant::button/span[normalize-space()="×"]</msg>
+<msg timestamp="20191212 20:39:18.276" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="ba014c49-fbb1-4f25-b948-e5c923cbd1b8")&gt; is found</msg>
+<msg timestamp="20191212 20:39:18.276" level="INFO">True</msg>
+<msg timestamp="20191212 20:39:18.276" level="INFO">//*[@id="modalUploadProfileImage"]/descendant::button/span[normalize-space()="×"]</msg>
+<msg timestamp="20191212 20:39:18.276" level="INFO">&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="ba014c49-fbb1-4f25-b948-e5c923cbd1b8")&gt;</msg>
+<msg timestamp="20191212 20:39:18.277" level="INFO">Clicking element '//*[@id="modalUploadProfileImage"]/descendant::button/span[normalize-space()="×"]'.</msg>
+<msg timestamp="20191212 20:39:18.796" level="INFO">Successfully clicked by locator..</msg>
+<status status="PASS" endtime="20191212 20:39:18.839" starttime="20191212 20:39:18.248"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:18.839" starttime="20191212 20:39:18.247"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:18.839" starttime="20191212 20:38:52.295"></status>
+</kw>
+<kw name="Select Messaging Menu" library="CommonPage_res">
+<kw name="Ath Click Icon" library="ATHLibrary">
+<arguments>
+<arg>xpath=//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Messaging']</arg>
+</arguments>
+<msg timestamp="20191212 20:39:18.841" level="INFO">Waiting for locator - //ul[contains(@class,'nav-main')]/li/a[normalize-space()='Messaging']</msg>
+<msg timestamp="20191212 20:39:18.870" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="fcf0e7cc-4781-4566-9ff0-4b4925369952")&gt; is found</msg>
+<msg timestamp="20191212 20:39:18.871" level="INFO">True</msg>
+<msg timestamp="20191212 20:39:18.871" level="INFO">//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Messaging']</msg>
+<msg timestamp="20191212 20:39:18.871" level="INFO">&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="fcf0e7cc-4781-4566-9ff0-4b4925369952")&gt;</msg>
+<msg timestamp="20191212 20:39:18.871" level="INFO">Clicking element '//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Messaging']'.</msg>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191212 20:39:19.419" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20191212 20:39:19.419" starttime="20191212 20:39:18.984"></status>
+</kw>
+<msg timestamp="20191212 20:39:19.419" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="fcf0e7cc-4781-4566-9ff0-4b4925369952")&gt;'.</msg>
+<msg timestamp="20191212 20:39:23.994" level="INFO">Successfully clicked by element..</msg>
+<status status="PASS" endtime="20191212 20:39:24.036" starttime="20191212 20:39:18.841"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:24.036" starttime="20191212 20:39:18.840"></status>
+</kw>
+<kw name="Messaging.Select Draft Menu" library="MessagingPage_res">
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>ath click icon</arg>
+<arg>xpath=//a[normalize-space()='Draft']</arg>
+</arguments>
+<kw name="Ath Click Icon" library="ATHLibrary">
+<arguments>
+<arg>xpath=//a[normalize-space()='Draft']</arg>
+</arguments>
+<msg timestamp="20191212 20:39:24.040" level="INFO">Waiting for locator - //a[normalize-space()='Draft']</msg>
+<msg timestamp="20191212 20:39:24.067" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="4b2cb802-7939-49a9-88b5-7538900d2f65")&gt; is found</msg>
+<msg timestamp="20191212 20:39:24.067" level="INFO">True</msg>
+<msg timestamp="20191212 20:39:24.067" level="INFO">//a[normalize-space()='Draft']</msg>
+<msg timestamp="20191212 20:39:24.067" level="INFO">&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="4b2cb802-7939-49a9-88b5-7538900d2f65")&gt;</msg>
+<msg timestamp="20191212 20:39:24.067" level="INFO">Clicking element '//a[normalize-space()='Draft']'.</msg>
+<msg timestamp="20191212 20:39:24.222" level="INFO">Successfully clicked by locator..</msg>
+<status status="PASS" endtime="20191212 20:39:24.248" starttime="20191212 20:39:24.039"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:24.248" starttime="20191212 20:39:24.038"></status>
+</kw>
+<kw name="Execute Javascript" library="ATHLibrary">
+<arguments>
+<arg>var element = document.evaluate("//a[normalize-space()='Draft']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</arg>
+</arguments>
+<msg timestamp="20191212 20:39:24.249" level="INFO">Executing JavaScript:
+var element = document.evaluate("//a[normalize-space()='Draft']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</msg>
+<status status="PASS" endtime="20191212 20:39:24.265" starttime="20191212 20:39:24.249"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3.0</arg>
+</arguments>
+<msg timestamp="20191212 20:39:27.265" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" endtime="20191212 20:39:27.265" starttime="20191212 20:39:24.265"></status>
+</kw>
+<kw name="Ath Wait Until Loaded" library="ATHLibrary">
+<arguments>
+<arg>30</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:39:27.294" starttime="20191212 20:39:27.266"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:27.295" starttime="20191212 20:39:24.037"></status>
+</kw>
+<kw type="for" name="${idx} IN RANGE [ 1 | 4 ]">
+<kw type="foritem" name="${idx} = 1">
+<kw name="Messaging.Draft.Click New Message Button" library="MessagingPage_res">
+<kw name="Ath Click Button" library="ATHLibrary">
+<arguments>
+<arg>xpath=(//*[contains(@class,'slideMessageBox')])[3]</arg>
+</arguments>
+<msg timestamp="20191212 20:39:27.432" level="INFO">No translation found for xpath=(//*[contains(@class,'slideMessageBox')])[3]</msg>
+<msg timestamp="20191212 20:39:27.432" level="INFO">Waiting for locator - (//*[contains(@class,'slideMessageBox')])[3]</msg>
+<msg timestamp="20191212 20:39:27.455" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="15531b36-2d9c-4381-be0c-84e5de69a18e")&gt; is found</msg>
+<msg timestamp="20191212 20:39:27.455" level="INFO">xpath=(//*[contains(@class,'slideMessageBox')])[3]</msg>
+<msg timestamp="20191212 20:39:27.456" level="INFO">Executing JavaScript:
+window.document.evaluate('(//*[contains(@class,"slideMessageBox")])[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()</msg>
+<msg timestamp="20191212 20:39:27.492" level="INFO">Successfully clicked by javascript..</msg>
+<status status="PASS" endtime="20191212 20:39:27.523" starttime="20191212 20:39:27.297"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1.0</arg>
+</arguments>
+<msg timestamp="20191212 20:39:28.524" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20191212 20:39:28.524" starttime="20191212 20:39:27.524"></status>
+</kw>
+<kw name="Ath Wait Until Loaded" library="ATHLibrary">
+<arguments>
+<arg>30</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:39:28.557" starttime="20191212 20:39:28.525"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:28.558" starttime="20191212 20:39:27.296"></status>
+</kw>
+<kw name="Messaging.Input Recipient" library="MessagingPage_res">
+<arguments>
+<arg>${Recipient2}</arg>
+</arguments>
+<kw name="Execute Javascript" library="ATHLibrary">
+<arguments>
+<arg>var element = document.evaluate("//*[normalize-space()='Send To:']/following::input[1]/.." ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</arg>
+</arguments>
+<msg timestamp="20191212 20:39:28.559" level="INFO">Executing JavaScript:
+var element = document.evaluate("//*[normalize-space()='Send To:']/following::input[1]/.." ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</msg>
+<status status="PASS" endtime="20191212 20:39:28.605" starttime="20191212 20:39:28.559"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1.0</arg>
+</arguments>
+<msg timestamp="20191212 20:39:29.607" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20191212 20:39:29.608" starttime="20191212 20:39:28.606"></status>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>ath click icon</arg>
+<arg>xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'${receiver}')]</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<kw name="Ath Click Icon" library="ATHLibrary">
+<arguments>
+<arg>xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'${receiver}')]</arg>
+</arguments>
+<msg timestamp="20191212 20:39:29.613" level="INFO">Waiting for locator - (//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'Meghan Ruiz')]</msg>
+<msg timestamp="20191212 20:39:29.650" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="93c8149d-e814-47eb-a261-b6e4f3e887df")&gt; is found</msg>
+<msg timestamp="20191212 20:39:29.650" level="INFO">True</msg>
+<msg timestamp="20191212 20:39:29.650" level="INFO">(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'Meghan Ruiz')]</msg>
+<msg timestamp="20191212 20:39:29.650" level="INFO">&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="93c8149d-e814-47eb-a261-b6e4f3e887df")&gt;</msg>
+<msg timestamp="20191212 20:39:29.650" level="INFO">Clicking element '(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'Meghan Ruiz')]'.</msg>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191212 20:39:30.101" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20191212 20:39:30.101" starttime="20191212 20:39:29.670"></status>
+</kw>
+<msg timestamp="20191212 20:39:30.102" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="93c8149d-e814-47eb-a261-b6e4f3e887df")&gt;'.</msg>
+<msg timestamp="20191212 20:39:30.206" level="INFO">Successfully clicked by element..</msg>
+<status status="PASS" endtime="20191212 20:39:30.225" starttime="20191212 20:39:29.612"></status>
+</kw>
+<msg timestamp="20191212 20:39:30.225" level="INFO">${status} = True</msg>
+<status status="PASS" endtime="20191212 20:39:30.225" starttime="20191212 20:39:29.609"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>Reload Page</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:39:30.226" starttime="20191212 20:39:30.225"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>Messaging.Draft.Click New Message Button</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:39:30.226" starttime="20191212 20:39:30.226"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>_inputreceiver</arg>
+<arg>${receiver}</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:39:30.227" starttime="20191212 20:39:30.227"></status>
+</kw>
+<kw name="Ath Wait Until Loaded" library="ATHLibrary">
+<arguments>
+<arg>30</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:39:30.245" starttime="20191212 20:39:30.227"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:30.246" starttime="20191212 20:39:28.558"></status>
+</kw>
+<kw name="Messaging.Input Subject" library="MessagingPage_res">
+<arguments>
+<arg>Automation Message</arg>
+</arguments>
+<kw name="Ath Click Icon" library="ATHLibrary">
+<arguments>
+<arg>//input[@name="subject"]/..</arg>
+</arguments>
+<msg timestamp="20191212 20:39:30.247" level="INFO">Waiting for locator - //input[@name="subject"]/..</msg>
+<msg timestamp="20191212 20:39:30.270" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="b440e295-2428-4e5b-9342-f21777621ccc")&gt; is found</msg>
+<msg timestamp="20191212 20:39:30.270" level="INFO">True</msg>
+<msg timestamp="20191212 20:39:30.270" level="INFO">//input[@name="subject"]/..</msg>
+<msg timestamp="20191212 20:39:30.270" level="INFO">&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="b440e295-2428-4e5b-9342-f21777621ccc")&gt;</msg>
+<msg timestamp="20191212 20:39:30.271" level="INFO">Clicking element '//input[@name="subject"]/..'.</msg>
+<msg timestamp="20191212 20:39:30.423" level="INFO">Successfully clicked by locator..</msg>
+<status status="PASS" endtime="20191212 20:39:30.445" starttime="20191212 20:39:30.247"></status>
+</kw>
+<kw name="Ath Input Text Value" library="ATHLibrary">
+<doc>get a text box by dummy class and name and then set it's value</doc>
+<arguments>
+<arg>//input[@name="subject"]</arg>
+<arg>${subject}</arg>
+</arguments>
+<msg timestamp="20191212 20:39:30.451" level="INFO">No translation found for //input[@name="subject"]</msg>
+<msg timestamp="20191212 20:39:30.451" level="INFO">Waiting for locator - //input[@name="subject"]</msg>
+<msg timestamp="20191212 20:39:30.475" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="848f31e0-db14-438a-81a0-61f0159dbb24")&gt; is found</msg>
+<msg timestamp="20191212 20:39:30.475" level="INFO">Typing text 'Automation Message' into text field '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="848f31e0-db14-438a-81a0-61f0159dbb24")&gt;' with typing_delay='0.05'</msg>
+<status status="PASS" endtime="20191212 20:39:32.295" starttime="20191212 20:39:30.446"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1.0</arg>
+</arguments>
+<msg timestamp="20191212 20:39:33.296" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20191212 20:39:33.297" starttime="20191212 20:39:32.295"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:33.297" starttime="20191212 20:39:30.246"></status>
+</kw>
+<kw name="Messaging.Input Message" library="MessagingPage_res">
+<arguments>
+<arg>Automation Test Message</arg>
+</arguments>
+<kw name="Ath Input Text Value" library="ATHLibrary">
+<doc>get a text box by dummy class and name and then set it's value</doc>
+<arguments>
+<arg>//*[@class="message"][normalize-space()="Message:"]/descendant::textarea</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20191212 20:39:33.302" level="INFO">No translation found for //*[@class="message"][normalize-space()="Message:"]/descendant::textarea</msg>
+<msg timestamp="20191212 20:39:33.302" level="INFO">Waiting for locator - //*[@class="message"][normalize-space()="Message:"]/descendant::textarea</msg>
+<msg timestamp="20191212 20:39:33.328" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="4869d2be-f6f3-487d-92ab-1733aa2cdc55")&gt; is found</msg>
+<msg timestamp="20191212 20:39:33.328" level="INFO">Typing text 'Automation Test Message' into text field '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="4869d2be-f6f3-487d-92ab-1733aa2cdc55")&gt;' with typing_delay='0.05'</msg>
+<status status="PASS" endtime="20191212 20:39:35.506" starttime="20191212 20:39:33.298"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:35.507" starttime="20191212 20:39:33.298"></status>
+</kw>
+<kw name="Messaging.Input Message" library="MessagingPage_res">
+<arguments>
+<arg>AutomationDraft Test Message</arg>
+</arguments>
+<kw name="Ath Input Text Value" library="ATHLibrary">
+<doc>get a text box by dummy class and name and then set it's value</doc>
+<arguments>
+<arg>//*[@class="message"][normalize-space()="Message:"]/descendant::textarea</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20191212 20:39:35.517" level="INFO">No translation found for //*[@class="message"][normalize-space()="Message:"]/descendant::textarea</msg>
+<msg timestamp="20191212 20:39:35.517" level="INFO">Waiting for locator - //*[@class="message"][normalize-space()="Message:"]/descendant::textarea</msg>
+<msg timestamp="20191212 20:39:35.570" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="4869d2be-f6f3-487d-92ab-1733aa2cdc55")&gt; is found</msg>
+<msg timestamp="20191212 20:39:35.570" level="INFO">Typing text 'AutomationDraft Test Message' into text field '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="4869d2be-f6f3-487d-92ab-1733aa2cdc55")&gt;' with typing_delay='0.05'</msg>
+<status status="PASS" endtime="20191212 20:39:38.148" starttime="20191212 20:39:35.510"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:38.148" starttime="20191212 20:39:35.507"></status>
+</kw>
+<kw name="Messaging.Click Save to Draft Button" library="MessagingPage_res">
+<kw name="Ath Click Button" library="ATHLibrary">
+<arguments>
+<arg>Save to Draft</arg>
+</arguments>
+<msg timestamp="20191212 20:39:38.154" level="INFO">No translation found for Save to Draft</msg>
+<msg timestamp="20191212 20:39:38.154" level="INFO">Waiting for locator - //*[contains(., "Save to Draft")] | //*[contains(@title,"Save to Draft")] | //*[@placeholder="Save to Draft"]</msg>
+<msg timestamp="20191212 20:39:38.196" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="ae6a1450-68f6-47f0-83b4-299b1d33e0ad")&gt; is found</msg>
+<msg timestamp="20191212 20:39:38.196" level="INFO">Waiting for locator - (//button[normalize-space()="Save to Draft"])[1]|(//a[contains(@class,"btn")][normalize-space()="Save to Draft"])[1]|(//input[@type="submit"][@value="Save to Draft"])[1]|(//a[normalize-space()="Save to Draft"])[1]|(//input[@type="button"][@value="Save to Draft"])[1]|(//*[(@title="Save to Draft")])[1]|(//div[@id="confirm_modal"]/descendant::button[contains(text(),"Save to Draft")])[1]|(//td/button[normalize-space()="Save to Draft"])[1]</msg>
+<msg timestamp="20191212 20:39:38.237" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="ed6a7c94-8bd6-4306-a84e-59a0237d864b")&gt; is found</msg>
+<msg timestamp="20191212 20:39:38.237" level="INFO">xpath=(//button[normalize-space()="Save to Draft"])[1]|xpath=(//a[contains(@class,"btn")][normalize-space()="Save to Draft"])[1]|xpath=(//input[@type="submit"][@value="Save to Draft"])[1]|xpath=(//a[normalize-space()="Save to Draft"])[1]|xpath=(//input[@type="button"][@value="Save to Draft"])[1]|xpath=(//*[(@title="Save to Draft")])[1]|xpath=(//div[@id="confirm_modal"]/descendant::button[contains(text(),"Save to Draft")])[1]|xpath=(//td/button[normalize-space()="Save to Draft"])[1]</msg>
+<msg timestamp="20191212 20:39:38.237" level="INFO">Executing JavaScript:
+window.document.evaluate('(//button[normalize-space()="Save to Draft"])[1]|(//a[contains(@class,"btn")][normalize-space()="Save to Draft"])[1]|(//input[@type="submit"][@value="Save to Draft"])[1]|(//a[normalize-space()="Save to Draft"])[1]|(//input[@type="button"][@value="Save to Draft"])[1]|(//*[(@title="Save to Draft")])[1]|(//div[@id="confirm_modal"]/descendant::button[contains(text(),"Save to Draft")])[1]|(//td/button[normalize-space()="Save to Draft"])[1]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()</msg>
+<msg timestamp="20191212 20:39:38.277" level="INFO">Successfully clicked by javascript..</msg>
+<status status="PASS" endtime="20191212 20:39:38.311" starttime="20191212 20:39:38.150"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3.0</arg>
+</arguments>
+<msg timestamp="20191212 20:39:41.315" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" endtime="20191212 20:39:41.316" starttime="20191212 20:39:38.312"></status>
+</kw>
+<kw name="Ath Wait Until Loaded" library="ATHLibrary">
+<arguments>
+<arg>30</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:39:41.338" starttime="20191212 20:39:41.316"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:39:41.338" starttime="20191212 20:39:38.149"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5.0</arg>
+<arg>wait for page to be loaded</arg>
+</arguments>
+<msg timestamp="20191212 20:39:46.339" level="INFO">Slept 5 seconds</msg>
+<msg timestamp="20191212 20:39:46.339" level="INFO">wait for page to be loaded</msg>
+<status status="PASS" endtime="20191212 20:39:46.339" starttime="20191212 20:39:41.338"></status>
+</kw>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191212 20:39:46.706" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-6.png"&gt;&lt;img src="selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20191212 20:39:46.707" starttime="20191212 20:39:46.339"></status>
+</kw>
+<kw name="Reload Page" library="ATHLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" endtime="20191212 20:39:46.828" starttime="20191212 20:39:46.707"></status>
+</kw>
+<kw name="Messaging.Select Draft Menu" library="MessagingPage_res">
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>ath click icon</arg>
+<arg>xpath=//a[normalize-space()='Draft']</arg>
+</arguments>
+<kw name="Ath Click Icon" library="ATHLibrary">
+<arguments>
+<arg>xpath=//a[normalize-space()='Draft']</arg>
+</arguments>
+<msg timestamp="20191212 20:39:46.831" level="INFO">Waiting for locator - //a[normalize-space()='Draft']</msg>
+<msg timestamp="20191212 20:40:09.727" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="1ffa538d-3a12-4f7f-b40c-0f81b134e3b2")&gt; is found</msg>
+<msg timestamp="20191212 20:40:09.728" level="INFO">True</msg>
+<msg timestamp="20191212 20:40:09.728" level="INFO">//a[normalize-space()='Draft']</msg>
+<msg timestamp="20191212 20:40:09.728" level="INFO">&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="1ffa538d-3a12-4f7f-b40c-0f81b134e3b2")&gt;</msg>
+<msg timestamp="20191212 20:40:09.728" level="INFO">Clicking element '//a[normalize-space()='Draft']'.</msg>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191212 20:40:10.382" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-7.png"&gt;&lt;img src="selenium-screenshot-7.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20191212 20:40:10.382" starttime="20191212 20:40:09.830"></status>
+</kw>
+<msg timestamp="20191212 20:40:10.382" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="1ffa538d-3a12-4f7f-b40c-0f81b134e3b2")&gt;'.</msg>
+<msg timestamp="20191212 20:40:10.685" level="FAIL">ElementClickInterceptedException: Message: element click intercepted: Element &lt;a href="#..." id="Draft-a" role="tab" aria-controls="draft" aria-expanded="true" data-toggle="tab"&gt;Draft&lt;/a&gt; is not clickable at point (137, 17). Other element would receive the click: &lt;div class="row"&gt;...&lt;/div&gt;
+  (Session info: chrome=79.0.3945.79)
+</msg>
+<status status="FAIL" endtime="20191212 20:40:10.686" starttime="20191212 20:39:46.830"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:10.686" starttime="20191212 20:39:46.829"></status>
+</kw>
+<kw name="Execute Javascript" library="ATHLibrary">
+<arguments>
+<arg>var element = document.evaluate("//a[normalize-space()='Draft']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</arg>
+</arguments>
+<msg timestamp="20191212 20:40:10.687" level="INFO">Executing JavaScript:
+var element = document.evaluate("//a[normalize-space()='Draft']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</msg>
+<status status="PASS" endtime="20191212 20:40:10.732" starttime="20191212 20:40:10.686"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3.0</arg>
+</arguments>
+<msg timestamp="20191212 20:40:13.733" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" endtime="20191212 20:40:13.733" starttime="20191212 20:40:10.733"></status>
+</kw>
+<kw name="Ath Wait Until Loaded" library="ATHLibrary">
+<arguments>
+<arg>30</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:13.777" starttime="20191212 20:40:13.734"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:13.777" starttime="20191212 20:39:46.829"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:13.778" starttime="20191212 20:39:27.296"></status>
+</kw>
+<kw type="foritem" name="${idx} = 2">
+<kw name="Messaging.Draft.Click New Message Button" library="MessagingPage_res">
+<kw name="Ath Click Button" library="ATHLibrary">
+<arguments>
+<arg>xpath=(//*[contains(@class,'slideMessageBox')])[3]</arg>
+</arguments>
+<msg timestamp="20191212 20:40:13.783" level="INFO">No translation found for xpath=(//*[contains(@class,'slideMessageBox')])[3]</msg>
+<msg timestamp="20191212 20:40:13.784" level="INFO">Waiting for locator - (//*[contains(@class,'slideMessageBox')])[3]</msg>
+<msg timestamp="20191212 20:40:13.809" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="a23d247a-fd5a-487d-8ab9-b17f83baca87")&gt; is found</msg>
+<msg timestamp="20191212 20:40:13.809" level="INFO">xpath=(//*[contains(@class,'slideMessageBox')])[3]</msg>
+<msg timestamp="20191212 20:40:13.809" level="INFO">Executing JavaScript:
+window.document.evaluate('(//*[contains(@class,"slideMessageBox")])[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()</msg>
+<msg timestamp="20191212 20:40:13.854" level="INFO">Successfully clicked by javascript..</msg>
+<status status="PASS" endtime="20191212 20:40:13.883" starttime="20191212 20:40:13.779"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1.0</arg>
+</arguments>
+<msg timestamp="20191212 20:40:14.884" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20191212 20:40:14.884" starttime="20191212 20:40:13.884"></status>
+</kw>
+<kw name="Ath Wait Until Loaded" library="ATHLibrary">
+<arguments>
+<arg>30</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:14.904" starttime="20191212 20:40:14.885"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:14.904" starttime="20191212 20:40:13.778"></status>
+</kw>
+<kw name="Messaging.Input Recipient" library="MessagingPage_res">
+<arguments>
+<arg>${Recipient2}</arg>
+</arguments>
+<kw name="Execute Javascript" library="ATHLibrary">
+<arguments>
+<arg>var element = document.evaluate("//*[normalize-space()='Send To:']/following::input[1]/.." ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</arg>
+</arguments>
+<msg timestamp="20191212 20:40:14.906" level="INFO">Executing JavaScript:
+var element = document.evaluate("//*[normalize-space()='Send To:']/following::input[1]/.." ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</msg>
+<status status="PASS" endtime="20191212 20:40:14.947" starttime="20191212 20:40:14.906"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1.0</arg>
+</arguments>
+<msg timestamp="20191212 20:40:15.949" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20191212 20:40:15.950" starttime="20191212 20:40:14.948"></status>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>ath click icon</arg>
+<arg>xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'${receiver}')]</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<kw name="Ath Click Icon" library="ATHLibrary">
+<arguments>
+<arg>xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'${receiver}')]</arg>
+</arguments>
+<msg timestamp="20191212 20:40:15.953" level="INFO">Waiting for locator - (//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'Meghan Ruiz')]</msg>
+<msg timestamp="20191212 20:40:15.985" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="b4408385-02f3-452c-a041-f64777325593")&gt; is found</msg>
+<msg timestamp="20191212 20:40:15.985" level="INFO">True</msg>
+<msg timestamp="20191212 20:40:15.985" level="INFO">(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'Meghan Ruiz')]</msg>
+<msg timestamp="20191212 20:40:15.985" level="INFO">&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="b4408385-02f3-452c-a041-f64777325593")&gt;</msg>
+<msg timestamp="20191212 20:40:15.985" level="INFO">Clicking element '(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'Meghan Ruiz')]'.</msg>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191212 20:40:16.585" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-8.png"&gt;&lt;img src="selenium-screenshot-8.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20191212 20:40:16.585" starttime="20191212 20:40:16.015"></status>
+</kw>
+<msg timestamp="20191212 20:40:16.586" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="b4408385-02f3-452c-a041-f64777325593")&gt;'.</msg>
+<msg timestamp="20191212 20:40:16.794" level="INFO">Successfully clicked by element..</msg>
+<status status="PASS" endtime="20191212 20:40:16.815" starttime="20191212 20:40:15.953"></status>
+</kw>
+<msg timestamp="20191212 20:40:16.815" level="INFO">${status} = True</msg>
+<status status="PASS" endtime="20191212 20:40:16.816" starttime="20191212 20:40:15.952"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>Reload Page</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:16.817" starttime="20191212 20:40:16.816"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>Messaging.Draft.Click New Message Button</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:16.818" starttime="20191212 20:40:16.817"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>_inputreceiver</arg>
+<arg>${receiver}</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:16.819" starttime="20191212 20:40:16.818"></status>
+</kw>
+<kw name="Ath Wait Until Loaded" library="ATHLibrary">
+<arguments>
+<arg>30</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:16.839" starttime="20191212 20:40:16.820"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:16.839" starttime="20191212 20:40:14.905"></status>
+</kw>
+<kw name="Messaging.Input Subject" library="MessagingPage_res">
+<arguments>
+<arg>Automation Message</arg>
+</arguments>
+<kw name="Ath Click Icon" library="ATHLibrary">
+<arguments>
+<arg>//input[@name="subject"]/..</arg>
+</arguments>
+<msg timestamp="20191212 20:40:16.842" level="INFO">Waiting for locator - //input[@name="subject"]/..</msg>
+<msg timestamp="20191212 20:40:16.863" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="8bb7c947-255e-4c3c-9861-d368ba10d641")&gt; is found</msg>
+<msg timestamp="20191212 20:40:16.863" level="INFO">True</msg>
+<msg timestamp="20191212 20:40:16.863" level="INFO">//input[@name="subject"]/..</msg>
+<msg timestamp="20191212 20:40:16.863" level="INFO">&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="8bb7c947-255e-4c3c-9861-d368ba10d641")&gt;</msg>
+<msg timestamp="20191212 20:40:16.863" level="INFO">Clicking element '//input[@name="subject"]/..'.</msg>
+<msg timestamp="20191212 20:40:17.033" level="INFO">Successfully clicked by locator..</msg>
+<status status="PASS" endtime="20191212 20:40:17.055" starttime="20191212 20:40:16.841"></status>
+</kw>
+<kw name="Ath Input Text Value" library="ATHLibrary">
+<doc>get a text box by dummy class and name and then set it's value</doc>
+<arguments>
+<arg>//input[@name="subject"]</arg>
+<arg>${subject}</arg>
+</arguments>
+<msg timestamp="20191212 20:40:17.061" level="INFO">No translation found for //input[@name="subject"]</msg>
+<msg timestamp="20191212 20:40:17.061" level="INFO">Waiting for locator - //input[@name="subject"]</msg>
+<msg timestamp="20191212 20:40:17.086" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="975758ae-c637-44d6-a53a-382119874edf")&gt; is found</msg>
+<msg timestamp="20191212 20:40:17.086" level="INFO">Typing text 'Automation Message' into text field '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="975758ae-c637-44d6-a53a-382119874edf")&gt;' with typing_delay='0.05'</msg>
+<status status="PASS" endtime="20191212 20:40:18.960" starttime="20191212 20:40:17.056"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1.0</arg>
+</arguments>
+<msg timestamp="20191212 20:40:19.964" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20191212 20:40:19.964" starttime="20191212 20:40:18.961"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:19.964" starttime="20191212 20:40:16.840"></status>
+</kw>
+<kw name="Messaging.Input Message" library="MessagingPage_res">
+<arguments>
+<arg>Automation Test Message</arg>
+</arguments>
+<kw name="Ath Input Text Value" library="ATHLibrary">
+<doc>get a text box by dummy class and name and then set it's value</doc>
+<arguments>
+<arg>//*[@class="message"][normalize-space()="Message:"]/descendant::textarea</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20191212 20:40:19.971" level="INFO">No translation found for //*[@class="message"][normalize-space()="Message:"]/descendant::textarea</msg>
+<msg timestamp="20191212 20:40:19.971" level="INFO">Waiting for locator - //*[@class="message"][normalize-space()="Message:"]/descendant::textarea</msg>
+<msg timestamp="20191212 20:40:20.000" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="20ae3d48-be23-4b6f-803e-b8455ab9bf85")&gt; is found</msg>
+<msg timestamp="20191212 20:40:20.001" level="INFO">Typing text 'Automation Test Message' into text field '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="20ae3d48-be23-4b6f-803e-b8455ab9bf85")&gt;' with typing_delay='0.05'</msg>
+<status status="PASS" endtime="20191212 20:40:22.328" starttime="20191212 20:40:19.966"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:22.328" starttime="20191212 20:40:19.965"></status>
+</kw>
+<kw name="Messaging.Input Message" library="MessagingPage_res">
+<arguments>
+<arg>AutomationDraft Test Message</arg>
+</arguments>
+<kw name="Ath Input Text Value" library="ATHLibrary">
+<doc>get a text box by dummy class and name and then set it's value</doc>
+<arguments>
+<arg>//*[@class="message"][normalize-space()="Message:"]/descendant::textarea</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20191212 20:40:22.338" level="INFO">No translation found for //*[@class="message"][normalize-space()="Message:"]/descendant::textarea</msg>
+<msg timestamp="20191212 20:40:22.338" level="INFO">Waiting for locator - //*[@class="message"][normalize-space()="Message:"]/descendant::textarea</msg>
+<msg timestamp="20191212 20:40:22.368" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="20ae3d48-be23-4b6f-803e-b8455ab9bf85")&gt; is found</msg>
+<msg timestamp="20191212 20:40:22.369" level="INFO">Typing text 'AutomationDraft Test Message' into text field '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="20ae3d48-be23-4b6f-803e-b8455ab9bf85")&gt;' with typing_delay='0.05'</msg>
+<status status="PASS" endtime="20191212 20:40:25.278" starttime="20191212 20:40:22.331"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:25.278" starttime="20191212 20:40:22.329"></status>
+</kw>
+<kw name="Messaging.Click Save to Draft Button" library="MessagingPage_res">
+<kw name="Ath Click Button" library="ATHLibrary">
+<arguments>
+<arg>Save to Draft</arg>
+</arguments>
+<msg timestamp="20191212 20:40:25.286" level="INFO">No translation found for Save to Draft</msg>
+<msg timestamp="20191212 20:40:25.286" level="INFO">Waiting for locator - //*[contains(., "Save to Draft")] | //*[contains(@title,"Save to Draft")] | //*[@placeholder="Save to Draft"]</msg>
+<msg timestamp="20191212 20:40:25.329" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="6cbd3987-f245-45f1-a99c-982903daa655")&gt; is found</msg>
+<msg timestamp="20191212 20:40:25.329" level="INFO">Waiting for locator - (//button[normalize-space()="Save to Draft"])[1]|(//a[contains(@class,"btn")][normalize-space()="Save to Draft"])[1]|(//input[@type="submit"][@value="Save to Draft"])[1]|(//a[normalize-space()="Save to Draft"])[1]|(//input[@type="button"][@value="Save to Draft"])[1]|(//*[(@title="Save to Draft")])[1]|(//div[@id="confirm_modal"]/descendant::button[contains(text(),"Save to Draft")])[1]|(//td/button[normalize-space()="Save to Draft"])[1]</msg>
+<msg timestamp="20191212 20:40:25.365" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="3fd1e02c-fbb3-46b3-abc0-a35c3d1dbd81")&gt; is found</msg>
+<msg timestamp="20191212 20:40:25.366" level="INFO">xpath=(//button[normalize-space()="Save to Draft"])[1]|xpath=(//a[contains(@class,"btn")][normalize-space()="Save to Draft"])[1]|xpath=(//input[@type="submit"][@value="Save to Draft"])[1]|xpath=(//a[normalize-space()="Save to Draft"])[1]|xpath=(//input[@type="button"][@value="Save to Draft"])[1]|xpath=(//*[(@title="Save to Draft")])[1]|xpath=(//div[@id="confirm_modal"]/descendant::button[contains(text(),"Save to Draft")])[1]|xpath=(//td/button[normalize-space()="Save to Draft"])[1]</msg>
+<msg timestamp="20191212 20:40:25.366" level="INFO">Executing JavaScript:
+window.document.evaluate('(//button[normalize-space()="Save to Draft"])[1]|(//a[contains(@class,"btn")][normalize-space()="Save to Draft"])[1]|(//input[@type="submit"][@value="Save to Draft"])[1]|(//a[normalize-space()="Save to Draft"])[1]|(//input[@type="button"][@value="Save to Draft"])[1]|(//*[(@title="Save to Draft")])[1]|(//div[@id="confirm_modal"]/descendant::button[contains(text(),"Save to Draft")])[1]|(//td/button[normalize-space()="Save to Draft"])[1]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()</msg>
+<msg timestamp="20191212 20:40:25.420" level="INFO">Successfully clicked by javascript..</msg>
+<status status="PASS" endtime="20191212 20:40:25.452" starttime="20191212 20:40:25.280"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3.0</arg>
+</arguments>
+<msg timestamp="20191212 20:40:28.454" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" endtime="20191212 20:40:28.454" starttime="20191212 20:40:25.453"></status>
+</kw>
+<kw name="Ath Wait Until Loaded" library="ATHLibrary">
+<arguments>
+<arg>30</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:28.479" starttime="20191212 20:40:28.454"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:28.480" starttime="20191212 20:40:25.279"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5.0</arg>
+<arg>wait for page to be loaded</arg>
+</arguments>
+<msg timestamp="20191212 20:40:33.481" level="INFO">Slept 5 seconds</msg>
+<msg timestamp="20191212 20:40:33.481" level="INFO">wait for page to be loaded</msg>
+<status status="PASS" endtime="20191212 20:40:33.481" starttime="20191212 20:40:28.481"></status>
+</kw>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191212 20:40:33.923" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-9.png"&gt;&lt;img src="selenium-screenshot-9.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20191212 20:40:33.924" starttime="20191212 20:40:33.481"></status>
+</kw>
+<kw name="Reload Page" library="ATHLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" endtime="20191212 20:40:33.950" starttime="20191212 20:40:33.924"></status>
+</kw>
+<kw name="Messaging.Select Draft Menu" library="MessagingPage_res">
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>ath click icon</arg>
+<arg>xpath=//a[normalize-space()='Draft']</arg>
+</arguments>
+<kw name="Ath Click Icon" library="ATHLibrary">
+<arguments>
+<arg>xpath=//a[normalize-space()='Draft']</arg>
+</arguments>
+<msg timestamp="20191212 20:40:33.953" level="INFO">Waiting for locator - //a[normalize-space()='Draft']</msg>
+<msg timestamp="20191212 20:40:38.217" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="96797e0f-4ac8-4234-8d7f-65c96e8b956e")&gt; is found</msg>
+<msg timestamp="20191212 20:40:38.217" level="INFO">True</msg>
+<msg timestamp="20191212 20:40:38.217" level="INFO">//a[normalize-space()='Draft']</msg>
+<msg timestamp="20191212 20:40:38.218" level="INFO">&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="96797e0f-4ac8-4234-8d7f-65c96e8b956e")&gt;</msg>
+<msg timestamp="20191212 20:40:38.218" level="INFO">Clicking element '//a[normalize-space()='Draft']'.</msg>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191212 20:40:38.749" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-10.png"&gt;&lt;img src="selenium-screenshot-10.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20191212 20:40:38.750" starttime="20191212 20:40:38.323"></status>
+</kw>
+<msg timestamp="20191212 20:40:38.750" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="96797e0f-4ac8-4234-8d7f-65c96e8b956e")&gt;'.</msg>
+<msg timestamp="20191212 20:40:38.803" level="FAIL">ElementClickInterceptedException: Message: element click intercepted: Element &lt;a href="#..." id="Draft-a" role="tab" aria-controls="draft" aria-expanded="true" data-toggle="tab"&gt;Draft&lt;/a&gt; is not clickable at point (137, 17). Other element would receive the click: &lt;div class="row"&gt;...&lt;/div&gt;
+  (Session info: chrome=79.0.3945.79)
+</msg>
+<status status="FAIL" endtime="20191212 20:40:38.803" starttime="20191212 20:40:33.952"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:38.804" starttime="20191212 20:40:33.952"></status>
+</kw>
+<kw name="Execute Javascript" library="ATHLibrary">
+<arguments>
+<arg>var element = document.evaluate("//a[normalize-space()='Draft']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</arg>
+</arguments>
+<msg timestamp="20191212 20:40:38.805" level="INFO">Executing JavaScript:
+var element = document.evaluate("//a[normalize-space()='Draft']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</msg>
+<status status="PASS" endtime="20191212 20:40:38.836" starttime="20191212 20:40:38.804"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3.0</arg>
+</arguments>
+<msg timestamp="20191212 20:40:41.838" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" endtime="20191212 20:40:41.839" starttime="20191212 20:40:38.837"></status>
+</kw>
+<kw name="Ath Wait Until Loaded" library="ATHLibrary">
+<arguments>
+<arg>30</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:41.854" starttime="20191212 20:40:41.839"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:41.855" starttime="20191212 20:40:33.950"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:41.855" starttime="20191212 20:40:13.778"></status>
+</kw>
+<kw type="foritem" name="${idx} = 3">
+<kw name="Messaging.Draft.Click New Message Button" library="MessagingPage_res">
+<kw name="Ath Click Button" library="ATHLibrary">
+<arguments>
+<arg>xpath=(//*[contains(@class,'slideMessageBox')])[3]</arg>
+</arguments>
+<msg timestamp="20191212 20:40:41.859" level="INFO">No translation found for xpath=(//*[contains(@class,'slideMessageBox')])[3]</msg>
+<msg timestamp="20191212 20:40:41.859" level="INFO">Waiting for locator - (//*[contains(@class,'slideMessageBox')])[3]</msg>
+<msg timestamp="20191212 20:40:41.884" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="a2d107a0-5223-4451-b193-785c1d2df552")&gt; is found</msg>
+<msg timestamp="20191212 20:40:41.885" level="INFO">xpath=(//*[contains(@class,'slideMessageBox')])[3]</msg>
+<msg timestamp="20191212 20:40:41.885" level="INFO">Executing JavaScript:
+window.document.evaluate('(//*[contains(@class,"slideMessageBox")])[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()</msg>
+<msg timestamp="20191212 20:40:41.927" level="INFO">Successfully clicked by javascript..</msg>
+<status status="PASS" endtime="20191212 20:40:41.956" starttime="20191212 20:40:41.856"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1.0</arg>
+</arguments>
+<msg timestamp="20191212 20:40:42.957" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20191212 20:40:42.957" starttime="20191212 20:40:41.957"></status>
+</kw>
+<kw name="Ath Wait Until Loaded" library="ATHLibrary">
+<arguments>
+<arg>30</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:42.974" starttime="20191212 20:40:42.957"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:42.975" starttime="20191212 20:40:41.855"></status>
+</kw>
+<kw name="Messaging.Input Recipient" library="MessagingPage_res">
+<arguments>
+<arg>${Recipient2}</arg>
+</arguments>
+<kw name="Execute Javascript" library="ATHLibrary">
+<arguments>
+<arg>var element = document.evaluate("//*[normalize-space()='Send To:']/following::input[1]/.." ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</arg>
+</arguments>
+<msg timestamp="20191212 20:40:42.977" level="INFO">Executing JavaScript:
+var element = document.evaluate("//*[normalize-space()='Send To:']/following::input[1]/.." ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</msg>
+<status status="PASS" endtime="20191212 20:40:43.014" starttime="20191212 20:40:42.976"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1.0</arg>
+</arguments>
+<msg timestamp="20191212 20:40:44.015" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20191212 20:40:44.016" starttime="20191212 20:40:43.015"></status>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>ath click icon</arg>
+<arg>xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'${receiver}')]</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<kw name="Ath Click Icon" library="ATHLibrary">
+<arguments>
+<arg>xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'${receiver}')]</arg>
+</arguments>
+<msg timestamp="20191212 20:40:44.017" level="INFO">Waiting for locator - (//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'Meghan Ruiz')]</msg>
+<msg timestamp="20191212 20:40:44.038" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="41193eee-8a0b-40c6-8423-705743286a75")&gt; is found</msg>
+<msg timestamp="20191212 20:40:44.039" level="INFO">True</msg>
+<msg timestamp="20191212 20:40:44.039" level="INFO">(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'Meghan Ruiz')]</msg>
+<msg timestamp="20191212 20:40:44.039" level="INFO">&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="41193eee-8a0b-40c6-8423-705743286a75")&gt;</msg>
+<msg timestamp="20191212 20:40:44.039" level="INFO">Clicking element '(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'Meghan Ruiz')]'.</msg>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191212 20:40:44.503" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-11.png"&gt;&lt;img src="selenium-screenshot-11.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20191212 20:40:44.503" starttime="20191212 20:40:44.069"></status>
+</kw>
+<msg timestamp="20191212 20:40:44.503" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="41193eee-8a0b-40c6-8423-705743286a75")&gt;'.</msg>
+<msg timestamp="20191212 20:40:44.630" level="INFO">Successfully clicked by element..</msg>
+<status status="PASS" endtime="20191212 20:40:44.646" starttime="20191212 20:40:44.016"></status>
+</kw>
+<msg timestamp="20191212 20:40:44.646" level="INFO">${status} = True</msg>
+<status status="PASS" endtime="20191212 20:40:44.647" starttime="20191212 20:40:44.016"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>Reload Page</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:44.648" starttime="20191212 20:40:44.647"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>Messaging.Draft.Click New Message Button</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:44.649" starttime="20191212 20:40:44.648"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>${status}</arg>
+<arg>_inputreceiver</arg>
+<arg>${receiver}</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:44.650" starttime="20191212 20:40:44.649"></status>
+</kw>
+<kw name="Ath Wait Until Loaded" library="ATHLibrary">
+<arguments>
+<arg>30</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:44.666" starttime="20191212 20:40:44.651"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:44.666" starttime="20191212 20:40:42.975"></status>
+</kw>
+<kw name="Messaging.Input Subject" library="MessagingPage_res">
+<arguments>
+<arg>Automation Message</arg>
+</arguments>
+<kw name="Ath Click Icon" library="ATHLibrary">
+<arguments>
+<arg>//input[@name="subject"]/..</arg>
+</arguments>
+<msg timestamp="20191212 20:40:44.669" level="INFO">Waiting for locator - //input[@name="subject"]/..</msg>
+<msg timestamp="20191212 20:40:44.691" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="d55e7f77-db00-41fb-8982-0c118d494be6")&gt; is found</msg>
+<msg timestamp="20191212 20:40:44.691" level="INFO">True</msg>
+<msg timestamp="20191212 20:40:44.692" level="INFO">//input[@name="subject"]/..</msg>
+<msg timestamp="20191212 20:40:44.692" level="INFO">&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="d55e7f77-db00-41fb-8982-0c118d494be6")&gt;</msg>
+<msg timestamp="20191212 20:40:44.692" level="INFO">Clicking element '//input[@name="subject"]/..'.</msg>
+<msg timestamp="20191212 20:40:44.847" level="INFO">Successfully clicked by locator..</msg>
+<status status="PASS" endtime="20191212 20:40:44.871" starttime="20191212 20:40:44.668"></status>
+</kw>
+<kw name="Ath Input Text Value" library="ATHLibrary">
+<doc>get a text box by dummy class and name and then set it's value</doc>
+<arguments>
+<arg>//input[@name="subject"]</arg>
+<arg>${subject}</arg>
+</arguments>
+<msg timestamp="20191212 20:40:44.878" level="INFO">No translation found for //input[@name="subject"]</msg>
+<msg timestamp="20191212 20:40:44.878" level="INFO">Waiting for locator - //input[@name="subject"]</msg>
+<msg timestamp="20191212 20:40:44.913" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="f144ac7f-a813-425e-9478-d222e2ed9dfe")&gt; is found</msg>
+<msg timestamp="20191212 20:40:44.913" level="INFO">Typing text 'Automation Message' into text field '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="f144ac7f-a813-425e-9478-d222e2ed9dfe")&gt;' with typing_delay='0.05'</msg>
+<status status="PASS" endtime="20191212 20:40:46.603" starttime="20191212 20:40:44.872"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1.0</arg>
+</arguments>
+<msg timestamp="20191212 20:40:47.604" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20191212 20:40:47.605" starttime="20191212 20:40:46.603"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:47.605" starttime="20191212 20:40:44.667"></status>
+</kw>
+<kw name="Messaging.Input Message" library="MessagingPage_res">
+<arguments>
+<arg>Automation Test Message</arg>
+</arguments>
+<kw name="Ath Input Text Value" library="ATHLibrary">
+<doc>get a text box by dummy class and name and then set it's value</doc>
+<arguments>
+<arg>//*[@class="message"][normalize-space()="Message:"]/descendant::textarea</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20191212 20:40:47.610" level="INFO">No translation found for //*[@class="message"][normalize-space()="Message:"]/descendant::textarea</msg>
+<msg timestamp="20191212 20:40:47.611" level="INFO">Waiting for locator - //*[@class="message"][normalize-space()="Message:"]/descendant::textarea</msg>
+<msg timestamp="20191212 20:40:47.637" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="c65633a8-dfbc-42e7-86df-0f048e965de4")&gt; is found</msg>
+<msg timestamp="20191212 20:40:47.637" level="INFO">Typing text 'Automation Test Message' into text field '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="c65633a8-dfbc-42e7-86df-0f048e965de4")&gt;' with typing_delay='0.05'</msg>
+<status status="PASS" endtime="20191212 20:40:49.781" starttime="20191212 20:40:47.606"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:49.782" starttime="20191212 20:40:47.605"></status>
+</kw>
+<kw name="Messaging.Input Message" library="MessagingPage_res">
+<arguments>
+<arg>AutomationDraft Test Message</arg>
+</arguments>
+<kw name="Ath Input Text Value" library="ATHLibrary">
+<doc>get a text box by dummy class and name and then set it's value</doc>
+<arguments>
+<arg>//*[@class="message"][normalize-space()="Message:"]/descendant::textarea</arg>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20191212 20:40:49.791" level="INFO">No translation found for //*[@class="message"][normalize-space()="Message:"]/descendant::textarea</msg>
+<msg timestamp="20191212 20:40:49.791" level="INFO">Waiting for locator - //*[@class="message"][normalize-space()="Message:"]/descendant::textarea</msg>
+<msg timestamp="20191212 20:40:49.826" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="c65633a8-dfbc-42e7-86df-0f048e965de4")&gt; is found</msg>
+<msg timestamp="20191212 20:40:49.826" level="INFO">Typing text 'AutomationDraft Test Message' into text field '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="c65633a8-dfbc-42e7-86df-0f048e965de4")&gt;' with typing_delay='0.05'</msg>
+<status status="PASS" endtime="20191212 20:40:52.560" starttime="20191212 20:40:49.785"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:52.561" starttime="20191212 20:40:49.783"></status>
+</kw>
+<kw name="Messaging.Click Save to Draft Button" library="MessagingPage_res">
+<kw name="Ath Click Button" library="ATHLibrary">
+<arguments>
+<arg>Save to Draft</arg>
+</arguments>
+<msg timestamp="20191212 20:40:52.567" level="INFO">No translation found for Save to Draft</msg>
+<msg timestamp="20191212 20:40:52.568" level="INFO">Waiting for locator - //*[contains(., "Save to Draft")] | //*[contains(@title,"Save to Draft")] | //*[@placeholder="Save to Draft"]</msg>
+<msg timestamp="20191212 20:40:52.615" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="89f52d52-8916-4038-a57c-61ef4272f0c3")&gt; is found</msg>
+<msg timestamp="20191212 20:40:52.615" level="INFO">Waiting for locator - (//button[normalize-space()="Save to Draft"])[1]|(//a[contains(@class,"btn")][normalize-space()="Save to Draft"])[1]|(//input[@type="submit"][@value="Save to Draft"])[1]|(//a[normalize-space()="Save to Draft"])[1]|(//input[@type="button"][@value="Save to Draft"])[1]|(//*[(@title="Save to Draft")])[1]|(//div[@id="confirm_modal"]/descendant::button[contains(text(),"Save to Draft")])[1]|(//td/button[normalize-space()="Save to Draft"])[1]</msg>
+<msg timestamp="20191212 20:40:52.651" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="1165eeef-a05e-4417-a22f-af613e4e9c31")&gt; is found</msg>
+<msg timestamp="20191212 20:40:52.651" level="INFO">xpath=(//button[normalize-space()="Save to Draft"])[1]|xpath=(//a[contains(@class,"btn")][normalize-space()="Save to Draft"])[1]|xpath=(//input[@type="submit"][@value="Save to Draft"])[1]|xpath=(//a[normalize-space()="Save to Draft"])[1]|xpath=(//input[@type="button"][@value="Save to Draft"])[1]|xpath=(//*[(@title="Save to Draft")])[1]|xpath=(//div[@id="confirm_modal"]/descendant::button[contains(text(),"Save to Draft")])[1]|xpath=(//td/button[normalize-space()="Save to Draft"])[1]</msg>
+<msg timestamp="20191212 20:40:52.652" level="INFO">Executing JavaScript:
+window.document.evaluate('(//button[normalize-space()="Save to Draft"])[1]|(//a[contains(@class,"btn")][normalize-space()="Save to Draft"])[1]|(//input[@type="submit"][@value="Save to Draft"])[1]|(//a[normalize-space()="Save to Draft"])[1]|(//input[@type="button"][@value="Save to Draft"])[1]|(//*[(@title="Save to Draft")])[1]|(//div[@id="confirm_modal"]/descendant::button[contains(text(),"Save to Draft")])[1]|(//td/button[normalize-space()="Save to Draft"])[1]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()</msg>
+<msg timestamp="20191212 20:40:52.704" level="INFO">Successfully clicked by javascript..</msg>
+<status status="PASS" endtime="20191212 20:40:52.734" starttime="20191212 20:40:52.562"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3.0</arg>
+</arguments>
+<msg timestamp="20191212 20:40:55.735" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" endtime="20191212 20:40:55.735" starttime="20191212 20:40:52.735"></status>
+</kw>
+<kw name="Ath Wait Until Loaded" library="ATHLibrary">
+<arguments>
+<arg>30</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:40:55.753" starttime="20191212 20:40:55.735"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:40:55.753" starttime="20191212 20:40:52.561"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5.0</arg>
+<arg>wait for page to be loaded</arg>
+</arguments>
+<msg timestamp="20191212 20:41:00.754" level="INFO">Slept 5 seconds</msg>
+<msg timestamp="20191212 20:41:00.754" level="INFO">wait for page to be loaded</msg>
+<status status="PASS" endtime="20191212 20:41:00.754" starttime="20191212 20:40:55.753"></status>
+</kw>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191212 20:41:01.192" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-12.png"&gt;&lt;img src="selenium-screenshot-12.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20191212 20:41:01.192" starttime="20191212 20:41:00.755"></status>
+</kw>
+<kw name="Reload Page" library="ATHLibrary">
+<doc>Simulates user reloading page.</doc>
+<status status="PASS" endtime="20191212 20:41:01.224" starttime="20191212 20:41:01.193"></status>
+</kw>
+<kw name="Messaging.Select Draft Menu" library="MessagingPage_res">
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>ath click icon</arg>
+<arg>xpath=//a[normalize-space()='Draft']</arg>
+</arguments>
+<kw name="Ath Click Icon" library="ATHLibrary">
+<arguments>
+<arg>xpath=//a[normalize-space()='Draft']</arg>
+</arguments>
+<msg timestamp="20191212 20:41:01.228" level="INFO">Waiting for locator - //a[normalize-space()='Draft']</msg>
+<msg timestamp="20191212 20:41:04.705" level="INFO">Locator - &lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="e7155e4d-a532-4473-8add-0fb5b161be56")&gt; is found</msg>
+<msg timestamp="20191212 20:41:04.705" level="INFO">True</msg>
+<msg timestamp="20191212 20:41:04.705" level="INFO">//a[normalize-space()='Draft']</msg>
+<msg timestamp="20191212 20:41:04.705" level="INFO">&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="e7155e4d-a532-4473-8add-0fb5b161be56")&gt;</msg>
+<msg timestamp="20191212 20:41:04.706" level="INFO">Clicking element '//a[normalize-space()='Draft']'.</msg>
+<kw name="Capture Page Screenshot" library="ATHLibrary">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20191212 20:41:05.329" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-13.png"&gt;&lt;img src="selenium-screenshot-13.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20191212 20:41:05.330" starttime="20191212 20:41:04.831"></status>
+</kw>
+<msg timestamp="20191212 20:41:05.330" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="76a7ccd36c84b35cb0465d70ab6ef3af", element="e7155e4d-a532-4473-8add-0fb5b161be56")&gt;'.</msg>
+<msg timestamp="20191212 20:41:05.377" level="FAIL">ElementClickInterceptedException: Message: element click intercepted: Element &lt;a href="#..." id="Draft-a" role="tab" aria-controls="draft" aria-expanded="true" data-toggle="tab"&gt;Draft&lt;/a&gt; is not clickable at point (137, 17). Other element would receive the click: &lt;div class="row"&gt;...&lt;/div&gt;
+  (Session info: chrome=79.0.3945.79)
+</msg>
+<status status="FAIL" endtime="20191212 20:41:05.377" starttime="20191212 20:41:01.227"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:41:05.377" starttime="20191212 20:41:01.226"></status>
+</kw>
+<kw name="Execute Javascript" library="ATHLibrary">
+<arguments>
+<arg>var element = document.evaluate("//a[normalize-space()='Draft']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</arg>
+</arguments>
+<msg timestamp="20191212 20:41:05.378" level="INFO">Executing JavaScript:
+var element = document.evaluate("//a[normalize-space()='Draft']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}</msg>
+<status status="PASS" endtime="20191212 20:41:05.410" starttime="20191212 20:41:05.378"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3.0</arg>
+</arguments>
+<msg timestamp="20191212 20:41:08.412" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" endtime="20191212 20:41:08.412" starttime="20191212 20:41:05.411"></status>
+</kw>
+<kw name="Ath Wait Until Loaded" library="ATHLibrary">
+<arguments>
+<arg>30</arg>
+</arguments>
+<status status="PASS" endtime="20191212 20:41:08.448" starttime="20191212 20:41:08.413"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:41:08.448" starttime="20191212 20:41:01.225"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:41:08.448" starttime="20191212 20:40:41.855"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:41:08.448" starttime="20191212 20:39:27.295"></status>
+</kw>
+<kw name="Logout from Application" library="CommonPage_res">
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>click element</arg>
+<arg>//span[text()="Logout"]/ancestor::a</arg>
+</arguments>
+<kw name="Click Element" library="ATHLibrary">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>//span[text()="Logout"]/ancestor::a</arg>
+</arguments>
+<msg timestamp="20191212 20:41:08.451" level="INFO">Clicking element '//span[text()="Logout"]/ancestor::a'.</msg>
+<status status="PASS" endtime="20191212 20:41:16.444" starttime="20191212 20:41:08.450"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:41:16.445" starttime="20191212 20:41:08.450"></status>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Page Should Contain Element</arg>
+<arg>//h3[@class="box-title"][normalize-space()="Login"]</arg>
+</arguments>
+<kw name="Page Should Contain Element" library="ATHLibrary">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>//h3[@class="box-title"][normalize-space()="Login"]</arg>
+</arguments>
+<msg timestamp="20191212 20:41:16.488" level="INFO">Current page contains element '//h3[@class="box-title"][normalize-space()="Login"]'.</msg>
+<status status="PASS" endtime="20191212 20:41:16.488" starttime="20191212 20:41:16.446"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:41:16.489" starttime="20191212 20:41:16.445"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:41:16.489" starttime="20191212 20:41:08.449"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:41:16.491" critical="yes" starttime="20191212 20:38:14.727"></status>
+</test>
+<kw type="teardown" name="Close All Browsers" library="ATHLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" endtime="20191212 20:41:19.117" starttime="20191212 20:41:16.536"></status>
+</kw>
+<status status="PASS" endtime="20191212 20:41:19.117" starttime="20191212 20:38:11.285"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="ATHMessaging Draft By Client" pass="1">ATHMessaging Draft By Client</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
