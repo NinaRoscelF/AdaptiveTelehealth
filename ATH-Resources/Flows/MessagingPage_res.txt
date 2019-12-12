@@ -28,10 +28,20 @@ Messaging.Verify New Message Widget Not Displayed
 Messaging.Input Recipient
 	[arguments]	${receiver}
 	Execute Javascript	var element = document.evaluate("//*[normalize-space()='Send To:']/following::input[1]/.." ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
-	ath_wait_until_element_staleness	//*[normalize-space()='Send To:']/following::input[1]/.. 	60
+#	ath_wait_until_element_staleness	//*[normalize-space()='Send To:']/following::input[1]/.. 	60
 	Sleep	1.0
-	ath click icon	xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[normalize-space(.)='${receiver}']
+	${status}	Run Keyword and Return Status	ath click icon	xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'${receiver}')]
+	Run Keyword Unless 	${status}	Reload Page
+	Run Keyword Unless 	${status}	Messaging.Draft.Click New Message Button
+	Run Keyword Unless 	${status}	_inputreceiver	${receiver}
 	ath_wait_until_loaded	30
+
+_inputreceiver
+	[arguments]	${recipient}
+	Execute Javascript	var element = document.evaluate("//*[normalize-space()='Send To:']/following::input[1]/.." ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+#	ath_wait_until_element_staleness	//*[normalize-space()='Send To:']/following::input[1]/.. 	60
+	Sleep	1.0
+	ath click icon	xpath=ath click icon	xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'${recipient}')]
 
 Messaging.Input Subject
 	[arguments]	${subject}
@@ -111,6 +121,7 @@ Messaging.Select Inbox Menu
 	ath wait until loaded	30
 
 Messaging.Select Draft Menu
+	Run Keyword and Ignore Error	ath click icon	xpath=//a[normalize-space()='Draft']
 	Execute Javascript	var element = document.evaluate("//a[normalize-space()='Draft']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
 	Sleep 	3.0
 	ath wait until loaded	30
@@ -332,6 +343,12 @@ Messaging.Draft.Expand First message
 
 Messaging.Draft.Move to Trash Icon
 	ath click button	Move to trash	3
+	Sleep	1.0
+	ath wait until loaded	30
+
+
+Messaging.Draft.Click New Message Button
+	ath click button	xpath=(//*[contains(@class,'slideMessageBox')])[3]
 	Sleep	1.0
 	ath wait until loaded	30
 
