@@ -4,7 +4,8 @@ Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${Recipient2}	Meghan Ruiz ( Groups Supervisor )
+#${Recipient2}	Meghan Ruiz ( Groups Supervisor )
+${Recipient2}	Meghan Ruiz
 ${Recipient1}	Mary Ellis ( Group Therapist )
 
 ***Test Cases***
@@ -14,14 +15,17 @@ MessagingClient_044
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Draft Menu
-	:FOR 	${idx}	IN RANGE	1	12
-	\	Messaging.Click New Message Button
+	:FOR 	${idx}	IN RANGE	1	11
+	\	Messaging.Draft.Click New Message Button
 	\	Messaging.Input Recipient	${Recipient2}
 	\	Messaging.Input Subject	Automation Message
 	\	Messaging.Input Message	Automation Test Message
 	\	Messaging.Input Message	AutomationDraft Test Message
 	\	Messaging.Click Save to Draft Button
-	\	Sleep	5.0
+	\	Sleep	5.0	wait for page to be loaded
+	\	Capture Page Screenshot
+	\	Reload Page
+	\	Messaging.Select Draft Menu
 	Move to Next Page
 
 MessagingClient_045
