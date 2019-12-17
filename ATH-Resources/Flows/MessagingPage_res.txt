@@ -280,7 +280,7 @@ Messaging.Inbox.Select checkbox of first Message
 
 
 Messaging.Inbox.Click Read/Unread Icon
-	ath click button	Mark read/unread
+	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
 	Sleep	3.0
 	ath wait until loaded	30
 
