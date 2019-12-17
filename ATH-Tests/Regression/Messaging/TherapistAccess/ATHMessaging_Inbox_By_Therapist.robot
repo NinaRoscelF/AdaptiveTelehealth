@@ -58,23 +58,29 @@ MessagingTherapist_016
 MessagingTherapist_014
 #Select unread and tag as read
 	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count 	unread
-	Messaging.Inbox.Select Unread message	unread
-	Messaging.Inbox.Select Unread message	unread	index=2
-	Messaging.Inbox.Select Unread message	unread	index=3
 	Capture Page Screenshot
-	Messaging.Inbox.Click Read/Unread Icon
+	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	ELSE	Messaging.Inbox.Select Unread message
+	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	read	True	2	ELSE	Messaging.Inbox.Select Unread message	unread	True	2
+	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	read	True	3	ELSE	Messaging.Inbox.Select Unread message	unread	True	3
+
+	Capture Page Screenshot
+	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
+	Capture Page Screenshot
+	Sleep 	3.0
 	Messaging.Inbox.Verify Messages were read/unread	${isUnread}	unread
 
 
 MessagingTherapist_015
 #Select read adn tag as unread
-	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count	read
-	Messaging.Inbox.Select Read message	read
-	Messaging.Inbox.Select Read message	index=2
-	Messaging.Inbox.Select Read message	index=3
+	${isRead}	Messaging.Inbox.Get Read/Unread Messages Count	read
+	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	ELSE	Messaging.Inbox.Select Read message
+	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	uread	True	2	ELSE	Messaging.Inbox.Select Read message	read	True	2
+	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	uread	True	3	ELSE	Messaging.Inbox.Select Read message	read	True	3
 	Capture Page Screenshot
-	Messaging.Inbox.Click Read/Unread Icon
-	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isUnread} 	read
+	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
+	Capture Page Screenshot
+	Sleep 	3.0
+	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isRead}	read
 
 
 MessagingTherapist_017

@@ -63,9 +63,10 @@ MessagingClient_014
 #Select unread and tag as read
 	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count 	unread
 	Capture Page Screenshot
-	Messaging.Inbox.Select Unread message
-	Messaging.Inbox.Select Unread message	unread	True	2
-	Messaging.Inbox.Select Unread message	unread	True	3
+	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	ELSE	Messaging.Inbox.Select Unread message
+	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	read	True	2	ELSE	Messaging.Inbox.Select Unread message	unread	True	2
+	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	read	True	3	ELSE	Messaging.Inbox.Select Unread message	unread	True	3
+
 	Capture Page Screenshot
 	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
 	Capture Page Screenshot
@@ -75,15 +76,15 @@ MessagingClient_014
 
 MessagingClient_015
 #Select read adn tag as unread
-	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count	read
-	Messaging.Inbox.Select Read message
-	Messaging.Inbox.Select Read message	read	True	2
-	Messaging.Inbox.Select Read message	read	True	3
+	${isRead}	Messaging.Inbox.Get Read/Unread Messages Count	read
+	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	ELSE	Messaging.Inbox.Select Read message
+	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	uread	True	2	ELSE	Messaging.Inbox.Select Read message	read	True	2
+	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	uread	True	3	ELSE	Messaging.Inbox.Select Read message	read	True	3
 	Capture Page Screenshot
-	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
+	Messaging.Inbox.Click Read/Unread Icon
 	Capture Page Screenshot
 	Sleep 	3.0
-	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isUnread}	read
+	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isRead}	read
 
 
 MessagingClient_017
