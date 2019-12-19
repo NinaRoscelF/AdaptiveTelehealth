@@ -1,8 +1,8 @@
-Username	Password	Secure
-ninaf+therapist@adaptivetelehealth.com	Password123!!!	Password123!!!
-ninaf+client@adaptivetelehealth.com	Password123!!!	Password123!!!
-seerapup+dv380g2@yopmail.com	Password123!!!	Password123!!!
-ninaf+supervisor@adaptivetelehealth.com	Password123!!!	Password123!!!
-beyoncehalo@mailinator.com	Password123!!!	Password123!!!
-ninaf+admin@adaptivetelehealth.com	Password123!!!	Password123!!!
-seerapup+dv380g2@yopmail.com	Password123!!!	Password123!!!
+Username	Password	Secure	Live
+ninaf+therapist@adaptivetelehealth.com	Password123!!!	Password123!!!	Password123!!!
+ninaf+client@adaptivetelehealth.com	Password123!!!	Password123!!!	Password123!!!
+seerapup+dv380g2@yopmail.com	Password123!!!	Password123!!!	Password123!!!
+ninaf+supervisor@adaptivetelehealth.com	Password123!!!	Password123!!!	Password123!!!
+beyoncehalo@mailinator.com	Password123!!!	Password123!!!	Password123!!!
+ninaf+admin@adaptivetelehealth.com	Password123!!!	Password123!!!	Password123!!!
+seerapup+dv380g2@yopmail.com	Password123!!!	Password123!!!	Password123!!!

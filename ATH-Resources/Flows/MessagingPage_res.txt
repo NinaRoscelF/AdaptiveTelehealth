@@ -31,7 +31,7 @@ Messaging.Input Recipient
 #	ath_wait_until_element_staleness	//*[normalize-space()='Send To:']/following::input[1]/.. 	60
 	Sleep	1.0
 	${status}	Run Keyword and Return Status	ath click icon	xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'${receiver}')]
-	Run Keyword Unless 	${status}	Reload Page
+	Run Keyword Unless 	${status}	Execute Javascript	var element = document.evaluate("(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'${receiver}')]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
 	Run Keyword Unless 	${status}	Messaging.Draft.Click New Message Button
 	Run Keyword Unless 	${status}	_inputreceiver	${receiver}
 	ath_wait_until_loaded	30

@@ -126,7 +126,8 @@ Continue User Invitation
 	Capture Page Screenshot
 	Select Frame	xpath=//*[@id="msgpane"]/descendant::iframe[@id="msg_body"]
 	Capture Page Screenshot
-	ath click link	//*[normalize-space()="Click here"]
+	${status}	Run Keyword and Return Status	ath click link	//*[normalize-space()="here"]
+	Run Keyword Unless 	${status}	ath click link	//*[normalize-space()="Click here"]
 	Unselect Frame
 
 Select Timezone for Newly Created User

@@ -58,13 +58,23 @@ Dashboard.NewClient.Click Login to Platform
 	ath wait until element is present	//h3[@class="box-title"][normalize-space()="Login"]
 
 
+Dashboard.NewUser.Enter New Password
+	[Arguments]	${NewPwd}
+	ath input text value	Enter new password	${NewPwd}
+
+
+Dashboard.NewUser.Click Update Password Button
+	ath click button 	Update Password
+	Sleep 	5.0
+	ath wait until loaded 	30
+
 Dashboard.NewUser.Input First Name
 	[Arguments]	${FirstName}
 	ath input text value	First Name	${FirstName}
 
 Dashboard.NewUser.Input Last Name
-	[Arguments]	${FirstName}
-	ath input text value	Last Name	${FirstName}
+	[Arguments]	${LastName}
+	ath input text value	Last Name	${LastName}
 
 Dashboard.NewUser.Input Password
 	[Arguments]	${Password}
@@ -123,6 +133,19 @@ Dashboard.NewUser.Input Full Name
 	[Arguments]	${FullName}
 	ath input text value	Full Name	${FullName}
 
+Dashboard.NewUser.AgreementsPage.Input Full Name as Digital Signature
+	[Arguments]	${FullName}
+	ath input text value	Enter your full name as digital signature	${FullName}
+
+Dashboard.NewUser.AgreementsPage.Input TimeZone
+	[Arguments]	${IsTimezone}
+	Ath select drop down field value	xpath=//select[@id='user_timezone']	${IsTimezone}
+
+Dashboard.NewUser.AgreementsPage.Click Submit Button
+	ath click button	Submit
+	Sleep 	5.0
+	Ath Wait Until Loaded	30
+
 Dashboard.NewUser.Click OK button
 	ath click button	Ok
 	Ath wait until loaded 	30
@@ -179,6 +202,13 @@ Dashboard.NewUser.Verify User Is saved successfully
 Dashboard.NewUser.Verify Therapist saved successfully
 	ath verify element is visible	xpath=//*[contains(@class,'alert-success')][text()="Therapist added and email sent."]
 	ath verify element is visible	xpath=//*[text()="Therapist successfully assigned to Supervisor."]
+
+
+Dashboard.ProvidersWidget.Select Records per Page Value
+	[Arguments]	${RecordNo}
+	ath select drop down field value	//div[@id='providers_list']/descendant::label[text()="Records per page "]/select	${RecordNo}
+	Sleep 	3.0
+	ath wait until loaded 	60
 
 Dashboard.ProvidersWidget.Select Newly Created Provider
 	[Arguments]	${FirstName}
