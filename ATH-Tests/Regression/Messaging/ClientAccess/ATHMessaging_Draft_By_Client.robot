@@ -6,7 +6,8 @@ Suite Teardown	Close All Browsers
 ***Variable***
 #${Recipient2}	Meghan Ruiz ( Groups Supervisor )
 ${Recipient2}	Meghan Ruiz
-${Recipient1}	Mary Ellis ( Group Therapist )
+${Recipient1}	Mary Ellis
+${Recipient3}	testsupervisor adaptive
 
 ***Test Cases***
 
@@ -17,7 +18,7 @@ MessagingClient_044
 	Messaging.Select Draft Menu
 	:FOR 	${idx}	IN RANGE	1	11
 	\	Messaging.Draft.Click New Message Button
-	\	Messaging.Input Recipient	${Recipient2}
+	\	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient2}	ELSE	Messaging.Input Recipient	${Recipient1}
 	\	Messaging.Input Subject	Automation Message
 	\	Messaging.Input Message	Automation Test Message
 	\	Messaging.Input Message	AutomationDraft Test Message
@@ -25,6 +26,7 @@ MessagingClient_044
 	\	Sleep	5.0	wait for page to be loaded
 	\	Capture Page Screenshot
 	\	Reload Page
+	\	ath wait until loaded 	30
 	\	Messaging.Select Draft Menu
 	Move to Next Page
 

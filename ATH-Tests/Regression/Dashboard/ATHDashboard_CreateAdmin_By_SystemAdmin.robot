@@ -5,8 +5,8 @@ Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${Gender}	Female
 ${Supervisor}	Meghan Ruiz
+
 
 ***Test Cases***
 Dashboard_CreateAdmin_By_SystemAdmin
@@ -36,5 +36,28 @@ Dashboard_CreateAdmin_By_SystemAdmin
 	Dashboard.NewUser.Verify Admin Data Displayed	${Firstname}
 	Dashboard.NewUser.Verify Supervisor Assigned to Admin	${Supervisor}
 	Go Back
+	Wait for Nav Bar to display
+	Logout from Application
+
+
+	Login to Mailinator	${Firstname}@mailinator.com
+	Continue User Invitation
+	Select window	New
+	Capture Page Screenshot
+	Dashboard.NewUser.Enter New Password	${Password}
+	Dashboard.NewUser.Input Confirm Password	${Password}
+	Dashboard.NewUser.Click Update Password Button
+
+	Open Browser	${URL}	${BROWSER}	ff_profile_dir=profiledir
+	Maximize Browser Window
+	Input Email Address 	${Firstname}@mailinator.com
+	Input Password 	${Password}
+	Click Login Button
+	Capture Page Screenshot
+	Dashboard.NewUser.Select I agree checkboxes
+	Dashboard.NewUser.AgreementsPage.Input Full Name as Digital Signature	${Firstname} ${LastName}
+	Dashboard.NewUser.AgreementsPage.Input TimeZone	${Timezone}
+	Capture Page Screenshot
+	Dashboard.NewUser.AgreementsPage.Click Submit Button
 	Wait for Nav Bar to display
 	Logout from Application

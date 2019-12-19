@@ -4,8 +4,6 @@ Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHDashboard_Cre
 Suite Teardown	Close All Browsers
 
 
-***Variable***
-${Gender}	Female
 
 
 ***Test Cases***
@@ -42,4 +40,21 @@ Dashboard_CreateSupervisor_By_SystemAdmin
 	ath_verify_textbox_value	//input[@name='email']	${Firstname}@mailinator.com
 	Go Back
 	Wait for Nav Bar to display
+	Logout from Application
+
+	Login to Mailinator	${Firstname}@mailinator.com
+	Continue User Invitation
+	Select window	New
+	Capture Page Screenshot
+	Dashboard.NewUser.Enter New Password	${Password}
+	Dashboard.NewUser.Input Confirm Password	${Password}
+	Dashboard.NewUser.Click Update Password Button
+
+	Open Browser	${URL}	${BROWSER}	ff_profile_dir=profiledir
+	Maximize Browser Window
+	Input Email Address 	${Firstname}@mailinator.com
+	Input Password 	${Password}
+	Click Login Button
+	Wait for Nav Bar to display
+	Capture Page Screenshot
 	Logout from Application

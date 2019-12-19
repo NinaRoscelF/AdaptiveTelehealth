@@ -4,7 +4,6 @@ Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHDashboard_Cre
 Suite Teardown	Close All Browsers
 
 
-***Variable***
 
 
 ***Test Cases***
@@ -44,3 +43,4 @@ Dashboard_CreateClient_By_Therapist
 	Dashboard.NewUser.Input Full Name	${Firstname} ${LastName}
 #	Run keyword and ignore error	Mouse up	xpath=//canvas[@id='dd_canvas']
 	Run Keyword and Expect Error	*	Dashboard.NewUser.Click OK button
+	Logout from Application

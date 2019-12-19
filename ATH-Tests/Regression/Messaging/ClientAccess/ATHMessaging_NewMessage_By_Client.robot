@@ -8,8 +8,8 @@ ${Filelocation}	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources
 ${Filename}	dummy1.pdf
 ${Filename2}	dummy25.pdf
 ${FileType}	pdf
-${Recipient1}	Mary Ellis ( Group Therapist )
-${Recipient2}	Meghan Ruiz ( Groups Supervisor )
+${Recipient1}	Mary Ellis
+${Recipient2}	Meghan Ruiz
 
 ***Test Cases***
 MessagingClient_001
