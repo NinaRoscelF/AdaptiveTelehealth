@@ -12,7 +12,7 @@ Dashboard_CreateSupervisor_By_SystemAdmin
 	${Firstname}	Generate Random String	8	[LETTERS]
 	${RegCode}	Generate Random String	10	[NUMBERS]
 
-	ath_Logon	${BROWSER}	${URL}	${AutoSystemAdmin}	${TestEnv}
+	Run Keyword if 	"${TestEnv}" == "Secure" 	ath_Logon	${BROWSER}	${URL}	${AutoSystemAdmin}	${TestEnv} 	ELSE 	ath_Logon	${BROWSER}	${URL}	${AutoSystemAdmin1}	${TestEnv}
 	Wait for Nav Bar to display
 	Dashboard.Click New Supervisor Button
 	Sleep 	3.0
@@ -24,7 +24,7 @@ Dashboard_CreateSupervisor_By_SystemAdmin
 	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="email"]	${Firstname}@mailinator.com
 	ath select drop down field value	//div[@class='names']//select[@name='gender']	${Gender}
 	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="NPI"]	${RegCode}
-	Dashboard.NewUser.Is Read Only Supervisor	Yes: Viewing as Supervisor Automation Automation
+	Run Keyword if 	"${TestEnv}" == "Secure" 	Dashboard.NewUser.Is Read Only Supervisor	Yes: Viewing as Supervisor Automation Automation 	ELSE 	Dashboard.NewUser.Is Read Only Supervisor	Yes: Viewing as Meghan Ruiz 
 	Dashboard.NewUser.Is Super Care Coordinator	No
 
 	Dashboard.NewUser.Click Set User Function button

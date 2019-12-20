@@ -16,8 +16,9 @@ Dashboard_CreateClient_By_Therapist
 	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
 	Perform Login Checks
 	Dashboard.Click New Client Button
-	Dashboard.NewClient.Input Group Company Email	${Firstname}@mailinator.com
-	Dashboard.NewClient.Click Invite Groups Company Button
+	Run Keyword if 	"${TestEnv}" == "Secure" 	Dashboard.NewClient.Input Group Company Email	${Firstname}@mailinator.com	ELSE 	Dashboard.NewClient.Input Client Email	${Firstname}@mailinator.com
+
+	Run Keyword if 	"${TestEnv}" == "Secure"	Dashboard.NewClient.Click Invite Groups Company Button	ELSE	Dashboard.NewClient.Click Invite Client Button
 	Dashboard.NewClient.Verify Client is Invited	${Firstname}@mailinator.com
 
 	Login to Mailinator	${Firstname}@mailinator.com
@@ -25,12 +26,14 @@ Dashboard_CreateClient_By_Therapist
 	Select window	New
 	Capture Page Screenshot
 	Complete registration Process	${Firstname}	Automation	${Firstname}@mailinator.com
-	Dashboard.NewClient.Click Login to Platform
+
+
+#	Dashboard.NewClient.Click Login to Platform
 
 	Open Browser	${URL}	${BROWSER}	ff_profile_dir=profiledir
 	Maximize Browser Window
 	Input Email Address 	${Firstname}@mailinator.com
-	Input Password 	Password123!!!
+	Input Password	${Password}
 	Click Login Button
 	Select Timezone for Newly Created User	(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi
 	Capture Page Screenshot

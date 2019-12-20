@@ -10,6 +10,7 @@ ${Filename2}	dummy25.pdf
 ${FileType}	pdf
 ${Recipient1}	Mary Ellis
 ${Recipient2}	Meghan Ruiz
+${Recipient3}	testsupervisor adaptive
 
 ***Test Cases***
 MessagingClient_001
@@ -49,7 +50,7 @@ MessagingClient_006
 MessagingClient_007
 #Send Message to any of the following: All Staff/All Group Therpaist/All Guest/All Group Company
 	Messaging.Clear Recipient Contents
-	Messaging.Input Recipient	${Recipient2}
+	Messaging.Input Recipient	${Recipient1}
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
 	Messaging.Confirm Message Sent successfully
@@ -66,7 +67,7 @@ MessagingClient_008
 	Select Messaging Menu
 	Messaging.Click New Message Button
 	Messaging.Input Recipient	${Recipient1}
-	Messaging.Input Recipient	${Recipient2}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient2}	ELSE	Messaging.Input Recipient	${Recipient3}
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button

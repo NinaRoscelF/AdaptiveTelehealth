@@ -16,6 +16,7 @@ MessagingClient_031
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Sent Menu
+	Sleep 	3.0
 	${DTToday}	Generate Date and Time Today
 	Messaging.Sent.Select checkbox of first Message
 	Messaging.Sent.Move to Trash Icon

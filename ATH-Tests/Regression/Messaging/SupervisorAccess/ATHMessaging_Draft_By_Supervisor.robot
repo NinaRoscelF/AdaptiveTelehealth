@@ -5,6 +5,7 @@ Suite Teardown	Close All Browsers
 
 ***Variable***
 ${Recipient1}	Random Automation Therapist ( Group Therapist )
+${Recipient2}	Mary Ellis
 
 ***Test Cases***
 MessagingSupervisor_041
@@ -78,7 +79,7 @@ MessagingSupervisor_053
 MessagingSupervisor_054
 #Edit draft and save to draft
 	Messaging.Draft.Click Edit Button
-	Messaging.Input Recipient	${Recipient1}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient2}
 	Messaging.Input Message	AutomationDraft Test Message
 	Messaging.Click Save to Draft Button
 	Messaging.Confirm Draft Message Saved successfully
@@ -93,7 +94,7 @@ MessagingSupervisor_052
 MessagingSupervisor_044
 	:FOR 	${idx}	IN RANGE	1	11
 	\	Messaging.Click New Message Button
-	\	Messaging.Input Recipient	${Recipient1}
+	\	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient2}
 	\	Messaging.Input Subject	Automation Message
 	\	Messaging.Input Message	Automation Test Message
 	\	Messaging.Input Message	AutomationDraft Test Message

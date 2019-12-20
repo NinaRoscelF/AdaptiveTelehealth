@@ -14,7 +14,7 @@ Dashboard_CreateAdmin_By_SystemAdmin
 	${Firstname}	Generate Random String	8	[LETTERS]
 	${RegCode}	Generate Random String	10	[NUMBERS]
 
-	ath_Logon	${BROWSER}	${URL}	${AutoSystemAdmin}	${TestEnv}
+	Run Keyword if 	"${TestEnv}" == "Secure" 	ath_Logon	${BROWSER}	${URL}	${AutoSystemAdmin}	${TestEnv} 	ELSE 	ath_Logon	${BROWSER}	${URL}	${AutoSystemAdmin1}	${TestEnv}
 	Wait for Nav Bar to display
 	Dashboard.Click New Admin Button
 	Sleep 	3.0

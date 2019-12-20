@@ -9,7 +9,7 @@ ${Filename}	dummy1.pdf
 ${Filename2}	dummy25.pdf
 ${FileType}	pdf
 ${Recipient1}	Random Automation Therapist ( Group Therapist )
-
+${Recipient2}	Mary Ellis
 
 ***Test Cases***
 MessagingSupervisor_001
@@ -32,7 +32,7 @@ MessagingSupervisor_004
 	Messaging.Verify Send To Message Error Displayed
 
 MessagingSupervisor_005
-	Messaging.Input Recipient	${Recipient1}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient2}
 	Messaging.Click Send Message Button
 	Messaging.Verify Subject Message Error Displayed
 
@@ -43,9 +43,10 @@ MessagingSupervisor_006
 
 MessagingSupervisor_007
 	Messaging.Clear Recipient Contents
-	Messaging.Input Recipient	All Group Therapist
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	All Group Therapist	ELSE	Messaging.Input Recipient	All Provider
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
+	Sleep 	5.0
 	Messaging.Confirm Message Sent successfully
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
@@ -58,11 +59,12 @@ MessagingSupervisor_008
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Click New Message Button
-	Messaging.Input Recipient	${Recipient1}
-	Messaging.Input Recipient	Groups testing_providers
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient2}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	Groups testing_providers	ELSE	Messaging.Input Recipient	Automation Company_providers
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
+	Sleep 	5.0
 	Messaging.Confirm Message Sent successfully
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
@@ -106,10 +108,11 @@ MessagingSupervisor_011
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Click New Message Button
-	Messaging.Input Recipient	${Recipient1}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient2}
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Save to Draft Button
+	Sleep 	5.0
 	Messaging.Confirm Draft Message Saved successfully
 	Messaging.Select Draft Menu
 	${DTToday}	Generate Date and Time Today
@@ -118,7 +121,7 @@ MessagingSupervisor_011
 
 MessagingSupervisor_012
 	Messaging.Click New Message Button
-	Messaging.Input Recipient	${Recipient1}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient2}
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Close Button
