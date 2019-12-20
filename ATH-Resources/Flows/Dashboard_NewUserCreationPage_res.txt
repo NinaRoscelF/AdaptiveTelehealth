@@ -11,7 +11,20 @@ Complete registration Process
 	Dashboard.NewUser.Input Password	Password123!!!
 	Dashboard.NewUser.Input Confirm Password	Password123!!!
 	Dashboard.NewUser.Input Confirm Email	${Email}
-	ath click button	Next
+	Run Keyword and Ignore Error	Dashboard.Registration.Select I agree checkboxes
+	ath click button	xpath=//input[@id='registration_form_submit_btn']
+
+Dashboard.Registration.Select I agree checkboxes
+	ath_set_checkbox	xpath=(//*[contains(text(),'Yes, I agree')])[1]/following::input[1]
+	Execute Javascript	var element = document.evaluate("(//*[contains(text(),'Yes, I agree')])[2]/following::input[1]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+
+# Dashboard.Registration.Input Password
+# 	[Arguments]	${Password}
+# 	ath input text value	Password	${Password}
+
+# Dashboard.Registration.Input Confirm Password
+# 	[Arguments]	${Password}
+# 	ath input text value	Confirm Password	${Password}
 
 
 Dashboard.Click New Client Button
@@ -40,15 +53,23 @@ Dashboard.NewClient.Input Group Company Email
 	[Arguments]	${Email}
 	ath input text value	Enter Groups Company's Email Address	${Email}
 
+Dashboard.NewClient.Input Client Email
+	[Arguments]	${Email}
+	ath input text value	Enter Client's Email Address	${Email}
+
 
 Dashboard.NewClient.Click Invite Groups Company Button
 	ath click button 	Invite Groups Company
 	Sleep 	3.0
 
+Dashboard.NewClient.Click Invite Client Button
+	ath click button 	Invite Client
+	Sleep 	3.0
+
 Dashboard.NewClient.Verify Client is Invited
 	[Arguments]	${Email}
 	ath verify element is visible	xpath=//*[text()="Successfully Sent"]
-	ath verify element is visible	xpath=//*[text()="Groups Company's email:"]
+	Run Keyword if 	"${TestEnv}" == "Secure"	ath verify element is visible	xpath=//*[text()="Groups Company's email:"]	ELSE	ath verify element is visible	xpath=//*[text()="Client's email:"]
 	ath verify element is visible	xpath=//*[normalize-space()="${Email}"]
 	Capture Page Screenshot
 

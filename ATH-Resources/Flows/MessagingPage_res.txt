@@ -39,9 +39,8 @@ Messaging.Input Recipient
 _inputreceiver
 	[arguments]	${recipient}
 	Execute Javascript	var element = document.evaluate("//*[normalize-space()='Send To:']/following::input[1]/.." ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
-#	ath_wait_until_element_staleness	//*[normalize-space()='Send To:']/following::input[1]/.. 	60
 	Sleep	1.0
-	ath click icon	xpath=ath click icon	xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'${recipient}')]
+	ath click icon	xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(normalize-space(.),'${recipient}')]
 
 Messaging.Input Subject
 	[arguments]	${subject}
