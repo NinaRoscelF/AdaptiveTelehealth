@@ -4,8 +4,8 @@ Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${Recipient1}	Daniella Demoss ( Group Therapist )
-
+${Recipient1}	Daniella Demoss
+${Recipient2}	Meghan Ruiz
 
 ***Test Cases***
 MessagingTherapist_041
@@ -16,7 +16,7 @@ MessagingTherapist_041
 	Messaging.Select Draft Menu
 	:FOR 	${idx}	IN RANGE	1	10
 	\	Messaging.Click New Message Button
-	\	Messaging.Input Recipient	${Recipient1}
+	\	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient2}
 	\	Messaging.Input Subject	Automation Message
 	\	Messaging.Input Message	Automation Test Message
 	\	Messaging.Input Message	AutomationDraft Test Message
