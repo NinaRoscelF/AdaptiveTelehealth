@@ -233,13 +233,13 @@ Dashboard.ProvidersWidget.Select Records per Page Value
 
 Dashboard.CareCoordinatorsWidget.Select Records per Page Value
 	[Arguments]	${RecordNo}
-	ath select drop down field value	//div[@id='carecoordinators_list']/descendant::label[text()="Records per page "]/select
+	ath select drop down field value	//div[@id='carecoordinators_list']/descendant::label[text()="Records per page "]/select	${RecordNo}
 	Sleep 	3.0
 	ath wait until loaded 	60
 
 Dashboard.AdminsWidget.Select Records per Page Value
 	[Arguments]	${RecordNo}
-	ath select drop down field value	//div[@id='admins_list']/descendant::label[text()="Records per page "]/select
+	ath select drop down field value	//div[@id='admins_list']/descendant::label[text()="Records per page "]/select	${RecordNo}
 	Sleep 	3.0
 	ath wait until loaded 	60
 
