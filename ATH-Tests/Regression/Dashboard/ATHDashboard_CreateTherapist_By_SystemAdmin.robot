@@ -30,7 +30,7 @@ Dashboard_CreateTherapist_By_SystemAdmin
 	Dashboard.NewUser.SetUserFunction.Click Save Button
 	Dashboard.NewUser.Click Add New Therapist Button
 	Dashboard.NewUser.Verify Therapist saved successfully
-	Dashboard.ProvidersWidget.Select Records per Page Value 	50
+	Dashboard.ProvidersWidget.Select Records per Page Value	50
 	Dashboard.ProvidersWidget.Select Newly Created Provider	${Firstname}
 	Dashboard.NewUser.Verify Is Assigned to Supervisor	${Supervisor}
 	Go Back

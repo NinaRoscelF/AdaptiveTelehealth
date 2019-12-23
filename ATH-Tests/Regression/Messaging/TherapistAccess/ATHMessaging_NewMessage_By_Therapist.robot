@@ -8,7 +8,7 @@ ${Filelocation}	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources
 ${Filename}	dummy1.pdf
 ${Filename2}	dummy25.pdf
 ${FileType}	pdf
-${Recipient1}	Daniella Demoss ( Group Therapist )
+${Recipient1}	Daniella Demoss
 
 ***Test Cases***
 MessagingTherapist_001

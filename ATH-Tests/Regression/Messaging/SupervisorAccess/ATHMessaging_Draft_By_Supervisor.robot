@@ -14,6 +14,8 @@ MessagingSupervisor_041
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Draft Menu
+	Sleep	3.0
+	ath wait until loaded	30
 	${DTToday}	Generate Date and Time Today
 	Messaging.Draft.Select checkbox of first Message
 	${mySubj}	Messaging.Draft.Get Subject Column of Selected Message
@@ -27,6 +29,8 @@ MessagingSupervisor_043
 #Cancel move to trash
 	${DTToday}	Generate Date and Time Today
 	Messaging.Select Draft Menu
+	Sleep	3.0
+	ath wait until loaded	30
 	Messaging.Draft.Select checkbox of first Message
 	Messaging.Draft.Move to Trash Icon
 	Messaging.Cancel Move to Trash Action
@@ -34,6 +38,8 @@ MessagingSupervisor_043
 MessagingSupervisor_042
 #Select all move to trash
 	Messaging.Select Draft Menu
+	Sleep	3.0
+	ath wait until loaded	30
 	Messaging.Draft.Select all Messages
 	Messaging.Draft.Move to Trash Icon
 	Messaging.Confirm Move to Trash Action

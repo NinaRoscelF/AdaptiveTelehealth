@@ -35,6 +35,8 @@ MessagingSupervisor_029
 	Messaging.Inbox.Click Reply Button
 	Messaging.Reply.Input Reply Message	Auto Reply Message
 	Messaging.Reply.Click Save to Draft button
+	Sleep 	3.0
+	ath wait until loaded	30
 	Messaging.Confirm Draft Message Saved successfully
 
 

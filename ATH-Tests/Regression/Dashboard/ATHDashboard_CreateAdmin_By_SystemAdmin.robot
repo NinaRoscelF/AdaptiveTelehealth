@@ -32,6 +32,7 @@ Dashboard_CreateAdmin_By_SystemAdmin
 	Dashboard.NewUser.Click Add New User Button
 	Dashboard.NewUser.Verify User Is saved successfully
 	Sleep 	3.0
+	Dashboard.AdminsWidget.Select Records per Page Value 	50
 	Dashboard.AdminsWidget.Select Newly Created Admin	${Firstname}
 	Dashboard.NewUser.Verify Admin Data Displayed	${Firstname}
 	Dashboard.NewUser.Verify Supervisor Assigned to Admin	${Supervisor}
