@@ -93,6 +93,7 @@ Messaging.Confirm Draft Message Saved successfully
 	Ath Verify Element Is Visible	xpath=//*[@class="alert alert-success"][contains(text(),'The draft was saved.')]
 
 
+
 Messaging.Confirm Message Moved to Trash
 	Ath Verify Element Is Visible	//*[@class="alert alert-success"][contains(text(),'All selected messages were sent to trash.')]
 	ath wait until loaded 	30

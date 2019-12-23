@@ -231,6 +231,18 @@ Dashboard.ProvidersWidget.Select Records per Page Value
 	Sleep 	3.0
 	ath wait until loaded 	60
 
+Dashboard.CareCoordinatorsWidget.Select Records per Page Value
+	[Arguments]	${RecordNo}
+	ath select drop down field value	//div[@id='carecoordinators_list']/descendant::label[text()="Records per page "]/select
+	Sleep 	3.0
+	ath wait until loaded 	60
+
+Dashboard.AdminsWidget.Select Records per Page Value
+	[Arguments]	${RecordNo}
+	ath select drop down field value	//div[@id='admins_list']/descendant::label[text()="Records per page "]/select
+	Sleep 	3.0
+	ath wait until loaded 	60
+
 Dashboard.ProvidersWidget.Select Newly Created Provider
 	[Arguments]	${FirstName}
 	ath verify element is visible	xpath=//div[@id='providers_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
