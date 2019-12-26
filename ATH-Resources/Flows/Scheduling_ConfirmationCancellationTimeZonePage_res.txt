@@ -121,7 +121,7 @@ Scheduling.Calendar.EditMeetingPopup.Input description
 
 Scheduling.Calendar.Appointment Popup.Add Participants
 	[arguments]	${ptcpts}
-	ath click link	Add participants
+	Run Keyword and Ignore Error	ath click link	Add participants
 	ath wait until loaded 	30
 	ath click icon	xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[normalize-space(.)='${ptcpts}']
 

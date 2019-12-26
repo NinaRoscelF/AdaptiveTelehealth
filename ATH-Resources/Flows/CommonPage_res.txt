@@ -24,7 +24,7 @@ Input Password
 
 Click Login Button
 	ath click button	xpath=//button[normalize-space()="Login"]
-	Sleep	1.0
+	Sleep	3.0
 
 
 Wait for Nav Bar to display
@@ -39,6 +39,9 @@ Perform Login Checks
 	Sleep	2.0
 	Run Keyword and Ignore Error	ath_click_icon	//*[@id="modalUploadProfileImage"]/descendant::button/span[normalize-space()="×"]
 #	ath_wait_until_element_is_present	xpath=//*[@class="nav-bar"]	120
+
+Verify Login Error Is Visible
+	ath verify element is visible	xpath=//p[contains(text(),'Login Problem: The username and password were not')]
 
 
 Select Messaging Menu

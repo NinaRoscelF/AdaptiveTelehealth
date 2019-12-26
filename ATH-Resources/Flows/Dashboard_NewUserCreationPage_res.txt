@@ -12,7 +12,14 @@ Complete registration Process
 	Dashboard.NewUser.Input Confirm Password	Password123!!!
 	Dashboard.NewUser.Input Confirm Email	${Email}
 	Run Keyword and Ignore Error	Dashboard.Registration.Select I agree checkboxes
+	# ${vPos}	Get Vertical Position	xpath=//canvas[@id='dd_canvas']
+	# ${vPos}	Get horizontal Position	xpath=//canvas[@id='dd_canvas']
+	# Run keyword and ignore error	mouse_down_at	xpath=//canvas[@id='dd_canvas'] 	${vPos}	${vPos}
+	# Run keyword and ignore error	mouse_down_at	xpath=//canvas[@id='dd_canvas'] 	0px	150px
+	# Run keyword and ignore error	mouse_down_at	xpath=//canvas[@id='dd_canvas'] 	150px	0px
+	Capture Page Screenshot
 	ath click button	xpath=//input[@id='registration_form_submit_btn']
+	Capture Page Screenshot
 
 Dashboard.Registration.Select I agree checkboxes
 	ath_set_checkbox	xpath=(//*[contains(text(),'Yes, I agree')])[1]/following::input[1]
@@ -65,6 +72,11 @@ Dashboard.NewClient.Click Invite Groups Company Button
 Dashboard.NewClient.Click Invite Client Button
 	ath click button 	Invite Client
 	Sleep 	3.0
+
+Dashboard.Click back to Dashboard link
+	ath click link	xpath=//a[contains(text(),'Back to Dashboard')]
+	Sleep 	3.0
+
 
 Dashboard.NewClient.Verify Client is Invited
 	[Arguments]	${Email}
@@ -225,6 +237,12 @@ Dashboard.NewUser.Verify Therapist saved successfully
 	ath verify element is visible	xpath=//*[text()="Therapist successfully assigned to Supervisor."]
 
 
+Dashboard.InvitationsWidget.Select Records per Page Value
+	[Arguments]	${RecordNo}
+	ath select drop down field value	//div[@id='Invitations_wrapper']/descendant::label[text()="Records per page "]/select	${RecordNo}
+	Sleep 	3.0
+	ath wait until loaded 	60
+
 Dashboard.ProvidersWidget.Select Records per Page Value
 	[Arguments]	${RecordNo}
 	ath select drop down field value	//div[@id='providers_list']/descendant::label[text()="Records per page "]/select	${RecordNo}
@@ -242,6 +260,13 @@ Dashboard.AdminsWidget.Select Records per Page Value
 	ath select drop down field value	//div[@id='admins_list']/descendant::label[text()="Records per page "]/select	${RecordNo}
 	Sleep 	3.0
 	ath wait until loaded 	60
+
+
+Dashboard.ClientsWidget.Verify Newly Created Client Is Displayed
+	[Arguments]	${FirstName}
+	ath verify element is visible	xpath=//div[@id='Invitations_wrapper']/descendant::tbody/tr/td[contains(text(),'${FirstName}')]
+
+
 
 Dashboard.ProvidersWidget.Select Newly Created Provider
 	[Arguments]	${FirstName}
