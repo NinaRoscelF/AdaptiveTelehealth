@@ -12,6 +12,7 @@ from robot.api import logger
 # from cStringIO import StringIO
 from ATHLibrary.core.ath_exceptions import ValidationFailedError
 # import hashlib
+from selenium.webdriver.common.action_chains import ActionChains
 
 class CommonFunctions():
     '''This class contains Common Functions such as 
@@ -136,3 +137,23 @@ class CommonFunctions():
     def removefile(self, filenamewithpath):
         os.unlink(filenamewithpath)   
 
+
+# class Selenium2Improved(Selenium2Library):
+#     '''Sometimes Selenium2Library just dont go far enough.'''
+
+#     def __init__(self, timeout=5.0, implicit_wait=0.0, run_on_failure='Capture Page Screenshot'):
+#         super(Selenium2Improved, self).__init__()
+
+    def mouse_down_at(self, locator, coordx, coordy):
+        element = self._element_find(locator, True, False)
+        if element is None:
+            raise AssertionError("ERROR: Element %s not found." % (locator))
+#        ActionChains(self._current_browser()).move_to_element(element).move_by_offset(coordx, coordy).click_and_hold().perform()
+        ActionChains(self._current_browser()).move_to_element(element).move_by_offset(300,100).click().perform()
+
+    def mouse_up_at(self, locator, coordx, coordy):
+        element = self._element_find(locator, True, False)
+        if element is None:
+            raise AssertionError("ERROR: Element %s not found." % (locator))
+#        ActionChains(self._current_browser()).move_to_element(element).move_by_offset(coordx, coordy).release().perform()
+        ActionChains(self._current_browser()).move_to_element(element).move_by_offset(300,100).click().perform()

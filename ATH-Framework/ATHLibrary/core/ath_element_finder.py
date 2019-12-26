@@ -345,10 +345,11 @@ class ATHElementFinder(ATHBrowserMgr, _ElementKeywords,
 
         locator_0 ='xpath=(//*[normalize-space()="%s"])[%s]'%(labelname,str(index)) # Verified
         locator_1 ='xpath=(//*[contains(@title,"%s")])[%s]'%(labelname,str(index))
+        locator_2 ="xpath=//*[contains(text(),'%s')])[%s]"%(labelname,str(index))
 
         locator_list = []
         # locator_list.extend((locator_0,locator_1,locator_2,locator_3,locator_4,locator_5,locator_6))
-        locator_list.extend((locator_0,locator_1))
+        locator_list.extend((locator_0,locator_1,locator_2))
 
         locator_str = '|'.join(locator_list)
         element = self._ath_wait_until_element_present(locator_str,timeout)
