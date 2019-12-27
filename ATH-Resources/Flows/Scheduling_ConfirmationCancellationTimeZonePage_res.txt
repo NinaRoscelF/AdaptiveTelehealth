@@ -60,7 +60,7 @@ Scheduling.Calendar.Select Meeting from Calendar
 	[arguments]	${timesched} 	${apptAttendee}
 	${status}	Run Keyword and Return Status	ath click icon	xpath=(//*[@class="fc-time"]/descendant::span[text()="${timesched}"]/../../descendant::div[@class="fc-title"][contains(normalize-space(),'Appointment - ${apptAttendee}')]/ancestor::a)[1]
 #	${status}	Run Keyword and Return Status	Execute Javascript	var element = document.evaluate("//*[@class='fc-time']/descendant::span[text()='${timesched}']/../../descendant::div[@class='fc-title'][contains(normalize-space(),'Appointment - ${apptAttendee}')]/ancestor::a)[1]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
-	Run Keyword Unless	${status}	ath click icon	xpath=(//*[@class="fc-time"]/descendant::span[text()="${timesched}"]/../../descendant::div[@class="fc-title"][contains(normalize-space(),'Appointment - ${apptAttendee}')]/ancestor::a)[1]
+	Run Keyword Unless	${status}	ath click icon	xpath=(//*[@class="fc-time"]/descendant::span[text()="${timesched}"]/../../descendant::div[@class="fc-title"][contains(normalize-space(),'Open - ${apptAttendee}')]/ancestor::a)[1]
 #	Run Keyword Unless	${status}	Execute Javascript	var element = document.evaluate("//*[@class='fc-time']/descendant::span[text()='${timesched}']/../../descendant::div[@class='fc-title'][contains(normalize-space(),'Open - ${apptAttendee}')]/ancestor::a)[1]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
 
 
@@ -121,7 +121,7 @@ Scheduling.Calendar.EditMeetingPopup.Input description
 
 Scheduling.Calendar.Appointment Popup.Add Participants
 	[arguments]	${ptcpts}
-	Run Keyword and Ignore Error	ath click link	Add participants
+	Run Keyword and Ignore Error	ath click link	xpath=//span[@class='text-link']
 	ath wait until loaded 	30
 	ath click icon	xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[normalize-space(.)='${ptcpts}']
 
