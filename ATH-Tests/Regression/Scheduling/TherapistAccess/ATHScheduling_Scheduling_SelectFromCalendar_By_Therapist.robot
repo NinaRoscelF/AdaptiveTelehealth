@@ -64,7 +64,7 @@ SchedulingTherapist_059
 	Scheduling.Calendar.Appointment Popup.Click Change Meeting Button
 	Reload Page
 
-	Scheduling.Calendar.Select Any Online Meeting from Calendar
+	Scheduling.Calendar.Select Any Personal Meeting from Calendar
 	Scheduling.Calendar.Appointment Popup.Click Edit Meeting
 	Scheduling.Calendar.EditMeetingPopup.Input Meeting Title 	Change to Automated Title
 	Scheduling.Calendar.EditOpenPopup.Click Cancel Button

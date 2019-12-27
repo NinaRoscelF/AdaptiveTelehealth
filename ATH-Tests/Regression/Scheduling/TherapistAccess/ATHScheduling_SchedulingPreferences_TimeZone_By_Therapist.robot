@@ -63,7 +63,7 @@ SchedulingTherapist_030
 #Cancellation Message - If client cancels less than 1
 	Reload Page
 	Scheduling. Expand Schedule Menu Settings
-	ath click link 	Schedule preferences
+	ath click link	Schedule preferences
 	Scheduling.Preferences.Select Cancellation Messages Tab
 	Scheduling.Preferences.CancellationMessages.Select Cancellation RadioButton	If client cancels less than
 	Scheduling.Preferences.Input Message Hours 	If client cancels less than	Cancellation Message for less than 1 hour

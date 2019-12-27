@@ -39,7 +39,7 @@ SchedulingClient_005
 #remove time block
 	Scheduling.Preferences.TimeBlocks.Remove Time Block
 	Sleep 	3.0
-	ath check button existence	Change	1	false
+	Ath Verify Element Is Visible	xpath=(//td/button[normalize-space()="Change"])[1]	false
 	ath check button existence	Apply
 	Capture Page Screenshot
 
