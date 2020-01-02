@@ -3,7 +3,7 @@ Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/SchedulingPage_res.tx
 Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/Scheduling_ConfirmationCancellationTimeZonePage_res.txt
 Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
 Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
-Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHScheduling_Scheduling_SelectFromInbox_By_Therapist.py
+Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/${TestEnv}_ATHScheduling_Scheduling_SelectFromInbox_By_Therapist.py
 Suite Teardown	Close All Browsers
 
 
@@ -11,7 +11,7 @@ Suite Teardown	Close All Browsers
 ***Test Cases***
 SchedulingTherapist_033
 # #Approve Patient's appointment
-	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient1}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 	${DTToday}	Generate Date and Time Today
@@ -26,7 +26,7 @@ SchedulingTherapist_033
 	Scheduling. Verify Online Appointment is in Calendar	${Time2}
 	Logout from Application
 
-	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 	Scheduling.Calendar.Verify Calendar Meeting is Displayed
@@ -45,7 +45,7 @@ SchedulingTherapist_034
 
 SchedulingTherapist_035
 #confirm patient's appointment -pre req for confimr button to appear
-	ath_Logon	${BROWSER}	${URL}	${AutoClient2}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient2}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient3}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 	${DTToday}	Generate Date and Time Today
@@ -60,7 +60,7 @@ SchedulingTherapist_035
 	Scheduling. Verify Online Appointment is in Calendar	${TimeConfirm2}
 	Logout from Application
 
-	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Inbox.Read Nessage	New meeting

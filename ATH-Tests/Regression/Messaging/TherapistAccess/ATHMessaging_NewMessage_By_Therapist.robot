@@ -40,7 +40,6 @@ MessagingTherapist_007
 	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	All Groups Company	ELSE	Messaging.Input Recipient	${Recipient3}
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
-	Messaging.Confirm Message Sent successfully
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
 	Messaging.Sent.Verify Message is Sent	Automation Message
