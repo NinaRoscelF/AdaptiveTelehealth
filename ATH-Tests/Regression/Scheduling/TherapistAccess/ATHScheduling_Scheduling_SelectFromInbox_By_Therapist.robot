@@ -14,6 +14,7 @@ SchedulingTherapist_033
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient1}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
+	Run Keyword and Ignore Error	ath click button	xpath=//button[@id='different-timezone-no']
 	${DTToday}	Generate Date and Time Today
 	${DateFormat}	Generate Date and Time Today	%m-%d-%Y
 	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%Y-%m-%d
