@@ -47,7 +47,6 @@ MessagingSupervisor_007
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
 	Sleep 	5.0
-	Messaging.Confirm Message Sent successfully
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
 	Messaging.Sent.Verify Message is Sent	Automation Message
