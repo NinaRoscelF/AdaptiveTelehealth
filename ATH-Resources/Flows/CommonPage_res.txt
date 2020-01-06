@@ -51,6 +51,7 @@ Select Messaging Menu
 
 Select Scheduling Menu
 	ath_click_icon	//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Scheduling']
+	Run Keyword and Ignore Error	ath click button	xpath=//button[@id='different-timezone-no']
 
 Select System Preferences icon
 	ath click icon 	xpath=//div[@class='element hidden-xs']//a[@class='combo-button']

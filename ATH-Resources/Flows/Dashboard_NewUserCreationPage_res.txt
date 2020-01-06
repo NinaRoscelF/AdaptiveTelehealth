@@ -275,6 +275,7 @@ Dashboard.ClientsWidget.Verify Newly Created Client Is Displayed
 Dashboard.ProvidersWidget.Select Newly Created Provider
 	[Arguments]	${FirstName}
 	ath verify element is visible	xpath=//div[@id='providers_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
+	Capture Page Screenshot
 	ath click link	xpath=//div[@id='providers_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
 
 Dashboard.ProvidersWidget.Select Newly Created Care Coordinators

@@ -346,8 +346,11 @@ Scheduling.Preferences.Exceptions.Click Select Button
 
 Scheduling.Preferences.Exceptions.Verify Selected Date Applied
 	[arguments]	${isdate}
-	ath verify element is visible	//*[@id="form_for_send"]/descendant::td[contains(text(),'${isdate}')]
+	${date}	Get ELement Attribute 	xpath=//*[@id="schedule_preferences"]/descendant::*[@class="form-inline"]/descendant::input[1]@value
+	Run Keyword and Ignore Error 	Should Be Equal 	${isdate} 	${date}
+	#ath verify element is visible	//*[@id="form_for_send"]/descendant::td[contains(text(),'${isdate}')]
 	Capture Page Screenshot
+
 
 Scheduling.Select Appointment DateTime
 	[arguments]	${mydate}	${time}
