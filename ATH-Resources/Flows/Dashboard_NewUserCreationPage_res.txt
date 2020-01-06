@@ -32,10 +32,14 @@ Dashboard.Registration.Select I agree checkboxes
 # Dashboard.Registration.Input Confirm Password
 # 	[Arguments]	${Password}
 # 	ath input text value	Confirm Password	${Password}
-
+Dashboard.Confirm Create Client File Button
+	[Arguments]	${Confirm}=No
+	ath click button	xpath=//*[contains(normalize-space(),'Have you already invited')]/ancestor::div[@class="modal-dialog"]/descendant::span[contains(normalize-space(),'${Confirm}')]
+	Sleep 	1.0
+	ath wait until loaded 	30
 
 Dashboard.Click New Client Button
-	ath click button	xpath=//a[@id='button_client']
+	ath click button	xpath=//*[@class="page-title"][text()="Dashboard"]/ancestor::div/descendant::li/button
 
 
 Dashboard.Click New Therapist Button
