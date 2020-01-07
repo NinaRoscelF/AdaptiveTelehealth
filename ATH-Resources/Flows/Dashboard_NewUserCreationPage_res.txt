@@ -38,8 +38,8 @@ Dashboard.Confirm Create Client File Button
 	Sleep 	1.0
 	ath wait until loaded 	30
 
-Dashboard.Click New Client Button
-	ath click button	xpath=//*[@class="page-title"][text()="Dashboard"]/ancestor::div/descendant::li/button
+Dashboard.Click Invite Client Button
+	ath click button	//a[@id='button_client']
 
 
 Dashboard.Click New Therapist Button
@@ -59,6 +59,21 @@ Dashboard.Click New Admin Button
 	Sleep 	5.0
 	ath_wait_until_element_is_present	xpath=//h4[contains(text(),'New Supervisor')]	60
 
+
+Dashboard.NewClient.Input Client First Name
+	[Arguments]	${FirstName}
+	ath input text value	Client First Name	${FirstName}
+
+
+Dashboard.NewClient.Input Client Last Name
+	[Arguments]	${LastName}
+	ath input text value	Client Last Name	${LastName}
+
+
+Dashboard.NewClient.Click Create Client File Button
+	ath click button	Create Client File
+	Sleep 	2.0
+	ath wait until loaded 	30
 
 Dashboard.NewClient.Input Group Company Email
 	[Arguments]	${Email}
