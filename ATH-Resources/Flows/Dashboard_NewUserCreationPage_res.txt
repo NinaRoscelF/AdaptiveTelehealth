@@ -38,6 +38,10 @@ Dashboard.Confirm Create Client File Button
 	Sleep 	1.0
 	ath wait until loaded 	30
 
+Dashboard.Click Create Client Button
+	ath click button	//button[contains(text(),'Create Client')]
+
+
 Dashboard.Click Invite Client Button
 	ath click button	//a[@id='button_client']
 
@@ -67,13 +71,20 @@ Dashboard.NewClient.Input Client First Name
 
 Dashboard.NewClient.Input Client Last Name
 	[Arguments]	${LastName}
-	ath input text value	Client Last Name	${LastName}
+	ath input text value	//input[@id='client_last_name']	${LastName}
 
+Dashboard.NewUser.Select Client Gender
+	[Arguments]	${Gender}
+	ath select drop down field value	Client Gender	${Gender}
 
 Dashboard.NewClient.Click Create Client File Button
 	ath click button	Create Client File
 	Sleep 	2.0
 	ath wait until loaded 	30
+
+Messaging.Verify Client File Created
+	Ath Verify Element Is Visible	//*[contains(@class,'alert-success')]/a[contains(text(),'Adaptive TeleHealth Client File created')]
+
 
 Dashboard.NewClient.Input Group Company Email
 	[Arguments]	${Email}
@@ -154,7 +165,7 @@ Dashboard.NewUser.Input Zip
 
 Dashboard.NewUser.Input Email
 	[Arguments]	${Email}
-	ath input text value	xpath=(//label[text()="Email:"]/../following-sibling::div/input)[1] 	${Email}
+	ath input text value	xpath=(//label[text()="Email:"]/../following-sibling::div/input)[1]	${Email}
 
 Dashboard.NewUser.Input NPI
 	[Arguments]	${NPI}
@@ -256,6 +267,12 @@ Dashboard.NewUser.Verify Therapist saved successfully
 	ath verify element is visible	xpath=//*[text()="Therapist successfully assigned to Supervisor."]
 
 
+Dashboard.ClientsWidget.Select Records per Page Value
+	[Arguments]	${RecordNo}
+	ath select drop down field value	//div[@id='therapist_clients_wrapper']/descendant::label[text()="Records per page "]/select	${RecordNo}
+	Sleep 	3.0
+	ath wait until loaded 	60
+
 Dashboard.InvitationsWidget.Select Records per Page Value
 	[Arguments]	${RecordNo}
 	ath select drop down field value	//div[@id='Invitations_wrapper']/descendant::label[text()="Records per page "]/select	${RecordNo}
@@ -285,6 +302,15 @@ Dashboard.ClientsWidget.Verify Newly Created Client Is Displayed
 	[Arguments]	${FirstName}
 	ath verify element is visible	xpath=//div[@id='Invitations_wrapper']/descendant::tbody/tr/td[contains(text(),'${FirstName}')]
 
+Dashboard.ClientsWidget.TherapistRole.Verify Newly Created Client Is Displayed
+	[Arguments]	${FirstName}
+	ath verify element is visible	xpath=//section[@class='section clients']/descendant::tbody/tr/td/a[contains(text(),'${FirstName}')]
+
+
+Dashboard.ClientsWidget.Select Newly Created Client
+	[Arguments]	${FirstName}
+	Capture Page Screenshot
+	ath click link	xpath=//section[@class='section clients']/descendant::tbody/tr/td/a[contains(text(),'${FirstName}')]
 
 
 Dashboard.ProvidersWidget.Select Newly Created Provider
@@ -302,6 +328,18 @@ Dashboard.AdminsWidget.Select Newly Created Admin
 	[Arguments]	${FirstName}
 	ath verify element is visible	xpath=//div[@id='admins_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
 	ath click link	xpath=//div[@id='admins_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
+
+Dashboard.NewUser.Click Update Client Information link
+	ath click link	xpath=//a[contains(text(),"information here")]
+	Sleep 	3.0
+	ath wait until loaded 	60
+
+Dashboard.NewUser.ClientInfo.Input Email address
+	[Arguments]	${Email}
+	ath input text value	//input[@id='email']	${Email}
+
+Dashboard.NewUser.ClientInfo.Click Invite Button
+	ath click button	//span[@id='sendInvite']
 
 Dashboard.NewUser.Verify Is Assigned to Supervisor
 	[Arguments]	${Supervisor}
