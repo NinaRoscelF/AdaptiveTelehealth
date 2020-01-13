@@ -8,7 +8,7 @@ ${Filelocation}	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources
 ${Filename}	dummy1.pdf
 ${Filename2}	dummy25.pdf
 ${FileType}	pdf
-${Recipient1}	Random Automation Therapist ( Group Therapist )
+${Recipient1}	Random Automation Therapist
 ${Recipient2}	Mary Ellis
 
 ***Test Cases***
@@ -63,11 +63,11 @@ MessagingSupervisor_008
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
-	Sleep 	5.0
-	Messaging.Confirm Message Sent successfully
+	Sleep 	10.0
+#	Messaging.Confirm Message Sent successfully
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
-	Messaging.Sent.Verify Message is Sent	Mary Ellis
+	Messaging.Sent.Verify Message is Sent	${Recipient1}
 	Messaging.Sent.Verify Message is Sent	${DTToday}
 
 
@@ -111,11 +111,11 @@ MessagingSupervisor_011
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Save to Draft Button
-	Sleep 	5.0
+	Sleep 	10.0
 	Messaging.Confirm Draft Message Saved successfully
 	Messaging.Select Draft Menu
 	${DTToday}	Generate Date and Time Today
-	Messaging.Sent.Verify Message is Sent	Mary Ellis
+	Messaging.Sent.Verify Message is Sent	${Recipient1}
 	Messaging.Sent.Verify Message is Sent	${DTToday}
 
 MessagingSupervisor_012

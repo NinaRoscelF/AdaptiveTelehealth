@@ -4,104 +4,33 @@ Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHDashboard_Cre
 Suite Teardown	Close All Browsers
 
 
-
-
 ***Test Cases***
-Dashboard_CreateClient_By_Therapist
-	[tags]	System:Live
-#create client
-
-	${Firstname}	Generate Random String	8	[LETTERS]
-	${RegCode}	Generate Random String	10	[NUMBERS]
+Dashboard_SortColumns_AndSearch_By_Therapist
 
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
-	Dashboard.Click Create Client Button
-	Dashboard.Confirm Create Client File Button
-	Dashboard.NewClient.Input Client First Name 	${Firstname}
-	Dashboard.NewClient.Input Client Last Name 	Automation
-	Dashboard.NewUser.Select Client Gender	Male
-	Dashboard.NewClient.Click Create Client File Button
-	Sleep 	3.0
-	ath wait until loaded 	60
-	Messaging.Verify Client File Created
-	Reload Page
+	Dashboard.Select 3rd Column Display	Email
+	Dashboard.Verify Header Column Display Applied	Email
+	Dashboard.Select 5th Column Display	Gender
+	Dashboard.Verify Header Column Display Applied	Gender
+	#Revert to orig display
+	Dashboard.Select 3rd Column Display	Middle Name
+	Dashboard.Verify Header Column Display Applied	Middle Name
+	Dashboard.Select 5th Column Display	City
+	Dashboard.Verify Header Column Display Applied	City
 	Dashboard.ClientsWidget.Select Records per Page Value	100
-	Sleep 	3.0
-	ath wait until loaded 	60
-	Dashboard.ClientsWidget.TherapistRole.Verify Newly Created Client Is Displayed	${Firstname}
-	Dashboard.ClientsWidget.Select Newly Created Client	${Firstname}
-	Dashboard.NewUser.Click Update Client Information link
+	Sleep	30.0	Wait until widget is loaded
+	ath wait until loaded	60
+	Run Keyword and Ignore Error	Dashboard.ClientWidget.Sort First Name Column
+	Run Keyword and Ignore Error	Dashboard.ClientWidget.Sort Last Name Column
+	Dashboard.ClientsWidget.Select Records per Page Value	10
+	Dashboard.GroupsCompanyWidget.Input Search Criteria	Beyonce
+	ath launch via shortcut keys	ENTER	//div[@id='therapist_clients_filter']//input
 	Sleep 	5.0
-	ath wait until loaded 	60
-	Dashboard.NewUser.ClientInfo.Input Email address	${Firstname}@mailinator.com
-	Dashboard.NewUser.ClientInfo.Click Invite Button
-
-	Login to Mailinator	${Firstname}@mailinator.com
-	Continue User Invitation
-	Select window	New
-	Capture Page Screenshot
-	Complete registration Process	${Firstname}	Automation	${Firstname}@mailinator.com
-
-
-	Open Browser	${URL}	${BROWSER}	ff_profile_dir=profiledir
-	Maximize Browser Window
-	Input Email Address	${Firstname}@mailinator.com
-	Input Password	${Password}
-	Click Login Button
-	Select Timezone for Newly Created User	(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi
-	Capture Page Screenshot
-	Close Upload Image Popup
-
-	Dashboard.NewUser.Input City	${City}
-	Dashboard.NewUser.Input Address	${Address}
-	Dashboard.NewUser.Input Phone Number1	${PhoneNo}
-	Dashboard.NewUser.Select I agree checkboxes
-	Dashboard.NewUser.Input Full Name	${Firstname} ${LastName}
-	Run Keyword and Expect Error	*	Dashboard.NewUser.Click OK button
+	ath wait until loaded	60
+	${status}	Run Keyword and Return Status	Dashboard.GroupsCompanyWidget.Verify No Results found
+	Should Not Be True	${status}
+	Move to Next Page
+	Move to Previous Page
+	Select Page Number 	4
 	Logout from Application
-
-# Dashboard_CreateClient_By_Therapist
-# 	[Tags]	System:Secure
-# #create client
-
-# 	${Firstname}	Generate Random String	8	[LETTERS]
-# 	${RegCode}	Generate Random String	10	[NUMBERS]
-
-# 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
-# 	Perform Login Checks
-# 	Dashboard.Click Invite Client Button
-# 	Run Keyword if 	"${TestEnv}" == "Secure" 	Dashboard.NewClient.Input Group Company Email	${Firstname}@mailinator.com	ELSE 	Dashboard.NewClient.Input Client Email	${Firstname}@mailinator.com
-
-# 	Run Keyword if 	"${TestEnv}" == "Secure"	Dashboard.NewClient.Click Invite Groups Company Button	ELSE	Dashboard.NewClient.Click Invite Client Button
-# 	Sleep 	3.0
-# 	Dashboard.NewClient.Verify Client is Invited	${Firstname}@mailinator.com
-# 	Sleep 	3.0
-# 	Dashboard.Click back to Dashboard link
-# 	Dashboard.Click Invite Client Button
-# 	Dashboard.InvitationsWidget.Select Records per Page Value	100
-# 	Dashboard.ClientsWidget.Verify Newly Created Client Is Displayed 	${Firstname}
-
-# 	Login to Mailinator	${Firstname}@mailinator.com
-# 	Continue User Invitation
-# 	Select window	New
-# 	Capture Page Screenshot
-# 	Complete registration Process	${Firstname}	Automation	${Firstname}@mailinator.com
-
-
-# 	Open Browser	${URL}	${BROWSER}	ff_profile_dir=profiledir
-# 	Maximize Browser Window
-# 	Input Email Address 	${Firstname}@mailinator.com
-# 	Input Password	${Password}
-# 	Click Login Button
-# 	Select Timezone for Newly Created User	(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi
-# 	Capture Page Screenshot
-# 	Close Upload Image Popup
-
-# 	Dashboard.NewUser.Input City	${City}
-# 	Dashboard.NewUser.Input Address	${Address}
-# 	Dashboard.NewUser.Input Phone Number1	${PhoneNo}
-# 	Dashboard.NewUser.Select I agree checkboxes
-# 	Dashboard.NewUser.Input Full Name	${Firstname} ${LastName}
-# 	Run Keyword and Expect Error	*	Dashboard.NewUser.Click OK button
-# 	Logout from Application
