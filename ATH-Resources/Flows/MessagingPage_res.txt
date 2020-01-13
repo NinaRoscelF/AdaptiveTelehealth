@@ -54,7 +54,7 @@ Messaging.Input Message
 
 
 Messaging.Click Send Message Button
-	ath_click_button	Send
+	ath_click_button	//button[@id='send_message']
 	Sleep	2.0
 
 

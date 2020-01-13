@@ -32,6 +32,15 @@ Dashboard.Registration.Select I agree checkboxes
 # Dashboard.Registration.Input Confirm Password
 # 	[Arguments]	${Password}
 # 	ath input text value	Confirm Password	${Password}
+Dashboard.GroupsCompanyWidget.Input Search Criteria
+	[Arguments]	${SearchCriteria}
+	ath input text value	Search	${SearchCriteria}
+
+
+Dashboard.GroupsCompanyWidget.Verify No Results found
+	Ath Verify Element Is Visible	//td[@class='dataTables_empty']
+	Capture Page Screenshot
+
 Dashboard.Confirm Create Client File Button
 	[Arguments]	${Confirm}=No
 	ath click button	xpath=//*[contains(normalize-space(),'Have you already invited')]/ancestor::div[@class="modal-dialog"]/descendant::span[contains(normalize-space(),'${Confirm}')]
@@ -361,3 +370,104 @@ Dashboard.NewUser.Verify Supervisor Assigned to Admin
 	ath verify element is visible	xpath=//p[contains(normalize-space(),'${Supervisor}')]
 	ath check links displayed	//a[text()="Deassign"]
 	ath check button existence	Update Admin Data
+
+
+Dashboard.NewUser.ClientInfo.Select Client Status
+	[Arguments]	${status}
+	ath select drop down field value	//select[@name='status']	${status}
+
+
+Dashboard.NewUser.ClientInfo.Click Update Client Status
+	ath click button	Update Client Status
+	Sleep 	3.0
+	ath wait until loaded 	60
+
+
+Dashboard.Select 3rd Column Display
+	[Arguments]	${column}
+	ath select drop down field value	//select[@name='option4']	${column}
+	Sleep 	3.0
+	ath wait until loaded 	60
+
+Dashboard.Select 5th Column Display
+	[Arguments]	${column}
+	ath select drop down field value	//select[@name='option6']	${column}
+	Sleep 	3.0
+	ath wait until loaded 	60
+
+
+Dashboard.Verify Header Column Display Applied
+	[Arguments]	${column}
+	ath verify element Is Visible	//th[text()="${column}"]
+	Capture Page Screenshot
+
+
+Dashboard.ClientWidget.Sort First Name Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="First Name"]
+	${count}	Get Matching Xpath Count	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Name"]
+	${count}	Get Matching Xpath Count	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist1}	${text}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist1}	${datelist}
+
+Dashboard.ClientWidget.Sort Last Name Column
+	${datelist}	Create List
+	${datelist1}	Create List
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Name"]
+	${count}	Get Matching Xpath Count	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Name"]
+	${count}	Get Matching Xpath Count	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist1}	${text}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist1}	${datelist}
+
+
+Dashboard.ClientProfile.Verify Client Details Displayed
+	ath verify element is visible 	//div[@class='content pp_inner_width content_container']
+
+
+Dashboard.ClientProfile.Verify Client Label Display
+	[Arguments]	${label}
+	ath verify element is visible	//h3/descendant::a[contains(normalize-space(),'${label}')]
+
+Dashboard.ClientProfile.Verify Column Headers
+	[Arguments]	${label}
+	@{col}	Split String	${label} 	separator=,
+	:FOR 	IN RANGE 	0	${col}
+		

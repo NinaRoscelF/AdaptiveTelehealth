@@ -43,6 +43,9 @@ Perform Login Checks
 Verify Login Error Is Visible
 	ath verify element is visible	xpath=//p[contains(text(),'Login Problem: The username and password were not')]
 
+Select Dashboard Menu
+#	ath_navigate_to_main_menu	Messaging
+	ath click icon	xpath=//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Dashboard']
 
 Select Messaging Menu
 #	ath_navigate_to_main_menu	Messaging
