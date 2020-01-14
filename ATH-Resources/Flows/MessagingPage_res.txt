@@ -247,13 +247,13 @@ Messaging.Reply.Input Reply Message
 
 
 Messaging.Reply.Click Send button
-	Ath click button	Send	2
+	Ath click button	//button[@id='reply_button']
 	Sleep 	2.0
 	ath wait until loaded	30
 
 
 Messaging.Reply.Click Save to Draft button
-	Ath click button	Save to Draft	2
+	Ath click button	//button[@id='reply-to-drafts']
 	Sleep 	2.0
 	ath wait until loaded	30
 
@@ -280,7 +280,8 @@ Messaging.Inbox.Select checkbox of first Message
 
 
 Messaging.Inbox.Click Read/Unread Icon
-	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
+#	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
+	ath click button 	xpath=//div[@id='Inbox']//button[@title="Mark read/unread"]
 	Sleep	3.0
 	ath wait until loaded	30
 
