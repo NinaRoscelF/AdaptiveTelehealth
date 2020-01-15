@@ -35,6 +35,8 @@ MessagingTherapist_029
 	Messaging.Inbox.Click Reply Button
 	Messaging.Reply.Input Reply Message	Auto Reply Message
 	Messaging.Reply.Click Save to Draft button
+	Sleep 	15.0 	wait for confirmation message
+	ath wait until loaded	30
 	Messaging.Confirm Draft Message Saved successfully
 
 
@@ -43,6 +45,8 @@ MessagingTherapist_028
 	Messaging.Inbox.Click Reply Button
 	Messaging.Reply.Input Reply Message	Auto Reply Message
 	Messaging.Reply.Click Send button
+	Sleep 	15.0 	wait for confirmation message
+	ath wait until loaded	30
 	Messaging.Confirm Message Sent successfully
 
 
@@ -52,6 +56,8 @@ MessagingTherapist_016
 	Capture Page Screenshot
 	Messaging.Inbox.Select all Messages
 	Messaging.Inbox.Click Read/Unread Icon
+	Sleep 	15.0 	wait for confirmation message
+	ath wait until loaded	30
 	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isUnread}
 
 
