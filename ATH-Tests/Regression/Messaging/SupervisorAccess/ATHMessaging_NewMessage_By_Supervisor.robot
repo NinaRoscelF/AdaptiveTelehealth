@@ -46,7 +46,7 @@ MessagingSupervisor_007
 	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	All Group Therapist	ELSE	Messaging.Input Recipient	All Provider
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
-	Sleep 	5.0
+	Sleep 	15.0
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
 	Messaging.Sent.Verify Message is Sent	Automation Message
@@ -63,7 +63,7 @@ MessagingSupervisor_008
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
-	Sleep 	10.0
+	Sleep 	15.0
 #	Messaging.Confirm Message Sent successfully
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
