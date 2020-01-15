@@ -55,11 +55,14 @@ MessagingTherapist_016
 	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count	read
 	Capture Page Screenshot
 	Messaging.Inbox.Select all Messages
-	Messaging.Inbox.Click Read/Unread Icon
-	Sleep 	15.0 	wait for confirmation message
+	Capture Page Screenshot
+#	ath click icon	xpath=//div[@id='Inbox']//button[2]
+	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
+	Capture Page Screenshot
+	Sleep 	60.0	wait for confirmation message
 	ath wait until loaded	30
 	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isUnread}
-
+	Capture Page Screenshot
 
 MessagingTherapist_014
 #Select unread and tag as read
@@ -70,9 +73,11 @@ MessagingTherapist_014
 	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	read	True	3	ELSE	Messaging.Inbox.Select Unread message	unread	True	3
 
 	Capture Page Screenshot
+#	Messaging.Inbox.Click Read/Unread Icon
 	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
 	Capture Page Screenshot
-	Sleep 	3.0
+	Sleep 	60.0	wait for confirmation message
+	ath wait until loaded	30
 	Messaging.Inbox.Verify Messages were read/unread	${isUnread}	unread
 
 
@@ -85,7 +90,8 @@ MessagingTherapist_015
 	Capture Page Screenshot
 	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
 	Capture Page Screenshot
-	Sleep 	3.0
+	Sleep 	60.0	wait for confirmation message
+	ath wait until loaded	30
 	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isRead}	read
 
 

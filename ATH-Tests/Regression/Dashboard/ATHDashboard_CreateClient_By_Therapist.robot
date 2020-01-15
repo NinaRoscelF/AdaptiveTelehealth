@@ -13,39 +13,40 @@ Dashboard_CreateClient_By_Therapist
 
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
-	# Dashboard.Click Create Client Button
-	# Dashboard.Confirm Create Client File Button
-	# Dashboard.NewClient.Input Client First Name 	${Firstname}
-	# Dashboard.NewClient.Input Client Last Name 	Automation
-	# Dashboard.NewUser.Select Client Gender	Male
-	# Dashboard.NewClient.Click Create Client File Button
-	# Sleep 	3.0
-	# ath wait until loaded 	60
-	# Messaging.Verify Client File Created
-	# Reload Page
+	Dashboard.Click Create Client Button
+	Dashboard.Confirm Create Client File Button
+	Dashboard.NewClient.Input Client First Name 	${Firstname}
+	Dashboard.NewClient.Input Client Last Name 	Automation
+	Dashboard.NewUser.Select Client Gender	Male
+	Dashboard.NewClient.Click Create Client File Button
+	Sleep 	3.0
+	ath wait until loaded 	60
+	Messaging.Verify Client File Created
+	Reload Page
 	Dashboard.ClientsWidget.Select Records per Page Value	100
 	Sleep	30.0	Wait until widget is loaded
 	ath wait until loaded	60
 	Capture Page Screenshot
-	Run Keyword if	"${TestEnv}" == "Secure"	Dashboard.ClientsWidget.Verify Newly Created Client Is Displayed 	DycdNGbf	ELSE	Dashboard.ClientsWidget.TherapistRole.Verify Newly Created Client Is Displayed	${Firstname}
-	# Dashboard.ClientsWidget.Select Newly Created Client	${Firstname}
-	# Dashboard.NewUser.Click Update Client Information link
-	# Sleep	5.0
-	# ath wait until loaded	60
-	# Dashboard.NewUser.ClientInfo.Input Email address	${Firstname}@mailinator.com
-	# Dashboard.NewUser.ClientInfo.Click Invite Button
+	# Run Keyword if	"${TestEnv}" == "Secure"	Dashboard.ClientsWidget.Verify Newly Created Client Is Displayed 	${Firstname}	ELSE	
+	Dashboard.ClientsWidget.TherapistRole.Verify Newly Created Client Is Displayed	${Firstname}
+	Dashboard.ClientsWidget.Select Newly Created Client	${Firstname}
+	Dashboard.NewUser.Click Update Client Information link
+	Sleep	5.0
+	ath wait until loaded	60
+	Dashboard.NewUser.ClientInfo.Input Email address	${Firstname}@mailinator.com
+	Dashboard.NewUser.ClientInfo.Click Invite Button
 
-	# Login to Mailinator	${Firstname}@mailinator.com
-	# Continue User Invitation
-	# Select window	New
-	# Capture Page Screenshot
-	# Complete registration Process	${Firstname}	Automation	${Firstname}@mailinator.com
+	Login to Mailinator	${Firstname}@mailinator.com
+	Continue User Invitation
+	Select window	New
+	Capture Page Screenshot
+	Complete registration Process	${Firstname}	Automation	${Firstname}@mailinator.com
 
-	# Run Keyword if	"${TestEnv}" == "Secure"	Verify Secure Login	${FirstName}	${Password}	${URL}	${BROWSER}	ELSE	Verify Live Login	${FirstName}	${Password}	${URL}	${BROWSER}
+	Run Keyword if	"${TestEnv}" == "Secure"	Verify Secure Login	${FirstName}	${Password}	${URL}	${BROWSER}	ELSE	Verify Live Login	${FirstName}	${Password}	${URL}	${BROWSER}
 
-	# Run Keyword if	"${TestEnv}" == "Secure"	Input Employee Details	${City}	${Address}	${PhoneNo}	${FirstName}	${LastName}
+	Run Keyword if	"${TestEnv}" == "Secure"	Input Employee Details	${City}	${Address}	${PhoneNo}	${FirstName}	${LastName}
 
-
+	Logout from Application
 
 **** Keywords ****
 Verify Live Login
@@ -76,7 +77,7 @@ Input Employee Details
 	Dashboard.NewUser.Select I agree checkboxes
 	Dashboard.NewUser.Input Full Name	${Firstname} ${LastName}
 	Run Keyword and Expect Error	*	Dashboard.NewUser.Click OK button
-	Logout from Application
+
 
 
 
