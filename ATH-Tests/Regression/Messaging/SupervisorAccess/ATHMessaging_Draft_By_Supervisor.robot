@@ -72,7 +72,7 @@ MessagingSupervisor_050
 
 MessagingSupervisor_051
 #Expand Details
-	Messaging.Draft.Read Message	Mary Ellis
+	Messaging.Draft.Expand First message
 	Ath Verify Element Is Visible	//td[@class="my-details"]
 	Capture Page Screenshot
 

@@ -94,6 +94,8 @@ MessagingTherapist_054
 	Messaging.Draft.Click Edit Button
 	Messaging.Input Message	AutomationDraft Test Message
 	Messaging.Click Save to Draft Button
+	Sleep 	15.0
+	ath wait until loaded	60
 	Messaging.Confirm Draft Message Saved successfully
 
 MessagingTherapist_052
