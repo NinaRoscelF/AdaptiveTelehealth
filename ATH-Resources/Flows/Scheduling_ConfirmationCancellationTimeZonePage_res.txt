@@ -23,10 +23,31 @@ Scheduling.Preferences.Confirmations.Click Apply
 	ath wait until loaded 	60
 
 
-Scheduling.Preferences.CancellationMessages.Select Cancellation RadioButton
-	[arguments]	${value}
-	ath_select_radio_button	${value}
+Scheduling.Preferences.CancellationMessages.Select Cancellation Within Hours
+	Execute Javascript	var element = document.evaluate("//label[contains(normalize-space(),'cancels within')][contains(normalize-space(),'hours')]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
 	ath wait until loaded 	60
+
+
+Scheduling.Preferences.CancellationMessages.Select Cancellation Less Than Hours
+	Execute Javascript	var element = document.evaluate("//label[contains(normalize-space(),'cancels less than')][contains(normalize-space(),'hours')]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	ath wait until loaded 	60
+
+
+Scheduling.Preferences.CancellationMessages.Select Cancellation Within Same Day
+	Execute Javascript	var element = document.evaluate("//label[contains(normalize-space(),'cancels within the same day')]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	ath wait until loaded 	60
+
+
+Scheduling.Preferences.Input Within Hours
+	[arguments]	${input}
+	ath_input text_value	xpath=//input[@name='cancellation-hours-1']	${input}
+	ath wait until loaded 	60
+
+Scheduling.Preferences.Input Cancels Less Than Hours
+	[arguments]	${input}
+	ath_input text_value	xpath=//input[@name='cancellation-hours-2']	${input}
+	ath wait until loaded 	60
+
 
 
 Scheduling.Preferences.Input Message Hours
