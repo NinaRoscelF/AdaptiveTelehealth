@@ -31,6 +31,7 @@ SchedulingAdmin_003
 	${DateFormat}	Generate Date and Time Today	%m-%d-%Y
 	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%Y-%m-%d
 	${DateAddFormat}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%m-%d-%Y
+	Run Keyword and Ignore Error	ath click button	xpath=//button[@id='different-timezone-no']
 	Scheduling.TherapistRole.Select Appointment DateTime	2:00 - 3:00 
 	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	OFFLINE
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
