@@ -4,20 +4,21 @@ Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${Recipient1}	Random Automation Therapist
 ${Recipient2}	Mary Ellis
+${Recipient3}	Automation Therapist
 
 ***Test Cases***
 
-DraftCreation
+InboxCreation
 #Select one move to trash
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient1}	${TestEnv}
+	Perform Login Checks
+	Select Messaging Menu
 	:FOR 	${idx}	IN RANGE	1	11
 	\	Messaging.Click New Message Button
-	\	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient2}
+	\	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient2}	ELSE	Messaging.Input Recipient	${Recipient3}
 	\	Messaging.Input Subject	Automation Message
 	\	Messaging.Input Message	Automation Test Message
-	\	Messaging.Input Message	AutomationDraft Test Message
-	\	Messaging.Click Save to Draft Button
+	\	Messaging.Click Send Message Button
 	\	Sleep 	15.0
 	Logout from Application
