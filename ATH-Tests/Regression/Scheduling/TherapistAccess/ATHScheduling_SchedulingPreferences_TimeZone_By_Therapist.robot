@@ -12,7 +12,7 @@ ${MyPatient2}	Beyonce Halo (Patient)
 ***Test Cases***
 SchedulingTherapist_025
 #confirmations tab
-	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 	ath click button	Calendar Preferences
@@ -46,7 +46,7 @@ SchedulingTherapist_027
 
 SchedulingTherapist_028
 #confirmations tab
-	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 	ath click button	Calendar Preferences
