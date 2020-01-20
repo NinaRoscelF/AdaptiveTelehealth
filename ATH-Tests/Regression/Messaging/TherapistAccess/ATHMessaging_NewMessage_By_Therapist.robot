@@ -14,7 +14,7 @@ ${Recipient4}	Ginger Taylor
 
 ***Test Cases***
 MessagingTherapist_001
-	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
 	Messaging.Verify Alert Message Received
 MessagingTherapist_002
@@ -46,7 +46,7 @@ MessagingTherapist_007
 	Messaging.Sent.Verify Message is Sent	${DTToday}
 	ath Logout
 MessagingTherapist_008
-	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Click New Message Button
@@ -62,7 +62,7 @@ MessagingTherapist_008
 
 	Messaging.Sent.Verify Message is Sent	${DTToday}
 MessagingTherapist_009
-	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Click New Message Button

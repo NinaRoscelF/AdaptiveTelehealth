@@ -10,7 +10,7 @@ Suite Teardown	Close All Browsers
 ***Test Cases***
 SchedulingTherapist_052
 #scheduling page display
-	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 	Scheduling.Calendar.Verify Calendar Meeting is Displayed

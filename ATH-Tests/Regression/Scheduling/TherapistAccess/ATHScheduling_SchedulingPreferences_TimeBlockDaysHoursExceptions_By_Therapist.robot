@@ -10,7 +10,7 @@ Suite Teardown	Close All Browsers
 SchedulingTherapist_001
 #wdigets display
 
-	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 	ath check button existence	Hide Cancelled Appointments

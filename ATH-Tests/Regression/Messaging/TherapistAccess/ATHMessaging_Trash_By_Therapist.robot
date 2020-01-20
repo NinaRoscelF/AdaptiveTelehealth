@@ -7,7 +7,7 @@ Suite Teardown	Close All Browsers
 ***Test Cases***
 MessagingTherapist_055
 #Select one move to trash
-	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Trash Menu

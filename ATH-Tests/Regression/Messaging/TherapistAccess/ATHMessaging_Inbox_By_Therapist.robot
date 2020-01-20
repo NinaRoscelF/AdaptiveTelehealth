@@ -12,7 +12,7 @@ ${FileType}	pdf
 ***Test Cases***
 MessagingTherapist_013
 #Select an unread and verify
-	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Inbox Menu
