@@ -98,14 +98,6 @@ MessagingSupervisor_052
 
 
 MessagingSupervisor_044
-	:FOR 	${idx}	IN RANGE	1	11
-	\	Messaging.Click New Message Button
-	\	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient2}
-	\	Messaging.Input Subject	Automation Message
-	\	Messaging.Input Message	Automation Test Message
-	\	Messaging.Input Message	AutomationDraft Test Message
-	\	Messaging.Click Save to Draft Button
-
 	Move to Next Page
 
 MessagingSupervisor_045
