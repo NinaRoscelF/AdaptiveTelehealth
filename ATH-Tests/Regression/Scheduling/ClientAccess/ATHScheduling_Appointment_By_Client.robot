@@ -7,7 +7,7 @@ Suite Teardown	Close All Browsers
 ***Test Cases***
 SchedulingClient_001
 #wdigets display
-	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient1}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 	Scheduling. Verify Schedule widget display

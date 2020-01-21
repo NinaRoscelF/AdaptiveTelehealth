@@ -40,6 +40,7 @@ MessagingTherapist_007
 	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	All Groups Company	ELSE	Messaging.Input Recipient	${Recipient3}
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
+	Sleep 	15.0
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
 	Messaging.Sent.Verify Message is Sent	Automation Message
@@ -55,11 +56,9 @@ MessagingTherapist_008
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
-	Messaging.Confirm Message Sent successfully
+	Sleep 	15.0
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
-	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient4}	ELSE		Messaging.Sent.Verify Message is Sent	${Recipient2}
-
 	Messaging.Sent.Verify Message is Sent	${DTToday}
 MessagingTherapist_009
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
@@ -71,10 +70,10 @@ MessagingTherapist_009
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
-	Messaging.Confirm Message Sent successfully
+	Sleep 	15.0
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
-	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient4}	ELSE		Messaging.Sent.Verify Message is Sent	${Recipient2}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient4}	ELSE	Messaging.Sent.Verify Message is Sent	${Recipient2}
 	Messaging.Sent.Verify Message is Sent	${DTToday}
 MessagingTherapist_010
 	Messaging.Click New Message Button
@@ -84,10 +83,10 @@ MessagingTherapist_010
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
-	Messaging.Confirm Message Sent successfully
+	Sleep 	15.0
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
-	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient4}	ELSE		Messaging.Sent.Verify Message is Sent	${Recipient2}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient4}	ELSE	Messaging.Sent.Verify Message is Sent	${Recipient2}
 	Messaging.Sent.Verify Message is Sent	${DTToday}
 MessagingTherapist_011
 	Messaging.Click New Message Button
@@ -95,10 +94,11 @@ MessagingTherapist_011
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Save to Draft Button
+	Sleep 	15.0
 	Messaging.Confirm Draft Message Saved successfully
 	Messaging.Select Draft Menu
 	${DTToday}	Generate Date and Time Today
-	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient1}	ELSE		Messaging.Sent.Verify Message is Sent	${Recipient2}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient1}	ELSE	Messaging.Sent.Verify Message is Sent	${Recipient2}
 	Messaging.Sent.Verify Message is Sent	${DTToday}
 MessagingTherapist_012
 	Messaging.Click New Message Button

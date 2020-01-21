@@ -13,7 +13,7 @@ ${ApptType1}	Online
 ***Test Cases***
 SchedulingClient_012
 #my meetings widget
-	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient1}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 
@@ -93,7 +93,7 @@ SchedulingClient_017
 	Logout from Application
 
 SchedulingClient_019
-	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient1}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 	Scheduling.Select Appointment DateTime	${DateInCal}	${Time2}
