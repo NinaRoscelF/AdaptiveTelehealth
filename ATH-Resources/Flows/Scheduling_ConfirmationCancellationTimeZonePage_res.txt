@@ -87,7 +87,7 @@ Scheduling.Calendar.Select Meeting from Calendar
 
 
 Scheduling.Calendar.Verify Client Calendar Meeting Display
-	ath_verify_element_is_visible	xpath=//*[contains(@class,'open_meeting')]/descendant::div[normalize-space()="Open"]/../div[@class="fc-time"]
+	ath_verify_element_is_visible	xpath=//*[@class="fc-widget-content"]/ancestor::*[@id="calendar_view"]
 
 
 Scheduling.Calendar.Close Edit Appointment Popup
@@ -181,7 +181,7 @@ Scheduling.Calendar.EditOpenPopup.Select Appointment Type
 	[arguments]	${apptType}
 #	ath_select_radio_button	${apptType}
 	ath wait until element is present	//h4[@class='modal-title ng-binding'][contains(normalize-space(),'Edit Open ')]
-	ath_select_radio_button	xpath=(.//*[normalize-space(text()) and normalize-space(.)='Type'])[1]/following::label[1]
+	ath_select_radio_button	xpath=(.//*[normalize-space(text()) and normalize-space(.)='Type'])[1]/following::label[normalize-space()="${apptType}"]
 	ath wait until loaded 	30
 
 Scheduling.Calendar.EditOpenPopup.Select Reminder Checkbox
