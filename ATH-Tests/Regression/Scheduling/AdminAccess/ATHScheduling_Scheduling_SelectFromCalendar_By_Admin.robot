@@ -11,6 +11,7 @@ SchedulingAdmin_001
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoAdmin}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoAdmin1}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
+	Run Keyword and Ignore Error	ath click button	xpath=//button[@id='different-timezone-no']
 	Run Keyword if	"${TestEnv}" == "Secure"	Scheduling.Select Therapist Calendar 	${MyPatient}	ELSE	Scheduling.Select Therapist Calendar 	${MyPatient2}
 
 	Scheduling.AdminRole.TherapistTimezone.Click OK button
