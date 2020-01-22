@@ -12,7 +12,7 @@ ${Recipient3}	testsupervisor adaptive
 ***Test Cases***
 
 MessagingClient_044
-	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${Client2}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Draft Menu
@@ -29,7 +29,7 @@ MessagingClient_046
 
 MessagingClient_041
 #Select one move to trash
-	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${Client2}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Draft Menu

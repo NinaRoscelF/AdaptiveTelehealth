@@ -12,7 +12,7 @@ ${FileType}	pdf
 ***Test Cases***
 MessagingClient_031
 #Select one move to trash
-	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Sent Menu

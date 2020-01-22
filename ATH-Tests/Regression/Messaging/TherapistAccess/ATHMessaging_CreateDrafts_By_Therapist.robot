@@ -14,8 +14,7 @@ DraftCreation
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
-	Messaging.Select Draft Menu
-	:FOR 	${idx}	IN RANGE	1	10
+	:FOR 	${idx}	IN RANGE	1	20
 	\	Messaging.Click New Message Button
 	\	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient2}
 	\	Messaging.Input Subject	Automation Message
