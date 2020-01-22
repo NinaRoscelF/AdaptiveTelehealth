@@ -22,6 +22,7 @@ ${AutoClient2}	beyoncehalo@mailinator.com
 ${AutoSystemAdmin}	seerapup+dv380g2@yopmail.com
 ${AutoSystemAdmin1}	ninaf@adaptivetelehealth.com
 ${Therapist2}	maryellisATH@gmail.com
+${Client2}	client2ath@gmail.com
 #${TestEnv}	Secure
 ${TestEnv}	Live
 ${Password}	Password123!!!

@@ -207,6 +207,11 @@ Messaging.Inbox.Read Nessage
 	Ath click icon	xpath=(//tr/td[normalize-space()="${messageSubject}"])[1]
 	ath wait until loaded	30
 
+Messaging.Inbox.Reply To Unread Nessage
+	[arguments]	${messageSubject}	${idx}=1
+	Ath click icon	xpath=(//td[6][text()="unread"]/ancestor::tr/descendant::td[text()="${messageSubject}"])[${idx}]
+	ath wait until loaded	30
+
 
 Messaging.Inbox.Click View Calendar link
 	Ath click link	View Calendar
