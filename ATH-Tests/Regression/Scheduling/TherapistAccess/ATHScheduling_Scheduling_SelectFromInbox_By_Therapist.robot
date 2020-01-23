@@ -11,7 +11,7 @@ Suite Teardown	Close All Browsers
 ***Test Cases***
 SchedulingTherapist_033
 # #Approve Patient's appointment
-	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient1}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${Client2}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 	Run Keyword and Ignore Error	ath click button	xpath=//button[@id='different-timezone-no']
@@ -66,6 +66,7 @@ SchedulingTherapist_035
 	Select Messaging Menu
 	Messaging.Inbox.Read Nessage	New meeting
 	Messaging.Inbox.Click Confirm Button
+	Messaging.Inbox.Close Message Response Button
 	Select Scheduling Menu
 	Scheduling. Verify Online Appointment is in Calendar	${TimeConfirm2}
 	Reload Page

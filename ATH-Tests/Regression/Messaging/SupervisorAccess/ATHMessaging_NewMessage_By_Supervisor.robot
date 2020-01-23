@@ -46,12 +46,13 @@ MessagingSupervisor_007
 	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	All Group Therapist	ELSE	Messaging.Input Recipient	All Provider
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
-	Sleep 	15.0
+	Sleep 	18.0
+	ath wait until loaded	30
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
 	Messaging.Sent.Verify Message is Sent	Automation Message
 	Messaging.Sent.Verify Message is Sent	${DTToday}
-	ath Logout
+	Logout from Application
 
 MessagingSupervisor_008
 	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
@@ -67,7 +68,7 @@ MessagingSupervisor_008
 #	Messaging.Confirm Message Sent successfully
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
-	Messaging.Sent.Verify Message is Sent	${Recipient1}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient1}	ELSE	Messaging.Sent.Verify Message is Sent	${Recipient2}
 	Messaging.Sent.Verify Message is Sent	${DTToday}
 
 
@@ -115,7 +116,7 @@ MessagingSupervisor_011
 	Messaging.Confirm Draft Message Saved successfully
 	Messaging.Select Draft Menu
 	${DTToday}	Generate Date and Time Today
-	Messaging.Sent.Verify Message is Sent	${Recipient1}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient1}	ELSE	Messaging.Sent.Verify Message is Sent	${Recipient2}
 	Messaging.Sent.Verify Message is Sent	${DTToday}
 
 MessagingSupervisor_012
@@ -125,4 +126,4 @@ MessagingSupervisor_012
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Close Button
 	Messaging.Verify New Message Widget Not Displayed
-	ath Logout
+	Logout from Application

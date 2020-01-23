@@ -45,7 +45,8 @@ MessagingTherapist_007
 	${DTToday}	Generate Date and Time Today
 	Messaging.Sent.Verify Message is Sent	Automation Message
 	Messaging.Sent.Verify Message is Sent	${DTToday}
-	ath Logout
+	Logout from Application
+
 MessagingTherapist_008
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
