@@ -1,4 +1,4 @@
-MyPatient="Automation Democlient"
+MyPatient="Ginger Taylor"
 Time1="04:00PM - 05:00PM"
 TimeConfirm="05:00PM - 06:00PM"
 TimeConfirm2="5:00 - 6:00"

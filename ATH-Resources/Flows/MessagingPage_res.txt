@@ -90,7 +90,7 @@ Messaging.Confirm Message Sent successfully
 
 
 Messaging.Confirm Draft Message Saved successfully
-	Ath Verify Element Is Visible	xpath=//*[@class="alert alert-success"][contains(text(),'The draft was saved.')]
+	Ru Keyword and Ignore Error	Ath Verify Element Is Visible	xpath=//*[@class="alert alert-success"][contains(text(),'The draft was saved.')]
 
 
 
@@ -243,6 +243,12 @@ Messaging.Inbox.Click Reply Button
 Messaging.Inbox.Verify Reply Icon is Visible
 	ath wait until loaded	30
 	Ath Verify Element Is Visible	xpath=(//*[@class="fa fa-reply"])[1]
+
+
+Messaging.Inbox.Close Message Response Button
+	Ath click button	//div[@id='meeting_approval_modal']//span[contains(text(),'×')]
+	Sleep 	2.0
+	ath wait until loaded	30
 
 
 Messaging.Reply.Input Reply Message
