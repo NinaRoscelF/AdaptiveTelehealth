@@ -65,17 +65,18 @@ SchedulingTherapist_035
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Inbox.Read Nessage	New meeting
+	${IsClient}	Messaging.Inbox.Get From Column of Selected Meeting
 	Messaging.Inbox.Click Confirm Button
 	Messaging.Inbox.Close Message Response Button
 	Select Scheduling Menu
 	Scheduling. Verify Online Appointment is in Calendar	${TimeConfirm2}
 	Reload Page
-
+	Set Suite Variable	${IsClient}
 
 SchedulingTherapist_041
 #Add Participant of Meeting (from Schedule Date) - without zoom id
-	Scheduling.Calendar.Select Meeting from Calendar	${TimeConfirm2}	${MyPatient2}
-	Scheduling.Calendar.Appointment Popup.Verify Participant Name	${MyPatient2}
+	Scheduling.Calendar.Select Meeting from Calendar	${TimeConfirm2}	${MyPatient3}
+	Scheduling.Calendar.Appointment Popup.Verify Participant Name	${MyPatient3}
 	Scheduling.Calendar.Appointment Popup.Verify Time Schedule 	${TimeFrom}	${TimeTo}
 	Scheduling.Calendar.Appointment Popup.Select Status Dropdown	Confirmed
 	Scheduling.Calendar.Appointment Popup.Click Edit Meeting
