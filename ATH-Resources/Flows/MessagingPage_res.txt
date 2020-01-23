@@ -245,6 +245,11 @@ Messaging.Inbox.Verify Reply Icon is Visible
 	Ath Verify Element Is Visible	xpath=(//*[@class="fa fa-reply"])[1]
 
 
+Messaging.Inbox.Get From Column of Selected Meeting
+	[arguments]	${idx}=1
+	${isFrom}	Get Element Attribute 	xpath=(//tr/td[normalize-space()="New meeting"])[${idx}]/preceding-sibling::*[1]@textContent
+	[return]	${isFrom}
+
 Messaging.Inbox.Close Message Response Button
 	Ath click button	//div[@id='meeting_approval_modal']//span[contains(text(),'×')]
 	Sleep 	2.0
@@ -330,6 +335,7 @@ Messaging.Sent.Move to Trash Icon
 	ath click button	Move to trash	2
 	Sleep	1.0
 	ath wait until loaded	30
+
 
 
 Messaging.Draft.Get Subject Column of Selected Message
