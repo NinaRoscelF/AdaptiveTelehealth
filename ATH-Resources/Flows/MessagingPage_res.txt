@@ -90,7 +90,7 @@ Messaging.Confirm Message Sent successfully
 
 
 Messaging.Confirm Draft Message Saved successfully
-	Ru Keyword and Ignore Error	Ath Verify Element Is Visible	xpath=//*[@class="alert alert-success"][contains(text(),'The draft was saved.')]
+	Run Keyword and Ignore Error	Ath Verify Element Is Visible	xpath=//*[@class="alert alert-success"][contains(text(),'The draft was saved.')]
 
 
 
