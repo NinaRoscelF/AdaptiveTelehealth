@@ -1,0 +1,58 @@
+    def Update_BOD_Tag(self, boddir, src, trg, filename=None, index=0):
+        
+            for root, dirs, files in os.walk(boddir):
+                if (filename == None):
+                    for bodfile in files:
+                        # Support for multiple instance of tag on the same file
+                        filepath=os.path.join(root,bodfile)
+                        isindex=int(index)
+                        marker = 0
+                        for line in fileinput.input(filepath, inplace=1):
+                            if re.search(src,line.rstrip()):
+                                if re.search('@',trg):
+                                    tmp = trg.split('@')
+                                    sub = '%s%s@%s'%(tmp[0],str(marker),tmp[1])
+                                else:
+                                    sub_data = trg + str(marker)
+                                print re.sub(r'>.+<',">"+ sub_data + "<",line.rstrip())
+                                marker = marker + 1
+                            else:
+                                print line.rstrip()
+                if (filename != None):
+                    for item in files:
+                        if filename in item:
+                            bodfile = item
+                        # Support for multiple instance of tag on the same file
+                            marker = index
+                            isindex=int(marker)
+                            if marker == 0:
+                                filepath=os.path.join(root,bodfile)
+                                for line in fileinput.input(filepath, inplace=1):
+                                    if re.search(src,line.rstrip()):
+                                        if re.search('@',trg):
+                                            tmp = trg.split('@')
+                                            sub_data = '%s%s@%s'%(tmp[0],str(marker),tmp[1])
+                                        else:
+                                            sub_data = trg + str(marker)
+                                            logger.info('INFO1: Tag not found so is Marker: ' + str(marker))
+                                        logger.info('INFO2: Tag not found so is ignored: ' + sub_data)
+                                        print re.sub(r'>.+<',">"+ sub_data + "<",line.rstrip())
+                                        marker = marker + 1
+                                    else:
+                                        logger.info('Marker: ' + str(marker))
+                                        print line.rstrip()
+                            else:
+                                filepath=os.path.join(root,bodfile)
+                                for line in fileinput.input(filepath, inplace=1):
+                                    if re.search(src,line.rstrip()):
+                                        from xml.dom import minidom
+                                        isindex=int(index)
+                                        xmldoc = minidom.parse(filepath)
+                                        tagList = xmldoc.getElementsByTagName(trg)
+                                        attr_value = tagList[1].attributes[attr].value
+                                        return attr_value
+                                        logger.info('INFO2: Tag not found so is ignored: ' + attr_value)
+                                        print re.sub(r'>.+<',">"+ attr_value+ "<",line.rstrip())
+                                    else:
+                                        logger.info('My Marker: ' + str(marker))
+                                        print line.rstrip()

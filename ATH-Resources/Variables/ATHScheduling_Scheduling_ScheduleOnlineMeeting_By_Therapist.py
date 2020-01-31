@@ -1,0 +1,6 @@
+Time1="2:00 - 3:00"
+PtcpName="Beyonce Halo ( Patient )"
+PtcpName2="Ginger Taylor ( Patient )"
+Description="Automation test"
+TimeDisplay="02:00"
+TimeFormat="02:00 pm to 03:00 pm"

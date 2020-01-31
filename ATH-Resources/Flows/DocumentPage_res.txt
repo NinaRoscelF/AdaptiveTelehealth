@@ -1,0 +1,30 @@
+*** Settings ***
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/CommonPage_res.txt
+
+
+**** Keywords ****
+
+Documents.Verify Upload Document Page Displayed
+	ath verify element is visible	//*[contains(text(),'Upload and Share document')]/ancestor::div/descendant::div[@id="document_tour"]
+
+
+Documents.Choose File
+	[arguments]	${filename}
+	Choose File	xpath=//*[@id="uploadFile"]	${filename}
+
+
+Documents.Click Add Document button
+	ath click button	Add Document
+	Sleep 	5.0
+	ath wait until loaded 	30
+
+
+Documents.Verify Document is Uploaded Successfully
+	[arguments]	${isFile}
+	ath verify element is visible 	//*[@class="alert alert-success"]
+	Element Text Should Be	//*[@class="alert alert-success"] 	Files ${isFile} successfully uploaded.
+
+
+Documents.Verify Document is an Invalid filetype
+	ath verify element is visible 	//*[@class="alert alert-danger"]
+	Element Text Should Be	//*[@class="alert alert-danger"] 	Invalid file extension, extensions allowed are: txt, pdf, bmp, gif, jpg, jpeg, png, tif, tiff, doc, docx, dot, dotx, mp4, webm, wav, mov

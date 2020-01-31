@@ -140,11 +140,15 @@ Scheduling.Calendar.EditMeetingPopup.Input description
 	[arguments]	${description}
 	ath_input_text_value	Description...	${description}
 
+Scheduling.Calendar.EditMeetingPopup.Click Delete Icon
+	ath click icon 	//*[@id="meeting_modal"]/descendant::a[@title="Cancel Meeting"]/i
+	Sleep 	2.0
+
 Scheduling.Calendar.Appointment Popup.Add Participants
 	[arguments]	${ptcpts}
 	Run Keyword and Ignore Error	ath click link	xpath=//span[@class='text-link']
 	ath wait until loaded 	30
-	ath click icon	xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[normalize-space(.)='${ptcpts}']
+	ath click icon	xpath=(//*[contains(@class,'chosen-container')])[1]/descendant::li[contains(text(),'${ptcpts}')]
 
 
 Scheduling.Calendar.Appointment Popup.Click Change Meeting Button
@@ -196,9 +200,21 @@ Scheduling.Calendar.EditOpenPopup.Select Send a Reminder
 
 
 Scheduling.Calendar.EditOpenPopup.Meeting Updated successfully
-	Run Keyword and Ignore Error	Ath Verify Element Is Visible	xpath=//div[contains(@class,'cg-notify-message-center')]/descendant::span[contains(text(),'Meeting has been successfully updated')]
+	Run Keyword and Ignore Error	Ath Verify Element Is Visible	xpath=//div[contains(@class,'cg-notify-message-center')]/descendant::span[contains(text(),'Meeting has been updated successfully')]
 	Sleep 	3.0
 
 
 Scheduling.Calendar.EditOpenPopup.Validation No Participants
 	Fail
+
+Scheduling.Calendar.EditOpenPopup.Input Schedule Start Date
+#isDate format is 01/28/2020
+	[arguments]	${isdate}
+	ath click icon	//input[@id='starting_date']
+	ath input text value	//input[@id='starting_date'] 	${isdate}
+
+Scheduling.Calendar.EditOpenPopup.Input Schedule End Date
+#isDate format is 01/28/2020
+	[arguments]	${isdate}
+	ath click icon	//input[@id='starting_date']
+	ath input text value	//input[@placeholder='End Date']	${isdate}

@@ -466,8 +466,97 @@ Dashboard.ClientProfile.Verify Client Label Display
 	[Arguments]	${label}
 	ath verify element is visible	//h3/descendant::a[contains(normalize-space(),'${label}')]
 
+
+
+
 Dashboard.ClientProfile.Verify Column Headers
 	[Arguments]	${label}
 	@{col}	Split String	${label} 	separator=,
 	:FOR 	IN RANGE 	0	${col}
 		
+
+Dashboard.MeetingWidget.Verify Meeting Is Displayed
+	[Arguments]	${time}	${date}
+	ath verify element is visible	xpath=//*[@class="jcarousel"]/descendant::li/span[contains(normalize-space(),'${time}')][text()="${date}"]
+
+
+Dashboard.MeetingWidget.Verify Online Meeting Button Is Displayed
+	[Arguments]	${date}
+	ath verify element is visible	xpath=//div[@class="mtype"]/button[contains(@data-meetings,'${date}')]
+
+Dashboard.MeetingWidget.Verify InPerson Meeting Detail Is Displayed
+	[Arguments]	${date}
+	ath verify element is visible	xpath=//span[contains(text(),'${date}')]/../div[@class="mtype"]/span[text()="In-Person"]
+
+Dashboard.MeetingWidget.Click Online Meeting button
+	[Arguments]	${date}
+	ath click button	xpath=//div[@class="mtype"]/button[contains(@data-meetings,'${date}')]
+
+Dashboard.MeetingWidget.Click Participant Name
+	[Arguments]	${ptcpntName}
+	ath click button	xpath=//a[@class='show-meetings'][text()="${ptcpntName}"]
+
+Dashboard.MeetingPopupDetails.Verify Label Existence
+	[Arguments]	${labelList}
+	@{col}	Split String	${labelList}	separator=,
+	:FOR 	${item}	IN 	@{col}
+	\	ath_check_label	${item}
+
+Dashboard.MeetingPopupDetails.Click Start Video Meeting
+	ath click link	 Start Video Meeting
+	Sleep 	15.0
+	Select window	New
+	${windows}	Get Window Titles
+	Capture Page Screenshot
+
+Dashboard.MeetingPopupDetails.Click Edit button
+	ath click button	//*[@id="meetings_modal"]/descendant::a[text()="Edit"]\
+	Sleep 	3.0
+	ath wait until loaded 	30
+
+
+Dashboard.TherapistRole.Verify Notifications Table Header Is Visible
+	ath verify element is visible	//h1[@id='dashboard_tour_notification'][contains(text(),'Notifications')]
+
+Dashboard.ClientRole.Verify Alerts Table Header Is Visible
+	ath verify element is visible	//*[@id='notification-section']/descendant::h3[contains(text(),'Alerts')]
+
+Dashboard.NotificationsTable.Verify Column Is Visible
+	[Arguments]	${columnList}
+	@{col}	Split String	${columnList}	separator=,
+	:FOR 	${item}	IN 	@{col}
+	\	ath verify element is visible	//*[@id="notification-table_wrapper"]/descendant::th[text()="${item}"]
+
+
+Dashboard.Verify Notifications Mark All as Read Link Is Visible
+	ath check links displayed	//th/descendant::a[text()="Mark all as read"]
+
+
+
+Dashboard.NotificationsTable.Verify Status Column is Visible
+	ath verify element is visible	//table[@id='notification-table']//th[@class='sorting'][contains(text(),'Status')]
+
+
+Dashboard.Verify Client Meetings Widget Is Displayed
+	ath verify element is visible 	//div[@id='pftab_future_meetings']
+	ath check label 	My Meetings
+
+
+Dashboard.ClientMeetingsWidget.Verify Video Meetings Details
+	[Arguments]	${date}	${meetingTime}
+	ath verify element is visible 	//td[text()="Video"]
+	${status}	Run Keyword and Return Status 	ath verify element is visible 	//td[text()="Appointment"]
+	Run Keyword Unless	${status}	ath verify element is visible 	//td[text()="Open"]
+	ath verify element is visible 	xpath=(//td[text()="Video"]/following-sibling::*[contains(text(),'${date}')])
+	ath verify element is visible 	//span[contains(text(),'${meetingTime}')]
+	ath verify element is visible 	//*[@class="fa fa-play"]
+
+
+Dashboard.ClientMeetingsWidget.Verify InPerson Meetings Details
+	[Arguments]	${date}	${meetingTime}
+	ath verify element is visible 	//td[text()="In-Person"]
+	ath verify element is visible 	//td[text()="Open"]
+	ath verify element is visible 	xpath=(//td[text()="In-Person"]/following-sibling::*[contains(text(),'${date}')])
+	ath verify element is visible 	//span[contains(text(),'${meetingTime}')]
+
+
