@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/Dashboard_NewUserCreationPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/DashboardPage_res.txt
 Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
 Suite Teardown	Close All Browsers
 
@@ -31,6 +31,8 @@ Dashboard_CreateTherapist_By_SystemAdmin
 	Dashboard.NewUser.Click Add New Therapist Button
 	Dashboard.NewUser.Verify Therapist saved successfully
 	Dashboard.ProvidersWidget.Select Records per Page Value	100
+	Sleep	30.0	Wait until widget is loaded
+	ath wait until loaded	60
 	Capture Page Screenshot
 	Dashboard.ProvidersWidget.Select Newly Created Provider	${Firstname}
 	Dashboard.NewUser.Verify Is Assigned to Supervisor	${Supervisor}
