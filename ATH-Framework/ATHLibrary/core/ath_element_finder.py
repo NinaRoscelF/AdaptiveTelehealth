@@ -168,8 +168,9 @@ class ATHElementFinder(ATHBrowserMgr, _ElementKeywords,
         locator_5 = 'xpath=(//*[(@title="%s")])[%s]'%(labelname,str(index))
         locator_6 = 'xpath=(//div[@id="confirm_modal"]/descendant::button[contains(text(),"%s")])[%s]'%(labelname,str(index))
         locator_7 = 'xpath=(//td/button[normalize-space()="%s"])[%s]'%(labelname,str(index))
+        locator_8 = 'xpath=(//*[@type="button"][contains(text(),"%s")])[%s]'%(labelname,str(index))
         locator_list = []
-        locator_list.extend((locator_0,locator_1,locator_2,locator_3,locator_4,locator_5,locator_6,locator_7))
+        locator_list.extend((locator_0,locator_1,locator_2,locator_3,locator_4,locator_5,locator_6,locator_7,locator_8))
 
         locator_str = '|'.join(locator_list)
         element = self._ath_wait_until_element_present(locator_str,timeout)
@@ -192,11 +193,12 @@ class ATHElementFinder(ATHBrowserMgr, _ElementKeywords,
         locator_0 = 'xpath=(//h3[text()="%s"])[%s]'%(labelname,str(index))
         locator_1 = 'xpath=(//*[contains(text(), "%s")])[%s]'%(labelname,str(index)) # verified
         locator_2 = 'xpath=(//p[contains(normalize-space(),"%s")])[%s]'%(labelname,str(index))
-        locator_3 = 'xpath=(//label[contains(@class, "label")][text()="%s"])[%s]'%(labelname,str(index)) # verified
-        locator_4 = 'xpath=(//*[contains(@placeholder, "%s")][@type="text"])[%s]'%(labelname,str(index))
-        locator_5 = 'xpath=(//table[contains(@class, "table-hover")]/descendant::*[contains(text(), "%s")])[%s]'%(labelname,str(index))
+        locator_3 = 'xpath=(//span[@class="page-title"][normalize-space()="%s"])[%s]'%(labelname,str(index))
+        # locator_3 = 'xpath=(//label[contains(@class, "label")][text()="%s"])[%s]'%(labelname,str(index)) # verified
+        # locator_4 = 'xpath=(//h4[text()="%s"])[%s]'%(labelname,str(index))
+        # locator_5 = 'xpath=(//h5[text()="%s"])[%s]'%(labelname,str(index))
         locator_list = []
-        locator_list.extend((locator_0,locator_1,locator_2,locator_3,locator_4,locator_5))
+        locator_list.extend((locator_0,locator_1,locator_2,locator_3))
 
         locator_str = '|'.join(locator_list)
         element = self._ath_wait_until_element_present(locator_str,timeout)
@@ -343,9 +345,9 @@ class ATHElementFinder(ATHBrowserMgr, _ElementKeywords,
         #     logger.info("%s visible passed"%(elem))
         #     return elem
 
-        locator_0 ='xpath=(//*[normalize-space()="%s"])[%s]'%(labelname,str(index)) # Verified
-        locator_1 ='xpath=(//*[contains(@title,"%s")])[%s]'%(labelname,str(index))
-        locator_2 ="xpath=(//*[contains(text(),'%s')])[%s]"%(labelname,str(index))
+        locator_0 ='xpath=(//a[normalize-space()="%s"])[%s]'%(labelname,str(index)) # Verified
+        locator_1 ='xpath=(//a[contains(@title,"%s")])[%s]'%(labelname,str(index))
+        locator_2 ="xpath=(//a[contains(text(),'%s')])[%s]"%(labelname,str(index))
 
         locator_list = []
         # locator_list.extend((locator_0,locator_1,locator_2,locator_3,locator_4,locator_5,locator_6))
