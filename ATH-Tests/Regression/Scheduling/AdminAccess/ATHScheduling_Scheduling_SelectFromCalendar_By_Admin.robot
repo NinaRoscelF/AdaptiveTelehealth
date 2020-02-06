@@ -70,7 +70,7 @@ SchedulingAdmin_003
 SchedulingAdmin_004
 #edit online meeting
 	##prereq
-	Scheduling.TherapistRole.Select Appointment DateTime	3:00 - 4:00
+	Scheduling.TherapistRole.Select Appointment DateTime	12:00 - 1:00
 	Scheduling.Calendar.EditOpenPopup.Select Appointment Type	ONLINE
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}

@@ -13,7 +13,7 @@ ${FileType}	pdf
 
 
 ***Test Cases***
-ATHDocuments_UploadDocument_By_Therapist
+ATHDocuments_UploadDocument_UploadSingleDocument_By_Therapist
 
 	@{FileList}	List Files In Directory	${Filelocation}	*.${FileType}
 	${lastModifiedFile}	Get From List	${FileList}	0
@@ -22,35 +22,42 @@ ATHDocuments_UploadDocument_By_Therapist
 	${occnumber}	Evaluate	${number} + 1
 	${newfile}	Set Variable	dummy${occnumber}
 	Remove Files	${Filelocation}/*.${FileType}
-	${isfile}	Create File	${Filelocation}/${newfile}.${FileType}	3\nlines\nhere\nDummy PDF File
-#	AH.Document.Create PDF File 	${Filelocation} 	${newfile}
+	${PDFCreated}	Create PDF File	${Filelocation} 	${newfile}
 	${uploadfile}	Catenate	${Filelocation}${newfile}.${FileType}
 	${filename}	Catenate	${newfile}.${FileType}
-	Set Suite Variable	${uploadfile}
-	Set Suite Variable	${filename}
 
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
 	Select Documents Menu
-	ath click link 	Upload Document
+	Documents.Select Upload Document Menu
 	Documents.Verify Upload Document Page Displayed
 	Documents.Choose File	${uploadfile}
 	Documents.Click Add Document button
 	Documents.Verify Document is Uploaded Successfully	${filename}
 	Capture Page Screenshot
+	Documents.Verify Document is Available in dropdown	${filename}
 
-ATHDocuments_UploadMultipleDocument_By_Therapist
-	Documents.Choose File	${uploadfile}
+ATHDocuments_UploadDocument_UploadMultipleDocument_By_Therapist
+	Documents.CleanUp	${TxtFile}
+	Documents.CleanUp	${JpegFile}
+	Select Documents Menu
+	Documents.Select Upload Document Menu
 	Documents.Choose File	${Filelocation}${TxtFile}
 	Documents.Choose File	${Filelocation}${JpegFile}
 	Capture Page Screenshot
 	Documents.Click Add Document button
-	Documents.Verify Document is Uploaded Successfully	${filename}, ${TxtFile}, ${JpegFile}
+	Documents.Verify Document is Uploaded Successfully	${TxtFile}, ${JpegFile}
+	Documents.Verify Document is Available in dropdown 	${TxtFile}
+	Documents.Verify Document is Available in dropdown 	${JpegFile}
 
-ATHDocuments_UploadInvalidDocument_By_Therapist
+ATHDocuments_UploadDocument_UploadInvalidDocument_By_Therapist
 	Documents.Choose File	${Filelocation}${HtmlFile}
 	Documents.Click Add Document button
 	Documents.Verify Document is an Invalid filetype
 	Capture Page Screenshot
+
+ATHDocuments_UploadDocument_VerifyAllowedFiles_By_Therapist
+	Documents.Click File extensions allowed link
+	Documents.Verify Allowed file details
 	Logout from Application
 

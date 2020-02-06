@@ -54,7 +54,7 @@ SchedulingTherapist_059
 #edit meeting
 	##prereq
 	Reload Page
-	Scheduling.TherapistRole.Select Appointment DateTime	${Time3}	3
+	Scheduling.TherapistRole.Select Appointment DateTime	${Time3}	2
 	Capture Page Screenshot
 	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	OFFLINE
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
