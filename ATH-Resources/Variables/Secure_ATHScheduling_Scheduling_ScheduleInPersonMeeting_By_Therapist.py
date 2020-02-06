@@ -1,6 +1,6 @@
-Time1="2:00 - 3:00"
+Time1="4:00 - 5:00"
 PtcpName="Beyonce  Halo"
 Description="Automation test"
 TimeDisplay="12:00"
-TimeFormat="02:00 pm to 03:00 pm"
+TimeFormat="04:00 pm to 05:00 pm"
 Therapist="Mary Ellis"

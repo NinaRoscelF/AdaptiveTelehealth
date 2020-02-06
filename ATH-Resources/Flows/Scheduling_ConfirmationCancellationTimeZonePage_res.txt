@@ -157,7 +157,7 @@ Scheduling.Calendar.Appointment Popup.Click Change Meeting Button
 	Ath Wait Until Element Is Present	//*[@class="ui-dialog-title"][normalize-space()="Processing..."]
 
 Scheduling.Calendar.Appointment Popup.Click Delete Meeting
-	ath click icon	xpath=//a[@title="Cancel Meeting"]/i
+	ath click icon	xpath=//a[@title="Cancel Meeting"]
 	Sleep 	5.0
 	ath wait until loaded 	30
 

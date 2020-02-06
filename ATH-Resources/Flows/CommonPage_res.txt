@@ -224,3 +224,13 @@ Verify Help Page Displayed
 	:FOR 	${item}	IN 	@{helplink}
 	\	ath check links displayed	${item}
 	ath_check_button_existence 	Contact Us
+
+Create PDF File
+	[arguments]	${location}	${filename}
+	${isfile}	Create File	${location}/${filename}.pdf	3\nlines\nhere\nDummy PDF File
+	[return]	${isfile}
+
+Create Sample File
+	[arguments]	${location}	${filename} 	${filetype}
+	${isfile}	Create File	${location}/${filename}.${filetype}	3\nlines\nhere\nDummy .${filetype} File
+	[return]	${isfile}

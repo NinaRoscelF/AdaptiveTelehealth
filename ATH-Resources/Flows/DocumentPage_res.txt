@@ -4,13 +4,25 @@ Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/CommonPage_res.txt
 
 **** Keywords ****
 
+Documents.Select Upload Document Menu
+	ath click link 	Upload Document
+	ath wait until loaded 	30
+
+Documents.Select My Documents Menu
+	ath click link 	My Documents
+	ath wait until loaded 	30
+
 Documents.Verify Upload Document Page Displayed
 	ath verify element is visible	//*[contains(text(),'Upload and Share document')]/ancestor::div/descendant::div[@id="document_tour"]
+
+Documents.ClientRole.Verify Upload Document Page Displayed
+	ath verify element is visible	//a[contains(normalize-space(),'Upload A New Document')]/ancestor::div/following-sibling::div/descendant::form[@name="frm-document-uploads"]
 
 
 Documents.Choose File
 	[arguments]	${filename}
 	Choose File	xpath=//*[@id="uploadFile"]	${filename}
+	ath verify element is visible 	xpath=//span[@id='file_desc']/descendant::u[contains(normalize-space(),'Files selected')]
 
 
 Documents.Click Add Document button
@@ -19,12 +31,186 @@ Documents.Click Add Document button
 	ath wait until loaded 	30
 
 
+Documents.Select Share Document With
+	[arguments]	${shareWithWho}	${IsShare}
+	ath select radio button	${shareWithWho}
+	Execute Javascript	var element = document.evaluate("//*[@name='client_id[]']/option[contains(normalize-space(),'${IsShare}')]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	ath click icon	xpath=//*[@name="client_id[]"]/option[contains(normalize-space(),'${IsShare}')]
+
+
 Documents.Verify Document is Uploaded Successfully
 	[arguments]	${isFile}
 	ath verify element is visible 	//*[@class="alert alert-success"]
-	Element Text Should Be	//*[@class="alert alert-success"] 	Files ${isFile} successfully uploaded.
+	${status}	Run Keyword and Return Status 	Element Text Should Be	//*[@class="alert alert-success"] 	Files ${isFile} successfully uploaded.
+	Run Keyword Unless 	${status}	Element Text Should Be	//*[@class="alert alert-success"]	File ${isFile} successfully uploaded.
+
+Documents.Click Share Document
+	ath click button 	Share Document
+	ath wait until loaded 	30
+
+
+Documents.Verify Document Shared successfully
+	ath verify element is visible 	//*[@class="alert alert-success"][contains(text(),'File successfully shared: Notification sent.')]
 
 
 Documents.Verify Document is an Invalid filetype
 	ath verify element is visible 	//*[@class="alert alert-danger"]
 	Element Text Should Be	//*[@class="alert alert-danger"] 	Invalid file extension, extensions allowed are: txt, pdf, bmp, gif, jpg, jpeg, png, tif, tiff, doc, docx, dot, dotx, mp4, webm, wav, mov
+
+
+Documents.Verify Document is Available in dropdown
+	[arguments]	${isFile}
+	ath verify element is visible	//select[@name='document_id']/option[contains(text(),'${isFile}')]
+
+Documents.Click File extensions allowed link
+	ath click link 	File extensions allowed
+	ath wait until loaded 	30
+
+Documents.Verify Allowed file details
+	ath verify element is visible	//div[@id='fileExtensionsAllowed'][contains(text(),'txt, pdf, doc, docx, dot, dotx')][contains(normalize-space(),'png, bmp, gif, jpg, jpeg, tif, tiff')]
+	Capture Page Screenshot
+
+
+Documents.Select Store in File User
+	[arguments]	${userName}
+	ath click icon	//span[contains(text(),'Select user')]
+	ath click icon	xpath=//*[@class="chosen-results"]/li[contains(text(),'${userName}')]
+
+Documents.Verify Stored on Column
+	[arguments]	${isFile}
+	${isUser}	Get Element Attribute 	//a[text()="${isFile}"]/ancestor::tr/td[4]@textContent
+	[return]	${isUser}
+
+Documents.Click Delete button for Selected Document
+	[arguments]	${isFile}
+	ath click button 	xpath=(//a[text()="${isFile}"]/ancestor::tr/descendant::button[text()="Delete"])
+
+Documents.Confirm Deletion of Document
+	[arguments]	${isFile}	${Isconfirm}=Yes
+	${status}	Run Keyword and Return Status	ath click button	xpath=(//a[text()="${isFile}"]/ancestor::tr/descendant::*[@class="modal-footer"]/descendant::*[text()=" ${Isconfirm}"])[1]
+	Run Keyword Unless	${status}	ath click button	//a[text()="${isFile}"]/ancestor::tr/descendant::*[@class="modal-footer"]/*[text()="Yes"]
+
+Documents.MyDocument.Verify File Uploaded Exists
+	[arguments]	${isFile}
+	ath_check_links_displayed	${isFile}
+
+Documents.MyDocument.Verify Document is Shared with Client
+	[arguments]	${isSharedWith}
+	ath_check_links_displayed	${isSharedWith}
+
+Documents.MyDocument.Verify Unshare Button Exists
+	ath check button existence	Unshare
+	Capture Page Screenshot
+
+Documents.MyDocument.Verify Unshare First Button Exists for File
+	[arguments]	${isFile}
+	ath verify element is visible	//*[text()="${isFile}"]/ancestor::tr/descendant::button[contains(text(),'Unshare first')][@disabled]
+
+Documents.MyDocument.Unshare Document
+	[arguments]	${isFile}
+	${shareCount}	Get Matching Xpath Count	//*[text()="${isFile}"]/ancestor::tr/descendant::button[normalize-space()="Unshare"]
+	:FOR 	${idx}	IN RANGE 	1	${shareCount} + 1
+	\	ath click button	//*[text()="${isFile}"]/ancestor::tr/descendant::button[normalize-space()="Unshare"]
+	\	Sleep 	2.0
+	\	ath wait until loaded 	30
+	\	Capture Page Screenshot
+
+Documents.MyDocuments.Verify Document is Unshared
+	[arguments]	${isFile}
+	${status}	run Keyword and return status	ath verify element is visible	//*[text()="${isFile}"]/ancestor::tr/descendant::button[contains(text(),'Unshare first')]
+	Should not be true	${status}
+
+Documents.MyDocument.Verify Unshare first to delete Button Exists
+	ath check button existence	Unshare first to delete
+
+Documents.MyDocuments.Input Search Criteria
+	[Arguments]	${SearchCriteria}
+	ath input text value	Search	${SearchCriteria}
+
+Documents.MyDocuments.Click Enter to Search
+	ath launch via shortcut keys	ENTER	//label[contains(text(),'Search')]//input
+
+Document.MyDocuments.Verify No Results found
+	ath verify element is visible	//td[@class='dataTables_empty']
+
+Document.MyDocuments.Click Document Filename
+	[Arguments]	${docFile}
+	ath click link	${docFile}
+	ath wait until loaded 	30
+
+Document.MyDocuments.Verify Textfile opens in New Window
+	Run Keyword if	"${TestEnv}" == "Secure"	Location should Contain	https://groups1.secure.adaptivetelehealth.com/index.php/fileprocessor/getdocument 	ELSE 	Location should Contain	https://automation.adaptivetelehealth.com/index.php/fileprocessor/getdocument
+	Capture Page Screenshot
+
+Document.MyDocuments.Select Records per Page
+	[Arguments]	${RecordNo}
+	ath select drop down field value	//label[text()="Records per page "]/select	${RecordNo}
+	Sleep 	3.0
+	ath wait until loaded 	60
+
+Documents.MyDocuments.Sort Documents Column
+	${doclist}	Create List
+	${doclist1}	Create List
+
+	${status}	Run Keyword and Return Status	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Document"]
+	Run Keyword Unless 	${status}	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Documents"]
+	${count}	Get Matching Xpath Count	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[1])
+#	${rowcount}	Evaluate	${count}/2
+	:FOR	${index}	IN RANGE	1	${count} + 1
+	\	ath_wait_until_element_staleness	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[1])[${index}]
+	\	${text}	Get Element Attribute	xpath=((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[1])[${index}]@textContent
+	\	Log	${text}
+	\	Append To List	${doclist}	${text}
+	Sort List	${doclist}
+	Log	${doclist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Document"]
+	${count}	Get Matching Xpath Count	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[1])
+#	${rowcount}	Evaluate	${count}/2
+	:FOR	${index}	IN RANGE	1	${count} + 1
+	\	ath_wait_until_element_staleness	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[1])[${index}]
+	\	${text}	Get Element Attribute	xpath=((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[1])[${index}]@textContent
+	\	Log	${text}
+	\	Append To List	${doclist1}	${text}
+	Sort List	${doclist1}
+	Log	${doclist1}
+
+	List Should Contain Sub List	${doclist}	${doclist1}
+
+
+Documents.MyDocuments.Sort Date Uploaded Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Document"]
+	${count}	Get Matching Xpath Count	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])
+#	${rowcount}	Evaluate	${count}/2
+	:FOR	${index}	IN RANGE	1	${count} + 1
+	\	ath_wait_until_element_staleness	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])[${index}]
+	\	${text}	Get Element Attribute	xpath=((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])[${index}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Document"]
+	${count}	Get Matching Xpath Count	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])
+#	${rowcount}	Evaluate	${count}/2
+	:FOR	${index}	IN RANGE	1	${count} + 1
+	\	ath_wait_until_element_staleness	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])[${index}]
+	\	${text}	Get Element Attribute	xpath=((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])[${index}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist1}	${text}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist}	${datelist1}
+
+Documents.CleanUp
+	[arguments] 	${fName}
+	#fName=e.g textFile.txt
+	Select Documents Menu
+	Documents.Select My Documents Menu
+	${status}	Run Keyword and Return Status	Documents.MyDocument.Verify File Uploaded Exists	${fName}
+	Run Keyword If 	${status}	Documents.Click Delete button for Selected Document 	${fName}
+	Run Keyword If 	${status}	Documents.Confirm Deletion of Document	${fName}

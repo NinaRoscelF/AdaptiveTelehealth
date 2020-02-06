@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nga:ConfirmPayServEmp languageCode="en-US" releaseID="1.31" systemEnvironmentCode="Production" xsi:schemaLocation="http://www.ngahr.com/ngapexxml/1 ConfirmPayServEmpV1.xsd" xmlns:hr="http://www.hr-xml.org/3" xmlns:nga="http://www.ngahr.com/ngapexxml/1" xmlns:oa="http://www.openapplications.org/oagis/9" xmlns:xsd="http://www.w3.org/2001/XMLSchema/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <oa:ApplicationArea>
+    <oa:Sender>
+      <oa:LogicalID>ZZA-VN002-9999</oa:LogicalID>
+    </oa:Sender>
+    <oa:CreationDateTime>2017-01-15T07:04:35+10:30</oa:CreationDateTime>
+    <oa:BODID>B91D6004-12A5-19E9-8334-0004AC189900</oa:BODID>
+  </oa:ApplicationArea>
+  <nga:DataArea>
+    <oa:Confirm>
+      <oa:OriginalApplicationArea>
+        <oa:Sender>
+          <oa:LogicalID>ZZA-VN002-1002</oa:LogicalID>
+        </oa:Sender>
+        <oa:CreationDateTime>2018-11-19T07:24:00+00:00</oa:CreationDateTime>
+        <oa:BODID>53998B0D-62AA-4C07-A3E0-771F4809C561</oa:BODID>
+      </oa:OriginalApplicationArea>
+      <oa:ResponseCriteria>
+        <oa:ResponseExpression actionCode="Accepted" expressionLanguage="XPATH">/nga:ConfirmPayServEmp/nga:DataArea/oa:BOD/oa:BODSuccessMessage</oa:ResponseExpression>
+      </oa:ResponseCriteria>
+    </oa:Confirm>
+    <nga:BOD>
+      <nga:BODSuccessMessage></nga:BODSuccessMessage>
+    </nga:BOD>
+    <nga:AlternateIdentifiers>
+      <nga:PayServID>118</nga:PayServID>
+    </nga:AlternateIdentifiers>
+  </nga:DataArea>
+</nga:ConfirmPayServEmp>

@@ -417,7 +417,7 @@ Dashboard.ClientWidget.Sort First Name Column
 	Sort List	${datelist}
 	Log	${datelist}
 
-	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Name"]
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="First Name"]
 	${count}	Get Matching Xpath Count	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
 	:FOR	${index}	IN RANGE	0	${count}
 	\	${idx} 	Evaluate	${index} + 1
