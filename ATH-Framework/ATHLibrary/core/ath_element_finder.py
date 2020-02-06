@@ -368,9 +368,10 @@ class ATHElementFinder(ATHBrowserMgr, _ElementKeywords,
         locator_1 ="xpath=(//*[text()='%s']/following-sibling::*[1][@type='radio'])[%s]"%(value,str(index))
         locator_2 ="xpath=(//label[contains(normalize-space(),'%s')]/div)[%s]"%(value,str(index))
         locator_3 ="xpath=(//label[contains(normalize-space(),'%s')]/input)[%s]"%(value,str(index))
+        locator_4 = "xpath=(//*[contains(text(),'%s')]/../descendant::div)[%s]"%(value,str(index))
 
         locator_list = []
-        locator_list.extend((locator_0,locator_1,locator_2,locator_3))
+        locator_list.extend((locator_0,locator_1,locator_2,locator_3,locator_4))
 
         locator_str = '|'.join(locator_list)
         element = self._ath_wait_until_element_present(locator_str,timeout)

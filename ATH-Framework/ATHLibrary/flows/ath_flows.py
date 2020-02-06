@@ -8,6 +8,7 @@ from ATHLibrary.core.ath_exceptions import ValidationFailedError
 from ATHLibrary.core.input_value_overrides import Overrides
 from ATHLibrary.pageobjects.ath_inputs import ATHInputs
 from ATHLibrary.core.ath_browsermgr import ATHBrowserMgr
+from ATHLibrary.core.commonfunctions import CommonFunctions
 
 class ATHFlows(ATHElementFinder, _FormElementKeywords):
 
@@ -169,3 +170,4 @@ class ATHFlows(ATHElementFinder, _FormElementKeywords):
        # hex = "#{:02x}{:02x}{:02x}".format(r,g,b)
         import re
         return   '%02x%02x%02x' % (map(int, re.findall('\d+', str))[0], map(int, re.findall('\d+', str))[1], map(int, re.findall('\d+', str))[2])
+
