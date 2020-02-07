@@ -11,7 +11,7 @@ Suite Teardown	Close All Browsers
 ***Test Cases***
 SchedulingTherapist_033
 # #Approve Patient's appointment
-	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${Client2}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient1}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 	Run Keyword and Ignore Error	ath click button	xpath=//button[@id='different-timezone-no']
@@ -46,7 +46,7 @@ SchedulingTherapist_034
 
 SchedulingTherapist_035
 #confirm patient's appointment -pre req for confimr button to appear
-	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient2}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient3}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient2}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${Client2}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 	${DTToday}	Generate Date and Time Today
@@ -67,6 +67,8 @@ SchedulingTherapist_035
 	Messaging.Inbox.Read Nessage	New meeting
 	${IsClient}	Messaging.Inbox.Get From Column of Selected Meeting
 	Messaging.Inbox.Click Confirm Button
+	Sleep 	5.0
+	ath wait until loaded	30
 	Messaging.Inbox.Close Message Response Button
 	Select Scheduling Menu
 	Scheduling. Verify Online Appointment is in Calendar	${TimeConfirm2}
@@ -75,8 +77,8 @@ SchedulingTherapist_035
 
 SchedulingTherapist_041
 #Add Participant of Meeting (from Schedule Date) - without zoom id
-	Scheduling.Calendar.Select Meeting from Calendar	${TimeConfirm2}	${MyPatient3}
-	Scheduling.Calendar.Appointment Popup.Verify Participant Name	${MyPatient3}
+	Scheduling.Calendar.Select Meeting from Calendar	${TimeConfirm2}	${MyPatient2}
+	Scheduling.Calendar.Appointment Popup.Verify Participant Name	${MyPatient2}
 	Scheduling.Calendar.Appointment Popup.Verify Time Schedule 	${TimeFrom}	${TimeTo}
 	Scheduling.Calendar.Appointment Popup.Select Status Dropdown	Confirmed
 	Scheduling.Calendar.Appointment Popup.Click Edit Meeting
@@ -84,6 +86,8 @@ SchedulingTherapist_041
 	${status}	Run Keyword and Return Status	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpWithoutZoom}
 	Run Keyword Unless 	${status}	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}
 	Scheduling.Calendar.Appointment Popup.Click Change Meeting Button
+	${status}	Run Keyword and Return Status 	ath verify element is visible	//*[contains(@class,'dialog-titlebar')]/following-sibling::div[contains(normalize-space(),'Are you sure that you would like')]
+	Run Keyword If	${status}	Scheduling.SchedulingAppointmentPopup.Select Continue
 	ath_verify_element_is_visible	xpath=//*[contains(@class,'cg-notify-message-danger')]
 
 SchedulingTherapist_042
@@ -94,15 +98,16 @@ SchedulingTherapist_042
 	Scheduling.Calendar.Appointment.DeletePopup.Click Continue
 	Scheduling.Calendar.Verify Meeting is Reopened in Calendar 	${TimeConfirm2}
 	Reload Page
+	Logout from Application
 #	OPen email
 
 
-SchedulingTherapist_046
-#Php Error on System Preferences
-#	Scheduling.Calendar.Close Edit Appointment Popup
-	Select System Preferences icon
-	Verify System Preferences page displayed
-	Logout from Application
+# SchedulingTherapist_046
+# #Php Error on System Preferences
+# #	Scheduling.Calendar.Close Edit Appointment Popup
+# 	Select System Preferences icon
+# 	Verify System Preferences page displayed
+# 	Logout from Application
 
 # SchedulingTherapist_047
 # #Past schedule slots are still open - expected error
