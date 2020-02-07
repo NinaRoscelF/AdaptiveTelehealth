@@ -1,4 +1,4 @@
-Time1="6:00 - 7:00"
+Time1="5:00 - 6:00"
 PtcpName="Beyonce  Halo"
 Description="Automation test"
 TimeDisplay="12:00"

@@ -251,7 +251,7 @@ Messaging.Inbox.Get From Column of Selected Meeting
 	[return]	${isFrom}
 
 Messaging.Inbox.Close Message Response Button
-	Ath click button	//div[@id='meeting_approval_modal']//span[contains(text(),'×')]
+	Ath click icon	//div[@id='meeting_approval_modal']//span[contains(text(),'×')]
 	Sleep 	2.0
 	ath wait until loaded	30
 
