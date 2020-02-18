@@ -12,11 +12,24 @@ Documents.Select My Documents Menu
 	ath click link 	My Documents
 	ath wait until loaded 	30
 
+Documents.Select Shared with Me Menu
+	ath click link 	Shared with me
+	ath wait until loaded 	30
+
+Documents.Select Uploaded by Clients Menu
+	ath click link 	 Uploaded by Clients
+	ath wait until loaded 	30
+
 Documents.Verify Upload Document Page Displayed
 	ath verify element is visible	//*[contains(text(),'Upload and Share document')]/ancestor::div/descendant::div[@id="document_tour"]
 
 Documents.ClientRole.Verify Upload Document Page Displayed
 	ath verify element is visible	//a[contains(normalize-space(),'Upload A New Document')]/ancestor::div/following-sibling::div/descendant::form[@name="frm-document-uploads"]
+
+Documents.Verify Header Column Display
+	[Arguments]	${column}
+	ath verify element Is Visible	//th[text()="${column}"]
+	Capture Page Screenshot
 
 
 Documents.Choose File
@@ -43,6 +56,12 @@ Documents.Verify Document is Uploaded Successfully
 	ath verify element is visible 	//*[@class="alert alert-success"]
 	${status}	Run Keyword and Return Status 	Element Text Should Be	//*[@class="alert alert-success"] 	Files ${isFile} successfully uploaded.
 	Run Keyword Unless 	${status}	Element Text Should Be	//*[@class="alert alert-success"]	File ${isFile} successfully uploaded.
+
+
+Documents.Verify No Document Is Uploaded
+	ath verify element is visible 	//*[@class="alert alert-danger"]
+	${status}	Run Keyword and Return Status 	Element Text Should Be	//*[@class="alert alert-danger"]	Select a file to upload.
+
 
 Documents.Click Share Document
 	ath click button 	Share Document
@@ -92,11 +111,18 @@ Documents.Confirm Deletion of Document
 
 Documents.MyDocument.Verify File Uploaded Exists
 	[arguments]	${isFile}
-	ath_check_links_displayed	${isFile}
+	ath verify element is visible	xpath=(//a[text()="${isFile}"])[1]
 
 Documents.MyDocument.Verify Document is Shared with Client
 	[arguments]	${isSharedWith}
 	ath_check_links_displayed	${isSharedWith}
+
+Documents.MyDocument.Verify Document Size
+	[Arguments]	${fileName}	${fileSize}
+	${size}	Get Element Attribute	xpath=(//*[text()="${fileName}"]/ancestor::tr/descendant::td[3])[1]@textContent
+	${strpSize}	Strip String	${size}	characters=${SPACE}
+	${sizestrip}	Strip String	${strpSize}	characters=\t
+	Run Keyword and Continue on Failure	Should Match	${sizestrip}	${fileSize}
 
 Documents.MyDocument.Verify Unshare Button Exists
 	ath check button existence	Unshare
@@ -182,25 +208,29 @@ Documents.MyDocuments.Sort Date Uploaded Column
 	${datelist}	Create List
 	${datelist1}	Create List
 
-	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Document"]
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Date Uploaded"]
 	${count}	Get Matching Xpath Count	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])
 #	${rowcount}	Evaluate	${count}/2
 	:FOR	${index}	IN RANGE	1	${count} + 1
 	\	ath_wait_until_element_staleness	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])[${index}]
 	\	${text}	Get Element Attribute	xpath=((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])[${index}]@textContent
-	\	Log	${text}
-	\	Append To List	${datelist}	${text}
+	\	${strLog}	Strip String 	${text} 	characters=\t
+	\	${strLog1}	Strip String 	${strLog}	characters=\n
+	\	Log	${strLog1}
+	\	Append To List	${datelist}	${strLog1}
 	Sort List	${datelist}
 	Log	${datelist}
 
-	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Document"]
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Date Uploaded"]
 	${count}	Get Matching Xpath Count	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])
 #	${rowcount}	Evaluate	${count}/2
 	:FOR	${index}	IN RANGE	1	${count} + 1
 	\	ath_wait_until_element_staleness	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])[${index}]
 	\	${text}	Get Element Attribute	xpath=((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[5])[${index}]@textContent
-	\	Log	${text}
-	\	Append To List	${datelist1}	${text}
+	\	${strLog}	Strip String 	${text} 	characters=\t
+	\	${strLog1}	Strip String 	${strLog}	characters=\n
+	\	Log	${strLog1}
+	\	Append To List	${datelist1}	${strLog1}
 	Sort List	${datelist1}
 	Log	${datelist1}
 
@@ -214,3 +244,154 @@ Documents.CleanUp
 	${status}	Run Keyword and Return Status	Documents.MyDocument.Verify File Uploaded Exists	${fName}
 	Run Keyword If 	${status}	Documents.Click Delete button for Selected Document 	${fName}
 	Run Keyword If 	${status}	Documents.Confirm Deletion of Document	${fName}
+
+
+Documents.SharedWithMe.Select Records per Page Value
+	[Arguments]	${RecordNo}
+	ath select drop down field value	//div[@id='shared_with_me_tbl_wrapper']/descendant::label[text()="Records per page "]/select	${RecordNo}
+	Sleep 	3.0
+	ath wait until loaded 	60
+
+
+Documents.SharedWithMe.Sort Shared By Column
+	${sharedlist}	Create List
+	${sharedlist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Shared by"]
+	${count}	Get Matching Xpath Count	(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
+	\	${strLog}	Strip String 	${text} 	characters=\t
+	\	${strLog1}	Strip String 	${strLog}	characters=\n
+	\	Log	${strLog1}
+	\	Append To List	${sharedlist}	${strLog1}
+	Sort List	${sharedlist}
+	Log	${sharedlist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Shared by"]
+	${count}	Get Matching Xpath Count	(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
+	\	${strLog}	Strip String 	${text} 	characters=\t
+	\	${strLog1}	Strip String 	${strLog}	characters=\n
+	\	Log	${strLog1}
+	\	Append To List	${sharedlist1}	${strLog1}
+	Sort List	${sharedlist1}
+	Log	${sharedlist1}
+
+	List Should Contain Sub List	${sharedlist1}	${sharedlist}
+
+
+Documents.SharedWithMe.Sort Document Column
+	${doclist}	Create List
+	${doclist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Document"]
+	${count}	Get Matching Xpath Count	(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]@textContent
+	\	${strLog}	Strip String 	${text} 	characters=\t
+	\	${strLog1}	Strip String 	${strLog}	characters=\n
+	\	${strLog2}	Strip String 	${text} 	characters=${SPACE}
+	\	Log	${strLog1}
+	\	Append To List	${doclist}	${strLog1}
+	Sort List	${doclist}
+	Log	${doclist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Document"]
+	${count}	Get Matching Xpath Count	(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]@textContent
+	\	${strLog}	Strip String 	${text} 	characters=\t
+	\	${strLog1}	Strip String 	${strLog}	characters=\n
+	\	${strLog2}	Strip String 	${text} 	characters=${SPACE}
+	\	Log	${strLog1}
+	\	Append To List	${doclist1}	${strLog1}
+	Sort List	${doclist1}
+	Log	${doclist1}
+
+	List Should Contain Sub List	${doclist1}	${doclist}
+
+Documents.SharedWithMe.Sort Size Column
+	${sizelist}	Create List
+	${sizelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Size"]
+	${count}	Get Matching Xpath Count	(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
+	\	${strLog}	Strip String 	${text} 	characters=\t
+	\	Log	${strLog}
+	\	Append To List	${sizelist}	${strLog}
+	Sort List	${sizelist}
+	Log	${sizelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Size"]
+	${count}	Get Matching Xpath Count	(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//div[@id='shared_with_me_tbl_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
+	\	${strLog}	Strip String 	${text} 	characters=\t
+	\	Log	${strLog}
+	\	Append To List	${sizelist1}	${strLog}
+	Sort List	${sizelist1}
+	Log	${sizelist1}
+
+	List Should Contain Sub List	${sizelist1}	${sizelist}
+
+Documents.SharedWithMe.Sort Date Uploaded Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Date Uploaded"]
+	${count}	Get Matching Xpath Count	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[4])
+#	${rowcount}	Evaluate	${count}/2
+	:FOR	${index}	IN RANGE	1	${count} + 1
+	\	ath_wait_until_element_staleness	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[4])[${index}]
+	\	${text}	Get Element Attribute	xpath=((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[4])[${index}]@textContent
+	\	${strLog}	Strip String 	${text} 	characters=\t
+	\	${strLog1}	Strip String 	${strLog}	characters=\n
+	\	Log	${strLog1}
+	\	Append To List	${datelist}	${strLog1}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Date Uploaded"]
+	${count}	Get Matching Xpath Count	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[4])
+#	${rowcount}	Evaluate	${count}/2
+	:FOR	${index}	IN RANGE	1	${count} + 1
+	\	ath_wait_until_element_staleness	((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[4])[${index}]
+	\	${text}	Get Element Attribute	xpath=((//table/descendant::tr[not(contains(@role,'row'))])/descendant::td[4])[${index}]@textContent
+	\	${strLog}	Strip String 	${text} 	characters=\t
+	\	${strLog1}	Strip String 	${strLog}	characters=\n
+	\	Log	${strLog1}
+	\	Append To List	${datelist1}	${strLog1}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist}	${datelist1}
+
+Documents.UploadedByClients.Verify Document Size
+	[Arguments]	${fileName}	${fileSize}
+	${size}	Get Element Attribute	xpath=(//*[text()="${fileName}"]/ancestor::tr/descendant::td[4])[1]@textContent
+	${strpSize}	Strip String	${size}	characters=${SPACE}
+	${sizestrip}	Strip String	${strpSize}	characters=\t
+	Run Keyword and Continue on Failure	Should Match	${sizestrip}	${fileSize}
+
+
+Documents.UploadedByClients.Select Records per Page Value
+	[Arguments]	${RecordNo}
+	ath select drop down field value	//div[@id="uploaded_doc_tbl_wrapper"]/descendant::label[text()="Records per page "]/select	${RecordNo}
+	Sleep 	3.0
+	ath wait until loaded 	60

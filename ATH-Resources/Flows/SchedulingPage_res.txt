@@ -371,6 +371,7 @@ Scheduling.Select Appointment Type
 	[arguments]	${type}	${isdate}	${time}
 	${status}	Run Keyword and Return Status	Element Should Not Be Visible	//div[@id='ukrsol_confirm_reschedule']
 	Run Keyword If	${status}	ath_select_drop_down_field_value	xpath=(//*[contains(text(),"Type")]/ancestor::div[contains(@class,"form-group")]/descendant::select)[1]	${type}	ELSE	Scheduling.Cancel Appointment
+	Run Keyword Unless	${status}	Reload Page
 	Run Keyword Unless	${status}	Scheduling.Select Appointment DateTime	${isdate}	${time}
 	Run Keyword Unless	${status}	ath_select_drop_down_field_value	xpath=(//*[contains(text(),"Type")]/ancestor::div[contains(@class,"form-group")]/descendant::select)[1]	${type}
 
@@ -395,7 +396,7 @@ Scheduling.SchedulingAppointmentPopup.Select Continue
 
 Scheduling.Input Message
 	[arguments]	${message}
-	ath_input_text_value	//*[@class="modal-body"]/descendant::form/descendant::label[contains(text(),'Message')]/following::textarea	${message}
+	ath_input_text_value	xpath=(//*[@class="modal-body"]/descendant::form/descendant::label[contains(text(),'Message')]/following::textarea)[1]	${message}
 
 
 Scheduling.Select Reminder Checkbox

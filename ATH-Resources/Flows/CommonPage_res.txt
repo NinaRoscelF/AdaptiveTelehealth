@@ -31,12 +31,10 @@ Wait for Nav Bar to display
 	ath_wait_until_element_is_present	xpath=//*[@class="nav-bar"]	120
 
 Perform Login Checks
-	# ath click button	xpath=//button[normalize-space()="Login"]
-	# Sleep	1.0
-	Run Keyword and Ignore Error	Select From List	//*[@class="modal-body"]/descendant::*/descendant::label[contains(text(),'State')]/following::select 	Alabama
-	Run Keyword and Ignore Error	Input Text	//input[@name="nearest_emerg_facility"]	St. Lukes
-	Run Keyword and Ignore Error	Click Button	//button[text()="Save"]
-	Sleep	2.0
+	# Run Keyword and Ignore Error	Select From List	//*[@class="modal-body"]/descendant::*/descendant::label[contains(text(),'State')]/following::select 	Alabama
+	# Run Keyword and Ignore Error	Input Text	//input[@name="nearest_emerg_facility"]	St. Lukes
+	# Run Keyword and Ignore Error	Click Button	//button[text()="Save"]
+	# Sleep	2.0
 	Run Keyword and Ignore Error	ath_click_icon	//*[@id="modalUploadProfileImage"]/descendant::button/span[normalize-space()="×"]
 #	ath_wait_until_element_is_present	xpath=//*[@class="nav-bar"]	120
 
