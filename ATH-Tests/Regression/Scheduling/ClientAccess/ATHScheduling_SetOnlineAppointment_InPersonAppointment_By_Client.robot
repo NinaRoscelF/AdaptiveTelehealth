@@ -1,6 +1,5 @@
 *** Settings ***
 Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/SchedulingPage_res.txt
-Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHScheduling_Appointment_By_Client.py
 Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/DashboardPage_res.txt
 Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHScheduling_SetOnlineAppointment_InPersonAppointment_By_Client.py
 Suite Teardown	Close All Browsers
@@ -57,4 +56,19 @@ ATHScheduling_SetOnlineAppointment_InPersonAppointment_By_Client
 	Dashboard.Verify Client Meetings Widget Is Displayed
 	Dashboard.ClientMeetingsWidget.Verify InPerson Meetings Details	${DateDisplay}	${TimeDisplay2}
 
+
+#Cleanup delete meeting scheduled in person
+	Select Scheduling Menu
+	Scheduling.Select Meeting from Calendar	${Time2}
+	Scheduling.CancelMeeting.Click Continue Cancellation
+	Sleep	1.0
+	Scheduling.CancelMeeting.Click OK from Reschedule popup
+	Reload Page
+
+#Cleanup delete meeting scheduled in person
+	Scheduling.Select Meeting from Calendar	${Time1}
+	Scheduling.CancelMeeting.Click Continue Cancellation
+	Sleep	1.0
+	Scheduling.CancelMeeting.Click OK from Reschedule popup
+	Reload Page
 	Logout from Application

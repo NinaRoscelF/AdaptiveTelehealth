@@ -13,7 +13,7 @@ ${FileType}	pdf
 
 
 ***Test Cases***
-ATHDocuments_UploadDocument_UploadSingleDocument_By_Therapist
+ATHDocuments_UploadDocument_UploadSingleDocument_By_Admin
 
 	@{FileList}	List Files In Directory	${Filelocation}	*.${FileType}
 	${lastModifiedFile}	Get From List	${FileList}	0
@@ -25,10 +25,8 @@ ATHDocuments_UploadDocument_UploadSingleDocument_By_Therapist
 	${PDFCreated}	Create PDF File	${Filelocation} 	${newfile}
 	${uploadfile}	Catenate	${Filelocation}${newfile}.${FileType}
 	${filename}	Catenate	${newfile}.${FileType}
-	Set Suite variable	${uploadfile}
-	Set Suite variable	${filename}
 
-	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoAdmin}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoAdmin1}	${TestEnv}
 	Perform Login Checks
 	Select Documents Menu
 	Documents.Select Upload Document Menu
@@ -39,14 +37,13 @@ ATHDocuments_UploadDocument_UploadSingleDocument_By_Therapist
 	Capture Page Screenshot
 	Documents.Verify Document is Available in dropdown	${filename}
 
-ATHDocuments_UploadDocument_NoFileSelectedForUpload_By_Therapist
+ATHDocuments_UploadDocument_NoFileSelectedForUpload_By_Admin
 	Documents.Click Add Document button
 	Documents.Verify No Document Is Uploaded
 
-ATHDocuments_UploadDocument_UploadMultipleDocument_By_Therapist
+ATHDocuments_UploadDocument_UploadMultipleDocument_By_Admin
 	Documents.CleanUp	${TxtFile}
 	Documents.CleanUp	${JpegFile}
-	Documents.CleanUp	${filename}
 	Select Documents Menu
 	Documents.Select Upload Document Menu
 	Documents.Choose File	${Filelocation}${TxtFile}
@@ -57,13 +54,13 @@ ATHDocuments_UploadDocument_UploadMultipleDocument_By_Therapist
 	Documents.Verify Document is Available in dropdown 	${TxtFile}
 	Documents.Verify Document is Available in dropdown 	${JpegFile}
 
-ATHDocuments_UploadDocument_UploadInvalidDocument_By_Therapist
+ATHDocuments_UploadDocument_UploadInvalidDocument_By_Admin
 	Documents.Choose File	${Filelocation}${HtmlFile}
 	Documents.Click Add Document button
 	Documents.Verify Document is an Invalid filetype
 	Capture Page Screenshot
 
-ATHDocuments_UploadDocument_VerifyAllowedFiles_By_Therapist
+ATHDocuments_UploadDocument_VerifyAllowedFiles_By_Admin
 	Documents.Click File extensions allowed link
 	Documents.Verify Allowed file details
 	Logout from Application

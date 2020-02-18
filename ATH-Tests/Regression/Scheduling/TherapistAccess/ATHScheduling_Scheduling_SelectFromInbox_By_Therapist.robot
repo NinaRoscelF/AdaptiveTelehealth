@@ -96,6 +96,8 @@ SchedulingTherapist_042
 	Scheduling.Calendar.Select Meeting from Calendar	${TimeConfirm2}	Multiple Clients
 	Scheduling.Calendar.Appointment Popup.Click Delete Meeting
 	Scheduling.Calendar.Appointment.DeletePopup.Click Continue
+	Sleep 	5.0
+	ath wait until loaded 	30
 	Scheduling.Calendar.Verify Meeting is Reopened in Calendar 	${TimeConfirm2}
 	Reload Page
 	Logout from Application

@@ -35,6 +35,10 @@ ATHDocuments_UploadDocument_UploadSingleDocument_By_Client
 	Capture Page Screenshot
 	Documents.Verify Document is Available in dropdown	${filename}
 
+ATHDocuments_UploadDocument_NoFileSelectedForUpload_By_Client
+	Documents.Click Add Document button
+	Documents.Verify No Document Is Uploaded
+
 ATHDocuments_UploadDocument_UploadInvalidDocument_By_Client
 	Documents.Choose File	${Filelocation}${HtmlFile}
 	Documents.Click Add Document button
