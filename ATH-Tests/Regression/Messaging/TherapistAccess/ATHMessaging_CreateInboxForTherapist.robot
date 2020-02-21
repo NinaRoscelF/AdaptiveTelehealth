@@ -4,8 +4,8 @@ Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${Recipient2}	Mary Ellis
-${Recipient3}	Automation Therapist
+${Recipient1}	Mary Ellis
+${Recipient2}	Automation Therapist
 
 ***Test Cases***
 
@@ -16,7 +16,7 @@ InboxCreation
 	Select Messaging Menu
 	:FOR 	${idx}	IN RANGE	1	11
 	\	Messaging.Click New Message Button
-	\	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient2}	ELSE	Messaging.Input Recipient	${Recipient3}
+	\	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient2}
 	\	Messaging.Input Subject	Automation Message
 	\	Messaging.Input Message	Automation Test Message
 	\	Messaging.Click Send Message Button

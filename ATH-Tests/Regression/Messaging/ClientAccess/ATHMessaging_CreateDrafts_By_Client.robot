@@ -5,7 +5,7 @@ Suite Teardown	Close All Browsers
 
 ***Variable***
 ${Recipient1}	Mary Ellis
-${Recipient3}	testsupervisor adaptive
+${Recipient2}	testsupervisor adaptive
 
 ***Test Cases***
 
@@ -15,7 +15,7 @@ DraftCreation
 	Select Messaging Menu
 	:FOR 	${idx}	IN RANGE	1	20
 	\	Messaging.Click New Message Button
-	\	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient2}	ELSE	Messaging.Input Recipient	${Recipient3}
+	\	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient2}
 	\	Messaging.Input Subject	Automation Message
 	\	Messaging.Input Message	Automation Test Message
 	\	Messaging.Input Message	AutomationDraft Test Message
