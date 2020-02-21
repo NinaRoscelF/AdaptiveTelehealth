@@ -41,7 +41,7 @@ ATHDocuments_UploadDocument_ShareDocumentWithStaff_By_Therapist
 
 ATHDocuments_UploadDocument_UnshareDocument_By_Therapist
 	Documents.MyDocument.Verify Unshare first to delete Button Exists
-	Documents.MyDocument.Verify Unshare First Button Exists for File
+	Documents.MyDocument.Verify Unshare First Button Exists for File	${fileName}
 	Documents.MyDocument.Unshare Document 	${fileName}
 	Documents.MyDocuments.Verify Document is Unshared 	${fileName}
 	Logout from Application

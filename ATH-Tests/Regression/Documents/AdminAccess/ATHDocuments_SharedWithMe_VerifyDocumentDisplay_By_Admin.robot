@@ -5,13 +5,14 @@ Suite Teardown	Close All Browsers
 
 ***Variable***
 ${ClientName}	Ginger
+${ClientName1}	Mary
 ${sharedFile}	dummy1.pdf
 ${Filesize}	12.95 KB
 
 ***Test Cases***
-ATHDocuments_SharedWithMe_VerifyDocumentDisplay_By_Therapist
+ATHDocuments_SharedWithMe_VerifyDocumentDisplay_By_Admin
 
-	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoAdmin}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoAdmin1}	${TestEnv}
 	Perform Login Checks
 	Select Documents Menu
 	Documents.Select Shared with Me Menu
@@ -51,7 +52,7 @@ ATHDocuments_SharedWithMe_InputDocumentName_SearchCriteria_By_Therapist
 	Should Not Be True	${status}
 
 ATHDocuments_SharedWithMe_InputSharedByName_SearchCriteria_By_Therapist
-	Documents.MyDocuments.Input Search Criteria 	${ClientName}
+	Run Keyword if	"${TestEnv}" == "Secure"	Documents.MyDocuments.Input Search Criteria	${ClientName1} 	ELSE 	Documents.MyDocuments.Input Search Criteria	${ClientName}
 	${status}	Run Keyword and Return Status	Document.MyDocuments.Verify No Results found
 	Should Not Be True	${status}
 
