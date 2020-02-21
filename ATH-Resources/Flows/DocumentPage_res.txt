@@ -12,6 +12,10 @@ Documents.Select My Documents Menu
 	ath click link 	My Documents
 	ath wait until loaded 	30
 
+Documents.Select My Folders Menu
+	ath click link 	 My Folders
+	ath wait until loaded 	30
+
 Documents.Select Shared with Me Menu
 	ath click link 	Shared with me
 	ath wait until loaded 	30
@@ -114,8 +118,9 @@ Documents.MyDocument.Verify File Uploaded Exists
 	ath verify element is visible	xpath=(//a[text()="${isFile}"])[1]
 
 Documents.MyDocument.Verify Document is Shared with Client
-	[arguments]	${isSharedWith}
-	ath_check_links_displayed	${isSharedWith}
+	[arguments]	${isSharedWith}	${fileName}=dummy1.pdf
+	${status}	Run Keyword and Return Status	ath_check_links_displayed	${isSharedWith}
+	Run Keyword If	${status}	Should Be true	${status}	ELSE	ath verify element is visible	//a[text()="dummy1.pdf"]/ancestor::tr/td[2]
 
 Documents.MyDocument.Verify Document Size
 	[Arguments]	${fileName}	${fileSize}
@@ -395,3 +400,28 @@ Documents.UploadedByClients.Select Records per Page Value
 	ath select drop down field value	//div[@id="uploaded_doc_tbl_wrapper"]/descendant::label[text()="Records per page "]/select	${RecordNo}
 	Sleep 	3.0
 	ath wait until loaded 	60
+
+
+Documents.MyFolders.Select My Folders Icon
+	ath click icon 	//*[@class="panel-heading"]/descendant::i
+	Sleep 	3.0
+	ath wait until loaded 	60
+	ath verify element is visible	//*[@class="panel-heading"]/following-sibling::*[@role="tabpanel"]
+
+Documents.MyFolders.Select Document To Display
+	[Arguments]	${fileName}
+	ath click icon	//*[@class="jstree-grid-wrapper"]/descendant::li/descendant::a[text()="${fileName}"]
+	Sleep 	1.0
+	ath wait until loaded 	60
+	ath verify element is visible 	//div[@id='additional-info']
+
+Documents.MyFolders.Verify Column Existence
+	[Arguments]	${colName}
+	ath verify element is visible	//*[@class="jstree-grid-wrapper"]/descendant::*[contains(text(),'${colName}')]
+
+Documents.MyFolders.Verify Unshare before delete Button Exists
+	ath check button existence	Unshare before delete
+
+Documents.MyFolders.Verify Document Details Displayed
+	[Arguments]	${docDetail}
+	ath verify element is visible 	//table/descendant::td[normalize-space()="${docDetail}"]
