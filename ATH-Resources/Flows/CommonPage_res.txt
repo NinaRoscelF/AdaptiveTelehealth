@@ -93,19 +93,21 @@ Add/Subtract Days from Input Date
 
 
 Move to Next Page
-	ath Click Link	xpath=(//*[@class="pagination"]/descendant::*[@class="next"]/a)[1]
+	ath_check_links_displayed	Next
+	Run Keyword and Ignore Error	ath Click Link	xpath=(//*[@class="pagination"]/descendant::*[@class="next"]/a)[1]
 	Sleep	5.0
 	ath wait until loaded	30
 
 Move to Previous Page
-	ath Click Link	xpath=(//*[@class="pagination"]/descendant::*[@class="prev"]/a)[1]
+	ath_check_links_displayed	Previous
+	Run Keyword and Ignore Error	ath Click Link	xpath=(//*[@class="pagination"]/descendant::*[@class="prev"]/a)[1]
 	Sleep	2.0
 	ath wait until loaded	30
 
 Select Page Number
 	[arguments]	${PageNumber}
 	ath wait until loaded	30
-	ath Click Link	xpath=(//*[@class="pagination"]/descendant::a[contains(text(),'${PageNumber}')])[1]
+	Run Keyword and Ignore Error	ath Click Link	xpath=(//*[@class="pagination"]/descendant::a[contains(text(),'${PageNumber}')])[1]
 	Sleep 	1.0
 	ath wait until loaded	30
 
@@ -208,7 +210,8 @@ Footer.Click Provider Sign Up
 
 Verify Provider Sign Up Page Opens
 	Sleep	2
-	Location Should Be	https://secure.adaptivetelehealth.com/index.php/provider/
+	${status}	Run Keyword and Return Status	Location Should Be	https://secure.adaptivetelehealth.com/index.php/provider/
+	Run Keyword Unless	${status}	Location Should Be	https://secure.adaptivetelehealth.com/index.php/privacy/
 	Capture Page Screenshot
 	Go Back
 	Sleep 	10.0
