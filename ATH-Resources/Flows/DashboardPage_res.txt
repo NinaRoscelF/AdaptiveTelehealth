@@ -554,9 +554,9 @@ Dashboard.ClientMeetingsWidget.Verify Video Meetings Details
 
 Dashboard.ClientMeetingsWidget.Verify InPerson Meetings Details
 	[Arguments]	${date}	${meetingTime}
-	ath verify element is visible 	//td[contains(text(),'In-Person')]
+	ath verify element is visible 	//td[contains(text(),'In Person')]
 	ath verify element is visible 	//td[contains(text(),'Open')]
-	ath verify element is visible 	xpath=(//td[contains(text(),'In-Person')]/following-sibling::*[contains(text(),'${date}')])
+	ath verify element is visible 	xpath=(//td[contains(text(),'In Person')]/following-sibling::*[contains(text(),'${date}')])
 	ath verify element is visible 	//span[contains(text(),'${meetingTime}')]
 
 
