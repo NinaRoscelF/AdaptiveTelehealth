@@ -209,7 +209,7 @@ Messaging.Inbox.Read Nessage
 
 Messaging.Inbox.Reply To Unread Nessage
 	[arguments]	${messageSubject}	${idx}=1
-	Ath click icon	xpath=(//td[6][text()="unread"]/ancestor::tr/descendant::td[text()="${messageSubject}"])[${idx}]
+	Ath click icon	xpath=(//td[6][text()="unread"]/ancestor::tr/descendant::td[contains(text(),'${messageSubject}')])[${idx}]
 	ath wait until loaded	30
 
 

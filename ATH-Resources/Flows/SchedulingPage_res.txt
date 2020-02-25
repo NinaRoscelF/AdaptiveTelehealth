@@ -366,7 +366,6 @@ Scheduling.TherapistRole.Select Appointment DateTime
 	run keyword and Ignore Error	Execute Javascript	var element = document.evaluate("(//*[contains(@class,'open_meeting')]/descendant::*[@class="fc-time"]/span[normalize-space()="${time}"])[${index}]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
 
 
-
 Scheduling.Select Appointment Type
 	[arguments]	${type}	${isdate}	${time}
 	${status}	Run Keyword and Return Status	Element Should Not Be Visible	//div[@id='ukrsol_confirm_reschedule']

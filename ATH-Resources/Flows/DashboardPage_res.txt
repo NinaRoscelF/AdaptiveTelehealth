@@ -544,19 +544,19 @@ Dashboard.Verify Client Meetings Widget Is Displayed
 
 Dashboard.ClientMeetingsWidget.Verify Video Meetings Details
 	[Arguments]	${date}	${meetingTime}
-	ath verify element is visible 	//td[text()="Video"]
-	${status}	Run Keyword and Return Status 	ath verify element is visible 	//td[text()="Appointment"]
-	Run Keyword Unless	${status}	ath verify element is visible 	//td[text()="Open"]
-	ath verify element is visible 	xpath=(//td[text()="Video"]/following-sibling::*[contains(text(),'${date}')])
+	ath verify element is visible 	//td[contains(text(),'Video')]
+	${status}	Run Keyword and Return Status 	ath verify element is visible 	//td[contains(text(),'Appointment')]
+	Run Keyword Unless	${status}	ath verify element is visible 	//td[contains(text(),'Open')]
+	ath verify element is visible 	xpath=(//td[contains(text(),'Video')]/following-sibling::*[contains(text(),'${date}')])
 	ath verify element is visible 	//span[contains(text(),'${meetingTime}')]
 	ath verify element is visible 	//*[@class="fa fa-play"]
 
 
 Dashboard.ClientMeetingsWidget.Verify InPerson Meetings Details
 	[Arguments]	${date}	${meetingTime}
-	ath verify element is visible 	//td[text()="In-Person"]
-	ath verify element is visible 	//td[text()="Open"]
-	ath verify element is visible 	xpath=(//td[text()="In-Person"]/following-sibling::*[contains(text(),'${date}')])
+	ath verify element is visible 	//td[contains(text(),'In-Person')]
+	ath verify element is visible 	//td[contains(text(),'Open')]
+	ath verify element is visible 	xpath=(//td[contains(text(),'In-Person')]/following-sibling::*[contains(text(),'${date}')])
 	ath verify element is visible 	//span[contains(text(),'${meetingTime}')]
 
 
