@@ -12,6 +12,8 @@ ${Recipient2}	Mary Ellis
 DraftCreation
 #Select one move to trash
 	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Sleep	10.0
+	Select Messaging Menu
 	:FOR 	${idx}	IN RANGE	1	11
 	\	Messaging.Click New Message Button
 	\	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient2}

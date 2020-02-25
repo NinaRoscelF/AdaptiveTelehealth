@@ -5,7 +5,8 @@ Suite Teardown	Close All Browsers
 
 ***Variable***
 ${Recipient1}	Ginger Taylor
-${Recipient2}	Mary Ellis
+${Recipient2}	Automation IsClient
+
 
 ***Test Cases***
 

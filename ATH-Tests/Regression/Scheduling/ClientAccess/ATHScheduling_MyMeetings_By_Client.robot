@@ -74,7 +74,7 @@ SchedulingClient_016
 
 SchedulingClient_018
 #cancel meeting
-	Scheduling.MyMeetings.Select Records per Page dropdown	50
+	Scheduling.MyMeetings.Select Records per Page dropdown	100
 
 	Scheduling.MyMeetings.Click Cancel Button
 	Scheduling.CancelMeeting.Click Discontinue Cancellation
@@ -87,7 +87,7 @@ SchedulingClient_017
 	Sleep 	1.0
 	Scheduling.CancelMeeting.Click OK from Reschedule popup
 	Reload Page
-	Scheduling.MyMeetings.Select Records per Page dropdown	50
+	Scheduling.MyMeetings.Select Records per Page dropdown	100
 	Scheduling.MyMeetings.Verify Appointment in Cancelled by Me Status	${DateAdd}	${Time3}
 	Scheduling. Verify Appointment Time is Open 	${Time2}	${DateInCal}
 	Logout from Application
@@ -101,13 +101,13 @@ SchedulingClient_019
 	Scheduling.Input Message	For prerequisite
 	Scheduling.Select Schedule appointment Checkbox
 	Scheduling.Click OK Button
-	Scheduling.MyMeetings.Select Records per Page dropdown	50
+	Scheduling.MyMeetings.Select Records per Page dropdown	100
 	Run Keyword and Ignore Error	Scheduling.MyMeetings.Click Reschedule Button Display	${DateAdd}	${Time3}
 	Scheduling.CancelMeeting.Click Continue Cancellation
 	Sleep 	1.0
 	Scheduling.CancelMeeting.Click OK from Reschedule popup
 	Reload Page
-	Scheduling.MyMeetings.Select Records per Page dropdown	50
+	Scheduling.MyMeetings.Select Records per Page dropdown	100
 	Run Keyword and Ignore Error	Scheduling.MyMeetings.Verify Appointment in Cancelled by Me Status	${DateAdd}	${Time3}
 	Scheduling. Verify Appointment Time is Open	${Time2}	${DateInCal}
 	Logout from Application

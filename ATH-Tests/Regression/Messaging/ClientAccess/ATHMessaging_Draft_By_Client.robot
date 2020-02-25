@@ -85,6 +85,7 @@ MessagingClient_050
 
 MessagingClient_051
 #Expand Details
+	Sleep 	5.0
 	Messaging.Draft.Expand First message
 	Ath Verify Element Is Visible	//td[@class="my-details"]
 	Capture Page Screenshot

@@ -127,6 +127,7 @@ MessagingClient_011
 
 MessagingClient_012
 #Close message
+	Messaging.Select Draft Menu
 	Messaging.Click New Message Button
 	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient4}
 	Messaging.Input Subject	Automation Message

@@ -12,7 +12,7 @@ ${FileType}	pdf
 ***Test Cases***
 MessagingClient_013
 #Select an unread and verify
-	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${Client2}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Inbox Menu
@@ -20,7 +20,7 @@ MessagingClient_013
 	# Run Keyword unless	${status}	Messaging.Inbox.Select Read message
 	# Run Keyword unless	${status}	Messaging.Inbox.Click Read/Unread Icon
 	# Run Keyword unless	${status}	Messaging.Inbox.Read Nessage	unread
-	Messaging.Inbox.Reply To Unread Nessage	Automation Message
+	Messaging.Inbox.Reply To Unread Nessage	Meeting
 	Messaging.Inbox.Verify Message Details and Reply Button Is Visible
 	Messaging.Inbox.Verify Font is Normal Style
 	Capture Page Screenshot
