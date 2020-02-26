@@ -125,6 +125,9 @@ Scheduling.Calendar.Appointment Popup.Click Edit Meeting
 	ath click icon	xpath=//a[@title="Edit Meeting"]/i
 	ath wait until loaded 	30
 
+Scheduling.Calendar.Appointment Popup.Click Approve Changes
+	ath click icon 	(//a[@title="Approve Meeting"]
+	ath wait until loaded 	30
 
 Scheduling.Calendar.Verify Edit Meeting Popup displayed
 	[arguments]	${participantsName}
