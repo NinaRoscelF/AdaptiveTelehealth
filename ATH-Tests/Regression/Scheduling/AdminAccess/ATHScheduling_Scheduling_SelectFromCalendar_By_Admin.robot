@@ -4,7 +4,6 @@ Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/Scheduling_Confirmati
 Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHScheduling_Scheduling_SelectFromCalendar_By_Admin.py
 Suite Teardown	Close All Browsers 
 
-
 ***Test Cases***
 SchedulingAdmin_001
 #scheduling therapist selection
