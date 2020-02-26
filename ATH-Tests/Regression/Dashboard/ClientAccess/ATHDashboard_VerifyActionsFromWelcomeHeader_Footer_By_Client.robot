@@ -9,8 +9,8 @@ Suite Teardown	Close All Browsers
 ${therapistLive}	Automation IsClient
 ${therapistSecure}	Ginger Taylor
 ${HelpMenuSecure}	 Reschedule an Appointment, Notifications via email
-${HelpMenuLive}	 Starting a Meeting, Notification Via Email, Troubleshooting
-
+#${HelpMenuLive}	 Starting a Meeting, Notification Via Email, Troubleshooting
+${HelpMenuLive}	 Troubleshooting
 
 ***Test Cases***
 Dashboard_VerifyActionsFromWelcomeHeader_By_Client
