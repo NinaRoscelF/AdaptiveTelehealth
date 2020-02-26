@@ -4,7 +4,8 @@ Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${ClientName}	Mary Ellis
+${ClientName1}	Automation IsClient
+${ClientName}	Ginger Taylor
 ${sharedFile}	dummy1.pdf
 ${Filesize}	12.95 KB
 
@@ -21,13 +22,14 @@ ATHDocuments_MyFolders_VerifyDocumentDisplay_By_Therapist
 	Capture Page Screenshot
 
 	Documents.MyFolders.Select Document To Display	${sharedFile}
+	Sleep 	10.0
 	Documents.MyFolders.Verify Unshare before delete Button Exists
-	Check Label Existence	Shared with:,Filesettings:
+	Check Label Existence	Share with:,Unshare Documents:
 	Documents.Verify Header Column Display 	Size
 	Documents.Verify Header Column Display 	Stored on
 	Documents.Verify Header Column Display 	Owner
 	Documents.Verify Header Column Display 	Date Created
 	Documents.MyFolders.Verify Document Details Displayed	${Filesize}
-	Documents.MyFolders.Verify Document Details Displayed	${ClientName}
+	Run Keyword if	"${TestEnv}" == "Secure"	Documents.MyFolders.Verify Document Details Displayed	${ClientName} 	ELSE	Documents.MyFolders.Verify Document Details Displayed	${ClientName1}
 	Logout from Application
 

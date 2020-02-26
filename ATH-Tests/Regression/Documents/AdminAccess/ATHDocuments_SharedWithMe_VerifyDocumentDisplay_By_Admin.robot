@@ -4,8 +4,8 @@ Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${ClientName}	Automation
-${ClientName1}	Mary
+${ClientName}	Automation Therapist
+${ClientName1}	Mary Ellis
 ${sharedFile}	dummy1.pdf
 ${Filesize}	12.95 KB
 
@@ -21,7 +21,7 @@ ATHDocuments_SharedWithMe_VerifyDocumentDisplay_By_Admin
 	ath verify element Is Visible	//th[text()="Size "]
 	Documents.Verify Header Column Display	Date Uploaded
 	Documents.MyDocument.Verify File Uploaded Exists	${sharedFile}
-	Documents.MyDocument.Verify Document is Shared with Client	${ClientName}
+	Run Keyword if	"${TestEnv}" == "Secure"	Documents.MyFolders.Verify Document Details Displayed	${ClientName1} 	ELSE	Documents.MyFolders.Verify Document Details Displayed	${ClientName}
 	Documents.MyDocument.Verify Document Size	${sharedFile}	${Filesize}
 	Capture Page Screenshot
 
