@@ -45,10 +45,10 @@ SchedulingAdmin_003
 	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%Y-%m-%d
 	${DateAddFormat}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%m-%d-%Y
 	Run Keyword and Ignore Error	ath click button	xpath=//button[@id='different-timezone-no']
-	Run Keyword if	"${TestEnv}" == "Secure"	Scheduling.TherapistRole.Select Appointment DateTime	${Time1}	ELSE	ath click icon	xpath=//span[text()="${LiveTime1}"]/ancestor::tr[1]/td[2]
+#	Run Keyword if	"${TestEnv}" == "Secure"	Scheduling.TherapistRole.Select Appointment DateTime	${Time1}	ELSE	ath click icon	xpath=//span[text()="${LiveTime1}"]/ancestor::tr[1]/td[2]
 #	Run Keyword and Ignore Error	ath click icon	xpath=//span[text()="${LiveTime1}"]/ancestor::tr[1]/td[2]
 #	run keyword and Ignore Error	Execute Javascript	var element = document.evaluate("//span[text()="${LiveTime1}"]/ancestor::tr[1]/td[2]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
-#	Scheduling.TherapistRole.Select Appointment DateTime	${Time1}
+	Scheduling.TherapistRole.Select Appointment DateTime	${Time1}
 	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	OFFLINE
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}
@@ -72,10 +72,10 @@ SchedulingAdmin_003
 SchedulingAdmin_004
 #edit online meeting
 	##prereq
-	Run Keyword if	"${TestEnv}" == "Secure"	Scheduling.TherapistRole.Select Appointment DateTime	${Time4}	ELSE	ath click icon	xpath=//span[text()="${LiveTime1}"]/ancestor::tr[1]/td[2]
+#	Run Keyword if	"${TestEnv}" == "Secure"	Scheduling.TherapistRole.Select Appointment DateTime	${Time4}	ELSE	ath click icon	xpath=//span[text()="${LiveTime1}"]/ancestor::tr[1]/td[2]
 	# Run Keyword and Ignore Error	ath click icon	xpath=//span[text()="${LiveTime1}"]/ancestor::tr[1]/td[2]
 	# run keyword and Ignore Error	Execute Javascript	var element = document.evaluate("//span[text()="${LiveTime1}"]/ancestor::tr[1]/td[2]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
-#	Scheduling.TherapistRole.Select Appointment DateTime	12:00 - 1:00
+	Scheduling.TherapistRole.Select Appointment DateTime	12:00 - 1:00
 	Scheduling.Calendar.EditOpenPopup.Select Appointment Type	ONLINE
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}
@@ -98,10 +98,10 @@ SchedulingAdmin_004
 
 SchedulingAdmin_005
 #create meeting
-	Run Keyword if	"${TestEnv}" == "Secure"	Scheduling.TherapistRole.Select Appointment DateTime	${Time4}	ELSE	ath click icon	xpath=//span[text()="${LiveTime}"]/ancestor::tr[1]/td[2]
+#	Run Keyword if	"${TestEnv}" == "Secure"	Scheduling.TherapistRole.Select Appointment DateTime	${Time4}	ELSE	ath click icon	xpath=//span[text()="${LiveTime}"]/ancestor::tr[1]/td[2]
 	# Run Keyword and Ignore Error	ath click icon	xpath=//span[text()="${LiveTime}"]/ancestor::tr[1]/td[2]
 	# run keyword and Ignore Error	Execute Javascript	var element = document.evaluate("//span[text()="${LiveTime}"]/ancestor::tr[1]/td[2]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
-#	Scheduling.TherapistRole.Select Appointment DateTime	${Time4}
+	Scheduling.TherapistRole.Select Appointment DateTime	${Time4}
 	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	OFFLINE
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}

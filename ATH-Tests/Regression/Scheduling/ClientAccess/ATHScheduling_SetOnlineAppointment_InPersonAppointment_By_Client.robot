@@ -6,7 +6,7 @@ Suite Teardown	Close All Browsers
 
 
 ***Test Cases***
-ATHScheduling_SetOnlineAppointment_InPersonAppointment_By_Client
+ATHScheduling_SetOnlineAppointment_By_Client
 
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient1}	${TestEnv}
 	Perform Login Checks
@@ -17,6 +17,11 @@ ATHScheduling_SetOnlineAppointment_InPersonAppointment_By_Client
 	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	2 	%Y-%m-%d
 	${DateAddFormat}	Add/Subtract Days from Input Date 	${DTToday}	ADD	2 	%m-%d-%Y
 	${DateDisplay}	Add/Subtract Days from Input Date 	${DTToday}	ADD	2 	%m/%d/%y
+	Set Suite Variable	${DateAdd}
+	Set Suite Variable	${DateAddFormat}
+	Set Suite Variable	${DateDisplay}
+
+
 	Scheduling.Select Appointment DateTime	${DateAdd}	${Time1}
 	Scheduling.Select Appointment Type 	${ApptType1}	${DateAdd}	${Time1}
 	Scheduling.Input Message	${Message}
@@ -37,6 +42,8 @@ ATHScheduling_SetOnlineAppointment_InPersonAppointment_By_Client
 
 #Schedule an In-person appointment
 	#click via schedule link  in MyMeetings widget
+ATHScheduling_Set_InPersonAppointmentAppointment_By_Client
+
 	ath click Link	Schedule
 	Sleep 	3.0
 	ath wait until loaded	30

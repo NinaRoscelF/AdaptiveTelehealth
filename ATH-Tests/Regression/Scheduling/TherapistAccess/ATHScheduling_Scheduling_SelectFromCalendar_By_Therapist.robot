@@ -90,6 +90,13 @@ SchedulingTherapist_065
 SchedulingTherapist_066
 	Scheduling.TherapistRole.Move Calendar Display to Previous Page
 	Capture Page Screenshot
+
+#cleanup
+	Scheduling.Calendar.Select Meeting from Calendar	${Time1}	Multiple Clients
+	Scheduling.Calendar.Appointment Popup.Select Status Dropdown	Cancelled
+	Scheduling.Calendar.Appointment.DeletePopup.Click Continue
+	Scheduling.Calendar.Appointment.DeletePopup.Verify Meeting is Deleted successfully
+	Scheduling.Calendar.Verify Meeting is Reopened in Calendar	${Time1}
 	Logout from Application
 
 
