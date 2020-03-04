@@ -77,6 +77,15 @@ Check Label Existence
 	\	Ath Check Label	${lblval}	${index}	${attr}	${isPositive}
 	\	Capture Page Screenshot
 
+Check Link Existence
+	[Arguments]	${labellist}	${index}=1	${attr}=textContent	${isPositive}=true
+	@{lblitems}	Split String	${labellist}	,
+	:FOR	${lblval}	IN	@{lblitems}
+	\	@{label}	Split String	${lblval}	separator=,
+	\	log	${lblval}
+	\	ath_check_links_displayed	${lblval}	${index}	${isPositive}
+	\	Capture Page Screenshot
+
 
 Generate Date and Time Today
 	[arguments]	${Format}=%Y-%m-%d

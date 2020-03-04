@@ -8,8 +8,8 @@ Library	C:/Ath.Git/AdaptiveTelehealth/ATH-Framework/ATHLibrary
 
 *** Variables***
 ${BROWSER}	Chrome
-#${URL}	https://groups1.secure.adaptivetelehealth.com/index.php/login
-${URL}	https://automation.adaptivetelehealth.com/index.php/login
+${URL}	https://groups1.secure.adaptivetelehealth.com/index.php/login
+#${URL}	https://automation.adaptivetelehealth.com/index.php/login
 ${AutoClient1}	automationclient143@gmail.com
 ${AutoClient3}	democlient4524@gmail.com
 ${AutoTherapist}	ninaf+therapist@adaptivetelehealth.com
@@ -23,7 +23,6 @@ ${AutoSystemAdmin}	seerapup+dv380g2@yopmail.com
 ${AutoSystemAdmin1}	ninaf@adaptivetelehealth.com
 ${Therapist2}	maryellisATH@gmail.com
 ${Client2}	client2ath@gmail.com
-#${TestEnv}	Secure
-${TestEnv}	Live
+${TestEnv}	Secure
+#${TestEnv}	Live
 ${Password}	Password123!!!
-

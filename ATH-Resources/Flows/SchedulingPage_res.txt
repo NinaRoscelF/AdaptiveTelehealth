@@ -13,6 +13,34 @@ Scheduling. Verify My Meetings widget display
 	ath_verify_element_is_visible	//div[@class='row schedule_patient_my_meetings_box']	${isTrue}
 
 
+Scheduling.Verify Status widget display
+	ath check label	Status
+	ath verify element is visible 	//div[@id='collapseTwo']//div[@class='panel-body']
+
+
+Scheduling.Switch to List View
+	ath click icon 	xpath=//ul[@class='toggle pull-right']/descendant::li[@class="t"]
+	ath wait until loaded 	30
+	ath verify element is visible 	//div[@id='list_view']
+
+Scheduling.StatusWidget.Expand/Collapse Action
+	ath click icon	xpath=//h4[@class='panel-title']/a
+	ath wait until loaded 	30
+
+
+Scheduling.StatusWidget.Verify Widget Is Expanded
+	ath verify element is visible	//h4[@class='panel-title']/a[@aria-expanded="true"]
+
+
+Scheduling.Verify Available Status in Status widget
+	[Arguments]	${statuslist}
+	@{lblitems}	Split String	${statuslist}	,
+	:FOR	${lblval}	IN	@{lblitems}
+	\	@{label}	Split String	${lblval}	separator=,
+	\	log	${lblval}
+	\	ath verify element is visible 	//div[contains(text(),'${lblval}')]
+	\	Capture Page Screenshot
+
 Scheduling.Select Therapist Calendar
 	[arguments]	${isTherapist}
 	ath click link 	//a[normalize-space()="${isTherapist}"]
@@ -555,6 +583,27 @@ Scheduling.MyMeetings.Click Cancel Button
 Scheduling.MyMeetings.Click Reschedule Button
 	ath click button 	Reschedule
 	ath wait until loaded 	60
+
+Scheduling.ListView.SearchIput.Verify No Results Found
+	ath verify element is visible	//td[@class='dataTables_empty']
+
+
+Scheduling.ListView.Select Appointment Range Display
+	[arguments]	${apptrange}
+	ath click icon 	//select[@id='appointment_time']
+	ath click icon 	//select[@id='appointment_time']/option[contains(text(),'${apptrange}')]
+
+Scheduling.ListView.Verify Selected Appointment Range Is Displayed
+	[arguments]	${apptrange}
+	ath verify element is visible 	//select[@id='appointment_time']/descendant::option[@selected][text()="${apptrange}"]
+
+Scheduling.ListView.Verify Search Input textbox displayed
+	Check Label Existence	Search
+	ath verify element is visible 	//label[contains(text(),'Search')]//input
+
+Scheduling.ListView.Verify Appointment Detail Displayed
+	[arguments]	${apptdetail}
+	ath verify element is visible 	xpath=(//table/descendant::td[contains(text(),'${apptdetail}')])[1] 
 
 
 

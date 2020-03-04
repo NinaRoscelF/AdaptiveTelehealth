@@ -16,3 +16,162 @@ ClientRole.Verify Settings Page Displayed
 	ath verify element is visible	//div[@id='system_preferences']
 	ath check links displayed 	Timezone
 	ath check links displayed 	Password
+
+Settings.AccountSettings.Select SubMenu
+	[Arguments]	${submenu}
+#	ath click link 	//a[contains(text(),'Account Settings')]/../descendant::a[contains(text(),'Backgrounds')]
+	ath click link	${submenu}
+
+
+Settings.AS.AcctInfo.Verify Account Information Label Display
+	ath verify element is visible	//*[@id="therapistInfo"]/descendant::td/b[contains(text(),'Name')]
+	ath verify element is visible	//*[@id="therapistInfo"]/descendant::td/b[contains(text(),'Email')]
+	ath verify element is visible	//*[@id="therapistInfo"]/descendant::td/b[contains(text(),'Date Joined')]
+	${status}	Run Keyword and Return Status 	ath verify element is visible	//*[@id="therapistInfo"]/descendant::td/b[contains(text(),'Provider Profile')]
+	Run Keyword Unless 	${status}	ath verify element is visible	//*[@id="therapistInfo"]/descendant::td/b[contains(text(),'Group Therapist Profile')]
+	Capture Page Screenshot
+
+Settings.AS.AcctInfo.Verify Account Information Details Is Displayed
+	[Arguments]	${name}	${email} 	${dateJoined}
+	ath verify element is visible	//*[@id="therapistInfo"]/descendant::td[contains(text(),'${name}')]
+	ath verify element is visible	//*[@id="therapistInfo"]/descendant::td[contains(text(),'${email}')]
+	ath verify element is visible	//*[@id="therapistInfo"]/descendant::td[contains(text(),'${dateJoined}')]
+	Capture Page Screenshot
+
+Settings.AS.AcctInfo.Verify Cancel Your Account button displayed
+	ath check button existence 	Cancel Your Account
+
+
+Settings.AS.AcctInfo.Verify Contact Us button displayed
+	ath check button existence 	Contact Us
+
+
+Settings.AS.AcctInfo.Click Contact Us button
+	ath click button	Contact Us
+
+
+Settings.AS.AcctInfo.Contact Us Page Displayed
+	${status}	Run Keyword and Return Status	Location Should Be	https://automation.adaptivetelehealth.com/index.php/prospect/contactus
+	Run Keyword Unless 	${status}	Location Should Be	https://groups1.secure.adaptivetelehealth.com/index.php/prospect/contactus
+	Capture Page Screenshot
+	Go Back
+	Sleep 	10.0
+	ath Wait Until Loaded	30
+
+Settings.AS.AcctInfo.Click Cancel Your Account button
+	ath click button	Cancel Your Account
+
+
+Settings.AS.AcctInfo.CancelAccount.Select Cancel Action
+	[Arguments]	${isConfirm}=No
+	ath click button	//div[@id='are_you_sure_message']/descendant::button[contains(normalize-space(),'${isConfirm}')]
+
+Settings.AS.CustomBackground.Verify Background Page Display
+	ath check label 	Custom Backgrounds
+	ath verify element is visible	//div[@id='custom_background_box']
+	ath check label 	Select background image
+	ath check button existence 	Save
+	Capture Page Screenshot
+
+Settings.AS.EditPublicProfile.Verify Profile Page Display
+	ath check label	Edit Public Profile
+	ath check button existence 	Edit
+	Capture Page Screenshot
+
+Settings.AS.LogoSettings.Verify Logo Settings Page Display
+	Check Label Existence	Logo Settings,Select Logo
+	ath check button existence 	Upload Logo
+	Check Label Existence	Preferred Size 202px,Not bigger than302px
+	ath verify element is visible	//input[@id='logo']
+	Capture Page Screenshot
+
+Settings.AS.MerchantServices.Verify Merchant Services Page Display
+	Check Label Existence	Merchant Services,Current Status:,Select Merchant,MerchantID
+	ath check button existence 	Turn Off
+	ath check button existence	Turn On
+	ath check button existence	Save
+	Capture Page Screenshot
+
+Settings.AS.Signature.Verify Signature/Clinician Page Display
+	ath check label 	Clinician
+	ath verify element is visible 	//form[@id='systempreferences_signature']
+	ath verify element is visible 	//img[@id='dd_tool_erasor']
+	ath verify element is visible 	//div[contains(text(),'Save Signature')]
+	Capture Page Screenshot
+
+Settings.AS.Timezone.Verify Timezone Page Display
+	ath check label 	Timezone
+	ath verify element is visible 	//select[@id='user_timezone']
+	ath check button existence	Save
+	Capture Page Screenshot
+
+Settings.AS.ServicesAdmin.Verify Services Admin Page Display
+	Check Label Existence	Services,Packages
+	ath check button existence 	Add Package
+	ath check button existence	Add Service
+	ath check button existence 	Archive
+	ath check button existence	Edit
+	Capture Page Screenshot
+
+Settings.SP.InviteUsers.Verify InviteUsers Page Display
+	ath check label 	Invite Users
+	ath check button existence 	Invite a new Guest
+	ath check button existence 	Invite Client
+	Capture Page Screenshot
+
+Settings.SP.ConsentForm.Verify ConsentForm Page Display
+	Check Label Existence	Consent Form Title,Consent Form Body
+	ath check button existence	Update Consent Form
+	ath check button existence	Preview Consent Form
+	Capture Page Screenshot
+
+Settings.SP.ConsentForm.Input Consent Form Title
+	[Arguments]	${consent}
+	ath input text value	Consent Form Title	${consent}
+
+
+Settings.SP.ConsentForm.Click Update Consent Form Button
+	ath click button	Update Consent Form
+	Capture Page Screenshot
+
+Settings.SP.ConsentForm.Click Preview Consent Form Button
+	ath click button	Preview Consent Form
+	Capture Page Screenshot
+
+Settings.SP.ConsentForm.Verify Display Consent Form Popup
+	ath verify element is visible	//*[@class="box registconsent"]
+	Capture Page Screenshot
+
+Settings.SP.ConsentForm.Close Preview Popup
+	ath click icon	//div[@id='preview_modal']//span[contains(text(),'×')]
+	ath wait until loaded 	30
+
+Settings.SP.Schedule.Verify Schedule Page Display
+	ath verify element is visible	//select[@id='therapist_time_zone_list']
+	ath verify element is visible 	//input[@id='different-timezone-apply']
+	Capture Page Screenshot
+
+Settings.SP.GroupsAndProgram.Verify GroupsAndProgram Page Display
+	Check Label Existence	Groups and Programs,Groups,Members
+	ath verify element is visible 	//select[contains(@name,'DataTables_Table')]
+	ath verify element is visible 	//div[contains(@id,'DataTables_Table')]//input
+	Capture Page Screenshot
+
+
+Settings.SP.Password.Input New Password Value
+	[Arguments]	${newpwd}
+	ath input text value	New Password 	${newpwd}
+
+Settings.SP.Password.Input Confirm Password Value
+	[Arguments]	${confpwd}
+	ath input text value	Confirm Password 	${confpwd}
+
+Settings.SP.Password.Click Unmask New Password Input
+	ath click icon 	//*[text()="New Password"]/../descendant::span[@id="unmask"]/i
+	ath verify element is visible 	//input[@id='password'][@type="text"]
+	Capture Page Screenshot
+
+Settings.SP.Password.Click Unmask Confirm Password Input
+	ath click icon 	//*[text()="Confirm Password"]/../descendant::span[@id="unmask"]/i
+	ath verify element is visible 	//input[@id='confirm_password'][@type="text"]
+	Capture Page Screenshot
