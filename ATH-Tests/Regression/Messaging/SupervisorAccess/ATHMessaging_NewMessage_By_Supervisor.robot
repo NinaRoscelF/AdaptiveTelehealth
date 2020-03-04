@@ -68,7 +68,7 @@ MessagingSupervisor_008
 #	Messaging.Confirm Message Sent successfully
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
-	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient1}	ELSE	Messaging.Sent.Verify Message is Sent	${Recipient2}
+	Messaging.Sent.Verify Message is Sent	Automation Message
 	Messaging.Sent.Verify Message is Sent	${DTToday}
 
 
