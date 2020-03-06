@@ -1,0 +1,101 @@
+*** Settings ***
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/CommonPage_res.txt
+
+
+**** Keywords ****
+
+TherapistRole.Verify Notepad Page Displayed
+	ath check label 	Notepad
+	ath verify element is visible 	//div[@id='notepad_table_scroll']
+	ath verify element is visible 	//div[@class='conteiner']//form
+
+
+ClientRole.Verify Notepad Page Displayed
+	check label existence	My Notes,Notes Shared With Provider,Add a note
+	ath verify element is visible	//body//section[2]/descendant::h3[contains(text(),'Notes Shared')]
+
+
+Notepad.Verify Notepad Detail Inputs
+	check label existence 	Note Title,Reminder Alert,Select tags,Add new tags
+	ath verify element is visible	//input[@id='notes_title']
+	ath verify element is visible	//textarea[@id='notes_content']
+	ath verify element is visible	//input[@id='remind_at']
+	ath verify element is visible	//ul[@class='chosen-choices']
+	ath verify element is visible	//input[@id='tags']
+	ath check button Existence	Save Note
+	Capture Page Screenshot
+
+
+Notepad.MyNotes.Input Search Criteria
+	[Arguments]	${SearchCriteria}
+	ath input text value	Search	${SearchCriteria}
+
+Notepad.MyNotes.Select Records per Page
+	[Arguments]	${RecordNo}
+	ath select drop down field value	//label[text()="Records per page "]/select	${RecordNo}
+	Sleep 	3.0
+	ath wait until loaded 	60
+
+
+Notepad.Input New Note Title
+	[Arguments]	${noteTitle}
+	ath input text value	xpath=(//label[contains(text(),"New Note Title")]/following::input[2])[1]	${noteTitle}
+	ath wait until loaded 	30
+
+Notepad.Input New Note Body
+	[Arguments]	${noteBody}
+	ath_set_text_area_value	xpath=//textarea[@id='notes_content']	${noteBody}
+	ath wait until loaded 	30
+
+Notepad.Input Reminder Alert Date
+	[Arguments]	${isDay}
+	ath click icon	//input[@id='remind_at']
+	ath click icon	//div[@id='ui-datepicker-div']/descendant::a[text()="${isDay}"]
+
+Notepad.Input Tags
+	[Arguments]	${isTag}
+	ath click icon	//ul[@class='chosen-choices']
+	ath click icon	//li[contains(text(),'${isTag}')]
+
+Notepad.Input New Tags
+	[Arguments]	${newTag}
+	ath input text value	//input[@id='tags']	${newTag}
+
+
+Notepad.Click Save Note
+	ath click button 	Save Note
+	ath Wait Until Loaded	30
+
+
+Notepad.Verify Notepad Details Displayed in Table
+	[Arguments]	${notepad}
+	${status}	Run Keyword and Return Status	ath verify element is visible 	xpath=(//div[@id='notepad_table_scroll']/descendant::td[contains(normalize-space(),'${notepad}')])[1]
+	Run Keyword UNless 	${status}	ath verify element is visible 	xpath=(//div[contains(@id,'DataTables_Table')]/descendant::td[contains(normalize-space(),'${notepad}')])[1]
+	Capture Page Screenshot
+
+
+Notepad.Delete Saved Notepad Detail
+	[Arguments]	${notepad}
+	ath click icon	xpath=//td[contains(normalize-space(),'${notepad}')]/../descendant::a[@title="Delete"]
+
+Notepad.Verify Notepad deleted successfully
+	check label existence	Note was deleted successfully.
+
+Notepad.Verify Notepad Data Table is Empty
+	ath verify element is visible	xpath=//td[@class='dataTables_empty']
+
+Notepad.SharedWithProvider.Verify Provider Name Is displayed
+	[Arguments]	${isprovider}
+	ath verify element is visible	xpath=//a[@class='userlink'][contains(text(),'${isprovider}')]
+
+Notepad.SharedWithProvider.Verify Note Details Is displayed
+	[Arguments]	${notedetail}
+	ath verify element is visible	xpath=//p[contains(text(),'${notedetail}')]
+
+Notepad.Input New Note Details
+	[Arguments]	${notedetail}
+	ath set text area value 	//div[@class='box-body']//textarea[@id='notes_content']	${notedetail}
+
+Notepad.Check Share this Note with Provider checkbox
+	ath set checkbox 	xpath=(//label[contains(normalize-space(),'Share this note')]/following-sibling::*[1]/ins)[1]
+	ath wait until loaded 	30

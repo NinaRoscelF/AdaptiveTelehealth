@@ -59,6 +59,9 @@ Select Documents Menu
 #	ath_navigate_to_main_menu	Messaging
 	ath click icon	xpath=//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Documents']
 
+Select Notepad Menu
+#	ath_navigate_to_main_menu	Messaging
+	ath click icon	xpath=//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Notepad']
 
 Select System Preferences icon
 	ath click icon 	xpath=//div[@class='element hidden-xs']//a[@class='combo-button']
