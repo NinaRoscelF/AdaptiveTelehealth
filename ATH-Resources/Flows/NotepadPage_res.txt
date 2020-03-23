@@ -25,6 +25,10 @@ Notepad.Verify Notepad Detail Inputs
 	ath check button Existence	Save Note
 	Capture Page Screenshot
 
+Notepad.MyNotes.Verify Header Column Display
+	[Arguments]	${column}
+	ath verify element Is Visible	//th[text()="${column}"]
+	Capture Page Screenshot
 
 Notepad.MyNotes.Input Search Criteria
 	[Arguments]	${SearchCriteria}
@@ -36,6 +40,70 @@ Notepad.MyNotes.Select Records per Page
 	Sleep 	3.0
 	ath wait until loaded 	60
 
+Notepad.MyNotes.Sort Note Column
+	${notelist}	Create List
+	${notelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Note"]
+	${count}	Get Matching Xpath Count	//*[@id='DataTables_Table_0']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1]
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//*[@id='DataTables_Table_0']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//*[@id='DataTables_Table_0']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${notelist}	${text}
+	Sort List	${notelist}
+	Log	${notelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Note"]
+	${count}	Get Matching Xpath Count	//*[@id='DataTables_Table_0']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1]
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//*[@id='DataTables_Table_0']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//*[@id='DataTables_Table_0']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${notelist1}	${text}
+	Sort List	${notelist1}
+	Log	${notelist1}
+
+	List Should Contain Sub List	${notelist1}	${notelist}
+
+Notepad.MyNotes.Sort Created Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Created"]
+	${count}	Get Matching Xpath Count	//*[@id='DataTables_Table_0']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2]
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//*[@id='DataTables_Table_0']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//*[@id='DataTables_Table_0']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Created"]
+	${count}	Get Matching Xpath Count	//*[@id='DataTables_Table_0']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2]
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//*[@id='DataTables_Table_0']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//*[@id='DataTables_Table_0']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist1}	${text}
+	Sort List	${datelist1}
+	Log	${datelist1}
+	List Should Contain Sub List	${datelist1}	${datelist}
+
+Noepad.Clear Search Criteria
+	Clear Element Text 	xpath=//label[contains(text(),'Search')]//input
+	ath wait until loaded 	30
+
+Notepad.Input Edit Note Title
+	[Arguments]	${noteTitle}
+	ath input text value	xpath=//input[@id='notes_title']	${noteTitle}
+	ath wait until loaded 	30
+	Capture Page Screenshot
 
 Notepad.Input New Note Title
 	[Arguments]	${noteTitle}
@@ -73,6 +141,39 @@ Notepad.Verify Notepad Details Displayed in Table
 	Run Keyword UNless 	${status}	ath verify element is visible 	xpath=(//div[contains(@id,'DataTables_Table')]/descendant::td[contains(normalize-space(),'${notepad}')])[1]
 	Capture Page Screenshot
 
+Notepad.Edit Saved Notepad Detail
+	[Arguments]	${notepad}
+	ath click icon	xpath=//td[contains(normalize-space(),'${notepad}')]/../descendant::a[@title="Edit"]
+	ath wait until loaded 	30
+
+Notepad.Verify Edit Notepad Widget Displayed
+	ath wait until loaded 	30
+	ath verify element is visible 	xpath=//div[@id='mceu_20']
+	ath verify element is visible 	xpath=//*[contains(@class,'mce-toolbar-grp')]
+	ath verify element is visible 	xpath=//*[contains(@class,'mce-edit-area')]
+	Capture Page Screenshot
+
+
+Notepad.Input Edit Notepad Entry
+	[Arguments]	${editentry}
+	ath input text value	xpath=//*[@data-id="notes_content"]	${editentry}
+
+Notepad.ClientRole.Input Edit Notepad Entry
+	[Arguments]	${editentry}
+	ath set text area value 	xpath=//div[@class='box-body']//textarea[@id='notes_content']	${editentry}
+	Capture Page Screenshot
+
+
+Notepad.ClientRole.Get Edited Text from Notepad
+	${entry}	Get Element Attribute	xpath=//div[@class='box-body']//textarea[@id='notes_content']@textContent
+	Capture Page Screenshot
+	[return]	${entry}
+
+
+Notepad.Get Edited Text from Notepad
+	${entry}	Get Element Attribute 	xpath=//*[@data-id="notes_content"]/p@textContent
+	[return]	${entry}
+
 
 Notepad.Delete Saved Notepad Detail
 	[Arguments]	${notepad}
@@ -85,8 +186,8 @@ Notepad.Verify Notepad Data Table is Empty
 	ath verify element is visible	xpath=//td[@class='dataTables_empty']
 
 Notepad.SharedWithProvider.Verify Provider Name Is displayed
-	[Arguments]	${isprovider}
-	ath verify element is visible	xpath=//a[@class='userlink'][contains(text(),'${isprovider}')]
+	[Arguments]	${isprovider} 	${notedetail}
+	ath verify element is visible	xpath=//a[@class='userlink'][contains(text(),'${isprovider}')]/../following-sibling::p[contains(text(),'${notedetail}')]
 
 Notepad.SharedWithProvider.Verify Note Details Is displayed
 	[Arguments]	${notedetail}

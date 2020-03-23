@@ -324,9 +324,9 @@ Dashboard.ClientsWidget.Select Newly Created Client
 
 Dashboard.ProvidersWidget.Select Newly Created Provider
 	[Arguments]	${FirstName}
-	ath verify element is visible	xpath=//div[@id='providers_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
+	ath verify element is visible	xpath=//div[@id='providers_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName}')]
 	Capture Page Screenshot
-	ath click link	xpath=//div[@id='providers_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName} Automation')]
+	ath click link	xpath=//div[@id='providers_list']/descendant::tbody/tr/td/a[contains(text(),'${FirstName}')]
 
 Dashboard.ProvidersWidget.Select Newly Created Care Coordinators
 	[Arguments]	${FirstName}
@@ -467,6 +467,9 @@ Dashboard.ClientProfile.Verify Client Label Display
 	ath verify element is visible	//h3/descendant::a[contains(normalize-space(),'${label}')]
 
 
+Dashboard.ClientProfile.Verify NPI Detail
+	[Arguments]	${npiDetail}
+	ath_verify_textbox_value 	xpath=(//*[contains(text(),"NPI")]/following-sibling::input)[1]	${npiDetail}
 
 
 Dashboard.ClientProfile.Verify Column Headers

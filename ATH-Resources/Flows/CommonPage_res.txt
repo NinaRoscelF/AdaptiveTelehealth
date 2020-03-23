@@ -40,6 +40,7 @@ Perform Login Checks
 
 Verify Login Error Is Visible
 	ath verify element is visible	xpath=//p[contains(text(),'Login Problem: The username and password were not')]
+	Capture Page Screenshot
 
 Select Dashboard Menu
 #	ath_navigate_to_main_menu	Messaging
@@ -69,6 +70,20 @@ Select System Preferences icon
 
 Verify System Preferences page displayed
 	ath_verify_element_is_visible	xpath=//*[@id="system_preferences"]
+
+Verify Dashboard Page displayed
+	ath verify element is visible 	xpath=//span[@class='page-title'][text()="Dashboard"]
+	Capture Page Screenshot
+
+
+Check Button Existence
+	[Arguments]	${labellist}	${index}=1	${attr}=textContent	${isPositive}=true
+	@{lblitems}	Split String	${labellist}	,
+	:FOR	${lblval}	IN	@{lblitems}
+	\	@{label}	Split String	${lblval}	separator=,
+	\	log	${lblval}
+	\	ath check button existence	${lblval}	${index}	${isPositive}
+	\	Capture Page Screenshot
 
 
 Check Label Existence
@@ -135,7 +150,15 @@ Login to Mailinator
 	Open Browser	https://www.mailinator.com/v3/index.jsp?zone=public&query=${UserNamer}	Chrome 	mailinator	ff_profile_dir=firefoxprofile
 	Maximize Browser Window
 	Ath Wait Until Loaded	30
+	Capture Page Screenshot
 
+Mailinator.Select First Message
+	Sleep	5.0
+	Reload Page
+	Ath Click Link	xpath=(//td[contains(normalize-space(),'Adaptive Telehealth')])[1]
+	Sleep	5.0
+	Ath Wait Until Element Is Present	//iframe[@id='msg_body']	60
+	Capture Page Screenshot
 
 Continue User Invitation
 	Capture Page Screenshot

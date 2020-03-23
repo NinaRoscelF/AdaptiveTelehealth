@@ -17,6 +17,29 @@ ClientRole.Verify Settings Page Displayed
 	ath check links displayed 	Timezone
 	ath check links displayed 	Password
 
+TherapistRole.Verify Client Consent Form Page Displayed
+	Check Label Existence	Client Informed Consent Form,Informed Consent Form Title,Informed Consent Form Body
+	ath check button existence 	Preview Consent Form
+	ath check button existence 	Save
+	Capture Page Screenshot
+
+Settings.CS.Verify Invite Users Page Displayed
+	ath check label 	Invite Users
+	ath check button existence 	Invite a new Guest
+	ath check button existence 	Invite Client
+	Capture Page Screenshot
+
+Settings.CS.Click Schedule OnOff SubMenu
+	Run Keyword if	"${TestEnv}" == "Secure"	ath click link 	xpath=(//*[text()="Groups Company Settings"]/following::ul/descendant::a[contains(text(),'Schedule')])[1]	ELSE 	ath click link 	xpath=(//*[text()="Client Settings"]/following::ul/descendant::a[contains(text(),'Schedule')])[1]
+	Sleep 	2.0
+	ath wait until loaded 	30
+
+Settings.CS.Verify Schedule Client Page Displayed
+	ath check label 	Schedule client view [on/off]
+	Check Label Existence	Client will only see open times,Client can view provider calendar 
+	ath check button existence 	Apply
+
+
 Settings.AccountSettings.Select SubMenu
 	[Arguments]	${submenu}
 #	ath click link 	//a[contains(text(),'Account Settings')]/../descendant::a[contains(text(),'Backgrounds')]
@@ -77,6 +100,17 @@ Settings.AS.EditPublicProfile.Verify Profile Page Display
 	ath check label	Edit Public Profile
 	ath check button existence 	Edit
 	Capture Page Screenshot
+
+Settings.AS.EditPublicProfile.Click Edit Button
+	ath click button 	Edit
+	ath wait until loaded 	30
+	Capture Page Screenshot
+
+Settings.AS.EditPublicProfile.Verify Checkbox State
+	[Arguments]	${chkboxLabel}	${state}=true
+	ath_verify_checkbox_value	xpath=(//label[contains(text(),'${chkboxLabel}')]/div/input)[1]	${state}
+	Capture Page Screenshot
+
 
 Settings.AS.LogoSettings.Verify Logo Settings Page Display
 	Check Label Existence	Logo Settings,Select Logo
@@ -143,7 +177,7 @@ Settings.SP.ConsentForm.Verify Display Consent Form Popup
 	Capture Page Screenshot
 
 Settings.SP.ConsentForm.Close Preview Popup
-	ath click icon	//div[@id='preview_modal']//span[contains(text(),'×')]
+	ath click icon	//div[contains(@id,'preview_modal')]//span[contains(text(),'×')]
 	ath wait until loaded 	30
 
 Settings.SP.Schedule.Verify Schedule Page Display
@@ -167,11 +201,283 @@ Settings.SP.Password.Input Confirm Password Value
 	ath input text value	Confirm Password 	${confpwd}
 
 Settings.SP.Password.Click Unmask New Password Input
-	ath click icon 	//*[text()="New Password"]/../descendant::span[@id="unmask"]/i
-	ath verify element is visible 	//input[@id='password'][@type="text"]
+#	ath click icon 	xpath=//*[text()="New Password"]/../descendant::span[@id="unmask"]/i
+	Execute Javascript	var element = document.evaluate("//*[text()='New Password']/../descendant::span[@id='unmask']/i" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	ath verify element is visible 	xpath=//input[@id='password'][@type="text"]
 	Capture Page Screenshot
 
 Settings.SP.Password.Click Unmask Confirm Password Input
-	ath click icon 	//*[text()="Confirm Password"]/../descendant::span[@id="unmask"]/i
-	ath verify element is visible 	//input[@id='confirm_password'][@type="text"]
+	ath click icon 	xpath=//*[text()="Confirm Password"]/../descendant::span[@id="unmask"]/i
+	ath verify element is visible 	xpath=//input[@id='confirm_password'][@type="text"]
+	Capture Page Screenshot
+
+
+Settings.CS.Status.Verify Header Column Display
+	[Arguments]	${column}
+	ath verify element Is Visible	//th[text()="${column}"]
+	Capture Page Screenshot
+
+
+Settings.TFF.Verify Clinical Template Page Displayed
+	Check Label Existence	Clinical Templates
+	Settings.CS.Status.Verify Header Column Display 	Order
+	Settings.CS.Status.Verify Header Column Display 	Name
+	Settings.CS.Status.Verify Header Column Display 	Draft
+	Settings.CS.Status.Verify Header Column Display 	Date Created
+	Settings.CS.Status.Verify Header Column Display 	Date Last Update
+	Check Link Existence	Previous,Next
+
+Settings.TFF.Verify Referral Form Template Page Displayed
+	Check Label Existence	Referral Form Template
+	Settings.CS.Status.Verify Header Column Display 	Name
+	Settings.CS.Status.Verify Header Column Display 	Draft
+	Settings.CS.Status.Verify Header Column Display 	Date Created
+	Check Link Existence	Previous,Next
+
+
+Settings.EPP.Input Company Name
+	[Arguments]	${coName}
+	ath input text value 	Company name 	${coName}
+
+Settings.EPP.Input NPI
+	[Arguments]	${npi}
+	ath input text value	NPI	${npi}
+
+Settings.EPP.Input Phone Number
+	[Arguments]	${phoneNumber}
+	ath input text value	Phone Number	${phoneNumber}
+
+Settings.EPP.Click Save Draft button
+	ath click button	 Save Draft
+	ath wait until loaded 	30
+
+Settings.EPP.Click Publish button
+	ath click button 	Publish
+	ath wait until loaded 	30
+
+Settings.EPP.Verify Profile Is Saved Successfully
+	Ath Verify Element Is Visible	//*[@class="alert alert-success"][contains(text(),'Your changes have been successfully saved.')]
+
+Settings.LS.Choose Logo File for Upload
+	[arguments]	${uploadFile}
+	Choose File	xpath=//input[@id='logo'] 	${uploadFile}
+
+Settings.LS.Click Upload Loago Button
+	ath click button	xpath=//input[@value="Upload Logo"]
+	sleep 	1.0
+	ath wait until loaded 	30
+
+Settings.LS.Click Delete Loago Button
+	ath click button	Delete Logo
+	sleep 	1.0
+	ath wait until loaded 	30
+
+Settings.LS.Verify Logo Changed Successfully
+	ath verify element is visible 	xpath=//*[@class="alert alert-success"][contains(text(),'Logo Changed')]
+	ath verify element is visible 	xpath=(//img[contains(@src,'uploadImages')][contains(@src,'jpg')])[1]
+
+Settings.LS.Verify Logo Deleted Successfully
+	ath verify element is visible 	xpath=//*[@class="alert alert-success"][contains(text(),'Logo Deleted')]
+
+Settings.Timezone.Select Cardconnect as Merchant Service
+	ath select radio button 	xpath=//input[@value="cardconnect"]/..
+	ath wait until loaded 	30
+
+Settings.Timezone.Select Paypal as Merchant Service
+	ath select radio button 	xpath=//input[@value="paypal"]/..
+	ath wait until loaded 	30
+
+Settings.Timezone.Select Timezone Dropdown
+	[arguments]	${timezone}
+	ath select drop down field value	Timezone	${timezone}
+	sleep 	1.0
+	ath wait until loaded 	30
+
+Settings.Timezone.Click Save Button
+	ath click button	xpath=//form[@id='systempreferences_timezone']//button[@id='cb_save']
+	sleep 	1.0
+	ath wait until loaded 	30
+
+Settings.Timezone.Verify Timxezone Changed Successfully
+	ath verify element is visible 	xpath=//*[contains(@class,'alert alert-success')][contains(text(),'Timezone successfully modified.')]
+
+Settings.CS.Input Consent Title
+	[arguments]	${consentTitle}
+	ath input text value 	Informed Consent Form Title 	${consentTitle}
+
+Settings.CS.Input Consent Body
+	[arguments]	${consentBody}
+	Select Frame 	//iframe[@id='therapist_consent_form_text_ifr']
+	ath input text value	xpath=//body[@id='tinymce']/p	${consentBody}
+	Unselect Frame
+
+Settings.CS.Preview Consent Input
+	ath click button	xpath=//a[@class='btn btn-small btn-info']/i
+	ath verify element is visible 	//div[@class='box registconsent']
+	Capture Page Screenshot
+
+Settings.CS.Verify Consent Form Detail Is Previewed
+	[arguments]	${consentContent}
+	${formtext}	get element attribute 	xpath=//div[@class='box registconsent']/descendant::p@textContent
+	run Keyword and Continue on Failure	Should be equal	${formtext} 	${consentContent}
+
+Settings.CS.Click Save Button
+	ath click button 	xpath=//form[@id='systempreferences_therapist']//input[@class='btn btn-small btn-success']
+	Sleep 	1.0
+	ath wait until loaded 	30
+
+Settings.CS.Verify Consent Form Is Saved Successfully
+	ath verify element is visible 	xpath=//*[contains(@class,'alert alert-success')][contains(text(),'New consent form successfully added.')]
+
+Settings.CS.Verify Consent Form Remaining
+	[arguments]	${isNumber}
+	ath verify element is visible 	xpath=//div[@class='alert alert-danger'][contains(text(),'Additional consent form(s) remaining: [${isNumber}]')]
+	Capture Page Screenshot
+
+Settings.CS.Click Delete Button
+	ath click button 	Delete
+	Sleep 	1.0
+	ath wait until loaded 	30
+
+Settings.IU.Click Invite a New Guest Button
+	ath click button 	Invite a new Guest
+	ath wait until loaded 	30
+
+Settings.IU.Verify Invite New Guest Page Display
+	Check Link Existence 	Export/Print data,Patient Profile,Back to,Cancel
+	Check Button Existence 	Invite Guest,Email Preview
+	Check Label Existence	First Name,Last Name,Email Address,Provider,Date, Invite a Guest
+
+Settings.IU.Input Guest First Name
+	[arguments]	${fname}
+	ath input text value 	Guest's First Name 	${fname}
+
+Settings.IU.Input Guest Last Name
+	[arguments]	${lname}
+	ath input text value 	Guest's Last Name 	${lname}
+
+Settings.IU.Input Guest Email
+	[arguments]	${email}
+	ath input text value 	Guest's Email Address	${email}
+
+Settings.IU.Click Email Preview Button
+	ath click button 	Email Preview
+	Sleep 	2.0
+	ath wait until loaded 	30
+
+Settings.IU.Click Cancel Button
+	ath click button 	Cancel
+	ath wait until loaded 	30
+
+Settings.IU.Click Invite Guest Button
+	ath click button 	Invite Guest
+	Sleep 	1.0
+	ath wait until loaded 	30
+	Capture Page Screenshot
+
+Settings.IU.InviteGuestPopup.Click Cancel Button
+	ath click button 	xpath=(//div[@class='modal-footer']//*[contains(text(),'Cancel')])[1]
+	Sleep 	2.0
+	ath wait until loaded 	30
+
+Settings.IU.InviteGuestPopup.Click Confirm Button
+	ath click button 	xpath=(//div[@class='modal-footer']//*[contains(text(),'Confirm')])[1]
+	Sleep 	2.0
+	ath wait until loaded 	30
+
+Settings.IU.Verify Guest Successfully Invited Display
+	[arguments]	${email}	${isfull}
+	ath verify element is visible 	xpath=//div[@class='alert alert-success'][contains(normalize-space(),'An email has been sent to ')]
+	ath verify element is visible 	xpath=//div[@class='alert alert-success']/descendant::b[text()="${isfull}"]
+	ath verify element is visible 	xpath=//div[@class='alert alert-success'][contains(normalize-space(),'You can now include this person')]
+	Check Label Existence 	New Guest,Name,Email,Provider,Date
+	ath verify element is visible 	xpath=//table//b[contains(text(),'${isfull}')]
+	ath verify element is visible 	xpath=//td[contains(text(),'${email}')]
+	Capture Page Screenshot
+
+Settings.IU.Click Back to Client File Link
+	ath click link 	Back to
+
+Settings.IU.Click Go Back Here Link
+	ath click link 	go back here
+	sleep 	1.0
+	ath wait until loaded 	30
+
+Settings.IU.Verify Email Address Required
+	ath verify element is visible 	xpath=//div[@class='alert alert-danger'][contains(text(),'Invalid email address, ')]
+	Capture Page Screenshot
+
+Settings.IU.Verify First Name Required
+	ath verify element is visible 	xpath=//div[@class='alert alert-danger'][contains(text(),'Invalid first name, ')]
+	Capture Page Screenshot
+
+Settings.IU.Verify Last Name Required
+	ath verify element is visible 	xpath=//div[@class='alert alert-danger'][contains(text(),'Invalid last name, ')]
+	Capture Page Screenshot
+
+
+Settings.IU.EmailPreviewPopup.Verify First Name
+	[arguments]	${fname}
+	${isFirst}	Get element Attribute 	xpath=//*[@class="message_text"]/descendant::span[@id="first_name_modal"]@textContent
+	Run Keyword and Continue on Failure 	Should Match	${isFirst} 	${fname}
+
+Settings.IU.EmailPreviewPopup.Verify Last Name
+	[arguments]	${lname}
+	${isLast}	Get element Attribute 	xpath=//*[@class="message_text"]/descendant::span[@id="last_name_modal"]@textContent
+	Run Keyword and Continue on Failure 	Should Match	${isLast} 	${lname}
+
+Settings.IU.InviteClient.EmailPreviewPopup.Verify Invite Message
+	[arguments]	${message}
+	${isFirst}	Get element Attribute 	xpath=(//*[@class="message_text"]/p)[1]@textContent
+	Run Keyword and Continue on Failure 	Should Match	${isFirst} 	${message}
+	Capture Page Screenshot
+
+Settings.IU.InviteClient.EmailPreviewPopup.Verify Email Recipient
+	[arguments]	${email}
+	${isemail}	Get element Attribute 	xpath=//div[@id='modal_mail_to']@textContent
+	Run Keyword and Continue on Failure 	Should Match	${isemail} 	${email}
+
+Settings.IU.InviteClient.Verify Email Required
+	ath verify element is visible 	xpath=//p[@id='inviteClientAlert_modal_error_message'][contains(text(),'please enter a valid email address')]
+
+Settings.IU.InviteClient.Close Email Warning Popup
+	ath click button 	xpath=//div[contains(@id,'inviteClientAlert_modal')]//descendant::button[contains(text(),'×')]
+
+Settings.IU.Mailinator.Verify Email Contents
+	[arguments]	${isfull}	${isTherapist}
+	Select Frame 	xpath=//iframe[@id='msg_body']
+	ath verify element is visible 	xpath=//b[contains(text(),'${isfull}')]
+	ath verify element is visible 	xpath=//b[contains(text(),'${isTherapist}')]
+	ath verify element is visible 	xpath=//b[contains(text(),'Adaptive Telehealth')]
+	Run Keyword if	"${TestEnv}" == "Secure"	Check Link Existence	https://groups1.secure.adaptivetelehealth.com/index.php	ELSE	Check Link Existence	https://automation.adaptivetelehealth.com/index.php
+	Unselect Frame
+
+Settings.IU.Click Invite Client Button
+	ath click button 	Invite Client
+	Sleep 	3.0
+	ath wait until loaded 	30
+
+Settings.IU.Verify Consent Form Remaining
+	[arguments]	${isNumber}
+	ath verify element is visible 	xpath=//div[@class='alert alert-danger'][contains(text(),'Additional consent form(s) remaining: [${isNumber}]')]
+	Capture Page Screenshot
+
+Settings.CS.Schedule.Click Apply Button
+	ath click button 	Apply
+	Sleep 	3.0
+	ath wait until loaded 	30
+	Capture Page Screenshot
+
+Settings.CS.Schedule.Set Provider Checkbox
+	ath set checkbox 	can view provider calendar
+	ath wait until loaded 	30
+
+Settings.CS.Schedule.Verify View is Saved Successfully
+	ath verify element is visible 	xpath=(//div[@class='alert alert-success'][contains(text(),'Saved')])[1]
+	Capture Page Screenshot
+
+Settings.TFF.Click Create New Template Button
+	ath click button 	Create New
+	Sleep 	10.0
+	ath wait until loaded 	30
 	Capture Page Screenshot
