@@ -49,14 +49,24 @@ ATHSettings_Notepad_SaveNoteWithoutTitle_BySupervisor
 	Notepad.Verify Notepad Details Displayed in Table 	${NotepadBody}
 	Capture Page Screenshot
 
-ATHSettings_Notepad_DeleteCreatedNote_BySupervisor
-	Notepad.Delete Saved Notepad Detail 	${NotepadBody}
-	Notepad.Verify Notepad deleted successfully
-	Notepad.Verify Notepad Data Table is Empty
-	Capture Page Screenshot
+
+ATHSettings_Notepad_EditSavedNote_BySupervisor
+	Notepad.Edit Saved Notepad Detail	${NotepadBody}
+	Notepad.Verify Edit Notepad Widget Displayed
+	${editInput}	Generate Random String	8	[LETTERS][NUMBERS]
+	Set Suite Variable	${editInput}
+	Notepad.Input Edit Note Title	${editInput}
+	Notepad.Input Reminder Alert Date	${stringFrom}
+	Notepad.Click Save Note
+	Notepad.Verify Notepad Details Displayed in Table 	${editInput}
+	Notepad.Edit Saved Notepad Detail	${editInput}
+
+#	${string}	Notepad.Get Edited Text from Notepad
+
 
 ATHSettings_Notepad_SaveNoteWithAllFields_BySupervisor
-
+	Select Dashboard Menu
+	Select Notepad Menu
 	Notepad.Input New Note Title 	Automation Note Title
 	Notepad.Input New Note Body 	${NotepadBody2}
 	Notepad.Input Reminder Alert Date	${stringFrom}
@@ -68,11 +78,6 @@ ATHSettings_Notepad_SaveNoteWithAllFields_BySupervisor
 	Notepad.Verify Notepad Details Displayed in Table 	${NotepadBody2}
 	Capture Page Screenshot
 
-ATHSettings_Notepad_SearchNotepadEntry_BySupervisor
-	#cleanup
-	Notepad.MyNotes.Input Search Criteria	${NotepadBody2}
-	${status}	Run Keyword and Return Status 	Notepad.Verify Notepad Data Table is Empty
-	Run Keyword and Continue on Failure 	Should not be True 	${status}
 
 ATHSettings_Notepad_SelectRecordsPerPage_BySupervisor
 	Notepad.MyNotes.Select Records per Page 	100
@@ -81,7 +86,29 @@ ATHSettings_Notepad_SelectRecordsPerPage_BySupervisor
 ATHSettings_Notepad_NextAndPreviousDisplayed_BySupervisor
 	Move to Next Page
 	Move to Previous Page
+
+ATHSettings_Notepad_VerifyMyNotesColumnDisplay_BySupervisor
+	Notepad.MyNotes.Verify Header Column Display 	Note
+	Notepad.MyNotes.Verify Header Column Display 	Created
+	Notepad.MyNotes.Verify Header Column Display 	Actions
+
+ATHSettings_Notepad_SortNoteColumn_BySupervisor
+	Notepad.MyNotes.Sort Note Column
+
+ATHSettings_Notepad_SortCreatedColumn_BySupervisor
+	Notepad.MyNotes.Sort Created Column
+
 #cleanup
+ATHSettings_Notepad_DeleteCreatedNote_BySupervisor
+	Notepad.Delete Saved Notepad Detail 	${editinput}
+	Notepad.Verify Notepad deleted successfully
+	Capture Page Screenshot
+
+ATHSettings_Notepad_SearchNotepadEntry_BySupervisor
+	#cleanup
+	Notepad.MyNotes.Input Search Criteria	${NotepadBody2}
+	${status}	Run Keyword and Return Status 	Notepad.Verify Notepad Data Table is Empty
+	Run Keyword and Continue on Failure 	Should not be True 	${status}
 	Notepad.Delete Saved Notepad Detail	${NotepadBody2}
 	Notepad.Verify Notepad deleted successfully
 	Notepad.Verify Notepad Data Table is Empty

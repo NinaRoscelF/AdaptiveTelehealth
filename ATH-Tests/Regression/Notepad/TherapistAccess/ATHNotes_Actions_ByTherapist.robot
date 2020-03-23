@@ -48,14 +48,21 @@ ATHSettings_Notepad_SaveNoteWithoutTitle_ByTherapist
 	Notepad.Verify Notepad Details Displayed in Table 	${NotepadBody}
 	Capture Page Screenshot
 
-ATHSettings_Notepad_DeleteCreatedNote_ByTherapist
-	Notepad.Delete Saved Notepad Detail 	${NotepadBody}
-	Notepad.Verify Notepad deleted successfully
-	Notepad.Verify Notepad Data Table is Empty
-	Capture Page Screenshot
+
+ATHSettings_Notepad_EditSavedNote_ByTherapist
+	Notepad.Edit Saved Notepad Detail	${NotepadBody}
+	Notepad.Verify Edit Notepad Widget Displayed
+	${editInput}	Generate Random String	8	[LETTERS][NUMBERS]
+	Set Suite Variable	${editInput}
+	Notepad.Input Edit Note Title	${editInput}
+	Notepad.Input Reminder Alert Date	${stringFrom}
+	Notepad.Click Save Note
+	Notepad.Verify Notepad Details Displayed in Table 	${editInput}
+	Notepad.Edit Saved Notepad Detail	${editInput}
 
 ATHSettings_Notepad_SaveNoteWithAllFields_ByTherapist
-
+	Select Dashboard Menu
+	Select Notepad Menu
 	Notepad.Input New Note Title 	Automation Note Title
 	Notepad.Input New Note Body 	${NotepadBody2}
 	Notepad.Input Reminder Alert Date	${stringFrom}
@@ -67,11 +74,6 @@ ATHSettings_Notepad_SaveNoteWithAllFields_ByTherapist
 	Notepad.Verify Notepad Details Displayed in Table 	${NotepadBody2}
 	Capture Page Screenshot
 
-ATHSettings_Notepad_SearchNotepadEntry_ByTherapist
-	#cleanup
-	Notepad.MyNotes.Input Search Criteria	${NotepadBody2}
-	${status}	Run Keyword and Return Status 	Notepad.Verify Notepad Data Table is Empty
-	Run Keyword and Continue on Failure 	Should not be True 	${status}
 
 ATHSettings_Notepad_SelectRecordsPerPage_ByTherapist
 	Notepad.MyNotes.Select Records per Page 	100
@@ -82,7 +84,27 @@ ATHSettings_Notepad_NextAndPreviousDisplayed_ByTherapist
 	Move to Next Page
 	Move to Previous Page
 
+ATHSettings_Notepad_VerifyMyNotesColumnDisplay_ByTherapist
+	Notepad.MyNotes.Verify Header Column Display 	Note
+	Notepad.MyNotes.Verify Header Column Display 	Created
+	Notepad.MyNotes.Verify Header Column Display 	Actions
+
+ATHSettings_Notepad_SortNoteColumn_ByTherapist
+	Notepad.MyNotes.Sort Note Column
+
+ATHSettings_Notepad_SortCreatedColumn_ByTherapist
+	Notepad.MyNotes.Sort Created Column
+
+ATHSettings_Notepad_DeleteCreatedNote_ByTherapist
+	Notepad.Delete Saved Notepad Detail 	${NotepadBody}
+	Notepad.Verify Notepad deleted successfully
+	Capture Page Screenshot
 #cleanup
+ATHSettings_Notepad_SearchNotepadEntry_ByTherapist
+	#cleanup
+	Notepad.MyNotes.Input Search Criteria	${NotepadBody2}
+	${status}	Run Keyword and Return Status 	Notepad.Verify Notepad Data Table is Empty
+	Run Keyword and Continue on Failure 	Should not be True 	${status}
 	Notepad.Delete Saved Notepad Detail	${NotepadBody2}
 	Notepad.Verify Notepad deleted successfully
 	Notepad.Verify Notepad Data Table is Empty
