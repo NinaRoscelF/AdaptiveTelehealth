@@ -17,8 +17,8 @@ SchedulingClient_002
 #Ok button not enabled
 	${DTToday}	Generate Date and Time Today
 	${DateFormat}	Generate Date and Time Today	%m-%d-%Y
-	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	2 	%Y-%m-%d
-	${DateAddFormat}	Add/Subtract Days from Input Date 	${DTToday}	ADD	2 	%m-%d-%Y
+	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%Y-%m-%d
+	${DateAddFormat}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%m-%d-%Y
 	Scheduling.Select Appointment DateTime	${DateAdd}	${Time1}
 	Scheduling.Select Appointment Type 	${ApptType1}	${DateAdd}	${Time1}
 	Scheduling.Input Message	${Message}

@@ -14,7 +14,7 @@ ATHSettings_Notepad_VerifyNotepadPageDisplay_ByAdmin
 	TherapistRole.Verify Notepad Page Displayed
 	Capture Page Screenshot
 	${date}	Generate Date and Time Today
-	${dateadd} 	Add/Subtract Days from Input Date 	${date} 	ADD 	2
+	${dateadd} 	Add/Subtract Days from Input Date 	${date} 	ADD 	1
 	${yr}	${month}	${day}	split string 	${dateadd}	separator=-
 	${iszero}	Fetch From Left 	${day}	0
 	${stringFrom}	Run Keyword if	"${iszero}" == "${EMPTY}"	Replace String	${day}	0	${EMPTY}	ELSE	Set Variable	${day}
@@ -49,10 +49,11 @@ ATHSettings_Notepad_SaveNoteWithoutTitle_ByAdmin
 	Capture Page Screenshot
 
 ATHSettings_Notepad_EditSavedNote_ByClient
-	Notepad.Edit Saved Notepad Detail	${NotepadBody}
-	Notepad.Verify Edit Notepad Widget Displayed
 	${editInput}	Generate Random String	8	[LETTERS][NUMBERS]
 	Set Suite Variable	${editInput}
+
+	Notepad.Edit Saved Notepad Detail	${NotepadBody}
+	Notepad.Verify Edit Notepad Widget Displayed
 	Notepad.Input Edit Note Title	${editInput}
 	Notepad.Input Reminder Alert Date	${stringFrom}
 	Notepad.Click Save Note

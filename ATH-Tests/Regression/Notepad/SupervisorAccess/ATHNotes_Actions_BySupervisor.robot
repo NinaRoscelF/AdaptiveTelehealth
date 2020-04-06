@@ -10,7 +10,7 @@ ${NotepadBody2}	FullDetail Notepad
 ATHSettings_Notepad_VerifyNotepadPageDisplay_BySupervisor
 
 	${date}	Generate Date and Time Today
-	${dateadd} 	Add/Subtract Days from Input Date 	${date} 	ADD 	2
+	${dateadd} 	Add/Subtract Days from Input Date 	${date} 	ADD 	1
 	${yr}	${month}	${day}	split string 	${dateadd}	separator=-
 	${iszero}	Fetch From Left 	${day}	0
 	${stringFrom}	Run Keyword if	"${iszero}" == "${EMPTY}"	Replace String	${day}	0	${EMPTY}	ELSE	Set Variable	${day}

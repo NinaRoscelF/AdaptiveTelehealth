@@ -20,7 +20,7 @@ MessagingClient_013
 	# Run Keyword unless	${status}	Messaging.Inbox.Select Read message
 	# Run Keyword unless	${status}	Messaging.Inbox.Click Read/Unread Icon
 	# Run Keyword unless	${status}	Messaging.Inbox.Read Nessage	unread
-	Messaging.Inbox.Reply To Unread Nessage	Meeting
+	Messaging.Inbox.Reply To Unread Nessage	Automation Message
 	Messaging.Inbox.Verify Message Details and Reply Button Is Visible
 	Messaging.Inbox.Verify Font is Normal Style
 	Capture Page Screenshot

@@ -40,9 +40,11 @@ ATHDocuments_UploadDocument_UnshareDocument_By_Client
 	Documents.MyDocument.Verify Unshare first to delete Button Exists
 	Documents.MyDocument.Verify Unshare First Button Exists for File	${fileName}
 	Documents.MyDocument.Unshare Document	${fileName}
+	Run Keyword and Ignore Error 	Perform Login Checks
 	Documents.MyDocuments.Verify Document is Unshared	${fileName}
 
 ATHDocuments_MyDocuments_Click File Link
+	Run Keyword and Ignore Error 	Perform Login Checks
 	Select Documents Menu
 	Documents.Select My Documents Menu
 	Document.MyDocuments.Click Document Filename	${fileName}

@@ -48,7 +48,7 @@ ATHSettings_AccountSettings_MerchantServicesDisplay_ByTherapist
 
 ATHSettings_AccountSettings_SignatureClinicianDisplay_ByTherapist
 	Settings.AccountSettings.Select SubMenu 	Signature
-	Settings.AS.Timezone.Verify Signature/Clinician Page Display
+	Settings.AS.Signature.Verify Signature/Clinician Page Display
 
 ATHSettings_AccountSettings_TimezoneDisplay_ByTherapist
 	Settings.AccountSettings.Select SubMenu 	Timezone
