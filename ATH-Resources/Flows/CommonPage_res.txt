@@ -64,6 +64,10 @@ Select Notepad Menu
 #	ath_navigate_to_main_menu	Messaging
 	ath click icon	xpath=//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Notepad']
 
+Select Clients Menu
+	ath_click_icon	//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Clients']
+	Run Keyword and Ignore Error	ath click button	xpath=//button[@id='different-timezone-no']
+
 Select System Preferences icon
 	ath click icon 	xpath=//div[@class='element hidden-xs']//a[@class='combo-button']
 	Sleep 	2.0
@@ -219,7 +223,8 @@ Footer.Click Privacy Disclaimer
 
 Verify Privacy Disclaimer Page Opens
 	Sleep	2
-	Location Should Be	https://www.adaptivetelehealth.com/index.php/privacy/
+	${status}	Run Keyword and Return Status	Location Should Be	https://www.adaptivetelehealth.com/index.php/privacy/
+	Run Keyword Unless 	${status}	Location Should Be	https://secure.adaptivetelehealth.com/index.php/privacy/
 	Capture Page Screenshot
 	Go Back
 	Sleep 	10.0
@@ -232,7 +237,8 @@ Footer.Click Terms of Use
 
 Verify Terms of Use Page Opens
 	Sleep	2
-	Location Should Be	https://www.adaptivetelehealth.com/index.php/terms/
+	${status}	Run Keyword and Return Status	Location Should Be	https://www.adaptivetelehealth.com/index.php/terms/
+	Run Keyword Unless 	${status}	Location Should Be	https://secure.adaptivetelehealth.com/index.php/terms/
 	Capture Page Screenshot
 	Go Back
 	Sleep 	10.0
@@ -270,3 +276,4 @@ Create Sample File
 	[arguments]	${location}	${filename} 	${filetype}
 	${isfile}	Create File	${location}/${filename}.${filetype}	3\nlines\nhere\nDummy .${filetype} File
 	[return]	${isfile}
+

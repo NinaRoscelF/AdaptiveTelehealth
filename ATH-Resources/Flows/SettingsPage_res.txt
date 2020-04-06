@@ -481,3 +481,153 @@ Settings.TFF.Click Create New Template Button
 	Sleep 	10.0
 	ath wait until loaded 	30
 	Capture Page Screenshot
+
+Settings.TFF.Select Colors Selection Input
+	ath click icon 	//*[contains(@class,'toolbar-btn')][text()="Colors"]
+	ath wait until loaded 	30
+
+Settings.TFF.Verify Colors Selection Widget Displayed
+	ath verify element is visible 	//div[@id='cfgenwp-genericstyle-container']
+	Check label existence 	Labels,Inputs,Paragraphs,Titles
+	Capture Page Screenshot
+
+Settings.TFF.Select Inputs Selection Input
+	ath click icon 	//*[contains(@class,'toolbar-btn')][text()="Inputs"]
+	ath wait until loaded 	30
+
+Settings.TFF.Select Clear Template Action
+	ath click button	xpath=//*[contains(@class,'toolbar-btn')][text()="Clear"]
+	ath verify element is visible 	xpath=//div[@id='cfgenwp-dialog-message']/p[contains(text(),'Are you sure you want clear this form')]
+	Capture Page Screenshot
+
+Settings.TFF.Select Created Template
+	[arguments]	${tempname}
+	ath click icon 	xpath=//select[@id='allTemplatesSelect']
+	ath click icon 	xpath=(//select[@id='allTemplatesSelect']/optgroup/option[contains(text(),'${tempname}')])[1]
+	Capture Page Screenshot
+	Sleep 	5.0
+	ath wait until loaded 	30
+
+
+Settings.TFF.ClearTemplatePopup.Click Delete All items button
+	ath click button 	xpath=//span[contains(text(),'Delete all items')]
+	ath wait until loaded 	30
+	Capture Page Screenshot
+
+Settings.TFF.ClearTemplatePopup.Click Cancel button
+	ath click button 	xpath=//span[contains(text(),'Cancel')]
+	ath wait until loaded 	30
+
+Settings.TFF.Close Selection Input
+	ath click button 	//div[@id='cfgenwp-genericstyle-close']
+	ath wait until loaded 	30
+
+Settings.TFF.Input New Template Name
+	[arguments]	${tempname}
+	Clear element Text 	xpath=//input[@id='cfgenwp-config-form-name']
+	ath input text value 	xpath=//input[@id='cfgenwp-config-form-name']	${tempname}
+	ath wait until loaded 	30
+
+Settings.TFF.Click Save Template Button
+	ath click button	//div[@id='cfgenwp-fb-editor-c']/span[@id='cfgenwp-saveform']
+	Sleep 	5.0
+	ath wait until loaded 	30
+
+Settings.TFF.Click Copy Template Button
+	ath click button	//span[@id='copyTemplateBtn']
+	Sleep 	5.0
+	ath wait until loaded 	30
+
+Settings.TFF.Verify Template is Saved Successfully
+	ath verify element is visible 	xpath=(//div[@class='alert alert-success'][contains(text(),'Template has been saved successfully.')])[1]
+	Capture Page Screenshot
+
+
+Settings.TFF.Verify Template Element Exists
+	[arguments]	${tempElem}
+	@{iselement}	Split String	${tempElem}	,
+	:FOR	${elemval}	IN	@{iselement}
+	\	@{elem}	Split String	${elemval}	separator=,
+	\	log	${elemval}
+	\	ath verify element is visible	xpath=(//*[contains(@class,'cfgenwp-addelement')][normalize-space()="${elemval}"])
+	\	Capture Page Screenshot
+
+
+Settings.TFF.Verify Template Checkbox Exists
+	[arguments]	${tempElem}
+	@{iselement}	Split String	${tempElem}	,
+	:FOR	${elemval}	IN	@{iselement}
+	\	@{elem}	Split String	${elemval}	separator=,
+	\	log	${elemval}
+	\	ath verify element is visible	xpath=(//div[text()=" ${elemval}"]/input[@type="checkbox"])[1]
+	Capture Page Screenshot
+
+Settings.TFF.Select Records per Page
+	[Arguments]	${RecordNo}
+	ath select drop down field value	//label[text()="Records per page "]/select	${RecordNo}
+	Sleep 	3.0
+	ath wait until loaded 	60
+
+Settings.TFF.Input Search Criteria
+	[Arguments]	${SearchCriteria}
+	ath input text value	xpath=(//*[contains(text(),"Search")]/input)[1]	${SearchCriteria}
+
+Settings.TFF.Sort Order Column
+	${orderlist}	Create List
+	${orderlist1}	Create List
+
+	ath click icon	(//th[contains(@class,'sorting')][normalize-space()="Order"])[1]
+	${count}	Get Matching Xpath Count	//*[@id='formBoxes']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1]
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//*[@id='formBoxes']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//*[@id='formBoxes']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${orderlist}	${text}
+	Sort List	${orderlist}
+	Log	${orderlist}
+
+	ath click icon	(//th[contains(@class,'sorting')][normalize-space()="Order"])[1]
+	${count}	Get Matching Xpath Count	//*[@id='formBoxes']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1]
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//*[@id='formBoxes']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//*[@id='formBoxes']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${orderlist1}	${text}
+	Sort List	${orderlist1}
+	Log	${orderlist1}
+
+	List Should Contain Sub List	${orderlist1}	${orderlist}
+
+Settings.TFF.Sort Date Created Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	(//th[contains(@class,'sorting')][normalize-space()="Date Created"])[1]
+	${count}	Get Matching Xpath Count	//*[@id='formBoxes']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4]
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//*[@id='formBoxes']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//*[@id='formBoxes']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]@textContent
+	\	${strLog}	Strip String 	${text} 	characters=\t
+	\	${strLog1}	Strip String 	${strLog}	characters=\n
+	\	Log	${strLog1}
+	\	Append To List	${datelist1}	${strLog1}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	(//th[contains(@class,'sorting')][normalize-space()="Date Created"])[1]
+	${count}	Get Matching Xpath Count	//*[@id='formBoxes']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4]
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//*[@id='formBoxes']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//*[@id='formBoxes']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]@textContent
+	\	${strLog}	Strip String 	${text} 	characters=\t
+	\	${strLog1}	Strip String 	${strLog}	characters=\n
+	\	Log	${strLog1}
+	\	Append To List	${datelist1}	${strLog1}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist1}	${datelist}

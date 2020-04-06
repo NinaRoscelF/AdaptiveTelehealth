@@ -38,7 +38,7 @@ Dashboard.GroupsCompanyWidget.Input Search Criteria
 
 
 Dashboard.GroupsCompanyWidget.Verify No Results found
-	Ath Verify Element Is Visible	//td[@class='dataTables_empty']
+	Ath Verify Element Is Visible	xpath=//td[@class='dataTables_empty']
 	Capture Page Screenshot
 
 Dashboard.Confirm Create Client File Button
@@ -407,22 +407,22 @@ Dashboard.ClientWidget.Sort First Name Column
 	${datelist1}	Create List
 
 	ath click icon	//th[contains(@class,'sorting')][normalize-space()="First Name"]
-	${count}	Get Matching Xpath Count	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
+	${count}	Get Matching Xpath Count	(//*/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
 	:FOR	${index}	IN RANGE	0	${count}
 	\	${idx}	Evaluate	${index} + 1
-	\	ath_wait_until_element_staleness	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
-	\	${text}	Get Element Attribute	xpath=(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
+	\	ath_wait_until_element_staleness	(//*/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//*/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
 	\	Log	${text}
 	\	Append To List	${datelist}	${text}
 	Sort List	${datelist}
 	Log	${datelist}
 
 	ath click icon	//th[contains(@class,'sorting')][normalize-space()="First Name"]
-	${count}	Get Matching Xpath Count	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
+	${count}	Get Matching Xpath Count	(//*/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
 	:FOR	${index}	IN RANGE	0	${count}
 	\	${idx} 	Evaluate	${index} + 1
-	\	ath_wait_until_element_staleness	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
-	\	${text}	Get Element Attribute	xpath=(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
+	\	ath_wait_until_element_staleness	(//*/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//*/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
 	\	Log	${text}
 	\	Append To List	${datelist1}	${text}
 	Sort List	${datelist1}
@@ -434,22 +434,22 @@ Dashboard.ClientWidget.Sort Last Name Column
 	${datelist}	Create List
 	${datelist1}	Create List
 	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Name"]
-	${count}	Get Matching Xpath Count	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])
+	${count}	Get Matching Xpath Count	(//*/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])
 	:FOR	${index}	IN RANGE	0	${count}
 	\	${idx} 	Evaluate	${index} + 1
-	\	ath_wait_until_element_staleness	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]
-	\	${text}	Get Element Attribute	xpath=(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]@textContent
+	\	ath_wait_until_element_staleness	(//*/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//*/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]@textContent
 	\	Log	${text}
 	\	Append To List	${datelist}	${text}
 	Sort List	${datelist}
 	Log	${datelist}
 
 	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Name"]
-	${count}	Get Matching Xpath Count	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])
+	${count}	Get Matching Xpath Count	(//*/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])
 	:FOR	${index}	IN RANGE	0	${count}
 	\	${idx} 	Evaluate	${index} + 1
-	\	ath_wait_until_element_staleness	(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]
-	\	${text}	Get Element Attribute	xpath=(//div[@id='therapist_clients_wrapper']/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]@textContent
+	\	ath_wait_until_element_staleness	(//*/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//*/descendant::tr[not(contains(@role,'row'))]/descendant::td[4])[${idx}]@textContent
 	\	Log	${text}
 	\	Append To List	${datelist1}	${text}
 	Sort List	${datelist1}
@@ -562,4 +562,104 @@ Dashboard.ClientMeetingsWidget.Verify InPerson Meetings Details
 	ath verify element is visible 	xpath=(//td[contains(text(),'In Person')]/following-sibling::*[contains(text(),'${date}')])
 	ath verify element is visible 	//span[contains(text(),'${meetingTime}')]
 
+Clients.Select Records Per Page Value
+	[Arguments]	${RecordNo}
+	ath select drop down field value	//div[contains(@id,'DataTables')]/descendant::label[text()="Records per page "]/select	${RecordNo}
+	Sleep 	3.0
+	ath wait until loaded 	60
 
+Clients.Verify Record Per Page Dropdown Is Visible
+	ath verify element is visible 	xpath=//div[contains(@id,'DataTables')]/descendant::label[text()="Records per page "]
+
+Clients.Verify Search Input Is Visible
+	ath verify element is visible 	xpath=//label[contains(text(),'Search')]/input
+
+Clients.Verify Group Company Link Is Visible
+	Check Link Existence	Groups Company Archive
+
+
+Clients.Sort Last Name Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Name"]
+	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Name"]
+	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist1}	${text}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist1}	${datelist}
+
+
+Clients.Sort First Name Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="First Name"]
+	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="First Name"]
+	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist1}	${text}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist1}	${datelist}
+
+
+Clients.Sort Last Login Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Login"]
+	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Login"]
+	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist1}	${text}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist1}	${datelist}
