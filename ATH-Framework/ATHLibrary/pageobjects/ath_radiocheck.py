@@ -38,7 +38,7 @@ class ATHRadioCheck(ATHElementFinder,ATHWaits):
             self.click_element(elem)
             self.ath_wait_until_loaded()
 
-    def _unselect_checkbox_value(self, elem):
+    def _unselect_checkbox_value(self,elem):
         if elem.is_selected():
             self.click_element(elem)
             self.ath_wait_until_loaded()

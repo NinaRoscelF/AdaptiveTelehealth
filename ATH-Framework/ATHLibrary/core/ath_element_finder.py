@@ -169,8 +169,9 @@ class ATHElementFinder(ATHBrowserMgr, _ElementKeywords,
         locator_6 = 'xpath=(//div[@id="confirm_modal"]/descendant::button[contains(text(),"%s")])[%s]'%(labelname,str(index))
         locator_7 = 'xpath=(//td/button[normalize-space()="%s"])[%s]'%(labelname,str(index))
         locator_8 = 'xpath=(//*[@type="button"][contains(text(),"%s")])[%s]'%(labelname,str(index))
+        locator_9 = 'xpath=(//*[@type="submit"][@value="%s"])[%s]'%(labelname,str(index))
         locator_list = []
-        locator_list.extend((locator_0,locator_1,locator_2,locator_3,locator_4,locator_5,locator_6,locator_7,locator_8))
+        locator_list.extend((locator_0,locator_1,locator_2,locator_3,locator_4,locator_5,locator_6,locator_7,locator_8,locator_9))
 
         locator_str = '|'.join(locator_list)
         element = self._ath_wait_until_element_present(locator_str,timeout)
@@ -240,10 +241,10 @@ class ATHElementFinder(ATHBrowserMgr, _ElementKeywords,
         self._ath_wait_until_element_present("//*[contains(., \"%s\")] | //*[contains(@title,\"%s\")] | //*[@placeholder=\"%s\"]"%(labelname,labelname,labelname),30)
         locator_0 = "xpath=(//label[contains(text(),'%s')]/following-sibling::*[1]/textarea)[%s]"%(labelname,str(index))
         locator_1 = "xpath=(//label[contains(text(),'%s')]/following::textarea)[%s]"%(labelname,str(index))
-        locator_2 = "xpath=(//label[contains(normalize-space(),'%s')]/descendant::textarea)[%s]"%(labelname,str(index))
-
+        locator_2 = "xpath=(//*[contains(normalize-space(),'%s')]/descendant::textarea)[%s]"%(labelname,str(index))
+        locator_3 = 'xpath=(//*[@placeholder="%s"])[%s]'%(labelname,str(index))
         locator_list = []
-        locator_list.extend((locator_0,locator_1,locator_2))
+        locator_list.extend((locator_0,locator_1,locator_2,locator_3))
 
         for locator in locator_list:
             element = self._ath_wait_until_element_present(locator,timeout)
@@ -348,10 +349,11 @@ class ATHElementFinder(ATHBrowserMgr, _ElementKeywords,
         locator_0 ='xpath=(//a[normalize-space()="%s"])[%s]'%(labelname,str(index)) # Verified
         locator_1 ='xpath=(//a[contains(@title,"%s")])[%s]'%(labelname,str(index))
         locator_2 ="xpath=(//a[contains(text(),'%s')])[%s]"%(labelname,str(index))
+        locator_3 ="xpath=(//div[@class='btn-link'][text()='%s'])[%s]"%(labelname,str(index))
 
         locator_list = []
         # locator_list.extend((locator_0,locator_1,locator_2,locator_3,locator_4,locator_5,locator_6))
-        locator_list.extend((locator_0,locator_1,locator_2))
+        locator_list.extend((locator_0,locator_1,locator_2,locator_3))
 
         locator_str = '|'.join(locator_list)
         element = self._ath_wait_until_element_present(locator_str,timeout)
@@ -387,13 +389,14 @@ class ATHElementFinder(ATHBrowserMgr, _ElementKeywords,
 #        locator_0 ='xpath=(//*[normalize-space()=""%s"]/preceding::tr[1]/descendant::input)["%s]'%(value,str(index))
 #        locator_1 ='xpath=(//tr/td[normalize-space()="%s"])[%s]/../td[1]/div'%(value,str(index))
         locator_0 ='xpath=((//label[normalize-space()="%s"])[%s]/preceding::th/descendant::div)[%s]'%(value,str(index),str(index))
-        locator_1 = 'xpath=(//*[contains(text(),"%s")]/preceding::div[@class="icheckbox_minimal"])[%s]'%(value,str(index))
+        locator_3 = "xpath=(//*[contains(text(),'%s')]/preceding::div[contains(@class,'icheckbox_minimal')])[%s]"%(value,str(index))
         locator_2 = "xpath=(//*[contains(text(),'%s')]/div)[%s]"%(value,str(index))
-        locator_3 = "xpath=(//*[contains(text(),'%s')]/../descendant::ins)[%s]"%(value,str(index))
+        locator_1 = "xpath=(//*[contains(text(),'%s')]/div/input)[%s]"%(value,str(index))
+        locator_4 = "xpath=(//*[contains(text(),'%s')]/../descendant::ins)[%s]"%(value,str(index))
 
 
         locator_list = []
-        locator_list.extend((locator_0,locator_1, locator_2,locator_3))
+        locator_list.extend((locator_0,locator_1, locator_2,locator_3,locator_4))
 
         for locator in locator_list:
             element = self._ath_wait_until_element_present(locator,timeout)
