@@ -11,9 +11,39 @@ TherapistRole.Verify Notepad Page Displayed
 
 
 ClientRole.Verify Notepad Page Displayed
-	check label existence	My Notes,Notes Shared With Provider,Add a note
+	check label existence	My Notes,Notes Shared With,Add a note
 	ath verify element is visible	//body//section[2]/descendant::h3[contains(text(),'Notes Shared')]
 
+ClientRole.Select New Note link
+	ath click link 	New Note
+	ath wait until loaded 	30
+
+ClientRole.Verify New Note Page Displayed
+	ath verify element is visible 	xpath=//*[text()="Quick Notes"]/ancestor::div[contains(@class,'ui-widget-content')]
+
+ClientRole.NewNotes.Verify Add Note button Exists
+	ath verify element is visible	xpath=//input[@name='noteSubmit']
+
+ClientRole.NewNotes.Cancel New Note Creation
+	ath click button 	xpath=//*[text()="Quick Notes"]/ancestor::div/descendant::button[contains(@title,'close')]
+	ath wait until loaded 	30
+
+ClientRole.NewNotes.Click Add a Note Button
+	ath click button	xpath=//input[@name='noteSubmit']
+	Sleep 	5.0
+	ath wait until loaded 	30
+
+ClientRole.NewNotes.Input a Note
+	[Arguments]	${note}
+	Select Frame 	//iframe[@id='notes_content_ifr']
+	ath input text value 	xpath=//*[@id="tinymce"]/p	${stringFrom}
+	Capture Page Screenshot
+	Unselect Frame
+
+ClientRole.NewNotes.Click to Proceed to Notes Page link
+	ath click link	Proceed to Notes Page
+	Sleep 	2.0
+	ath wait until loaded 	30
 
 Notepad.Verify Notepad Detail Inputs
 	check label existence 	Note Title,Reminder Alert,Select tags,Add new tags
@@ -180,7 +210,7 @@ Notepad.Delete Saved Notepad Detail
 	ath click icon	xpath=//td[contains(normalize-space(),'${notepad}')]/../descendant::a[@title="Delete"]
 
 Notepad.Verify Notepad deleted successfully
-	check label existence	Note was deleted successfully.
+	Run Keyword and Ignore Error 	check label existence	Note was deleted successfully.
 
 Notepad.Verify Notepad Data Table is Empty
 	ath verify element is visible	xpath=//td[@class='dataTables_empty']

@@ -9,19 +9,20 @@ Documents.Select Upload Document Menu
 	ath wait until loaded 	30
 
 Documents.Select My Documents Menu
-	ath click link 	My Documents
+	ath click link 	xpath=(//*[normalize-space()="My Documents"]/a)[1]
 	ath wait until loaded 	30
 
 Documents.Select My Folders Menu
-	ath click link 	 My Folders
+	ath click link 	xpath=(//*[normalize-space()="My Folders"]/a)[1]
 	ath wait until loaded 	30
 
 Documents.Select Shared with Me Menu
-	ath click link 	Shared with me
+	ath click link 	xpath=(//*[normalize-space()="Shared with me"]/a)[1]
+	Sleep 	5.0
 	ath wait until loaded 	30
 
 Documents.Select Uploaded by Clients Menu
-	ath click link 	 Uploaded by Clients
+	ath click link 	xpath=(//*[normalize-space()="Uploaded by Clients"]/a)[1]
 	ath wait until loaded 	30
 
 Documents.Verify Upload Document Page Displayed
@@ -50,7 +51,9 @@ Documents.Click Add Document button
 
 Documents.Select Share Document With
 	[arguments]	${shareWithWho}	${IsShare}
-	ath select radio button	${shareWithWho}
+	${status}	Run Keyword and Return Status 	ath select radio button	xpath=//*[contains(text(),"${shareWithWho}")]/../descendant::input
+	Run Keyword Unless 	${status}	ath select radio button	xpath=//td[contains(normalize-space(),"${shareWithWho}")]/ancestor::tr/descendant::input
+	Execute Javascript	var element = document.evaluate("//td[contains(normalize-space(),'${shareWithWho}')]/ancestor::tr/descendant::input" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
 	Execute Javascript	var element = document.evaluate("//*[@name='client_id[]']/option[contains(normalize-space(),'${IsShare}')]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
 	ath click icon	xpath=//*[@name="client_id[]"]/option[contains(normalize-space(),'${IsShare}')]
 

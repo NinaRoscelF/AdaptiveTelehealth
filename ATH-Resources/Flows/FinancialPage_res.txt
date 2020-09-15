@@ -1,0 +1,387 @@
+*** Settings ***
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/CommonPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/DashboardPage_res.txt
+
+**** Keywords ****
+
+Clients.Select Records Per Page Value
+	[Arguments]	${RecordNo} 	${idx}=1
+	ath select drop down field value	xpath=(//label[contains(normalize-space(),'Records')]/select)[${idx}]	${RecordNo}
+	Sleep 	3.0
+	ath wait until loaded 	60
+
+Clients.Verify Record Per Page Dropdown Is Visible
+	ath verify element is visible 	xpath=//div/descendant::label[text()="Records per page "]
+
+Clients.Verify Search Input Is Visible
+	ath verify element is visible 	xpath=//label[contains(text(),'Search')]/input
+
+
+
+Clients.Verify Group Company Link Is Visible
+	${status}	Run Keyword and Return Status 	Check Link Existence	Groups Company Archive
+	Run Keyword Unless 	${status}	Check Link Existence	Client Archive
+
+
+Clients.Sort Last Name Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Name"]
+	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Name"]
+	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist1}	${text}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist1}	${datelist}
+
+
+Clients.Sort First Name Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="First Name"]
+	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="First Name"]
+	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist1}	${text}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist1}	${datelist}
+
+
+Clients.Sort Last Login Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Login"]
+	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Login"]
+	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist1}	${text}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist1}	${datelist}
+
+
+EventHistory.Sort User Full Name Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="User Full Name"]
+	${count}	Get Matching Xpath Count	(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="User Full Name"]
+	${count}	Get Matching Xpath Count	(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist1}	${text}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist1}	${datelist}
+
+
+EventHistory.Sort Action Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Action"]
+	${count}	Get Matching Xpath Count	(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Action"]
+	${count}	Get Matching Xpath Count	(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist1}	${text}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist1}	${datelist}
+
+
+EventHistory.Sort Page Column
+	${datelist}	Create List
+	${datelist1}	Create List
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Page"]
+	${count}	Get Matching Xpath Count	(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx}	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist}	${text}
+	Sort List	${datelist}
+	Log	${datelist}
+
+	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Page"]
+	${count}	Get Matching Xpath Count	(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
+	:FOR	${index}	IN RANGE	0	${count}
+	\	${idx} 	Evaluate	${index} + 1
+	\	ath_wait_until_element_staleness	(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
+	\	${text}	Get Element Attribute	xpath=(//table[@id='event-history-table']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
+	\	Log	${text}
+	\	Append To List	${datelist1}	${text}
+	Sort List	${datelist1}
+	Log	${datelist1}
+
+	List Should Contain Sub List	${datelist1}	${datelist}
+
+VideoOnDemand.Verify Warning Message is Displayed
+	ath verify element is visible 	xpath=//div[@class='alert alert-warning box-header'][contains(text(),'Warning: If you start a Video-On-Demand session and leave the session before the')]
+
+VideoOnDemand.Input Optional Topic
+	[arguments]	${optTopic}
+	ath input text value 	Provide optional topic	${optTopic}
+
+VideoOnDemand.Select Meeting Attendee
+	[arguments]	${userName}
+	${status}	Run Keyword and return Status	ath click icon	xpath=//span[contains(text(),'- Unregistered -')]
+	Run Keyword Unless 	${status}	ath click icon	xpath=//input[contains(@value,'Select Some Options')]/ancestor::div[1]
+	ath click icon	xpath=//*[@class="chosen-results"]/li[contains(text(),'${userName}')]
+
+VideoOnDemand.Click Create Meeting Button
+	ath click button 	xpath=//input[@value='Create Meeting']
+	Sleep 	3.0
+	ath wait until loaded 	30
+
+
+VideoOnDemand.Verify Meeting Details without Attendee selected
+	ath verify element is visible 	xpath=//div[contains(text(),'Your instant meeting')]
+	ath verify element is visible 	xpath=//div[contains(@class,'alert-warning')]/prdateeceding-sibling::b[contains(text(),'https://adaptivetelehealth.zoom.us')]
+	ath verify element is visible 	xpath=//div[@class='alert alert-warning']/descendant::b[text()="Reminder:"]
+	ath verify element is visible 	xpath=//div[@class='alert alert-warning']/p[contains(normalize-space(),' Always open a new tab when emailing the link')]
+
+VideoOnDemand.Verify Meeting Details of Client Without Email
+	[arguments]	${attendeeName}
+	ath verify element is visible 	xpath=//div[contains(text(),'Your instant meeting')]
+	ath verify element is visible 	xpath=//div[contains(text(),'Your instant meeting')][contains(normalize-space(),'and a private message was sent ')][contains(normalize-space(),'Email notification was not sent')]
+	ath verify element is visible 	xpath=//div[@class='alert alert-warning']/descendant::b[text()="Reminder:"]
+	ath verify element is visible 	xpath=//div[@class='alert alert-warning']/p[contains(normalize-space(),' Always open a new tab when emailing the link')]
+	ath verify element is visible 	xpath=//b[contains(text(),'${attendeeName}')]
+
+VideoOnDemand.Verify Meeting Details of Client With Email
+	[arguments]	${attendeeName}
+	ath verify element is visible 	xpath=//div[contains(text(),'Your instant meeting')]
+	ath verify element is visible 	xpath=//div[contains(text(),'Your instant meeting')][contains(normalize-space(),'and a private message was sent ')][contains(normalize-space(),'Email notification sent ')]
+	ath verify element is visible 	xpath=//div[@class='alert alert-warning']/descendant::b[text()="Reminder:"]
+	ath verify element is visible 	xpath=//div[@class='alert alert-warning']/p[contains(normalize-space(),' Always open a new tab when emailing the link')]
+	ath verify element is visible 	xpath=//b[contains(text(),'${attendeeName}')]
+
+VideoOnDemand.Verify Join the Meeting Button exists
+	ath check button existence	Join the meeting now
+
+
+VideoOnDemand.Click Join the Meeting Button
+	ath click button	Join the meeting now
+	Sleep 	10.0
+	ath wait until loaded 	30
+
+VideoOnDemand.Select Meeting window
+	Select window	New
+	Location should contain 	https://adaptivetelehealth.zoom.us/s/
+	Capture Page Screenshot
+
+ClientProfile.Click Information tab
+	ath click link 	Information
+	Sleep 	1.0
+	ath wait until loaded 	30
+
+ClientProfile.Click Vitals tab
+	ath click link 	Vitals
+	Sleep 	1.0
+	ath wait until loaded 	30
+
+ClientProfile.Click RX and Allergy tab
+	ath click link 	Rx and Allergy
+	Sleep 	1.0
+	ath wait until loaded 	30
+
+ClientProfile.Verify Change Password button is visible
+	ath_check_links_displayed	xpath=//a[contains(@class,'btn-info')][contains(normalize-space(),'Password')]
+
+ClientProfile.Click Change Password button
+	ath click link	xpath=//a[contains(@class,'btn-info')][contains(normalize-space(),'Password')]
+
+ClientProfile.Verify Personal Info tab Displayed
+	ath verify element is visible 	xpath=//*[@id="PersonalInfo"]
+
+
+ClientProfile.Verify Vital Info tab Displayed
+	ath verify element is visible 	xpath=//*[@id="vitals"]
+
+
+ClientProfile.Verify Rx and Allergy Info tab Displayed
+	ath verify element is visible 	xpath=//*[@id="RandAllergy"]
+	ath verify element is visible 	xpath=//*[@id="profileImage_div"]
+	ath verify element is visible 	xpath=//*[@class="box-header"]/descendant::*[contains(normalize-space(),'Status')]
+
+
+ClientProfile.Verify Client's First Name
+	[arguments]	${isFirstname}
+	${fname}	get element attribute 	xpath=(//label[contains(text(),"First Name:")]/following::input[1])[1]@value
+	Run Keyword and continue on failure	Should be Equal	${fname} 	${isFirstname}
+
+ClientProfile.Verify Client's Last Name
+	[arguments]	${isLastname}
+	${lname}	get element attribute 	xpath=(//label[contains(text(),"Last Name:")]/following::input[1])[1]@value
+	Run Keyword and continue on failure	Should be Equal	${lname} 	${isLastname}
+
+ClientProfile.Verify Client's Email
+	[arguments]	${isEmail}
+	${email}	get element attribute 	xpath=(//label[contains(text(),"Email / Username:")]/following::input[1])[1]@value
+	Run Keyword and continue on failure	Should be Equal	${email}	${isEmail}
+
+ClientProfile.Verify Change Password Inputs Expanded
+	ath verify element is visible 	xpath=//div[@id="profileCollapse"][@aria-expanded="true"]
+
+ClientProfile.Verify Change Password Inputs Collapsed
+	ath verify element is visible 	xpath=//div[@id="profileCollapse"][@aria-expanded="false"]
+
+ClientProfile.PatientID.Click Choose File Button
+	[arguments]	${uploadFile}
+	Choose File	xpath=//input[@name='patient_identity']	${UploadFile}
+	Sleep 	10.0
+	ath wait until loaded 	30
+
+ClientProfile.PatientID.Select Patient ID Type
+	ath_select_radio_button	xpath=//label[@class="radio-inline"][contains(normalize-space(),'Patient ID')]/descendant::input
+
+ClientProfile.PatientID.Delete Uploaded File
+	ath click icon	xpath=//label[text()="Patient ID:"]/../descendant::span[normalize-space()="X"]
+	Sleep 	1.0
+	ath wait until loaded 	30
+
+ClientProfile.PatientID.Verify File is Uploaded
+	[arguments]	${ftype}
+	ath verify element is visible 	//label[text()="Patient ID:"]/../descendant::input[contains(@value,'.${ftype}')]
+
+
+ClientProfile.Click Update Information Button
+	ath click button	xpath=//input[@value="Update Information"]
+	Sleep 	5.0
+	ath wait until loaded 	30
+
+
+ClientProfile.ProfileImage.Click Choose File Button
+	[arguments]	${uploadFile}
+	Choose File	xpath=//input[@name='profileImage']	${UploadFile}
+	Sleep 	5.0
+	ath wait until loaded 	30
+
+ClientProfile.ProfileImage.Click Add Button
+	ath click button 	xpath=(//button[contains(@class,'addNewBtn_profileImage')][text()="Add"])[1]
+	Sleep 	2.0
+	ath wait until loaded 	30
+	Capture Page Screenshot
+
+ClientProfile.ProfileImage.Verify Profile Image Displayed
+	ath verify element is visible 	xpath=//span[contains(@class,'hidden-xs icon user-photo active')]
+	ath verify element is visible 	xpath=(//img[contains(@src,'uploadImages')][contains(@src,'jpg')])[1]
+	Capture Page Screenshot
+
+Community.Verify Community Table Displayed
+	ath verify element is visible 	xpath=//table[contains(@class,'table-striped')]/descendant::a[contains(text(),'Community')]
+
+Community.Select Community Name Link
+	[arguments]	${comLink} 	${idx}=1
+	ath click link	${comLink}	${idx}
+	Sleep 	10.0
+	ath wait until loaded 	30
+
+Community.Select Community Category Link
+	[arguments]	${comLink}
+	ath click link	${comLink}
+	Sleep 	10.0
+	ath wait until loaded 	30
+
+DSM5.Verify DSM5 Page Contents
+	ath verify element is visible 	xpath=//*[@id="grids-form-panel"]
+	ath verify element is visible 	xpath=//*[@id="heading333"]
+	ath verify element is visible 	xpath=//*[@id="accordion333"]
+
+DSM5.Input Search First Criteria
+	[arguments]	${dsm}
+	ath input text value	xpath=//*[contains(@id,'file_search1')] 	${dsm}
+
+
+DSM5.Close Information Search Popup
+	Run Keyword and Ignore Error	ath check label	You don't have any grids available to search
+	ath click icon	xpath=//h4[normalize-space()="Information"]/preceding-sibling::button/span[contains(text(),'×')]
+
+x12Billing.Verify Table Contains Results
+	[arguments]	${visible}=false
+	ath verify element is visible 	xpath=//section[@class="section x12billing"]/descendant::table/descendant::tr[contains(normalize-space(),'No matching records')] 	${visible}
+
+Referrals.Verify Referral Is Displayed in Table
+	[arguments]	${tableDisp} 	${refName}
+	ath verify element is visible 	xpath=//*[text()="${tableDisp}"]/ancestor::div[1]/following-sibling::div[1]/descendant::a[contains(text(),'${refName}')]

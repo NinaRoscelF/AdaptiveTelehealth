@@ -1,0 +1,106 @@
+*** Settings ***
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/OthersPage_res.txt
+
+
+**** Keywords ****
+
+Reports.Select Report Category
+	[Arguments]	${ReportCat}
+	ath click link 	xpath=//b[contains(normalize-space(),'${ReportCat}')]/..
+	Sleep 	3.0
+	ath wait until loaded 	60
+
+Reports.Select Month Start
+	[Arguments]	${Month}
+	ath select drop down field value 	xpath=//select[@name='month_start']	${Month}
+
+Reports.Input Start Date
+	[Arguments]	${Date} 
+	ath input text value 	xpath=//input[@placeholder='Day']	${Date}
+
+Reports.Input Start Year
+	[Arguments]	${isyear}
+	ath input text value 	xpath=//input[@placeholder='Year']	${isyear}
+
+Reports.Click Set Button
+	ath click button 	Set
+	Capture Page Screenshot
+
+Reports.Select Month End
+	[Arguments]	${Month}
+	ath select drop down field value 	xpath=//select[@name='month_end'] 	${Month}
+
+
+Reports.Select Report Provider
+	[Arguments]	${provider}
+	ath click icon 	xpath=//select[@name='provider']
+	ath click icon 	xpath=(//select[@name='provider']/option[contains(text(),'${provider}')])[1]
+	Sleep 	3.0
+	ath wait until loaded 	30
+
+Reports.Select Report Therapist
+	[Arguments]	${therapist}
+	ath click icon 	xpath=//select[@name='provider_id']
+	ath click icon 	xpath=(//select[@name='provider_id']/option[contains(text(),'${therapist}')])[1]
+	Sleep 	3.0
+	ath wait until loaded 	30
+
+
+
+Reports.Verify Display Table Is Displayed
+#	ath verify element is visible 	xpath=//i[contains(text(),'Provider')]/ancestor::div[1]/descendant::table[contains(@class,'table-striped')]
+	ath verify element is visible 	xpath=//table[contains(@class,'table')]
+
+
+Reports.Click Save/Print Button
+	ath click button 	Save/Print
+	Sleep 	2.0
+	Capture Page Screenshot
+
+Reports.Click Cancel Button
+	ath click button 	xpath=//div[@class='modal-dialog']//button[@class='btn btn-default'][contains(text(),'Cancel')]
+	Sleep 	3.0
+	ath wait until loaded 	30
+
+
+Reports.Input Print Reason
+	[Arguments]	${reason}
+	ath_set_text_area_value	xpath=//textarea[@placeholder='Enter purpose here...']	${reason}
+
+Reports.Click Proceed Button
+	ath click button 	xpath=//div[@class='modal-dialog']//button[normalize-space()="Proceed"]
+	Sleep 	5.0
+	ath wait until loaded 	30
+
+Reports.SchedulingReport.Click Proceed Button
+	ath click button 	xpath=(//div[@class='modal-dialog']/descendant::*[contains(@value,'Proceed')])[1]
+	Sleep 	5.0
+	ath wait until loaded 	30
+
+Reports.Click Close Button
+	ath click button 	Close
+	Sleep 	3.0
+	ath wait until loaded 	30
+
+Reports.ClinicData.Click Save Button
+	ath click icon	xpath=//a[contains(@class,'btn-info')]/b[normalize-space()="Save/Print"]
+	Sleep 	2.0
+	Capture Page Screenshot
+
+Reports.ClinicData.Click Print Button
+	ath click button 	xpath=//button[@name='upload-storage-print']
+	Sleep 	2.0
+	Capture Page Screenshot
+
+Reports.Verify Downloaded Event Document
+	[arguments]	${DownloadDir}	${FileType}=xlsx
+	List Files In Directory	${DownloadDir}	*.${FileType}
+	${iswindows}	Run Keyword and Return Status	OperatingSystem.Get Environment Variable	OS
+	${mysystem}	Run Keyword If	${iswindows}	OperatingSystem.Get Environment Variable	OS
+	Run Keyword if	'${mysystem}' != 'Windows_NT'	Run Keyword and Continue On Failure	File Should Exist	${DownloadDir}//*.${FileType}
+	...	ELSE	Run Keyword if	'${mysystem}' == 'Windows_NT'	Run Keyword and Continue On Failure	File Should Exist	${DownloadDir}\\*.${FileType}
+
+Reports.MonthlyTimerReport.Select Month
+	[arguments]	${month}
+	ath click icon 	xpath=//select[@name='month']
+	ath click icon 	xpath=//select[@name='month']/option[contains(normalize-space(),'${month}')]

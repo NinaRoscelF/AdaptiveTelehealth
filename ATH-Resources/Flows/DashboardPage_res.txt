@@ -34,11 +34,12 @@ Dashboard.Registration.Select I agree checkboxes
 # 	ath input text value	Confirm Password	${Password}
 Dashboard.GroupsCompanyWidget.Input Search Criteria
 	[Arguments]	${SearchCriteria}
-	ath input text value	Search	${SearchCriteria}
+	ath input text value	xpath=(//*[contains(text(),'Search')]/input)[1]	${SearchCriteria}
 
 
 Dashboard.GroupsCompanyWidget.Verify No Results found
-	Ath Verify Element Is Visible	xpath=//td[@class='dataTables_empty']
+	[Arguments]	${isdisplayed}=true
+	Ath Verify Element Is Visible	xpath=//td[@class='dataTables_empty']	${isdisplayed}
 	Capture Page Screenshot
 
 Dashboard.Confirm Create Client File Button
@@ -48,21 +49,25 @@ Dashboard.Confirm Create Client File Button
 	ath wait until loaded 	30
 
 Dashboard.Click Create Client Button
-	ath click button	//button[contains(text(),'Create Client')]
-
+	${status}	Run Keyword and Return Status	ath click button	//button[contains(text(),'Create Client')]
+	Run Keyword Unless 	${status}	ath click button	//span[contains(text(),'Create Client File')]
 
 Dashboard.Click Invite Client Button
 	ath click button	//a[@id='button_client']
 
+Dashboard.Click Invite to Community Button
+	ath click link	Invite To Community
 
 Dashboard.Click New Therapist Button
-	ath click button	xpath=//span[contains(text(),'New Therapist')]
+	${status} 	Run Keyword and Return Status	ath click button	xpath=//span[contains(text(),'New Group Therapist')]
+	Run Keyword Unless 	${status}	ath click button	xpath=//span[contains(text(),'New Provider')]
 	Sleep 	2.0
-	ath_wait_until_element_is_present	xpath=//h4[contains(text(),'New Therapist')] 	160
+	ath_wait_until_element_is_present	xpath=//h4[contains(text(),'New Therapist')] 	30
 
 
 Dashboard.Click New Supervisor Button
-	ath click button	xpath=//span[contains(text(),'New Supervisor')]
+	${status} 	Run Keyword and Return Status	ath click button	xpath=//span[contains(text(),'New Group Supervisor')]
+	Run Keyword Unless	${status}	ath click button	xpath=//span[contains(text(),'Supervisor')]
 	Sleep 	5.0
 	ath_wait_until_element_is_present	xpath=//h4[contains(text(),'New Supervisor')]	60
 
@@ -75,7 +80,7 @@ Dashboard.Click New Admin Button
 
 Dashboard.NewClient.Input Client First Name
 	[Arguments]	${FirstName}
-	ath input text value	Client First Name	${FirstName}
+	ath input text value	//input[@id='client_first_name']	${FirstName}
 
 
 Dashboard.NewClient.Input Client Last Name
@@ -200,6 +205,7 @@ Dashboard.NewUser.Input Phone Number1
 Dashboard.NewUser.Select I agree checkboxes
 	ath_set_checkbox	xpath=(//*[contains(text(),'Yes, I agree')])[1]/../descendant::ins
 	ath_set_checkbox	xpath=(//*[contains(text(),'Yes, I agree')])[2]/../descendant::ins
+	RUn Keyword and ignore Error	ath_set_checkbox	xpath=(//*[contains(text(),'Yes, I agree')])[3]/../descendant::ins
 
 Dashboard.NewUser.Input Full Name
 	[Arguments]	${FullName}
@@ -232,12 +238,14 @@ Dashboard.NewUser.SetUserFunction.Click Save Button
 	ath click button 	Save
 
 Dashboard.NewUser.Click Add New Therapist Button
-	ath click button 	xpath=(//input[@value="Add new therapist"])
+	${status}	Run Keyword and Return Status 	ath click button 	xpath=(//input[@value="Add new therapist"])
+	Run Keyword UNless 	${status}	ath click button	xpath=//span[contains(text(),'New Group Therapist')]
 	Sleep 	5.0
 	ath wait until loaded 	30
 
 Dashboard.NewUser.Click Add New Supervisor Button
-	ath click button 	xpath=(//input[@value="Add new supervisor"])
+	${status}	Run Keyword and Return Status 	ath click button 	xpath=(//input[@value="Add new supervisor"])
+	Run Keyword UNless 	${status}	ath click button	//span[contains(text(),'New Groups Supervisor')]
 	Sleep 	5.0
 	ath wait until loaded 	30
 
@@ -306,6 +314,20 @@ Dashboard.AdminsWidget.Select Records per Page Value
 	Sleep 	3.0
 	ath wait until loaded 	60
 
+Dashboard.AdminRole.ClientsWidget.Select Records per Page Value
+	[Arguments]	${RecordNo}
+	ath select drop down field value	//div[@id='admin_patients_table']/descendant::label[text()="Records per page "]/select	${RecordNo}
+	Sleep 	3.0
+	ath wait until loaded 	60
+
+Dashboard.AdminRole.ClientsWidget.Verify Created File is Visible
+	[Arguments]	${clientfile}
+	ath verify element is visible	xpath=//div[@id='admin_patients_table']/descendant::a[contains(text(),'${clientfile}')]
+
+Dashboard.AdminRole.ClientsWidget.Select Newly Created Client
+	[Arguments]	${FirstName}
+	Capture Page Screenshot
+	ath click link	xpath=//div[@id='admin_patients_table']/descendant::a[contains(text(),'${FirstName}')]
 
 Dashboard.ClientsWidget.Verify Newly Created Client Is Displayed
 	[Arguments]	${FirstName}
@@ -316,11 +338,14 @@ Dashboard.ClientsWidget.TherapistRole.Verify Newly Created Client Is Displayed
 	ath verify element is visible	xpath=//section[@class='section clients']/descendant::tbody/tr/td/a[contains(text(),'${FirstName}')]
 
 
+Dashboard.ClientsWidget.Select First Client from Table
+	Capture Page Screenshot
+	ath click link	xpath=((//section[@class='section clients']/descendant::tbody/tr/td[3])[1]/a)
+
 Dashboard.ClientsWidget.Select Newly Created Client
 	[Arguments]	${FirstName}
 	Capture Page Screenshot
 	ath click link	xpath=//section[@class='section clients']/descendant::tbody/tr/td/a[contains(text(),'${FirstName}')]
-
 
 Dashboard.ProvidersWidget.Select Newly Created Provider
 	[Arguments]	${FirstName}
@@ -553,113 +578,109 @@ Dashboard.ClientMeetingsWidget.Verify Video Meetings Details
 	ath verify element is visible 	xpath=(//td[contains(text(),'Video')]/following-sibling::*[contains(text(),'${date}')])
 	ath verify element is visible 	//span[contains(text(),'${meetingTime}')]
 	ath verify element is visible 	//*[@class="fa fa-play"]
-
+	Capture Page Screenshot
 
 Dashboard.ClientMeetingsWidget.Verify InPerson Meetings Details
 	[Arguments]	${date}	${meetingTime}
-	ath verify element is visible 	//td[contains(text(),'In Person')]
-	ath verify element is visible 	//td[contains(text(),'Open')]
-	ath verify element is visible 	xpath=(//td[contains(text(),'In Person')]/following-sibling::*[contains(text(),'${date}')])
-	ath verify element is visible 	//span[contains(text(),'${meetingTime}')]
+	${status}	Run Keyword and Return Status 	ath verify element is visible 	xpath=(//td[contains(text(),'In-Person')]/following-sibling::*[contains(text(),'${date}')])
+	Run Keyword Unless	${status}	ath verify element is visible 	xpath=(//td[contains(text(),'In Person')]/following-sibling::*[contains(text(),'${date}')])
+	ath verify element is visible 	xpath=//span[contains(text(),'${meetingTime}')]
+	Capture Page Screenshot
 
-Clients.Select Records Per Page Value
-	[Arguments]	${RecordNo}
-	ath select drop down field value	//div[contains(@id,'DataTables')]/descendant::label[text()="Records per page "]/select	${RecordNo}
-	Sleep 	3.0
-	ath wait until loaded 	60
+Dashboard.Verify Device Icons are Visible
+	ath wait until loaded 	30
+	ath verify element is visible 	xpath=//img[contains(@src,'/browser-icon')]
+	ath verify element is visible 	xpath=//img[contains(@src,'/webcam-icon')]
+	ath verify element is visible 	xpath=//img[contains(@src,'/mic-icon')]
+	ath verify element is visible 	xpath=//img[contains(@src,'/speaker-icon')]
 
-Clients.Verify Record Per Page Dropdown Is Visible
-	ath verify element is visible 	xpath=//div[contains(@id,'DataTables')]/descendant::label[text()="Records per page "]
+Dashboard.DeviceCheck.Click Run Auto Device Check button
+	ath click button 	Run auto device check
+	ath wait until loaded 	30
 
-Clients.Verify Search Input Is Visible
-	ath verify element is visible 	xpath=//label[contains(text(),'Search')]/input
-
-Clients.Verify Group Company Link Is Visible
-	Check Link Existence	Groups Company Archive
-
-
-Clients.Sort Last Name Column
-	${datelist}	Create List
-	${datelist1}	Create List
-
-	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Name"]
-	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])
-	:FOR	${index}	IN RANGE	0	${count}
-	\	${idx}	Evaluate	${index} + 1
-	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]
-	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]@textContent
-	\	Log	${text}
-	\	Append To List	${datelist}	${text}
-	Sort List	${datelist}
-	Log	${datelist}
-
-	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Name"]
-	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])
-	:FOR	${index}	IN RANGE	0	${count}
-	\	${idx} 	Evaluate	${index} + 1
-	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]
-	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[2])[${idx}]@textContent
-	\	Log	${text}
-	\	Append To List	${datelist1}	${text}
-	Sort List	${datelist1}
-	Log	${datelist1}
-
-	List Should Contain Sub List	${datelist1}	${datelist}
+Dashboard.DeviceCheck.Click Check My Browser button
+	ath click button 	Check my Browser
+	ath wait until loaded 	30
 
 
-Clients.Sort First Name Column
-	${datelist}	Create List
-	${datelist1}	Create List
+Dashboard.DeviceCheck.Verify Device is Allowed
+	[Arguments]	${device}
+	${stat}	Run Keyword and Return Status 	ath verify element is visible 	xpath=//p[text()="${device}"]/../following-sibling::img[contains(@src,'/green-light')][contains(@style,'display: inline')]
+	Run Keyword and Continue on Failure	Should be True 	${stat}
 
-	ath click icon	//th[contains(@class,'sorting')][normalize-space()="First Name"]
-	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])
-	:FOR	${index}	IN RANGE	0	${count}
-	\	${idx}	Evaluate	${index} + 1
-	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
-	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
-	\	Log	${text}
-	\	Append To List	${datelist}	${text}
-	Sort List	${datelist}
-	Log	${datelist}
+Dashboard.DeviceCheck.Verify Device is Blocked
+	[Arguments]	${device}
+	${stat}	Run Keyword and Return Status 	ath verify element is visible 	xpath=//p[text()="${device}"]/../following-sibling::img[contains(@src,'/red-light')][contains(@style,'display: inline')]
+	Run Keyword and Continue on Failure	Should be True 	${stat}
 
-	ath click icon	//th[contains(@class,'sorting')][normalize-space()="First Name"]
-	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])
-	:FOR	${index}	IN RANGE	0	${count}
-	\	${idx} 	Evaluate	${index} + 1
-	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]
-	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[1])[${idx}]@textContent
-	\	Log	${text}
-	\	Append To List	${datelist1}	${text}
-	Sort List	${datelist1}
-	Log	${datelist1}
+Dashboard.DeviceCheck.Click Continue BUtton
+	ath click button 	Continue
+	Sleep 	1.0
+	ath wait until loaded 	30
 
-	List Should Contain Sub List	${datelist1}	${datelist}
+Dashboard.DeviceCheck.Webcam.Click Allow BUtton
+	ath click button 	Allow
+	Sleep 	1.0
+	ath wait until loaded 	30
+
+Dashboard.DeviceCheck.Micorphone.Click Allow BUtton
+	ath click button 	Allow	2
+	Sleep 	1.0
+	ath wait until loaded 	30
 
 
-Clients.Sort Last Login Column
-	${datelist}	Create List
-	${datelist1}	Create List
+Dashboard.DeviceCheck.Webcam.Click Block BUtton
+	ath click button 	Block
+	Sleep 	1.0
+	ath wait until loaded 	30
 
-	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Login"]
-	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
-	:FOR	${index}	IN RANGE	0	${count}
-	\	${idx}	Evaluate	${index} + 1
-	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
-	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
-	\	Log	${text}
-	\	Append To List	${datelist}	${text}
-	Sort List	${datelist}
-	Log	${datelist}
+Dashboard.DeviceCheck.Microphone.Click Block BUtton
+	ath click button 	Block	2
+	Sleep 	1.0
+	ath wait until loaded 	30
 
-	ath click icon	//th[contains(@class,'sorting')][normalize-space()="Last Login"]
-	${count}	Get Matching Xpath Count	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])
-	:FOR	${index}	IN RANGE	0	${count}
-	\	${idx} 	Evaluate	${index} + 1
-	\	ath_wait_until_element_staleness	(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]
-	\	${text}	Get Element Attribute	xpath=(//table[@id='client_archive']/descendant::tr[not(contains(@role,'row'))]/descendant::td[3])[${idx}]@textContent
-	\	Log	${text}
-	\	Append To List	${datelist1}	${text}
-	Sort List	${datelist1}
-	Log	${datelist1}
 
-	List Should Contain Sub List	${datelist1}	${datelist}
+Dashboard.DeviceCheck.Webcam.Click Yes I Can Button
+#	[Arguments]	${idx}=1
+	ath click button 	Yes, I can
+	Sleep 	1.0
+	ath wait until loaded 	30
+
+Dashboard.DeviceCheck.Microphone.Click Yes I Can Button
+#	[Arguments]	${idx}=1
+	ath click button 	Yes, I can 	2
+	Sleep 	1.0
+	ath wait until loaded 	30
+
+Dashboard.DeviceCheck.Speaker.Click Yes I Can Button
+#	[Arguments]	${idx}=1
+	ath click button 	Yes, I can 	3
+	Sleep 	1.0
+	ath wait until loaded 	30
+
+
+Dashboard.DeviceCheck.Webcam.Click No I Cant Button
+	ath click button 	No, I can't
+	Sleep 	1.0
+	ath wait until loaded 	30
+
+Dashboard.DeviceCheck.Microphone.Click No I Cant Button
+	ath click button 	No, I can't	2
+	Sleep 	1.0
+	ath wait until loaded 	30
+
+
+Dashboard.DeviceCheck.Speaker.Click No I Cant Button
+	ath click button 	No, I can't	3
+	Sleep 	1.0
+	ath wait until loaded 	30
+
+Dashboard.DeviceCheck.Click OK to troubleshoot
+	ath click button 	xpath=//*[contains(normalize-space(),'In order to proceed with this auto device check, kindly troubleshoot')]/ancestor::div[@class="modal-dialog"]/descendant::button[contains(normalize-space(),'OK')]
+	sleep 	5.0
+	ath wait until loaded 	30
+
+Dashboard.DeviceCheck.Device Check Process Successful
+	Check Label existence 	You're all set for Online Sessions!
+	ath verify element is visible 	xpath=//img[contains(@src,'/thumb-vector-big')]
+	ath verify element is visible 	xpath=//img[contains(@src,'/check-90px')]

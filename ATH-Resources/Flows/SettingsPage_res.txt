@@ -120,9 +120,9 @@ Settings.AS.LogoSettings.Verify Logo Settings Page Display
 	Capture Page Screenshot
 
 Settings.AS.MerchantServices.Verify Merchant Services Page Display
-	Check Label Existence	Merchant Services,Current Status:,Select Merchant,MerchantID
-	ath check button existence 	Turn Off
-	ath check button existence	Turn On
+	Check Label Existence	Merchant Services,Current Status:,SETUP MERCHANT SERVICES,Merchant ID
+	# ath check button existence 	Turn Off
+	# ath check button existence	Turn On
 	ath check button existence	Save
 	Capture Page Screenshot
 
@@ -280,11 +280,11 @@ Settings.LS.Verify Logo Deleted Successfully
 	ath verify element is visible 	xpath=//*[@class="alert alert-success"][contains(text(),'Logo Deleted')]
 
 Settings.Timezone.Select Cardconnect as Merchant Service
-	ath select radio button 	xpath=//input[@value="cardconnect"]/..
+	ath set checkbox 	xpath=//img[contains(@src,'cardconnect')]/preceding-sibling::*
 	ath wait until loaded 	30
 
 Settings.Timezone.Select Paypal as Merchant Service
-	ath select radio button 	xpath=//input[@value="paypal"]/..
+	ath set checkbox 	xpath=//img[contains(@src,'paypal')]/preceding-sibling::*
 	ath wait until loaded 	30
 
 Settings.Timezone.Select Timezone Dropdown
@@ -469,7 +469,8 @@ Settings.CS.Schedule.Click Apply Button
 	Capture Page Screenshot
 
 Settings.CS.Schedule.Set Provider Checkbox
-	ath set checkbox 	can view provider calendar
+	[arguments]	${ischecked}=true
+	ath set checkbox 	xpath=(//input[contains(@id,'calendar_input')])[1]	${ischecked}
 	ath wait until loaded 	30
 
 Settings.CS.Schedule.Verify View is Saved Successfully
@@ -530,7 +531,7 @@ Settings.TFF.Input New Template Name
 
 Settings.TFF.Click Save Template Button
 	ath click button	//div[@id='cfgenwp-fb-editor-c']/span[@id='cfgenwp-saveform']
-	Sleep 	5.0
+	Sleep 	5.0 
 	ath wait until loaded 	30
 
 Settings.TFF.Click Copy Template Button
@@ -563,14 +564,14 @@ Settings.TFF.Verify Template Checkbox Exists
 	Capture Page Screenshot
 
 Settings.TFF.Select Records per Page
-	[Arguments]	${RecordNo}
-	ath select drop down field value	//label[text()="Records per page "]/select	${RecordNo}
+	[Arguments]	${RecordNo} 	${idx}=1
+	ath select drop down field value	xpath=(//label[text()="Records per page "]/select)[${idx}]	${RecordNo}
 	Sleep 	3.0
 	ath wait until loaded 	60
 
 Settings.TFF.Input Search Criteria
-	[Arguments]	${SearchCriteria}
-	ath input text value	xpath=(//*[contains(text(),"Search")]/input)[1]	${SearchCriteria}
+	[Arguments]	${SearchCriteria} 	${idx}=1
+	ath input text value	xpath=(//*[contains(text(),"Search")]/input)[${idx}]	${SearchCriteria}
 
 Settings.TFF.Sort Order Column
 	${orderlist}	Create List
