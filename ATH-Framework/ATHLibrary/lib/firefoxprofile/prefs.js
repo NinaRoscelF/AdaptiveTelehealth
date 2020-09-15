@@ -13,7 +13,7 @@ user_pref("app.update.lastUpdateTime.places-maintenance-timer", 1296213578);
 user_pref("app.update.lastUpdateTime.search-engine-update-timer", 1296213595);
 user_pref("app.update.enabled", false);
 user_pref("browser.download.manager.showWhenStarting", false);
-user_pref("browser.download.dir", "/var/lib/jenkins/Adaptive_Telehealth/ATH-Resources/Downloads");
+user_pref("browser.download.dir", "C:/ATH.Git/AdaptiveTelehealth/ATH-Resources/Downloads");
 user_pref("browser.download.folderList", 2);
 user_pref("browser.helperApps.neverAsk.saveToDisk","text/plain,text/csv,application/zip,application/octet-stream,application/xml,text/html,application/xlsx,application/vnd.ms-excel,text/javascript,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 user_pref("browser.history_expire_days.mirror", 180);

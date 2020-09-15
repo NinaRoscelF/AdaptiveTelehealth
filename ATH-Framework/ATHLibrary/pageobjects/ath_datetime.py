@@ -77,7 +77,7 @@ class ATHDateTime(ATHElementFinder):
 #        self.click_element(calicon)
         self.ath_wait_until_loaded()
         # Click Calendar Header to Select Month & Year
-        calendarheader = "(//span[@class='ui-datepicker-year'])[1]"
+        calendarheader = "xpath=(//span[@class='ui-datepicker-year'])[1]"
         sel_month = "xpath=//*[contains(@class,'datetimepicker')][contains(@style, 'display: block')]/descendant::*[contains(@class,'month')]/descendant::span[text()='%s']" %(month)
         sel_year = "xpath=//*[contains(@class,'datetimepicker')][contains(@style, 'display: block')]/descendant::*[contains(@class,'year')][text()='%s']" %(year)
         self.click_element(calendarheader)

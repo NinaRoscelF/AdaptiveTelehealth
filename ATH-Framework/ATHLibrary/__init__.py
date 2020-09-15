@@ -129,8 +129,7 @@ class ATHLibrary(Selenium2Library, ATHInputs, ATHButtons, ATHLinks, ATHRadioChec
             cap['proxy'] = proxy
 
         options = webdriver.ChromeOptions()
-#        options.add_argument('--headless')
-        downloadFilepath = "C:\\Adaptive_Telehealth\\ATH-Resources\\Downloads"
+        downloadFilepath = "C:\\ATH.Git\\AdaptiveTelehealth\\ATH-Resources\\Downloads"
         chromePrefs = {}
         chromePrefs["profile.default_content_settings.popups"] = 0
         chromePrefs["download.default_directory"] = downloadFilepath

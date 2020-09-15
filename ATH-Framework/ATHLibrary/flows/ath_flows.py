@@ -171,3 +171,4 @@ class ATHFlows(ATHElementFinder, _FormElementKeywords):
         import re
         return   '%02x%02x%02x' % (map(int, re.findall('\d+', str))[0], map(int, re.findall('\d+', str))[1], map(int, re.findall('\d+', str))[2])
 
+
