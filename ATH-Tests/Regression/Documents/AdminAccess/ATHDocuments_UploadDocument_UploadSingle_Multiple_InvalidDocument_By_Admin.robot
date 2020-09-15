@@ -2,7 +2,6 @@
 Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/DocumentPage_res.txt
 Suite Teardown	Close All Browsers
 
-
 ***Variable***
 ${Filelocation}	C:\\ATH.Git\\AdaptiveTelehealth\\ATH-Resources\\UploadFile\\
 ${PDFFile}	dummy1.pdf

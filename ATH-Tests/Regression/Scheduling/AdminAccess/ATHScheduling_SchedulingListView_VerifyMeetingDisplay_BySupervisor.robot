@@ -12,7 +12,7 @@ ${ScheduledByLive}	Ellis
 ***Test Cases***
 ATHScheduling_SchedulingListView_VerifyMeetingDisplay_BySupervisor
 
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	Perform Login Checks
 	Select Scheduling Menu
 	Scheduling.Switch to List View
@@ -57,9 +57,9 @@ ATHScheduling_SchedulingListView_ExpandCollapseStatusWidget_BySupervisor
 	Scheduling.StatusWidget.Expand/Collapse Action
 	Capture Page Screenshot
 	${status}	Run Keyword and Return Status	Scheduling.StatusWidget.Verify Widget Is Expanded
-	Run Keyword and Continue on Failure	Should not be true	${status}
+	Run Keyword and Continue on Failure	Should be true	${status}
 	Scheduling.StatusWidget.Expand/Collapse Action
 	Scheduling.Verify Status widget display
-	Scheduling.Verify Available Status in Status widget 	Office Hours,Online,Pending,Booked,Confirmed,Cancelled,Waiting,Attended,Off Hours,In-Person,Cancelled,Walk-in,No Answer,No-show,Being Seen,Rescheduled
+	Scheduling.Verify Available Status in Status widget 	Office Hours,Online,Booked,Confirmed,Cancelled,Waiting,Attended,In-Person,Cancelled,Walk-in,No Answer,No-show,Being Seen,Rescheduled
 
 	Logout from Application

@@ -15,18 +15,19 @@ ATHDocuments_UploadedByClients_VerifyDocumentDisplay_By_Therapist
 	Perform Login Checks
 	Select Documents Menu
 	Documents.Select Uploaded by Clients Menu
-	Documents.Verify Header Column Display	Patient
+	Documents.Verify Header Column Display	Groups Company
 	Documents.Verify Header Column Display	Shared with
 	Documents.Verify Header Column Display	Document
 	Documents.Verify Header Column Display	Size
 	Documents.Verify Header Column Display	Date Uploaded
+	Documents.UploadedByClients.Select Records per Page Value	100
 	Documents.MyDocument.Verify File Uploaded Exists	${sharedFile}
 	Documents.MyDocument.Verify Document is Shared with Client	${ClientName}
 	Documents.UploadedByClients.Verify Document Size	${sharedFile}	${Filesize}
 	Capture Page Screenshot
 
 ATHDocuments_UploadedByClients_SelectRecordsPerPage_By_Therapist
-	Documents.UploadedByClients.Select Records per Page Value	100
+	Documents.UploadedByClients.Select Records per Page Value	50
 	Capture Page Screenshot
 
 

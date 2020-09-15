@@ -33,6 +33,30 @@ Dashboard_VerifyActionsFromWelcomeHeader_By_Client
 	Run Keyword if	"${TestEnv}" == "Secure"	Verify Help Page Displayed 	${therapistSecure}	${HelpMenuSecure}	ELSE 	Verify Help Page Displayed	${therapistLive}	${HelpMenuLive}
 	Capture Page Screenshot
 
+Dashboard_Alerts_SelectRecordsPerPage_By_Client
+	Select Dashboard Menu
+	ath verify element is visible 	xpath=//section[@id="notification-section"]/descendant::label[text()="Records per page "]
+	ath verify element is visible 	xpath=//section[@id="notification-section"]/descendant::label[contains(text(),'Search')]/input
+	Settings.TFF.Select Records per Page 	100 	3
+	Capture Page Screenshot
+
+Dashboard_Alerts_InputSearchCriteria_By_Client
+	Settings.TFF.Input Search Criteria 	therapist 	3
+	${status}	Run Keyword and Return Status	Dashboard.GroupsCompanyWidget.Verify No Results found
+	Run Keyword and Continue on Failure 	Should not be true	${status}
+	Capture Page Screenshot
+
+Dashboard_Alerts_CancelMarkAsRead_By_Client
+	ath click link 	Mark all as read
+	Capture Page Screenshot
+	Run Keyword and Ignore Error	ath click button 	Close
+	Run Keyword and Ignore Error	ath click button 	xpath=//*[contains(normalize-space(),'Mark all as read')]/ancestor::div[@class="modal-dialog"]/descendant::button[contains(normalize-space(),'Close')]
+
+Dashboard_Alerts_MarkAsRead_By_Client
+	ath click link 	Mark all as read
+	ath click button 	xpath=//*[contains(normalize-space(),'Mark all as read')]/ancestor::div[@class="modal-dialog"]/descendant::button[contains(normalize-space(),'Apply')]
+	Capture Page Screenshot
+
 Dashboard_VerifyActionsFromFooter_By_Therapist
 	Footer.Click Privacy Disclaimer
 	Verify Privacy Disclaimer Page Opens

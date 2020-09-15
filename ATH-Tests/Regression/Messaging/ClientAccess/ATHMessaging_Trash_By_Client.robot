@@ -17,6 +17,8 @@ MessagingClient_055
 	Messaging.Trash.Select checkbox of first Message
 	Messaging.Trash.Click Delete Icon
 	Messaging.Confirm Move to Trash Action
+	Sleep 	3.0
+	ath wait until loaded 	30
 	Messaging.Confirm Message Permanently Deleted
 
 
@@ -27,6 +29,8 @@ MessagingClient_056
 	Messaging.Inbox.Select all Messages
 	Messaging.Inbox.Move to Trash Icon
 	Messaging.Confirm Move to Trash Action
+	Sleep 	3.0
+	ath wait until loaded 	30
 	Messaging.Confirm Message Moved to Trash
 
 
@@ -76,9 +80,9 @@ MessagingClient_067
 # #Sort Subject
 # 	Messaging.Sort Subject Column
 
-MessagingClient_063
-#Sort Date
-	Messaging.Sort Date Column
+# MessagingClient_063
+# #Sort Date
+# 	Messaging.Sort Date Column
 
 MessagingClient_064
 #Sort Time

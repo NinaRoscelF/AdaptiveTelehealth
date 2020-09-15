@@ -27,8 +27,6 @@ MessagingTherapist_056
 	Messaging.Confirm Move to Trash Action
 	Messaging.Confirm Message Moved to Trash
 
-
-	${DTToday}	Generate Date and Time Today
 	Messaging.Select Trash Menu
 	Messaging.Trash.Select all Messages
 	Messaging.Trash.Click Delete Icon
@@ -38,7 +36,6 @@ MessagingTherapist_056
 
 MessagingTherapist_057
 #Cancel move to trash
-	${DTToday}	Generate Date and Time Today
 	Messaging.Select Trash Menu
 	Messaging.Trash.Select all Messages
 	Messaging.Trash.Click Delete Icon
@@ -74,9 +71,9 @@ MessagingTherapist_067
 # #Sort Subject
 # 	Messaging.Sort Subject Column
 
-MessagingTherapist_063
-#Sort Date
-	Messaging.Sort Date Column
+# MessagingTherapist_063
+# #Sort Date
+# 	Messaging.Sort Date Column
 
 MessagingTherapist_064
 #Sort Time

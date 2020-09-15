@@ -61,8 +61,8 @@ ATHSettings_SystemPreference_Input Change Password Details_ByTherapist
 	Settings.SP.Password.Input Confirm Password Value 	Password123
 	Settings.SP.Password.Click Unmask Confirm Password Input
 
-ATHSettings_OfflineChatPageDisplay_ByTherapist
-	Settings.AccountSettings.Select SubMenu 	Offline Chat Notifications
-	Check Button Existence 	Turn Off,Turn On-Save Changes
-	Check Label Existence	Offline Chat Notifications,Current Status,Custom Message for your Clients
+# ATHSettings_OfflineChatPageDisplay_ByTherapist
+# 	Settings.AccountSettings.Select SubMenu 	Offline Chat Notifications
+# 	Check Button Existence 	Turn Off,Turn On-Save Changes
+# 	Check Label Existence	Offline Chat Notifications,Current Status,Custom Message for your Clients
 	Logout from Application

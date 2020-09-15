@@ -4,8 +4,6 @@ Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHDashboard_Cre
 Suite Teardown	Close All Browsers
 
 
-
-
 ***Test Cases***
 Dashboard_CreateSupervisor_By_SystemAdmin
 #create supervisor
@@ -36,6 +34,8 @@ Dashboard_CreateSupervisor_By_SystemAdmin
 	Dashboard.NewUser.Verify Supervisor Is saved successfully
 	Sleep 	3.0
 	Dashboard.CareCoordinatorsWidget.Select Records per Page Value 	100
+	Sleep 	10.0
+	ath wait until loaded 	30
 	Dashboard.ProvidersWidget.Select Newly Created Care Coordinators	${Firstname}
 	Dashboard.NewUser.Verify Supervisor Profile is Created
 	ath_verify_textbox_value	//input[@name='email']	${Firstname}@mailinator.com

@@ -4,7 +4,7 @@ Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${ScheduledBySecure}	Taylor
+${ScheduledBySecure}	Taylor 
 ${ScheduledByLive}	Therapist
 ${CalendarSecure}	Mary Ellis
 ${CalendarLive}	Automation Therapist
@@ -65,9 +65,9 @@ ATHScheduling_SchedulingListView_ExpandCollapseStatusWidget_ByAdmin
 	Scheduling.StatusWidget.Expand/Collapse Action
 	Capture Page Screenshot
 	${status}	Run Keyword and Return Status	Scheduling.StatusWidget.Verify Widget Is Expanded
-	Run Keyword and Continue on Failure	Should not be true	${status}
+	Run Keyword and Continue on Failure	Should be true	${status}
 	Scheduling.StatusWidget.Expand/Collapse Action
 	Scheduling.Verify Status widget display
-	Scheduling.Verify Available Status in Status widget 	Office Hours,Online,Pending,Booked,Confirmed,Cancelled,Waiting,Attended,Off Hours,In-Person,Cancelled,Walk-in,No Answer,No-show,Being Seen,Rescheduled
+	Scheduling.Verify Available Status in Status widget 	Office Hours,Online,Booked,Confirmed,Cancelled,Waiting,Attended,Cancelled,Walk-in,No Answer,No-show,Being Seen,Rescheduled
 
 	Logout from Application

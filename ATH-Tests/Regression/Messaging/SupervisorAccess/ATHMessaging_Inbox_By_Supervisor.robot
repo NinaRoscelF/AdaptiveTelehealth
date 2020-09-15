@@ -10,16 +10,12 @@ ${Filename2}	dummy25.pdf
 ${FileType}	pdf
 
 ***Test Cases***
-MessagingSupervisor_013
+MessagingClient_013
 #Select an unread and verify
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Inbox Menu
-	# ${status}	Run Keyword and Return Status	Messaging.Inbox.Read Nessage	unread
-	# Run Keyword unless	${status}	Messaging.Inbox.Select Read message
-	# Run Keyword unless	${status}	Messaging.Inbox.Click Read/Unread Icon
-	# Run Keyword unless	${status}	Messaging.Inbox.Read Nessage	unread
 	Messaging.Inbox.Reply To Unread Nessage	Automation Message
 	Messaging.Inbox.Verify Message Details and Reply Button Is Visible
 	Messaging.Inbox.Verify Font is Normal Style
@@ -29,6 +25,7 @@ MessagingSupervisor_030
 #reply close window
 	Messaging.Inbox.Click Reply Button
 	Messaging.Reply.Input Reply Message	Auto Reply Message
+	Capture Page Screenshot
 	Messaging.Reply.Click Close button
 
 MessagingSupervisor_029
@@ -48,13 +45,13 @@ MessagingSupervisor_028
 	Messaging.Reply.Click Send button
 	Sleep 	15.0	wait for confirmation message
 	ath wait until loaded	30
+	Capture Page Screenshot
 	Messaging.Confirm Message Sent successfully
-
 
 MessagingSupervisor_016
 #Select all and tag all
 	Sleep 	2.0
-	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count	read
+	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count	Read
 	Capture Page Screenshot
 	Messaging.Inbox.Select all Messages
 	Capture Page Screenshot
@@ -67,11 +64,11 @@ MessagingSupervisor_016
 
 MessagingSupervisor_014
 #Select unread and tag as read
-	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count 	unread
+	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count 	Unread
 	Capture Page Screenshot
 	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	ELSE	Messaging.Inbox.Select Unread message
-	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	read	True	2	ELSE	Messaging.Inbox.Select Unread message	unread	True	2
-	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	read	True	3	ELSE	Messaging.Inbox.Select Unread message	unread	True	3
+	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	Read	True	2	ELSE	Messaging.Inbox.Select Unread message	Unread	True	2
+	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	Read	True	3	ELSE	Messaging.Inbox.Select Unread message	Unread	True	3
 	Capture Page Screenshot
 	Messaging.Inbox.Click Read/Unread Icon
 	Messaging.Inbox.Verify Messages were read/unread	${isUnread}	unread
@@ -79,15 +76,15 @@ MessagingSupervisor_014
 
 MessagingSupervisor_015
 #Select read adn tag as unread
-	${isRead}	Messaging.Inbox.Get Read/Unread Messages Count	read
+	${isRead}	Messaging.Inbox.Get Read/Unread Messages Count	Read
 	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	ELSE	Messaging.Inbox.Select Read message
-	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	uread	True	2	ELSE	Messaging.Inbox.Select Read message	read	True	2
-	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	uread	True	3	ELSE	Messaging.Inbox.Select Read message	read	True	3
+	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	Unread	True	2	ELSE	Messaging.Inbox.Select Read message	read	True	2
+	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	Uread	True	3	ELSE	Messaging.Inbox.Select Read message	Read	True	3
 	Capture Page Screenshot
 	Messaging.Inbox.Click Read/Unread Icon
 	Capture Page Screenshot
 	Sleep 	3.0
-	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isRead}	read
+	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isRead}	Read
 
 
 MessagingSupervisor_017
@@ -119,18 +116,6 @@ MessagingSupervisor_019
 	Messaging.Inbox.Move to Trash Icon
 	Messaging.Cancel Move to Trash Action
 
-# MessagingSupervisor_023
-# #Sort From
-# 	Messaging.Sort From Column
-
-# MessagingSupervisor_024
-# #Sort Subject
-# 	Messaging.Sort Subject Column
-
-MessagingSupervisor_025
-#Sort Date
-	Messaging.Sort Date Column
-
 MessagingSupervisor_026
 #Sort Time
 	Messaging.Sort Time Column
@@ -159,3 +144,16 @@ MessagingSupervisor_020
 #move to next page
 	Move to Next Page
 	Logout from Application
+
+# # MessagingSupervisor_023
+# # #Sort From
+# # 	Messaging.Sort From Column
+
+# # MessagingSupervisor_024
+# # #Sort Subject
+# # 	Messaging.Sort Subject Column
+
+# # MessagingSupervisor_025
+# # #Sort Date
+# # 	Messaging.Sort Date Column
+

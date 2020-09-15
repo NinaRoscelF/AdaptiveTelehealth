@@ -20,7 +20,7 @@ MessagingTherapist_031
 	Messaging.Sent.Select checkbox of first Message
 	Messaging.Sent.Move to Trash Icon
 	Messaging.Confirm Move to Trash Action
-	Messaging.Confirm Message Moved to Trash
+	Messaging.Confirm Message Permanently Deleted
 	Messaging.Select Trash Menu
 #	Messaging.Sent.Verify Message is Moved to Trash	${DTToday}
 
@@ -31,7 +31,7 @@ MessagingTherapist_032
 	Messaging.Sent.Select all Messages
 	Messaging.Sent.Move to Trash Icon
 	Messaging.Confirm Move to Trash Action
-	Messaging.Confirm Message Moved to Trash
+	Messaging.Confirm Message Permanently Deleted
 	Messaging.Select Trash Menu
 #	Messaging.Sent.Verify Message is Moved to Trash	${DTToday}
 
@@ -51,9 +51,9 @@ MessagingTherapist_033
 # #Sort Subject
 # 	Messaging.Sort Subject Column
 
-MessagingTherapist_039
-#Sort Date
-	Messaging.Sort Date Column
+# MessagingTherapist_039
+# #Sort Date
+# 	Messaging.Sort Date Column
 
 MessagingTherapist_040
 #Sort Time

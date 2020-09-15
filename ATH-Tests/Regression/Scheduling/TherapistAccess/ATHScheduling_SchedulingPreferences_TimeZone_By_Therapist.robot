@@ -6,7 +6,7 @@ Suite Teardown	Close All Browsers
 
 ***Variable***
 #${MyPatient}	Ginger Taylor (Patient)
-${MyPatient1}	Emma Stoneage (Patient)
+${MyPatient1}	Emma Stoneage (Groups Company)
 ${MyPatient2}	Beyonce Halo (Patient)
 
 ***Test Cases***

@@ -10,13 +10,13 @@ ${NotepadBody2}	FullDetail Notepad
 ATHSettings_Notepad_VerifyNotepadPageDisplay_BySupervisor
 
 	${date}	Generate Date and Time Today
-	${dateadd} 	Add/Subtract Days from Input Date 	${date} 	ADD 	1
+	${dateadd} 	Add/Subtract Days from Input Date 	${date} 	ADD 	0
 	${yr}	${month}	${day}	split string 	${dateadd}	separator=-
 	${iszero}	Fetch From Left 	${day}	0
 	${stringFrom}	Run Keyword if	"${iszero}" == "${EMPTY}"	Replace String	${day}	0	${EMPTY}	ELSE	Set Variable	${day}
 	Set Suite variable 	${stringFrom}
 
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	Select Notepad Menu
 	TherapistRole.Verify Notepad Page Displayed
 	Capture Page Screenshot

@@ -9,7 +9,6 @@ ${Filename}	dummy1.pdf
 ${Filename2}	dummy25.pdf
 ${FileType}	pdf
 ${Recipient1}	Mary Ellis
-${Recipient2}	Meghan Ruiz
 ${Recipient3}	testsupervisor adaptive
 ${Recipient4}	Automation Therapist
 
@@ -38,7 +37,7 @@ MessagingClient_004
 
 MessagingClient_005
 #Send with empty Subject field
-	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient2}	ELSE	Messaging.Input Recipient	${Recipient3}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient3}	ELSE	Messaging.Input Recipient	${Recipient3}
 	Messaging.Click Send Message Button
 	Messaging.Verify Subject Message Error Displayed
 
@@ -58,7 +57,6 @@ MessagingClient_007
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
 	Messaging.Sent.Verify Message is Sent	Automation Message
-	Messaging.Sent.Verify Message is Sent	${DTToday}
 	ath Logout
 
 MessagingClient_008
@@ -68,15 +66,15 @@ MessagingClient_008
 	Select Messaging Menu
 	Messaging.Click New Message Button
 	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient1}	ELSE	Messaging.Input Recipient	${Recipient4}
-	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient2}	ELSE	Messaging.Input Recipient	${Recipient3}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Input Recipient	${Recipient3}	ELSE	Messaging.Input Recipient	${Recipient3}
 	Messaging.Input Subject	Automation Message
 	Messaging.Input Message	Automation Test Message
 	Messaging.Click Send Message Button
 	Messaging.Confirm Message Sent successfully
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
-	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient2}	ELSE	Messaging.Sent.Verify Message is Sent	${Recipient3}
-	Messaging.Sent.Verify Message is Sent	${DTToday}
+	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient3}	ELSE	Messaging.Sent.Verify Message is Sent	${Recipient3}
+
 
 
 MessagingClient_009
@@ -94,7 +92,7 @@ MessagingClient_009
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
 	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient1}	ELSE	Messaging.Sent.Verify Message is Sent	${Recipient4}
-	Messaging.Sent.Verify Message is Sent	${DTToday}
+
 
 MessagingClient_010
 #Send Message with multiple attachments
@@ -109,7 +107,7 @@ MessagingClient_010
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
 	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient1}	ELSE	Messaging.Sent.Verify Message is Sent	${Recipient4}
-	Messaging.Sent.Verify Message is Sent	${DTToday}
+
 
 
 MessagingClient_011
@@ -123,7 +121,6 @@ MessagingClient_011
 	Messaging.Select Draft Menu
 	${DTToday}	Generate Date and Time Today
 	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient1}	ELSE	Messaging.Sent.Verify Message is Sent	${Recipient4}
-	Messaging.Sent.Verify Message is Sent	${DTToday}
 
 MessagingClient_012
 #Close message

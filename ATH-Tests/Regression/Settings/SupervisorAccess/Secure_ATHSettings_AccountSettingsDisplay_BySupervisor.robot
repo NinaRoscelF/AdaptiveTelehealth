@@ -6,7 +6,7 @@ Suite Teardown	Close All Browsers
 ***Test Cases***
 ATHSettings_AccountSettings_ServicesAdminDisplay_BySupervisor
 
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	WelcomeHeader.Click Settings Icon
 	Capture Page Screenshot
 	Settings.AccountSettings.Select SubMenu 	Services Admin

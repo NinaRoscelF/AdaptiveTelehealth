@@ -38,7 +38,7 @@ SchedulingTherapist_056
 #	Scheduling.TherapistRole.Move Calendar Display to Next Page
 	Scheduling.TherapistRole.Select Appointment DateTime	${Time1}	2
 	Capture Page Screenshot
-	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	OFFLINE
+	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	In-Person
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName2}
@@ -56,7 +56,7 @@ SchedulingTherapist_059
 	Reload Page
 	Scheduling.TherapistRole.Select Appointment DateTime	${Time3}	2
 	Capture Page Screenshot
-	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	OFFLINE
+	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	In-Person
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName2}
 	Scheduling.Calendar.EditOpenPopup.Select Reminder Checkbox

@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/DashboardPage_res.txt
+Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/OthersPage_res.txt
 Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
 Suite Teardown	Close All Browsers
 
@@ -36,7 +36,7 @@ Clients_ClientsPage_InputSearchCriteria_By_Therapist
 	Check Link Existence	Emma,Stoneage
 
 Clients_ClientsPage_VerifyClientArchive_By_Therapist
-	ath click link 	Groups Company Archive
+	Run Keyword if	"${TestEnv}" == "Secure"	ath click link 	Groups Company Archive 	ELSE 	ath click link 	Client Archive 
 	Check Label Existence	Client Archive
 	ath verify element is visible 	xpath=//table[@id='client_archive']
 	Check Label Existence	First Name,Last Name,Last Login,Message Waiting,Call,Status

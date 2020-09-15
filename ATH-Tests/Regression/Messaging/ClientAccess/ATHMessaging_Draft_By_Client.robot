@@ -36,6 +36,7 @@ MessagingClient_041
 	${DTToday}	Generate Date and Time Today
 	Messaging.Draft.Select checkbox of first Message
 	${mySubj}	Messaging.Draft.Get Subject Column of Selected Message
+	Set Suite Variable	${mySubj}
 	Messaging.Draft.Move to Trash Icon
 	Messaging.Confirm Move to Trash Action
 	Messaging.Confirm Message Moved to Trash
@@ -58,25 +59,26 @@ MessagingClient_042
 	Messaging.Confirm Move to Trash Action
 	Messaging.Confirm Message Moved to Trash
 
-#Sort From
-# MessagingClient_047
-# #restore all msgs on page
-# #Pre-req to restore deleted draft msgs
-# 	Messaging.Select Trash Menu
-# 	Messaging.Trash.Select all Messages
-# 	Messaging.Trash.Click Restore Icon
-# 	Messaging.Trash.Confirm Restore Action
-# 	Messaging.Confirm Message is Restored
-# 	Messaging.Select Draft Menu
+#restore all msgs on page
+#Pre-req to restore deleted draft msgs
+	Messaging.Select Trash Menu
+	Messaging.Trash.Select all Messages
+	Messaging.Trash.Click Restore Icon
+	Messaging.Trash.Confirm Restore Action
+	Messaging.Confirm Message is Restored
+	Messaging.Select Draft Menu
+
+#Sort From/To
+#MessagingClient_047
 # 	Messaging.Sort To Column
 
-# MessagingClient_048
-# #Sort Subject
-# 	Messaging.Sort Subject Column
+#MessagingClient_048
+#Sort Subject
+#	Messaging.Sort Subject Column
 
-MessagingClient_049
-#Sort Date
-	Messaging.Sort Date Column
+# MessagingClient_049
+# #Sort Date
+# 	Messaging.Sort Date Column
 
 MessagingClient_050
 #Sort Time
@@ -87,8 +89,12 @@ MessagingClient_051
 #Expand Details
 	Sleep 	5.0
 	Messaging.Draft.Expand First message
-	Ath Verify Element Is Visible	//td[@class="my-details"]
+	Check Label Existence 	${mySubj}
+	Ath Verify Element Is Visible	xpath=//*[contains(@id,'callout-alerts')]/descendant::p[normalize-space()="Automation Test Message"]
 	Capture Page Screenshot
+	ath click button 	Back
+	Sleep 	3.0
+	ath wait until loaded 	30
 
 MessagingClient_053
 #Edit draft and close

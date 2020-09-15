@@ -3,10 +3,6 @@ Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
 Suite Teardown	Close All Browsers
 
 
-***Variable***
-${Recipient1}	Daniella Demoss
-${Recipient2}	Meghan Ruiz
-
 ***Test Cases***
 MessagingTherapist_041
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
@@ -16,6 +12,7 @@ MessagingTherapist_041
 	${DTToday}	Generate Date and Time Today
 	Messaging.Draft.Select checkbox of first Message
 	${mySubj}	Messaging.Draft.Get Subject Column of Selected Message
+	Set Suite Variable	${mySubj}
 	Messaging.Draft.Move to Trash Icon
 	Messaging.Confirm Move to Trash Action
 	Messaging.Confirm Message Moved to Trash
@@ -54,9 +51,9 @@ MessagingTherapist_042
 # #Sort Subject
 # 	Messaging.Sort Subject Column
 
-MessagingTherapist_049
-#Sort Date
-	Messaging.Sort Date Column
+# MessagingTherapist_049
+# #Sort Date
+# 	Messaging.Sort Date Column
 
 MessagingTherapist_050
 #Sort Time
@@ -65,7 +62,9 @@ MessagingTherapist_050
 MessagingTherapist_051
 #Expand Details
 	Messaging.Draft.Expand First message
-	Ath Verify Element Is Visible	//td[@class="my-details"]
+	Check Label Existence 	${mySubj}
+	${status}	Run Keyword and Return Status	Ath Verify Element Is Visible	xpath=//*[contains(@id,'callout-alerts')]/descendant::p[normalize-space()="AutomationDraft Test Message"]
+	Run Keyword UNless 	${status}	Ath Verify Element Is Visible	xpath=//*[contains(@id,'callout-alerts')]/descendant::p[normalize-space()="Automation Test Message"]
 	Capture Page Screenshot
 
 MessagingTherapist_053

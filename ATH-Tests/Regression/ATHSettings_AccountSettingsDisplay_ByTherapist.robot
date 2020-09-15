@@ -1,0 +1,21 @@
+Failed test cases
+ATHSettings_TemplatesFields_Password_OfflineChatDisplay_ByTherapist
+ATHEventHistory_VerifyDisplay_By_Therapist
+ATHVideoOnDemand_CreateMeeting_WithWithoutEmail_By_Admin - no function
+
+
+MAINTENANCE
+ATHSettings_ClientSettings_ScheduleClientView_ByTherapist -
+ATHSettings_TemplatesFieldsForms_FormTemplatesAction_ByTherapist
+
+SECURE
+ATHClients VerifyClientDisplay By Supervisor
+ATHClients VerifyClientDisplay By Therapist
+ATHNotes Actions BySupervisor
+ATHDSM5_DSM5DisplaySearchArchive_CreateClient_By_Therapist
+ATHSettings AccountSettings MerchantServices Timezone ByTherapist
+
+
+0603
+FAILED
+ATHDocuments_MyDocuments_UploadStoreFor_SortAndSearch_DeleteDocument_By_Therapist

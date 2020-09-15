@@ -7,7 +7,7 @@ Suite Teardown	Close All Browsers
 ${UploadFile}	C:\\ATH.Git\\AdaptiveTelehealth\\ATH-Resources\\UploadFile\\UploadtextFile.txt
 ${fileName}	UploadtextFile.txt
 ${client}	Beyonce
-${staff}	Admin
+${staff}	Therapist
 
 ***Test Cases***
 ATHDocuments_UploadDocument_ShareDocumentWithClient_By_Admin

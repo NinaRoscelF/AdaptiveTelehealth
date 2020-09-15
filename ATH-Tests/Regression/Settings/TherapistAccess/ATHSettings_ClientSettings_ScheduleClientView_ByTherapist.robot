@@ -11,7 +11,7 @@ ATHSettings_ClientSettings.ScheduleClientView_DisableView_ByTherapist
 	Settings.CS.Click Schedule OnOff SubMenu
 	Settings.CS.Verify Schedule Client Page Displayed
 	Settings.CS.Schedule.Click Apply Button
-	Settings.CS.Schedule.Set Provider Checkbox
+	Settings.CS.Schedule.Set Provider Checkbox 	false
 	Settings.CS.Schedule.Click Apply Button
 	Settings.CS.Schedule.Verify View is Saved Successfully
 	Logout from Application

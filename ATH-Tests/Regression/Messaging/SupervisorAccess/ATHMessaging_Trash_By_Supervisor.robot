@@ -6,7 +6,7 @@ Suite Teardown	Close All Browsers
 ***Test Cases***
 MessagingSupervisor_055
 #Select one move to trash
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Trash Menu
@@ -24,8 +24,7 @@ MessagingSupervisor_056
 	Messaging.Sent.Select all Messages
 	Messaging.Sent.Move to Trash Icon
 	Messaging.Confirm Move to Trash Action
-	Messaging.Confirm Message Moved to Trash
-
+	Messaging.Confirm Message Permanently Deleted
 
 	Messaging.Select Trash Menu
 	Messaging.Trash.Select all Messages
@@ -73,9 +72,9 @@ MessagingSupervisor_067
 # #Sort Subject
 # 	Messaging.Sort Subject Column
 
-MessagingSupervisor_063
-#Sort Date
-	Messaging.Sort Date Column
+# MessagingSupervisor_063
+# #Sort Date
+# 	Messaging.Sort Date Column
 
 MessagingSupervisor_064
 #Sort Time

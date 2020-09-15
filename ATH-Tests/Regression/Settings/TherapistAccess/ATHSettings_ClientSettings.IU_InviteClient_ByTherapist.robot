@@ -15,7 +15,7 @@ ATHSettings_CS.IU_InviteClient_EmailRequired_ByTherapist
 	Settings.AccountSettings.Select SubMenu 	Invite Users
 	Settings.IU.Click Invite Client Button
 	Run Keyword if 	"${TestEnv}" == "Secure" 	ath set text area value	Enter Groups Company's Invitation Message 	${AutomationMessage}	ELSE	ath set text area value	Enter Client's Invitation Message 	${AutomationMessage}
-	Dashboard.NewClient.Click Invite Client Button
+	Run Keyword if 	"${TestEnv}" == "Secure"	Dashboard.NewClient.Click Invite Groups Company Button	ELSE	Dashboard.NewClient.Click Invite Client Button
 	Settings.IU.InviteClient.Verify Email Required
 	Settings.IU.InviteClient.Close Email Warning Popup
 
@@ -31,7 +31,7 @@ ATHSettings_CS.IU_InviteClient_EmailPreview_ByTherapist
 
 ATHSettings_CS.IU_InviteClient_ByTherapist
 	Run Keyword if 	"${TestEnv}" == "Secure"	Dashboard.NewClient.Click Invite Groups Company Button	ELSE	Dashboard.NewClient.Click Invite Client Button
-	Dashboard.NewClient.Verify Client is Invited 	${FirstName}@mailinator.com
+#	Dashboard.NewClient.Verify Client is Invited 	${FirstName}@mailinator.com
 	Dashboard.Click back to Dashboard link
 	Dashboard.Click Invite Client Button
 	Dashboard.InvitationsWidget.Select Records per Page Value	100

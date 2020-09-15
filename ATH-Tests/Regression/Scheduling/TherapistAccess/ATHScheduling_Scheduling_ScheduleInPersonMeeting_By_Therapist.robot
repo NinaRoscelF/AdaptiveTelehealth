@@ -18,7 +18,8 @@ ATHScheduling_Scheduling_ScheduleInPersonMeeting_By_Therapist
 	${DateAdd}	Add/Subtract Days from Input Date	${DTToday}	ADD	1 	%Y-%m-%d
 	Scheduling.TherapistRole.Select Appointment DateTime	${Time1}	2
 	Capture Page Screenshot
-	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	OFFLINE
+	Run keyword and Ignore Error	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	In-Person
+	Run keyword and Ignore Error	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	In Person
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}
 	Scheduling.Calendar.EditOpenPopup.Input Schedule Start Date	${DateAddDisplay}
@@ -31,11 +32,10 @@ ATHScheduling_Scheduling_ScheduleInPersonMeeting_By_Therapist
 
 	Select Dashboard Menu
 	Dashboard.MeetingWidget.Verify Meeting Is Displayed	${TimeDisplay}	${DateAddDisplay}
-	Dashboard.MeetingWidget.Verify InPerson Meeting Detail Is Displayed	${DateAddDisplay}
 	Dashboard.MeetingWidget.Click Participant Name	${PtcpName}
 
 
-	Run Keyword and Ignore Error	Dashboard.MeetingPopupDetails.Verify Label Existence	Appointment Details,,Open,ONLINE,Scheduled by: ${Therapist}
+	Run Keyword and Ignore Error	Dashboard.MeetingPopupDetails.Verify Label Existence	Appointment Details,Open,ONLINE,Scheduled by: ${Therapist}
 
 	#post action to delete created meeting
 	Dashboard.MeetingPopupDetails.Click Edit button

@@ -87,7 +87,7 @@ ATHDocuments_UploadDocument_UploadAllowedFileTypes_By_Admin
 	${number}	Get Substring	${stripfile}	9
 	${occnumber}	Evaluate	${number} + 1
 	${newfile}	Set Variable	DocXFile_${occnumber}
-	${Refilename}	Rename BOD Files	${Filelocation}	${lastModifiedFile}	${newfile} 	True
+	${Refilename}	Rename BOD Files	${Filelocation}	${lastModifiedFile}	${newfile}
 	${uploadfile}	Catenate	${Filelocation}${newfile}.docx
 	${filename}	Catenate	${newfile}.docx
 	Documents.Select Upload Document Menu

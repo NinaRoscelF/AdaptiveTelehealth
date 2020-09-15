@@ -14,9 +14,9 @@ ATHScheduling_SetOnlineAppointment_By_Client
 
 	${DTToday}	Generate Date and Time Today
 	${DateFormat}	Generate Date and Time Today	%m-%d-%Y
-	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	2 	%Y-%m-%d
-	${DateAddFormat}	Add/Subtract Days from Input Date 	${DTToday}	ADD	2 	%m-%d-%Y
-	${DateDisplay}	Add/Subtract Days from Input Date 	${DTToday}	ADD	2 	%m/%d/%y
+	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%Y-%m-%d
+	${DateAddFormat}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1	%m-%d-%Y
+	${DateDisplay}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1	%m/%d/%y
 	Set Suite Variable	${DateAdd}
 	Set Suite Variable	${DateAddFormat}
 	Set Suite Variable	${DateDisplay}
@@ -39,17 +39,20 @@ ATHScheduling_SetOnlineAppointment_By_Client
 	Select Dashboard Menu
 	Dashboard.Verify Client Meetings Widget Is Displayed
 	Dashboard.ClientMeetingsWidget.Verify Video Meetings Details	${DateDisplay}	${TimeDisplay}
-
+	#based on ENH
+	Select Scheduling Menu
+	Scheduling.Select Meeting from Calendar	${Time1}
+	Scheduling.CancelMeeting.Click Continue Cancellation
+	Sleep	1.0
+	Scheduling.CancelMeeting.Click OK from Reschedule popup
+	Reload Page
 #Schedule an In-person appointment
 	#click via schedule link  in MyMeetings widget
 ATHScheduling_Set_InPersonAppointmentAppointment_By_Client
 
-	ath click Link	Schedule
-	Sleep 	3.0
-	ath wait until loaded	30
-	Scheduling. Verify My Meetings widget display
 	Scheduling.Select Appointment DateTime	${DateAdd}	${Time2}
-	Scheduling.Select Appointment Type	${ApptType2}	${DateAdd}	${Time2}
+	Run Keyword and Ignore Error	Scheduling.Select Appointment Type	${LiveApptType2}	${DateAdd}	${Time2}
+	Run Keyword and Ignore Error	Scheduling.Select Appointment Type	${ApptType2}	${DateAdd}	${Time2}
 	Scheduling.Input Message	${Message}
 	Scheduling.Select Schedule appointment Checkbox
 	Scheduling.Click OK Button
@@ -65,15 +68,11 @@ ATHScheduling_Set_InPersonAppointmentAppointment_By_Client
 
 
 #Cleanup delete meeting scheduled in person
-	Select Scheduling Menu
+	ath click Link	Schedule
+	Sleep 	3.0
+	ath wait until loaded	30
+	Scheduling. Verify My Meetings widget display
 	Scheduling.Select Meeting from Calendar	${Time2}
-	Scheduling.CancelMeeting.Click Continue Cancellation
-	Sleep	1.0
-	Scheduling.CancelMeeting.Click OK from Reschedule popup
-	Reload Page
-
-#Cleanup delete meeting scheduled in person
-	Scheduling.Select Meeting from Calendar	${Time1}
 	Scheduling.CancelMeeting.Click Continue Cancellation
 	Sleep	1.0
 	Scheduling.CancelMeeting.Click OK from Reschedule popup

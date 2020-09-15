@@ -48,7 +48,8 @@ SchedulingAdmin_003
 #	Run Keyword and Ignore Error	ath click icon	xpath=//span[text()="${LiveTime1}"]/ancestor::tr[1]/td[2]
 #	run keyword and Ignore Error	Execute Javascript	var element = document.evaluate("//span[text()="${LiveTime1}"]/ancestor::tr[1]/td[2]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
 	Scheduling.TherapistRole.Select Appointment DateTime	${Time1}
-	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	OFFLINE
+	Run Keyword and Ignore Error	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	In-Person
+	Run Keyword and Ignore Error	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	In Person
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName2}
@@ -75,7 +76,7 @@ SchedulingAdmin_004
 	# Run Keyword and Ignore Error	ath click icon	xpath=//span[text()="${LiveTime1}"]/ancestor::tr[1]/td[2]
 	# run keyword and Ignore Error	Execute Javascript	var element = document.evaluate("//span[text()="${LiveTime1}"]/ancestor::tr[1]/td[2]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
 	Scheduling.TherapistRole.Select Appointment DateTime	12:00 - 1:00
-	Scheduling.Calendar.EditOpenPopup.Select Appointment Type	ONLINE
+	Scheduling.Calendar.EditOpenPopup.Select Appointment Type	Online
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}
 	Scheduling.Calendar.Appointment Popup.Click Change Meeting Button
@@ -101,7 +102,8 @@ SchedulingAdmin_005
 	# Run Keyword and Ignore Error	ath click icon	xpath=//span[text()="${LiveTime}"]/ancestor::tr[1]/td[2]
 	# run keyword and Ignore Error	Execute Javascript	var element = document.evaluate("//span[text()="${LiveTime}"]/ancestor::tr[1]/td[2]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
 	Scheduling.TherapistRole.Select Appointment DateTime	${Time4}
-	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	OFFLINE
+	Run Keyword and Ignore Error	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	In-Person
+	Run Keyword and Ignore Error	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	In Person
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName2}

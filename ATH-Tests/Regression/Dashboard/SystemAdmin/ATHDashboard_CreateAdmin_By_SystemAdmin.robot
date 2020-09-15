@@ -33,6 +33,8 @@ Dashboard_CreateAdmin_By_SystemAdmin
 	Dashboard.NewUser.Verify User Is saved successfully
 	Sleep 	3.0
 	Dashboard.AdminsWidget.Select Records per Page Value 	100
+	Sleep 	10.0
+	ath wait until loaded 	30
 	Dashboard.AdminsWidget.Select Newly Created Admin	${Firstname}
 	Dashboard.NewUser.Verify Admin Data Displayed	${Firstname}
 	Dashboard.NewUser.Verify Supervisor Assigned to Admin	${Supervisor}
@@ -54,6 +56,7 @@ Dashboard_CreateAdmin_By_SystemAdmin
 	Input Email Address 	${Firstname}@mailinator.com
 	Input Password 	${Password}
 	Click Login Button
+	Run Keyword and Ignore Error	ath click button	xpath=//*[contains(normalize-space(),'Please contact support to activate')]/ancestor::div[@class="modal-dialog"]/descendant::div[@class="modal-footer"]/descendant::button[normalize-space()="OK"]
 	Capture Page Screenshot
 	Dashboard.NewUser.Select I agree checkboxes
 	Dashboard.NewUser.AgreementsPage.Input Full Name as Digital Signature	${Firstname} ${LastName}

@@ -18,7 +18,7 @@ ATHScheduling_Scheduling_ScheduleOnlineMeeting_By_Therapist
 	${DateAdd}	Add/Subtract Days from Input Date	${DTToday}	ADD	1 	%Y-%m-%d
 	Scheduling.TherapistRole.Select Appointment DateTime	${Time1}	2
 	Capture Page Screenshot
-	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	ONLINE
+	Scheduling.Calendar.EditOpenPopup.Select Appointment Type 	 Online - Video
 	Scheduling.Calendar.EditMeetingPopup.Input description 	${Description}
 	Scheduling.Calendar.Appointment Popup.Add Participants	${PtcpName}
 	Scheduling.Calendar.EditOpenPopup.Input Schedule Start Date	${DateAddDisplay}

@@ -6,7 +6,7 @@ Suite Teardown	Close All Browsers
 ***Test Cases***
 ATHSettings_TemplatesFieldAndFormDisplay_BySupervisor
 
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	WelcomeHeader.Click Settings Icon
 	Settings.AccountSettings.Select SubMenu	Templates, Fields and Forms
 	Settings.AccountSettings.Select SubMenu 	Groups and Programs
@@ -40,9 +40,9 @@ ATHSettings_SystemPreference_Input Change Password Details_BySupervisor
 	Settings.SP.Password.Input Confirm Password Value 	Password123
 	Settings.SP.Password.Click Unmask Confirm Password Input
 
-ATHSettings_OfflineChatPageDisplay_BySupervisor
-	Settings.AccountSettings.Select SubMenu 	Offline Chat Notifications
-	Check Button Existence 	Turn Off,Turn On - Save Changes
-	Check Label Existence	Offline Chat Notifications,Current Status,Custom Message for your Clients
+# ATHSettings_OfflineChatPageDisplay_BySupervisor
+# 	Settings.AccountSettings.Select SubMenu 	Offline Chat Notifications
+# 	Check Button Existence 	Turn Off,Turn On - Save Changes
+# 	Check Label Existence	Offline Chat Notifications,Current Status,Custom Message for your Clients
 
 	Logout from Application

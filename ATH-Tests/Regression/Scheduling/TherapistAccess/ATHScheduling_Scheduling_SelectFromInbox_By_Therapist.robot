@@ -17,14 +17,14 @@ SchedulingTherapist_033
 	Run Keyword and Ignore Error	ath click button	xpath=//button[@id='different-timezone-no']
 	${DTToday}	Generate Date and Time Today
 	${DateFormat}	Generate Date and Time Today	%m-%d-%Y
-	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%Y-%m-%d
-	${DateAddFormat}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%m-%d-%Y
+	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1	%Y-%m-%d
+	${DateAddFormat}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1	%m-%d-%Y
 	Scheduling.Select Appointment DateTime	${DateAdd}	${Time1}
 	Scheduling.Select Appointment Type 	${ApptType1}	${DateAdd}	${Time1}
 	Scheduling.Input Message	${Description}
 	Scheduling.Select Schedule appointment Checkbox
 	Scheduling.Click OK Button
-	Scheduling. Verify Online Appointment is in Calendar	${Time2}
+	Scheduling. Verify Online Appointment is in Calendar	${Time1}
 	Logout from Application
 
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
@@ -51,8 +51,14 @@ SchedulingTherapist_035
 	Select Scheduling Menu
 	${DTToday}	Generate Date and Time Today
 	${DateFormat}	Generate Date and Time Today	%m-%d-%Y
-	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%Y-%m-%d
-	${DateAddFormat}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1 	%m-%d-%Y
+	${DateAdd}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1	%Y-%m-%d
+	${DateAddFormat}	Add/Subtract Days from Input Date 	${DTToday}	ADD	1	%m-%d-%Y
+#delete bsaed on ENH
+	run Keyword and Ignore Error	Scheduling.Select Meeting from Calendar	${Time1}
+	run Keyword and Ignore Error	Scheduling.CancelMeeting.Click Continue Cancellation
+	Sleep	1.0
+	run Keyword and Ignore Error	Scheduling.CancelMeeting.Click OK from Reschedule popup
+	Reload Page
 	Scheduling.Select Appointment DateTime	${DateAdd}	${TimeConfirm}
 	Scheduling.Select Appointment Type 	${ApptType1}	${DateAdd}	${TimeConfirm}
 	Scheduling.Input Message	${Description}

@@ -50,7 +50,7 @@ Dashboard_CreateTherapist_By_SystemAdmin
 
 	Open Browser	${URL}	${BROWSER}	ff_profile_dir=profiledir
 	Maximize Browser Window
-	Input Email Address 	${Firstname}@mailinator.com
+	Input Email Address	${Firstname}@mailinator.com
 	Input Password 	${Password}
 	Click Login Button
 	Capture Page Screenshot

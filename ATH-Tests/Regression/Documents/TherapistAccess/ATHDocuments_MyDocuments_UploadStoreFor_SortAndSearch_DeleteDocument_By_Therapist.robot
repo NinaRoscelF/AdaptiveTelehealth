@@ -31,9 +31,6 @@ ATHDocuments_UploadDocument_StoreinFileUser_By_Therapist
 	Documents.Verify Stored on Column	${TxtFile}
 	Capture Page Screenshot
 
-ATHDocuments_MyDocuments_SortColumn_By_Therapist
-	Documents.MyDocuments.Sort Documents Column
-	Documents.MyDocuments.Sort Date Uploaded Column
 
 ATHDocuments_MyDocuments_InputSearchCriteria_By_Therapist
 	Documents.MyDocuments.Input Search Criteria	${TxtFile}
@@ -41,17 +38,21 @@ ATHDocuments_MyDocuments_InputSearchCriteria_By_Therapist
 	${status}	Run Keyword and Return Status	Document.MyDocuments.Verify No Results found
 	Run Keyword and Continue on Failure	Should Not Be True	${status}
 
-ATHDocuments_MyDocuments_Click File Link
-	Document.MyDocuments.Click Document Filename	${TxtFile}
-	Sleep 	3.0
-	ath wait until loaded	30
-	Select window 	New
-	Document.MyDocuments.Verify Textfile opens in New Window
-	Select window 	Main
+# ATHDocuments_MyDocuments_Click File Link
+# 	Document.MyDocuments.Click Document Filename	${TxtFile}
+# 	Sleep 	3.0
+# 	ath wait until loaded	30
+# 	Select window 	New
+# 	Document.MyDocuments.Verify Textfile opens in New Window
+# 	Select window 	Main
 
 ATHDocuments_MyDocuments_Select Records per Page
 	Document.MyDocuments.Select Records per Page 	100
 	Capture page Screenshot
+
+ATHDocuments_MyDocuments_SortColumn_By_Therapist
+	Documents.MyDocuments.Sort Documents Column
+	Documents.MyDocuments.Sort Date Uploaded Column
 
 ATHDocuments_MyDocuments_DeleteDocument_By_Therapist
 	${DateFormat}	Generate Date and Time Today

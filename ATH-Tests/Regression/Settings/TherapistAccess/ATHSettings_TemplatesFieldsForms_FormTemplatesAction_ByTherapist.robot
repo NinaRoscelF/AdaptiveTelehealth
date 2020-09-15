@@ -24,7 +24,8 @@ ATHSettings.TFF.FormTemplates_CreateNewTemplate
 	Settings.TFF.Input New Template Name	Automation template
 	Settings.TFF.Click Copy Template Button
 	Run Keyword and Ignore Error	ath click button	xpath=//div[contains(@class,' ui-helper-clearfix')]/descendant::span[text()="OK"]
-# 	Settings.TFF.Click Save Template Button
+	Settings.TFF.Click Save Template Button
+	Sleep 	20.0
 # 	Settings.TFF.Verify Template is Saved Successfully
 	Unselect Frame
 ATHSettings.TFF.FormTemplates_SelectCreatedTemplateFromDropdown

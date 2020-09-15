@@ -24,11 +24,9 @@ Dashboard_CreateClient_By_Therapist
 	Messaging.Verify Client File Created
 	Reload Page
 	Dashboard.ClientsWidget.Select Records per Page Value	100
-	Sleep	30.0	Wait until widget is loaded
+	Sleep	65.0	Wait until widget is loaded
 	ath wait until loaded	60
 	Capture Page Screenshot
-	# Run Keyword if	"${TestEnv}" == "Secure"	Dashboard.ClientsWidget.Verify Newly Created Client Is Displayed 	${Firstname}	ELSE	
-	Dashboard.ClientsWidget.TherapistRole.Verify Newly Created Client Is Displayed	${Firstname}
 	Dashboard.ClientsWidget.Select Newly Created Client	${Firstname}
 	Dashboard.NewUser.Click Update Client Information link
 	Sleep	5.0
@@ -42,9 +40,9 @@ Dashboard_CreateClient_By_Therapist
 	Capture Page Screenshot
 	Complete registration Process	${Firstname}	Automation	${Firstname}@mailinator.com
 
-	Run Keyword if	"${TestEnv}" == "Secure"	Verify Secure Login	${FirstName}	${Password}	${URL}	${BROWSER}	ELSE	Verify Live Login	${FirstName}	${Password}	${URL}	${BROWSER}
+	# Run Keyword if	"${TestEnv}" == "Secure"	Verify Secure Login	${FirstName}	${Password}	${URL}	${BROWSER}	ELSE	Verify Live Login	${FirstName}	${Password}	${URL}	${BROWSER}
 
-	Run Keyword if	"${TestEnv}" == "Secure"	Input Employee Details	${City}	${Address}	${PhoneNo}	${FirstName}	${LastName}
+	# Run Keyword if	"${TestEnv}" == "Secure"	Input Employee Details	${City}	${Address}	${PhoneNo}	${FirstName}	${LastName}
 
 	Logout from Application
 

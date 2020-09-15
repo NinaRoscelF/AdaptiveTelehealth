@@ -7,13 +7,13 @@ Suite Teardown	Close All Browsers
 ***Test Cases***
 ATHSettings_AccountSettings_MechantServices_BySupervisor
 
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	WelcomeHeader.Click Settings Icon
 	Settings.AccountSettings.Select SubMenu 	Merchant Services
 	Settings.Timezone.Select Cardconnect as Merchant Service
-	Check Label Existence 	MerchantID
+	Check Label Existence 	Merchant ID
 	Settings.Timezone.Select Paypal as Merchant Service
-	Check Label Existence 	Paypal Client ID
+	Check Label Existence 	PayPal Email
 	Settings.AS.MerchantServices.Verify Merchant Services Page Display
 
 ATHSettings_AccountSettings_Timezone_BySupervisor

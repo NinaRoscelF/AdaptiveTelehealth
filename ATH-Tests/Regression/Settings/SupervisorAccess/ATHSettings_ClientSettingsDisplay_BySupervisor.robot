@@ -10,7 +10,7 @@ Suite Teardown	Close All Browsers
 ***Test Cases***
 ATHSettings_ClientSettingsDisplay_BySupervisor
 
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	WelcomeHeader.Click Settings Icon
 	Run Keyword if	"${TestEnv}" == "Secure" 	Settings.AccountSettings.Select SubMenu 	Groups Company Settings	ELSE	Settings.AccountSettings.Select SubMenu 	Client Settings
 	Run Keyword if	"${TestEnv}" == "Live"	Settings.AccountSettings.Select SubMenu 	Invite Users

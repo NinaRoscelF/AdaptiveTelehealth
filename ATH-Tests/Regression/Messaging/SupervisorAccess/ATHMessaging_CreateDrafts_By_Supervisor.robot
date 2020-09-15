@@ -10,8 +10,8 @@ ${Recipient2}	Mary Ellis
 ***Test Cases***
 
 DraftCreation
-#Select one move to trash
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+#Select one move to trash 
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	Sleep	10.0
 	Select Messaging Menu
 	:FOR 	${idx}	IN RANGE	1	11

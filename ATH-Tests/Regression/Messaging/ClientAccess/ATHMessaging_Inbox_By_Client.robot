@@ -11,19 +11,15 @@ ${FileType}	pdf
 
 ***Test Cases***
 MessagingClient_013
-#Select an unread and verify
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoClient}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoClient1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Inbox Menu
-	# ${status}	Run Keyword and Return Status	Messaging.Inbox.Read Nessage	Automation Message
-	# Run Keyword unless	${status}	Messaging.Inbox.Select Read message
-	# Run Keyword unless	${status}	Messaging.Inbox.Click Read/Unread Icon
-	# Run Keyword unless	${status}	Messaging.Inbox.Read Nessage	unread
+#Select an unread and verify
 	Messaging.Inbox.Reply To Unread Nessage	Automation Message
 	Messaging.Inbox.Verify Message Details and Reply Button Is Visible
 	Messaging.Inbox.Verify Font is Normal Style
-	Capture Page Screenshot
+
 
 MessagingClient_030
 #reply close window
@@ -44,48 +40,48 @@ MessagingClient_028
 	Messaging.Inbox.Click Reply Button
 	Messaging.Reply.Input Reply Message	Auto Reply Message
 	Messaging.Reply.Click Send button
-	Messaging.Confirm Message Sent successfully
+	Run Keyword and Ignore Error	Messaging.Confirm Message Sent successfully
 
 
 MessagingClient_016
 #Select all and tag all
 	Sleep 	2.0
-	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count	read
+	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count	Read
 	Capture Page Screenshot
 	Messaging.Inbox.Select all Messages
-	Capture Page Screenshot
-	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
-	Capture Page Screenshot
-	Sleep 	3.0
+
+	Messaging.Inbox.Click Read/Unread Icon
+
+	Sleep 	5.0
 	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isUnread}
 
 
 MessagingClient_014
 #Select unread and tag as read
-	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count 	unread
+	${isUnread}	Messaging.Inbox.Get Read/Unread Messages Count 	Unread
 	Capture Page Screenshot
 	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	ELSE	Messaging.Inbox.Select Unread message
-	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	read	True	2	ELSE	Messaging.Inbox.Select Unread message	unread	True	2
-	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	read	True	3	ELSE	Messaging.Inbox.Select Unread message	unread	True	3
+	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	Read	True	2	ELSE	Messaging.Inbox.Select Unread message	Unread	True	2
+	RUn Keyword If 	${isunread} == 0 	Messaging.Inbox.Select Read message	Read	True	3	ELSE	Messaging.Inbox.Select Unread message	Unread	True	3
 
 	Capture Page Screenshot
-	ath click icon	xpath=(//i[@class="fa fa-envelope"])[2]
+	Messaging.Inbox.Click Read/Unread Icon
 	Capture Page Screenshot
-	Sleep 	3.0
-	Messaging.Inbox.Verify Messages were read/unread	${isUnread}	unread
+	Sleep 	5.0
+	Messaging.Inbox.Verify Messages were read/unread	${isUnread}	Unread
 
 
 MessagingClient_015
 #Select read adn tag as unread
-	${isRead}	Messaging.Inbox.Get Read/Unread Messages Count	read
+	${isRead}	Messaging.Inbox.Get Read/Unread Messages Count	Read
 	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	ELSE	Messaging.Inbox.Select Read message
-	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	uread	True	2	ELSE	Messaging.Inbox.Select Read message	read	True	2
-	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	uread	True	3	ELSE	Messaging.Inbox.Select Read message	read	True	3
+	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	Unread	True	2	ELSE	Messaging.Inbox.Select Read message	Read	True	2
+	RUn Keyword If 	${isRead} == 0 	Messaging.Inbox.Select Unread message	Unread	True	3	ELSE	Messaging.Inbox.Select Read message	Read	True	3
 	Capture Page Screenshot
 	Messaging.Inbox.Click Read/Unread Icon
 	Capture Page Screenshot
-	Sleep 	3.0
-	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isRead}	read
+	Sleep 	5.0
+	${isnewUnread}	Messaging.Inbox.Verify Messages were read/unread	${isRead}	Read
 
 
 MessagingClient_017
@@ -96,7 +92,6 @@ MessagingClient_017
 	Messaging.Confirm Move to Trash Action
 	Messaging.Confirm Message Moved to Trash
 	Messaging.Select Trash Menu
-#	Messaging.Sent.Verify Message is Moved to Trash	${DTToday}
 
 MessagingClient_018
 #Select all move to trash
@@ -107,7 +102,6 @@ MessagingClient_018
 	Messaging.Confirm Move to Trash Action
 	Messaging.Confirm Message Moved to Trash
 	Messaging.Select Trash Menu
-#	Messaging.Sent.Verify Message is Moved to Trash	${DTToday}
 
 MessagingClient_019
 #Cancel move to trash
@@ -117,17 +111,17 @@ MessagingClient_019
 	Messaging.Inbox.Move to Trash Icon
 	Messaging.Cancel Move to Trash Action
 
-# MessagingClient_023
-# #Sort From
-# 	Messaging.Sort From Column
+# # # MessagingClient_023
+# # # #Sort From
+# # # 	Messaging.Sort From Column
 
-# MessagingClient_024
-# #Sort Subject
-# 	Messaging.Sort Subject Column
+# # # MessagingClient_024
+# # # #Sort Subject
+# # # 	Messaging.Sort Subject Column
 
-MessagingClient_025
-#Sort Date
-	Messaging.Sort Date Column
+# # MessagingClient_025
+# # #Sort Date
+# # 	Messaging.Sort Date Column
 
 MessagingClient_026
 #Sort Time

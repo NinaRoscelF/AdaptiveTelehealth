@@ -31,9 +31,6 @@ ATHDocuments_UploadDocument_StoreinFileUser_By_Admin
 	Documents.Verify Stored on Column	${TxtFile}
 	Capture Page Screenshot
 
-ATHDocuments_MyDocuments_SortColumn_By_Admin
-	Documents.MyDocuments.Sort Documents Column
-	Documents.MyDocuments.Sort Date Uploaded Column
 
 ATHDocuments_MyDocuments_InputSearchCriteria_By_Admin
 	Documents.MyDocuments.Input Search Criteria	${TxtFile}
@@ -52,6 +49,10 @@ ATHDocuments_MyDocuments_Click File Link
 ATHDocuments_MyDocuments_Select Records per Page
 	Document.MyDocuments.Select Records per Page 	100
 	Capture page Screenshot
+
+ATHDocuments_MyDocuments_SortColumn_By_Admin
+	Documents.MyDocuments.Sort Documents Column
+	Documents.MyDocuments.Sort Date Uploaded Column
 
 ATHDocuments_MyDocuments_DeleteDocument_By_Admin
 	${DateFormat}	Generate Date and Time Today

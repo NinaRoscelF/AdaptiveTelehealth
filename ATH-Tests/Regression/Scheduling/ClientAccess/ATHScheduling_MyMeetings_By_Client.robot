@@ -7,7 +7,7 @@ Suite Teardown	Close All Browsers
 ***Variable***
 ${Time3}	01:00 - 02:00 PM
 ${Time2}	01:00PM - 02:00PM
-${ApptType1}	Online
+${ApptType1}	Online - Video
 
 
 ***Test Cases***
@@ -18,8 +18,8 @@ SchedulingClient_012
 	Select Scheduling Menu
 
 	${DTToday}	Generate Date and Time Today
-	${DateAdd}	Add/Subtract Days from Input Date	${DTToday}	ADD	2	%m-%d-%Y
-	${DateInCal}	Add/Subtract Days from Input Date	${DTToday}	ADD	2	%Y-%m-%d
+	${DateAdd}	Add/Subtract Days from Input Date	${DTToday}	ADD	1	%m-%d-%Y
+	${DateInCal}	Add/Subtract Days from Input Date	${DTToday}	ADD	1	%Y-%m-%d
 	Set Suite Variable	${DateAdd}
 	Set Suite Variable	${DateInCal}
 

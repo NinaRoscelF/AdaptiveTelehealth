@@ -7,10 +7,10 @@ Suite Teardown	Close All Browsers
 ${Recipient1}	Random Automation Therapist ( Group Therapist )
 ${Recipient2}	Mary Ellis
 
-***Test Cases***
+***Test Cases***        
 MessagingSupervisor_041
 #Select one move to trash
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Select Draft Menu
@@ -19,6 +19,7 @@ MessagingSupervisor_041
 	${DTToday}	Generate Date and Time Today
 	Messaging.Draft.Select checkbox of first Message
 	${mySubj}	Messaging.Draft.Get Subject Column of Selected Message
+	Set Suite Variable	${mySubj}
 	Messaging.Draft.Move to Trash Icon
 	Messaging.Confirm Move to Trash Action
 	Messaging.Confirm Message Moved to Trash
@@ -61,9 +62,9 @@ MessagingSupervisor_042
 # #Sort Subject
 # 	Messaging.Sort Subject Column
 
-MessagingSupervisor_049
-#Sort Date
-	Messaging.Sort Date Column
+# MessagingSupervisor_049
+# #Sort Date
+# 	Messaging.Sort Date Column
 
 MessagingSupervisor_050
 #Sort Time
@@ -73,7 +74,8 @@ MessagingSupervisor_050
 MessagingSupervisor_051
 #Expand Details
 	Messaging.Draft.Expand First message
-	Ath Verify Element Is Visible	//td[@class="my-details"]
+	Check Label Existence 	${mySubj}
+	Ath Verify Element Is Visible	xpath=//*[contains(@id,'callout-alerts')]/descendant::p[normalize-space()="AutomationDraft Test Message"]
 	Capture Page Screenshot
 
 MessagingSupervisor_053

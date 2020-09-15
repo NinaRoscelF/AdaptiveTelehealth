@@ -14,7 +14,7 @@ ${Recipient2}	Mary Ellis
 ***Test Cases***
 MessagingSupervisor_001
 
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	Perform Login Checks
 	Messaging.Verify Alert Message Received
 
@@ -51,11 +51,10 @@ MessagingSupervisor_007
 	Messaging.Select Sent Menu
 	${DTToday}	Generate Date and Time Today
 	Messaging.Sent.Verify Message is Sent	Automation Message
-	Messaging.Sent.Verify Message is Sent	${DTToday}
 	Logout from Application
 
 MessagingSupervisor_008
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Click New Message Button
@@ -67,9 +66,10 @@ MessagingSupervisor_008
 	Sleep 	15.0
 #	Messaging.Confirm Message Sent successfully
 	Messaging.Select Sent Menu
+	Sleep 	5.0
+	ath wait until loaded	30
 	${DTToday}	Generate Date and Time Today
 	Messaging.Sent.Verify Message is Sent	Automation Message
-	Messaging.Sent.Verify Message is Sent	${DTToday}
 
 
 # MessagingSupervisor_009
@@ -104,7 +104,7 @@ MessagingSupervisor_008
 
 
 MessagingSupervisor_011
-	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}
+	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	Perform Login Checks
 	Select Messaging Menu
 	Messaging.Click New Message Button
@@ -117,7 +117,7 @@ MessagingSupervisor_011
 	Messaging.Select Draft Menu
 	${DTToday}	Generate Date and Time Today
 	Run Keyword if	"${TestEnv}" == "Secure"	Messaging.Sent.Verify Message is Sent	${Recipient1}	ELSE	Messaging.Sent.Verify Message is Sent	${Recipient2}
-	Messaging.Sent.Verify Message is Sent	${DTToday}
+
 
 MessagingSupervisor_012
 	Messaging.Click New Message Button

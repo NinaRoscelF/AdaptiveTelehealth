@@ -15,7 +15,7 @@ ATHDocuments_UploadedByClients_VerifyDocumentDisplay_By_Admin
 	Perform Login Checks
 	Select Documents Menu
 	Documents.Select Uploaded by Clients Menu
-	Documents.Verify Header Column Display	Patient
+	Documents.Verify Header Column Display	Client
 	Documents.Verify Header Column Display	Shared with
 	Documents.Verify Header Column Display	Document
 	Documents.Verify Header Column Display	Size

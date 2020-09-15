@@ -21,7 +21,7 @@ MessagingClient_031
 	Messaging.Sent.Select checkbox of first Message
 	Messaging.Sent.Move to Trash Icon
 	Messaging.Confirm Move to Trash Action
-	Messaging.Confirm Message Moved to Trash
+	Messaging.Confirm Message Permanently Deleted
 	Messaging.Select Trash Menu
 #	Messaging.Sent.Verify Message is Moved to Trash	${DTToday}
 
@@ -32,21 +32,21 @@ MessagingClient_032
 	Messaging.Sent.Select all Messages
 	Messaging.Sent.Move to Trash Icon
 	Messaging.Confirm Move to Trash Action
-	Messaging.Confirm Message Moved to Trash
+	Messaging.Confirm Message Permanently Deleted
 	Messaging.Select Trash Menu
 #	Messaging.Sent.Verify Message is Moved to Trash	${DTToday}
 
 # MessagingClient_037
-# #Sort From
+# #Sort TO
 # 	Messaging.Sort To Column
 
 # MessagingClient_038
 # #Sort Subject
 # 	Messaging.Sort Subject Column
 
-MessagingClient_039
-#Sort Date
-	Messaging.Sort Date Column
+# MessagingClient_039
+# #Sort Date
+# 	Messaging.Sort Date Column
 
 MessagingClient_040
 #Sort Time
@@ -57,7 +57,7 @@ MessagingClient_033
 	Messaging.Select Sent Menu
 	Messaging.Sent.Select all Messages
 	Messaging.Sent.Move to Trash Icon
-	Messaging.Cancel Move to Trash Action
+	Messaging.Cancel Delete Action
 
 MessagingClient_034
 	Move to Next Page

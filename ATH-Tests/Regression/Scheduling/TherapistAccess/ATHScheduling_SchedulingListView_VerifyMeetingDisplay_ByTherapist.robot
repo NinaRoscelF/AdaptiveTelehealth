@@ -59,9 +59,9 @@ ATHScheduling_SchedulingListView_ExpandCollapseStatusWidget_ByTherapist
 	ath click icon	xpath=//h4[@class='panel-title']/a
 	Capture Page Screenshot
 	${status}	Run Keyword and Return Status	ath verify element is visible	//h4[@class='panel-title']/a[@aria-expanded="true"]
-	Run Keyword and Continue on Failure 	Should not be true	${status}
+	Run Keyword and Continue on Failure 	Should be true	${status}
 	ath click icon	xpath=//h4[@class='panel-title']/a
 	Scheduling. Verify Status widget display
-	Scheduling.Verify Available Status in Status widget 	Office Hours,Online,Pending,Booked,Confirmed,Cancelled,Waiting,Attended,Off Hours,In-Person,Cancelled,Walk-in,No Answer,No-show,Being Seen,Rescheduled
+	Scheduling.Verify Available Status in Status widget 	Office Hours,Online,Booked,Confirmed,Cancelled,Waiting,Attended,Cancelled,Walk-in,No Answer,No-show,Being Seen,Rescheduled
 
 	Logout from Application
