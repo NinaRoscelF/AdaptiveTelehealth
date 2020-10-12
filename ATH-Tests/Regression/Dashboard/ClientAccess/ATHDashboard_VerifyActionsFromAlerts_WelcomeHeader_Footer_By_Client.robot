@@ -6,11 +6,11 @@ Suite Teardown	Close All Browsers
 
 
 ***variables***
-${therapistLive}	Automation IsClient
-${therapistSecure}	Ginger Taylor
+${therapistLive}	Automation
+${therapistSecure}	Ginger
 ${HelpMenuSecure}	 Reschedule an Appointment, Notifications via email
 #${HelpMenuLive}	 Starting a Meeting, Notification Via Email, Troubleshooting
-${HelpMenuLive}	 Troubleshooting
+${HelpMenuLive}	 Search
 
 ***Test Cases***
 Dashboard_VerifyActionsFromWelcomeHeader_By_Client
@@ -19,7 +19,6 @@ Dashboard_VerifyActionsFromWelcomeHeader_By_Client
 	Perform Login Checks
 	WelcomeHeader.Click Message Icon
 	Messaging.Verify Message Page Displayed
-	Capture Page Screenshot
 	WelcomeHeader.Click Notification Icon
 	Dashboard.ClientRole.Verify Alerts Table Header Is Visible
 	Dashboard.NotificationsTable.Verify Column Is Visible	Date,Name,Message

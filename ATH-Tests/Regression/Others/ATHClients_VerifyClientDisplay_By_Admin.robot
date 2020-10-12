@@ -14,7 +14,7 @@ Clients_DisplayClientsPage_By_Admin
 	Check Label Existence	First Name,Last Name,ast Login,Message Waiting,Call,Follow Up,Status,Groups,Assign,Search
 	Clients.Verify Record Per Page Dropdown Is Visible
 	Clients.Verify Search Input Is Visible
-	Clients.Verify Group Company Link Is Visible
+
 
 Clients_ClientsPage_SortFirstNameColumn_By_Admin
 	Clients.Sort First Name Column
@@ -45,7 +45,8 @@ Clients_ClientsPage_InputSearchCriteria_By_Admin
 	Check Link Existence	Emma,Stoneage
 
 Clients_ClientsPage_VerifyClientArchive_By_Admin
+	Clients.Verify Group Company Link Is Visible
 	ath click link	See Client Archive
-	Check Label Existence	Patient Archive
-	Check Label Existence	First Name,Last Name,Last Login,Message Waiting,Community Last Login,Flagged,Therapist,Status
+	#Check Label Existence	Patient Archive
+	Check Label Existence	First Name,Last Name,Last Login,Message Waiting,Call,Follow Up,Status,Groups,Assign
 	Logout from Application
