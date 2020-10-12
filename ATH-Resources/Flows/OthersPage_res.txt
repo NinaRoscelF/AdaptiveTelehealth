@@ -20,7 +20,7 @@ Clients.Verify Search Input Is Visible
 
 Clients.Verify Group Company Link Is Visible
 	${status}	Run Keyword and Return Status 	Check Link Existence	Groups Company Archive
-	Run Keyword Unless 	${status}	Check Link Existence	Client Archive
+	Run Keyword Unless 	${status}	Check Link Existence	See Client Archive
 
 
 Clients.Sort Last Name Column

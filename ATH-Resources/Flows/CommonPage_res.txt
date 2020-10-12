@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/ath_master_flow.txt
+Resource	C:/ATH.Git/AdaptiveTelehealth/ATH-Resources/Flows/ath_master_flow.txt
 
 
 **** Keywords ****
@@ -258,7 +258,7 @@ WelcomeHeader.Click Message Icon
 
 
 WelcomeHeader.Click Notification Icon
-	ath click icon 	(//i[contains(@class,'fa-bell')])[1]
+	ath click icon 	xpath=//*[contains(@id,'system_notifications')]
 	Sleep	3.0
 	ath wait until loaded 	30
 
@@ -322,7 +322,7 @@ Verify Help Page Displayed
 	ath check label	Help for ${Name}
 	:FOR 	${item}	IN 	@{helplink}
 	\	ath check links displayed	${item}
-	ath_check_button_existence 	Contact Us
+#	ath_check_button_existence 	xpath=//button[contains(normalize-space(),'Contact Us')]
 
 Create PDF File
 	[arguments]	${location}	${filename}

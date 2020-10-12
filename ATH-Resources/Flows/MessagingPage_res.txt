@@ -13,7 +13,9 @@ Messaging.Verify Alert Message Received
 Messaging.Verify Message Page Displayed
 	[arguments]	${isTrue}=true
 	ath_verify_element_is_visible	//div[@id="messaging"]	${isTrue}
-
+	Capture Page Screenshot
+	Sleep 	3.0
+	ath wait until loaded 	30
 
 Messaging.Verify New Message Widget Displayed
 	[arguments]	${isTrue}=true

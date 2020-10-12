@@ -3,10 +3,11 @@ Library	String
 Library	Collections
 Library	OperatingSystem
 Library	DateTime
-Library	C:/Ath.Git/AdaptiveTelehealth/ATH-Framework/ATHLibrary
+Library	C:/ATH.Git/AdaptiveTelehealth/ATH-Framework/ATHLibrary
 
 
 *** Variables***
+#${RESOURCES_DIR}	C:/ATH.Git
 ${BROWSER}	Chrome
 #${URL}	https://groups1.secure.adaptivetelehealth.com/index.php/login
 ${URL}	https://automation.adaptivetelehealth.com/index.php/login
@@ -27,3 +28,4 @@ ${Client2}	client2ath@gmail.com
 #${TestEnv}	Secure
 ${TestEnv}	Live
 ${Password}	Password123!!!
+

@@ -547,7 +547,7 @@ Dashboard.TherapistRole.Verify Notifications Table Header Is Visible
 	ath verify element is visible	//h1[@id='dashboard_tour_notification'][contains(text(),'Notifications')]
 
 Dashboard.ClientRole.Verify Alerts Table Header Is Visible
-	ath verify element is visible	//*[@id='notification-section']/descendant::h3[contains(text(),'Alerts')]
+	ath verify element is visible	//*[@id='notification-section']/descendant::h3/a[contains(text(),'Alerts')]
 
 Dashboard.NotificationsTable.Verify Column Is Visible
 	[Arguments]	${columnList}
