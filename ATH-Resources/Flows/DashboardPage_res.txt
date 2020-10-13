@@ -316,18 +316,18 @@ Dashboard.AdminsWidget.Select Records per Page Value
 
 Dashboard.AdminRole.ClientsWidget.Select Records per Page Value
 	[Arguments]	${RecordNo}
-	ath select drop down field value	//div[@id='admin_patients_table']/descendant::label[text()="Records per page "]/select	${RecordNo}
+	ath select drop down field value	//div[contains(@id,'table_patients')]/descendant::label[text()="Records per page "]/select	${RecordNo}
 	Sleep 	3.0
 	ath wait until loaded 	60
 
 Dashboard.AdminRole.ClientsWidget.Verify Created File is Visible
 	[Arguments]	${clientfile}
-	ath verify element is visible	xpath=//div[@id='admin_patients_table']/descendant::a[contains(text(),'${clientfile}')]
+	ath verify element is visible	xpath=//div[contains(@id,'table_patients')]/descendant::a[contains(text(),'${clientfile}')]
 
 Dashboard.AdminRole.ClientsWidget.Select Newly Created Client
 	[Arguments]	${FirstName}
 	Capture Page Screenshot
-	ath click link	xpath=//div[@id='admin_patients_table']/descendant::a[contains(text(),'${FirstName}')]
+	ath click link	xpath=//div[contains(@id,'table_patients')]/descendant::a[contains(text(),'${FirstName}')]
 
 Dashboard.ClientsWidget.Verify Newly Created Client Is Displayed
 	[Arguments]	${FirstName}
