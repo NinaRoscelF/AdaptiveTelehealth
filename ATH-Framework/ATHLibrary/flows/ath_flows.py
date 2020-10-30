@@ -9,8 +9,15 @@ from ATHLibrary.core.input_value_overrides import Overrides
 from ATHLibrary.pageobjects.ath_inputs import ATHInputs
 from ATHLibrary.core.ath_browsermgr import ATHBrowserMgr
 from ATHLibrary.core.commonfunctions import CommonFunctions
+import os
+import sys
+
+global RESOURCES_DIR
+global ROOT_DIR
+
 
 class ATHFlows(ATHElementFinder, _FormElementKeywords):
+
 
 
     def kill_process(self):
@@ -29,6 +36,18 @@ class ATHFlows(ATHElementFinder, _FormElementKeywords):
 
     def ath_Logon(self, browser, url, user_name, client,profiledir='firefoxprofile',killall=False):
 
+
+
+        #CURR_DIR = os.getcwd()
+        CURR_DIR = os.path.abspath(os.curdir)
+        ROOT_DIR =  os.path.dirname(__file__)
+        RESOURCES_DIR = os.path.join(ROOT_DIR,'../../','ATH-Resources')
+        FLOWS_DIR = os.path.join(ROOT_DIR,'../../','ATH-Resources/Flows')
+
+        logger.info("MainResources Directory is '%s'" % (RESOURCES_DIR))
+        logger.info("mainRoot Directory is '%s'" % (ROOT_DIR))
+        logger.info("mainCurr Directory is '%s'" % (CURR_DIR)) 
+        logger.info("FlowsDir Directory is '%s'" % (FLOWS_DIR)) 
         if killall:
             self.kill_process()
         try:
@@ -37,7 +56,7 @@ class ATHFlows(ATHElementFinder, _FormElementKeywords):
         except:
             self.wait_for_manual_step(5.0)
             self.open_browser(url, browser, ff_profile_dir=profiledir)
-
+        logger.info("Password encoded - 1decoding..")
         self.maximize_browser_window()
         pwd = self._get_password(user_name,client)
         # logger.info("Password before decoding is %s"%(pwd))

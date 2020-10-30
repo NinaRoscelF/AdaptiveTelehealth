@@ -17,13 +17,17 @@ from ATHLibrary.pageobjects.ath_radiocheck import ATHRadioCheck
 from ATHLibrary.pageobjects.ath_datetime import ATHDateTime
 from ATHLibrary.pageobjects.ath_menu import ATHMenu
 
-
 # ATH Flows
 from ATHLibrary.flows.ath_flows import ATHFlows
 
+# global RESOURCES_DIR
+# global ROOT_DIR
+
+#CURR_DIR = os.getcwd()
+CURR_DIR = os.path.abspath(os.curdir)
 ROOT_DIR =  os.path.dirname(__file__)
 RESOURCES_DIR = os.path.join(ROOT_DIR,'../../','ATH-Resources')
-
+FLOWS_DIR = os.path.join(ROOT_DIR,'../../','ATH-Resources/Flows')
 
 class ATHLibrary(Selenium2Library, ATHInputs, ATHButtons, ATHLinks, ATHRadioCheck, ATHDateTime, ATHMenu, ATHFlows, CommonFunctions):
 
@@ -32,15 +36,22 @@ class ATHLibrary(Selenium2Library, ATHInputs, ATHButtons, ATHLinks, ATHRadioChec
                'DCB': '172.17.87.35:8080',
                'SEC': '127.0.0.1:8090'
                }
+    logger.info("MainResources Directory is '%s'" % (RESOURCES_DIR))
+    logger.info("mainRoot Directory is '%s'" % (ROOT_DIR))
+    logger.info("mainCurr Directory is '%s'" % (CURR_DIR)) 
+    logger.info("FlowsDir Directory is '%s'" % (FLOWS_DIR)) 
+
 
     def __init__(self, timeout=5.0, implicit_timeout=0.0, run_on_failure='Capture Page Screenshot'):
         '''for the init function timeout will be used to set both javascript timeout and
         the implicit_wait functunality.
         run_on_failure is the robot framework keyword that is run when a keyword fails, by default it is
         set to capturing a page screenshot'''
+        logger.info("Resources is '%s'" % (RESOURCES_DIR))
         super( ATHLibrary, self).__init__()
         self.OR = ObjectRepository().default_OR
         self.OR = self.merge_ORs(self.OR)
+        logger.info("My Resources is '%s'" % (RESOURCES_DIR))
         Selenium2Library.__init__(self,timeout=timeout, implicit_wait=implicit_timeout,
               run_on_failure=run_on_failure)
 
@@ -127,8 +138,12 @@ class ATHLibrary(Selenium2Library, ATHInputs, ATHButtons, ATHLinks, ATHRadioChec
         if (use_proxy is not None):
             proxy = self._get_proxy_chrome(use_proxy.upper(), webdriver)
             cap['proxy'] = proxy
-
+        logger.info("Resources Directory is '%s'" % (RESOURCES_DIR))
+        logger.info("Root Directory is '%s'" % (ROOT_DIR))
+        logger.info("Curr Directory is '%s'" % (CURR_DIR))
+        logger.info("Flows Dir Directory is '%s'" % (FLOWS_DIR)) 
         options = webdriver.ChromeOptions()
+
         downloadFilepath = "C:\\ATH.Git\\AdaptiveTelehealth\\ATH-Resources\\Downloads"
         chromePrefs = {}
         chromePrefs["profile.default_content_settings.popups"] = 0
@@ -226,6 +241,7 @@ class ATHLibrary(Selenium2Library, ATHInputs, ATHButtons, ATHLinks, ATHRadioChec
 
     def merge_ORs(self, originalOR):
         '''returns originalOR merged with client OR'''
+        logger.info("unable to import client_object_repository.py from.")
         import sys
         Resource_cmdline = self._cmdline_val("PRJ_RES_DIR",RESOURCES_DIR)
         Default_OR_ath = os.path.join(Resource_cmdline,'ObjectRepository')

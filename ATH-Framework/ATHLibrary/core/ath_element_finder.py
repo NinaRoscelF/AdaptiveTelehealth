@@ -189,8 +189,8 @@ class ATHElementFinder(ATHBrowserMgr, _ElementKeywords,
             return None
 
 
-        locator_0 = 'xpath=(//h3[contains(normalize-space(),"%s")])[%s]'%(labelname,str(index))
-        locator_1 = 'xpath=(//*[contains(text(), "%s")])[%s]'%(labelname,str(index)) # verified
+        locator_0 = 'xpath=//h3[contains(normalize-space(),"%s")][%s]'%(labelname,str(index))
+        locator_1 = 'xpath=//*[contains(text(), "%s")][%s]'%(labelname,str(index)) # verified
         locator_2 = 'xpath=(//p[contains(normalize-space(),"%s")])[%s]'%(labelname,str(index))
         locator_3 = 'xpath=(//label[contains(@class, "label")][text()="%s"])[%s]'%(labelname,str(index)) # verified
         locator_4 = 'xpath=(//*[contains(@placeholder, "%s")][@type="text"])[%s]'%(labelname,str(index))
@@ -343,8 +343,8 @@ class ATHElementFinder(ATHBrowserMgr, _ElementKeywords,
         #     logger.info("%s visible passed"%(elem))
         #     return elem
 
-        locator_0 ='xpath=(//*[normalize-space()="%s"])[%s]'%(labelname,str(index)) # Verified
-        locator_1 ='xpath=(//*[contains(@title,"%s")])[%s]'%(labelname,str(index))
+        locator_0 ='xpath=(//a[normalize-space()="%s"])[%s]'%(labelname,str(index)) # Verified
+        locator_1 ='xpath=(//a[contains(@title,"%s")])[%s]'%(labelname,str(index))
         locator_2 ='xpath=(//b[contains(text(),"%s")])[%s]'%(labelname,str(index))
 
         locator_list = []

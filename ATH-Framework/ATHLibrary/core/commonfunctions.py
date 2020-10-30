@@ -25,11 +25,12 @@ import zipfile
 import csv
 from xml.dom.minidom import parseString
 
+
+
 class CommonFunctions():
     '''This class contains Common Functions such as 
     handling string, date, boolean etc. used across framework
     '''
-
     @staticmethod
     def get_os_name():
         '''use this function to get the os_name from robot framework.'''
@@ -38,6 +39,7 @@ class CommonFunctions():
         # Windows    'win32'
         # Windows/Cygwin    'cygwin'
         # Mac OS X    'darwin'from robot.api import logger
+        logger.info("Password encoded - decoding1..")
         if os.sys.platform.startswith('linux'):
             return 'linux'  # preparing for python 3.3 :P
         return os.sys.platform
@@ -212,3 +214,17 @@ class CommonFunctions():
             break
         if isfound == False:
             raise ValidationFailedError("Document with filename %s not found in the directory."%(filename))
+
+        # PRJ_FLW_DIR = os.path.join(ROOT_DIR, PRJ_MAIN + '-Resources', 'Flows')
+        # PRJ_TST_DIR = os.path.join(ROOT_DIR, PRJ_MAIN + '-Tests')
+        # PRJ_RES_DIR = os.path.join(ROOT_DIR, PRJ_MAIN + '-Resources')
+
+        # # Expose Global Variable to RF
+        # SAP_MAIN = os.path.join(CURR_DIR,'..','SAP_AutoIt_Library','lib')
+        # ROBOT_ARGS.append("--variable")
+        # ROBOT_ARGS.append("client:%s" % args.test_set)
+        # ROBOT_ARGS.append("--variable")
+        # ROBOT_ARGS.append("FLOWSDIR:%s" % PRJ_FLW_DIR)
+        # ROBOT_ARGS.append("--variable")
+        # ROBOT_ARGS.append("PRJ_RES_DIR:%s" % PRJ_RES_DIR)
+        # ROBOT_ARGS.append("--variable")
