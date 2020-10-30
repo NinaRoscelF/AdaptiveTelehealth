@@ -1,6 +1,6 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/DashboardPage_res.txt
-Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
+Resource	${EXECDIR}../../ATH-Resources/Flows/DashboardPage_res.txt
+Variables	${EXECDIR}../../ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
 Suite Teardown	Close All Browsers
 
 
@@ -11,9 +11,8 @@ Dashboard_CreateSupervisor_By_SystemAdmin
 	${RegCode}	Generate Random String	10	[NUMBERS]
 
 	Run Keyword if 	"${TestEnv}" == "Secure" 	ath_Logon	${BROWSER}	${URL}	${AutoSystemAdmin}	${TestEnv} 	ELSE 	ath_Logon	${BROWSER}	${URL}	${AutoSystemAdmin1}	${TestEnv}
-	Wait for Nav Bar to display
+	Perform Login Checks
 	Dashboard.Click New Supervisor Button
-	Sleep 	3.0
 	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="first_name"]	${FirstName}
 	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="last_name"]	${LastName}
 	ath input text value	//*[@id="addNewSupervisor"]/descendant::input[@name="city"]	${City}
@@ -32,15 +31,14 @@ Dashboard_CreateSupervisor_By_SystemAdmin
 	Dashboard.NewUser.SetUserFunction.Click Save Button
 	Dashboard.NewUser.Click Add New Supervisor Button
 	Dashboard.NewUser.Verify Supervisor Is saved successfully
-	Sleep 	3.0
 	Dashboard.CareCoordinatorsWidget.Select Records per Page Value 	100
-	Sleep 	10.0
+	Sleep 	3.0
 	ath wait until loaded 	30
 	Dashboard.ProvidersWidget.Select Newly Created Care Coordinators	${Firstname}
 	Dashboard.NewUser.Verify Supervisor Profile is Created
 	ath_verify_textbox_value	//input[@name='email']	${Firstname}@mailinator.com
 	Go Back
-	Wait for Nav Bar to display
+#	Wait for Nav Bar to display
 	Logout from Application
 
 	Login to Mailinator	${Firstname}@mailinator.com

@@ -1,5 +1,5 @@
 ** Settings ***
-Resource	C:/ATH.Git/AdaptiveTelehealth/ATH-Resources/Flows/SchedulingPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/SchedulingPage_res.txt
 Suite Teardown	Close All Browsers
 
 ***Test Cases***

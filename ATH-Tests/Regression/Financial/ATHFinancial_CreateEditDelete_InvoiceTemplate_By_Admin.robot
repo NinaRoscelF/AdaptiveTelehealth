@@ -1,10 +1,11 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/OthersPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/OthersPage_res.txt
 Suite Teardown	Close All Browsers
+Force Tags	System:Secure
 
- 
 ***Test Cases***
 Financial_Invoice_CreateTemplate_SaveWithoutDetails_By_Therapist
+
 
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoAdmin}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoAdmin1}	${TestEnv}
 	${DtToday}	Generate Date and Time Today 	%d-%b-%Y

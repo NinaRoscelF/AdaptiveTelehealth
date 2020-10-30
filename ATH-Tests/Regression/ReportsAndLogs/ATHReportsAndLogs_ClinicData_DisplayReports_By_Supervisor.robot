@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/ReportsPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/ReportsPage_res.txt
 Suite Teardown	Close All Browsers
 
 ***Variable***

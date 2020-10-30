@@ -1,6 +1,6 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/OthersPage_res.txt
-Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
+Resource	${EXECDIR}../../ATH-Resources/Flows/OthersPage_res.txt
+Variables	${EXECDIR}../../ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
 Suite Teardown	Close All Browsers
 
 

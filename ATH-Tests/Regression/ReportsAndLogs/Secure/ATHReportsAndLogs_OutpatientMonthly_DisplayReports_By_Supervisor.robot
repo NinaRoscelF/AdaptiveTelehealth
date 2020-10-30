@@ -1,6 +1,8 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/ReportsPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/ReportsPage_res.txt
 Suite Teardown	Close All Browsers
+Force Tags	System:Secure
+
 
 ***Variable***
 ${SupervisorSecure}	Ellis
@@ -10,7 +12,7 @@ ${DLDirectory}	C:\\ath.git\\AdaptiveTelehealth\\ATH-Resources\\Downloads
 
 ***Test Cases***
 ATHReportsAndLogs_ClinicData_VerifyReportDisplay_By Supervisor
-	[tags]	Secure
+
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoSupervisor1}	${TestEnv}
 	Perform Login Checks
 	Select Reports and logs Menu

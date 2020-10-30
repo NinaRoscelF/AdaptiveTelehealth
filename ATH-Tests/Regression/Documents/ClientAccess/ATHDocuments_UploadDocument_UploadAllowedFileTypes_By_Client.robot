@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/DocumentPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/DocumentPage_res.txt
 Suite Teardown	Close All Browsers
 
 
@@ -39,48 +39,48 @@ ATHDocuments_UploadDocument_UploadAllowedFileTypes_By_Client
 	Documents.Click Delete button for Selected Document	${fileName}
 	Documents.Confirm Deletion of Document	${fileName}
 
-	@{FileList}	List Files In Directory	${Filelocation}	*.txt
-	${lastModifiedFile}	Get From List	${FileList}	0
-	${stripfile}	${ext}	Split String	${lastModifiedFile}	separator=.
-	${number}	Get Substring	${stripfile}	9
-	${occnumber}	Evaluate	${number} + 1
-	${newfile}	Set Variable	textFile_${occnumber}
-	Remove Files	${Filelocation}/*.txt
-	${PDFCreated}	Create Sample File	${Filelocation} 	${newfile} 	txt
-	${uploadfile}	Catenate	${Filelocation}${newfile}.txt
-	${filename}	Catenate	${newfile}.txt
-	Documents.Select Upload Document Menu
-	Documents.Choose File	${uploadfile}
-	Documents.Click Add Document button
-	Documents.Verify Document is Uploaded Successfully	${filename}
-	Capture Page Screenshot
-	Documents.Verify Document is Available in dropdown	${filename}
-	Documents.Select My Documents Menu
-	Documents.MyDocument.Verify File Uploaded Exists	${fileName}
-	#cleanup
-	Documents.Click Delete button for Selected Document	${fileName}
-	Documents.Confirm Deletion of Document	${fileName}
+	# @{FileList}	List Files In Directory	${Filelocation}	*.txt
+	# ${lastModifiedFile}	Get From List	${FileList}	0
+	# ${stripfile}	${ext}	Split String	${lastModifiedFile}	separator=.
+	# ${number}	Get Substring	${stripfile}	9
+	# ${occnumber}	Evaluate	${number} + 1
+	# ${newfile}	Set Variable	textFile_${occnumber}
+	# Remove Files	${Filelocation}/*.txt
+	# ${PDFCreated}	Create Sample File	${Filelocation} 	${newfile} 	txt
+	# ${uploadfile}	Catenate	${Filelocation}${newfile}.txt
+	# ${filename}	Catenate	${newfile}.txt
+	# Documents.Select Upload Document Menu
+	# Documents.Choose File	${uploadfile}
+	# Documents.Click Add Document button
+	# Documents.Verify Document is Uploaded Successfully	${filename}
+	# Capture Page Screenshot
+	# Documents.Verify Document is Available in dropdown	${filename}
+	# Documents.Select My Documents Menu
+	# Documents.MyDocument.Verify File Uploaded Exists	${fileName}
+	# #cleanup
+	# Documents.Click Delete button for Selected Document	${fileName}
+	# Documents.Confirm Deletion of Document	${fileName}
 
-	@{FileList}	List Files In Directory	${Filelocation}	*.doc
-	${lastModifiedFile}	Get From List	${FileList}	0
-	${stripfile}	${ext}	Split String	${lastModifiedFile}	separator=.
-	${number}	Get Substring	${stripfile}	8
-	${occnumber}	Evaluate	${number} + 1
-	${newfile}	Set Variable	DocFile_${occnumber}
-	${PDFCreated}	Create Sample File	${Filelocation} 	${newfile} 	doc
-	${uploadfile}	Catenate	${Filelocation}${newfile}.doc
-	${filename}	Catenate	${newfile}.doc
-	Documents.Select Upload Document Menu
-	Documents.Choose File	${uploadfile}
-	Documents.Click Add Document button
-	Documents.Verify Document is Uploaded Successfully	${filename}
-	Capture Page Screenshot
-	Documents.Verify Document is Available in dropdown	${filename}
-	Documents.Select My Documents Menu
-	Documents.MyDocument.Verify File Uploaded Exists	${fileName}
-	#cleanup
-	Documents.Click Delete button for Selected Document	${fileName}
-	Documents.Confirm Deletion of Document	${fileName}
+	# @{FileList}	List Files In Directory	${Filelocation}	*.doc
+	# ${lastModifiedFile}	Get From List	${FileList}	0
+	# ${stripfile}	${ext}	Split String	${lastModifiedFile}	separator=.
+	# ${number}	Get Substring	${stripfile}	8
+	# ${occnumber}	Evaluate	${number} + 1
+	# ${newfile}	Set Variable	DocFile_${occnumber}
+	# ${PDFCreated}	Create Sample File	${Filelocation} 	${newfile} 	doc
+	# ${uploadfile}	Catenate	${Filelocation}${newfile}.doc
+	# ${filename}	Catenate	${newfile}.doc
+	# Documents.Select Upload Document Menu
+	# Documents.Choose File	${uploadfile}
+	# Documents.Click Add Document button
+	# Documents.Verify Document is Uploaded Successfully	${filename}
+	# Capture Page Screenshot
+	# Documents.Verify Document is Available in dropdown	${filename}
+	# Documents.Select My Documents Menu
+	# Documents.MyDocument.Verify File Uploaded Exists	${fileName}
+	# #cleanup
+	# Documents.Click Delete button for Selected Document	${fileName}
+	# Documents.Confirm Deletion of Document	${fileName}
 
 	@{FileList}	List Files In Directory	${Filelocation}	*.docx
 	${lastModifiedFile}	Get From List	${FileList}	0
@@ -89,6 +89,7 @@ ATHDocuments_UploadDocument_UploadAllowedFileTypes_By_Client
 	${occnumber}	Evaluate	${number} + 1
 	${newfile}	Set Variable	DocXFile_${occnumber}
 	${Refilename}	Rename BOD Files	${Filelocation}	${lastModifiedFile}	${newfile} 	True
+#	${PDFCreated}	Create Sample File	${Filelocation} 	${newfile} 	doc
 	${uploadfile}	Catenate	${Filelocation}${newfile}.docx
 	${filename}	Catenate	${newfile}.docx
 	Documents.Select Upload Document Menu

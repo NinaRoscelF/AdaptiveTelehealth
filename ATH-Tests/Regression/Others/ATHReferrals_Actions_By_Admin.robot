@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/MessagingPage_res.txt
 Suite Teardown	Close All Browsers
 
 
@@ -19,7 +19,7 @@ Referrals_DisplayReferralPage_By_Admin
 # 	ath verify element is visible 	xpath=//*[normalize-space()="Referrals"]/following-sibling::div[1]/descendant::section
 # 	Capture Page Screenshot
 
-ATHReferrals_Create_WithNoSelectedUser_By_Supervisor
+ATHReferrals_Create_WithNoSelectedUser_By_Admin
 #	Go back
 #	ath click link 	xpath=//div[@class='container-fluid']//a[1]
 #https://prnt.sc/ub2cjd
@@ -30,9 +30,9 @@ ATHReferrals_Create_WithNoSelectedUser_By_Supervisor
 	Capture Page Screenshot
 	ath click button 	xpath=//*[contains(normalize-space(),'You have not selected')]/ancestor::div[@class="modal-dialog"]/descendant::div[@class="modal-footer"]/descendant::button[normalize-space()="Close"]
 
-ATHReferrals_Create_WithSelectedUser_By_Supervisor
+ATHReferrals_Create_WithSelectedUser_By_Admin
 	ath input text value 	Label of Referral Form 	Automation Label
-	Run Keyword and Ignore Error	ath select drop down value 	Atasha Aaron
+	Run Keyword and Ignore Error	ath select drop down field value	Refer to	Atasha Aaron
 	Run Keyword and Ignore Error	ath click icon 	xpath=//input[@value="Choose template users"]
 	Run Keyword and Ignore Error	ath click icon 	xpath=//ul[@class="chosen-results"]/descendant::li[contains(normalize-space(),'Mary Ellis')]
 	ath click button 	Save Form

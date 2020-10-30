@@ -1,8 +1,8 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/OthersPage_res.txt
-Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
+Resource	${EXECDIR}../../ATH-Resources/Flows/OthersPage_res.txt
+Variables	${EXECDIR}../../ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
 Suite Teardown	Close All Browsers
-
+Force Tags	System:Live
 
 ***Variable***
 ${AttendeeSecure}	Stoneage
@@ -13,7 +13,7 @@ ${AttNoEmailSecure}	Barstow
 
 ***Test Cases***
 VideoOnDemand_CreateMeetingWithClient_WithEmail_By_Admin
-	[tags]	Secure
+
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoAdmin}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoAdmin1}	${TestEnv}
 	Select Video on Demand Menu
 	Check Label Existence 	Online Video Meeting,Provide optional topic

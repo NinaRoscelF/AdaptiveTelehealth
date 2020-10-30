@@ -1,6 +1,6 @@
 ** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/OthersPage_res.txt
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/SettingsPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/OthersPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/SettingsPage_res.txt
 Suite Teardown	Close All Browsers
 
 ***Variable***

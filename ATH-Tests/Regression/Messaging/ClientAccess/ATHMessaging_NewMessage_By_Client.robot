@@ -1,10 +1,10 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/MessagingPage_res.txt
 Suite Teardown	Close All Browsers
 
 
 ***Variable***
-${Filelocation}	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources
+${Filelocation}	${EXECDIR}../../ATH-Resources
 ${Filename}	dummy1.pdf
 ${Filename2}	dummy25.pdf
 ${FileType}	pdf

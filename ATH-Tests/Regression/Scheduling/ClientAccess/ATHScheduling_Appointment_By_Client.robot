@@ -1,6 +1,6 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/SchedulingPage_res.txt
-Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHScheduling_Appointment_By_Client.py
+Resource	${EXECDIR}../../ATH-Resources/Flows/SchedulingPage_res.txt
+Variables	${EXECDIR}../../ATH-Resources/Variables/ATHScheduling_Appointment_By_Client.py
 Suite Teardown	Close All Browsers
 
 

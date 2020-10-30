@@ -1,6 +1,6 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/DashboardPage_res.txt
-Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
+Resource	${EXECDIR}../../ATH-Resources/Flows/DashboardPage_res.txt
+Variables	${EXECDIR}../../ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
 Suite Teardown	Close All Browsers
 
 
@@ -12,7 +12,7 @@ Dashboard_CreateTherapist_By_SystemAdmin
 	${RegCode}	Generate Random String	10	[NUMBERS]
 
 	Run Keyword if 	"${TestEnv}" == "Secure" 	ath_Logon	${BROWSER}	${URL}	${AutoSystemAdmin}	${TestEnv} 	ELSE 	ath_Logon	${BROWSER}	${URL}	${AutoSystemAdmin1}	${TestEnv}
-	Wait for Nav Bar to display
+	Perform Login Checks
 	Dashboard.Click New Therapist Button
 	Dashboard.NewUser.Input First Name	${FirstName}
 	Dashboard.NewUser.Input Last Name	${LastName}
@@ -31,13 +31,12 @@ Dashboard_CreateTherapist_By_SystemAdmin
 	Dashboard.NewUser.Click Add New Therapist Button
 	Dashboard.NewUser.Verify Therapist saved successfully
 	Dashboard.ProvidersWidget.Select Records per Page Value	100
-	Sleep	30.0	Wait until widget is loaded
-	ath wait until loaded	60
+	Sleep	3.0	Wait until widget is loaded
+	ath wait until loaded	30
 	Capture Page Screenshot
 	Dashboard.ProvidersWidget.Select Newly Created Provider	${Firstname}
 	Dashboard.NewUser.Verify Is Assigned to Supervisor	${Supervisor}
 	Go Back
-	Wait for Nav Bar to display
 	Logout from Application
 
 	Login to Mailinator	${Firstname}@mailinator.com

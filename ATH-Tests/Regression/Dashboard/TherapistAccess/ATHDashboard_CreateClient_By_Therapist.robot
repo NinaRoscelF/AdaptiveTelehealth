@@ -1,6 +1,6 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/DashboardPage_res.txt
-Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
+Resource	${EXECDIR}../../ATH-Resources/Flows/DashboardPage_res.txt
+Variables	${EXECDIR}../../ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
 Suite Teardown	Close All Browsers
 
 
@@ -19,18 +19,18 @@ Dashboard_CreateClient_By_Therapist
 	Dashboard.NewClient.Input Client Last Name 	Automation
 	Dashboard.NewUser.Select Client Gender	Male
 	Dashboard.NewClient.Click Create Client File Button
-	Sleep 	3.0
-	ath wait until loaded 	60
+	# Sleep 	3.0
+	# ath wait until loaded 	60
 	Messaging.Verify Client File Created
 	Reload Page
 	Dashboard.ClientsWidget.Select Records per Page Value	100
-	Sleep	65.0	Wait until widget is loaded
-	ath wait until loaded	60
+	Sleep	3.0	Wait until widget is loaded
+	ath wait until loaded	30
 	Capture Page Screenshot
 	Dashboard.ClientsWidget.Select Newly Created Client	${Firstname}
 	Dashboard.NewUser.Click Update Client Information link
-	Sleep	5.0
-	ath wait until loaded	60
+	# Sleep	5.0
+	# ath wait until loaded	60
 	Dashboard.NewUser.ClientInfo.Input Email address	${Firstname}@mailinator.com
 	Dashboard.NewUser.ClientInfo.Click Invite Button
 

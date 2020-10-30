@@ -1,6 +1,6 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/DashboardPage_res.txt
-Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
+Resource	${EXECDIR}../../ATH-Resources/Flows/DashboardPage_res.txt
+Variables	${EXECDIR}../../ATH-Resources/Variables/ATHDashboard_CreateTherapist_By_SystemAdmin.py
 Suite Teardown	Close All Browsers
 
 
@@ -9,10 +9,10 @@ Dashboard_DisplayClientProfile_By_Therapist
 
 	Run Keyword if	"${TestEnv}" == "Secure"	ath_Logon	${BROWSER}	${URL}	${AutoTherapist}	${TestEnv}	ELSE	ath_Logon	${BROWSER}	${URL}	${AutoTherapist1}	${TestEnv}
 	Perform Login Checks
-	ath click icon	(//i[contains(@class,'user text')])[2]
+
+	ath click icon	xpath=//table[@id="therapist_clients"]/descendant::tr[3]/td[3]/a
 	Dashboard.ClientProfile.Verify Client Details Displayed
 	Dashboard.ClientProfile.Verify Client Label Display	Messages
-	Dashboard.ClientProfile.Verify Client Label Display	Client Data
 	Dashboard.ClientProfile.Verify Client Label Display	Client Profile
 	Dashboard.ClientProfile.Verify Client Label Display	Clinical Notes
 	Dashboard.ClientProfile.Verify Client Label Display	Time Spent Log

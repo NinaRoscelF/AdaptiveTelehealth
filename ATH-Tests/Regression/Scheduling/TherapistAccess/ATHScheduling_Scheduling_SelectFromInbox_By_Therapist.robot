@@ -1,9 +1,9 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/SchedulingPage_res.txt
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/Scheduling_ConfirmationCancellationTimeZonePage_res.txt
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
-Variables	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Variables/${TestEnv}_ATHScheduling_Scheduling_SelectFromInbox_By_Therapist.py
+Resource	${EXECDIR}../../ATH-Resources/Flows/SchedulingPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/Scheduling_ConfirmationCancellationTimeZonePage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/MessagingPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/MessagingPage_res.txt
+Variables	${EXECDIR}../../ATH-Resources/Variables/${TestEnv}_ATHScheduling_Scheduling_SelectFromInbox_By_Therapist.py
 Suite Teardown	Close All Browsers
 
 

@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/MessagingPage_res.txt
 Suite Teardown	Close All Browsers
 
 

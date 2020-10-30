@@ -1,7 +1,7 @@
-78uyhjn  *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/OthersPage_res.txt
+*** Settings ***
+Resource	${EXECDIR}../../ATH-Resources/Flows/OthersPage_res.txt
 Suite Teardown	Close All Browsers
-
+Force Tags	System:Secure
 
 ***Test Cases***
 Financial_Invoice_CreateTemplate_SaveWithoutDetails_By_Therapist

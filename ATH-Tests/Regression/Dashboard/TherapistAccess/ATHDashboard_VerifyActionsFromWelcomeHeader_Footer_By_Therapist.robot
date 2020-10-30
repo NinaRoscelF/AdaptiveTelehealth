@@ -1,15 +1,15 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/DashboardPage_res.txt
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/MessagingPage_res.txt
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/SettingsPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/DashboardPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/MessagingPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/SettingsPage_res.txt
 Suite Teardown	Close All Browsers
 
 
 ***variables***
-${therapistLive}	Automation Therapist
-${therapistSecure}	Mary Ellis
+${therapistLive}	Automation
+${therapistSecure}	Mary
 ${HelpMenuSecure}	 Set Up Guide, Documents, Change Password, Homework Assignments, Schedule, Email Notifications, Starting a Meeting, Client/Patient Information, Troubleshooting, Invite Users
-${HelpMenuLive}	 Set Up Guide, Documents, Change Password, Homework Assignments, Schedule, Email Notifications, Starting a Meeting, Client/Patient Information, Troubleshooting, Invite Collaborator/Guest
+${HelpMenuLive}	 Set Up Guide,Documents,Change Password,Schedule,Email Notifications,,Client/Patient Information,Invite Collaborator/Guest
 
 
 ***Test Cases***
