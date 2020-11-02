@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/CommonPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/CommonPage_res.txt
 
 
 **** Keywords ****
@@ -51,10 +51,11 @@ Documents.Click Add Document button
 
 Documents.Select Share Document With
 	[arguments]	${shareWithWho}	${IsShare}
-	${status}	Run Keyword and Return Status 	ath select radio button	xpath=//*[contains(text(),"${shareWithWho}")]/../descendant::input
-	Run Keyword Unless 	${status}	ath select radio button	xpath=//td[contains(normalize-space(),"${shareWithWho}")]/ancestor::tr/descendant::input
-	Execute Javascript	var element = document.evaluate("//td[contains(normalize-space(),'${shareWithWho}')]/ancestor::tr/descendant::input" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
-	Execute Javascript	var element = document.evaluate("//*[@name='client_id[]']/option[contains(normalize-space(),'${IsShare}')]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	# ${status}	Run Keyword and Return Status 	ath select radio button	xpath=//*[contains(text(),"${shareWithWho}")]/../descendant::input
+	# Run Keyword Unless 	${status}	ath select radio button	xpath=//td[contains(normalize-space(),"${shareWithWho}")]/ancestor::tr/descendant::input
+	# Execute Javascript	var element = document.evaluate("//td[contains(normalize-space(),'${shareWithWho}')]/ancestor::tr/descendant::input" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	# Execute Javascript	var element = document.evaluate("//*[@name='client_id[]']/option[contains(normalize-space(),'${IsShare}')]" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+	ath_select_radio_button	xpath=//*[contains(text(),'${shareWithWho}')]/preceding::ins[1]
 	ath click icon	xpath=//*[@name="client_id[]"]/option[contains(normalize-space(),'${IsShare}')]
 
 
@@ -124,7 +125,7 @@ Documents.MyDocument.Verify File Uploaded Exists
 Documents.MyDocument.Verify Document is Shared with Client
 	[arguments]	${isSharedWith}	${fileName}=dummy1.pdf
 	${status}	Run Keyword and Return Status	ath_check_links_displayed	${isSharedWith}
-	Run Keyword If	${status}	Should Be true	${status}	ELSE	ath verify element is visible	//a[text()="dummy1.pdf"]/ancestor::tr/td[2]
+	Run Keyword If	${status}	Should Be true	${status}	ELSE	ath verify element is visible	//a[text()="${fileName}"]/ancestor::tr/td[2]
 
 Documents.MyDocument.Verify Document Size
 	[Arguments]	${fileName}	${fileSize}

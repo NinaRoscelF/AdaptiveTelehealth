@@ -3,8 +3,8 @@ Library	String
 Library	Collections
 Library	OperatingSystem
 Library	DateTime
-Library	C:/ATH.Git/AdaptiveTelehealth/ATH-Framework/ATHLibrary
-
+Library	${EXECDIR}/ATHLibrary
+Resource	CommonPage_res.txt
 
 *** Variables***
 #${RESOURCES_DIR}	C:/ATH.Git
@@ -14,7 +14,7 @@ ${URL}	https://automation.adaptivetelehealth.com/index.php/login
 ${AutoClient}	ninaf+client@adaptivetelehealth.com
 ${AutoClient1}	automationclient143@gmail.com
 ${AutoClient3}	democlient4524@gmail.com
-${AutoTherapist}	ninaf+therapist@adaptivetelehealth.com
+${AutoTherapist}	ninaf+therapist@adaptivetelehePalth.com
 ${AutoTherapist1}	automationTherapist@gmail.com
 ${AutoSupervisor}	seerapup+dv380S2@adaptivetelehealth.com
 ${AutoSupervisor1}	ninaf+supervisor@adaptivetelehealth.com

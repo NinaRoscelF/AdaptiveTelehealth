@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/CommonPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/CommonPage_res.txt
 
 
 **** Keywords ****
@@ -11,6 +11,7 @@ TherapistRole.Verify Notepad Page Displayed
 
 
 ClientRole.Verify Notepad Page Displayed
+#	ath check label 	xpath=(//h3[contains(normalize-space(),"My Notes")])[1]
 	check label existence	My Notes,Notes Shared With,Add a note
 	ath verify element is visible	//body//section[2]/descendant::h3[contains(text(),'Notes Shared')]
 

@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/ATH.Git/AdaptiveTelehealth/ATH-Resources/Flows/ath_master_flow.txt
+Resource	ath_master_flow.txt
 
 
 **** Keywords ****
@@ -35,8 +35,10 @@ Perform Login Checks
 	# Run Keyword and Ignore Error	Input Text	//input[@name="nearest_emerg_facility"]	St. Lukes
 	# Run Keyword and Ignore Error	Click Button	//button[text()="Save"]
 	# Sleep	2.0
-	Run Keyword and Ignore Error	ath_click_icon	//*[@id="modalUploadProfileImage"]/descendant::button/span[normalize-space()="×"]
-#	ath_wait_until_element_is_present	xpath=//*[@class="nav-bar"]	120
+	# Run Keyword and Ignore Error	ath_click_icon	//*[@id="modalUploadProfileImage"]/descendant::button/span[normalize-space()="×"]
+	ath_wait_until_element_is_present	xpath=//ul[contains(@class,'nav-main')]	30
+	# Sleep 	5.0
+	# log	Passed
 
 Verify Login Error Is Visible
 	ath verify element is visible	xpath=//p[contains(text(),'Login Problem: The username and password were not')]
@@ -45,7 +47,7 @@ Verify Login Error Is Visible
 Select Dashboard Menu
 #	ath_navigate_to_main_menu	Messaging
 	Run Keyword and Ignore Error 	ath click icon	xpath=//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Dashboard']
-	Execute Javascript	var element = document.evaluate("//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Dashboard']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
+#	Execute Javascript	var element = document.evaluate("//ul[contains(@class,'nav-main')]/li/a[normalize-space()='Dashboard']" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null ).singleNodeValue;if (element != null) {element.click();}
 
 Select Messaging Menu
 #	ath_navigate_to_main_menu	Messaging
@@ -178,7 +180,7 @@ Add/Subtract Days from Input Date
 Move to Next Page
 	ath_check_links_displayed	Next
 	Run Keyword and Ignore Error	ath Click Link	xpath=(//*[@class="pagination"]/descendant::*[@class="next"]/a)[1]
-	Sleep	5.0
+	Sleep	1.0
 	ath wait until loaded	30
 
 Move to Previous Page
@@ -202,7 +204,8 @@ Logout from Application
 Login to Mailinator
 	[Arguments]	${UserName}
 	${UserNamer}	Fetch From Left	${UserName}	@
-	Sleep	10.0
+	Sleep	1.0
+	ath wait until loaded 	30
 	Open Browser	https://www.mailinator.com/v3/index.jsp?zone=public&query=${UserNamer}	Chrome 	mailinator	ff_profile_dir=firefoxprofile
 	Maximize Browser Window
 	Ath Wait Until Loaded	30
@@ -247,31 +250,30 @@ Close Upload Image Popup
 
 WelcomeHeader.Click Settings Icon
 	ath click icon 	(//i[contains(@class,'fa-gears')])[1]
-	Sleep	3.0
+	Sleep	1.0
 	ath wait until loaded 	30
 
 
 WelcomeHeader.Click Message Icon
 	ath click icon 	(//i[contains(@class,'fa-envelope')])[1]
-	Sleep 	5.0
+	Sleep 	1.0
 	ath wait until loaded 	30
 
 
 WelcomeHeader.Click Notification Icon
 	ath click icon 	xpath=//*[contains(@id,'system_notifications')]
-	Sleep	3.0
 	ath wait until loaded 	30
 
 
 WelcomeHeader.Click Help Icon
 	ath click icon 	(//i[contains(@class,'fa-question')])[1]
-	Sleep	3.0
+	Sleep	1.0
 	ath wait until loaded 	30
 
 
 WelcomeHeader.Click Device Check Icon
 	ath click icon 	xpath=//img[@class='device_check_icone']
-	Sleep	3.0
+	Sleep	1.0
 	ath wait until loaded 	30
 
 Footer.Click Privacy Disclaimer
@@ -279,12 +281,12 @@ Footer.Click Privacy Disclaimer
 
 
 Verify Privacy Disclaimer Page Opens
-	Sleep	2
+	Sleep	1.0
 	${status}	Run Keyword and Return Status	Location Should Be	https://www.adaptivetelehealth.com/index.php/privacy/
 	Run Keyword Unless 	${status}	Location Should Be	https://secure.adaptivetelehealth.com/index.php/privacy/
 	Capture Page Screenshot
 	Go Back
-	Sleep 	10.0
+	Sleep 	1.0
 	ath Wait Until Loaded	30
 
 
@@ -293,12 +295,12 @@ Footer.Click Terms of Use
 
 
 Verify Terms of Use Page Opens
-	Sleep	2
+	Sleep	1.0
 	${status}	Run Keyword and Return Status	Location Should Be	https://www.adaptivetelehealth.com/index.php/terms/
 	Run Keyword Unless 	${status}	Location Should Be	https://secure.adaptivetelehealth.com/index.php/terms/
 	Capture Page Screenshot
 	Go Back
-	Sleep 	10.0
+	Sleep 	1.0
 	ath Wait Until Loaded	30
 
 
@@ -307,12 +309,12 @@ Footer.Click Provider Sign Up
 
 
 Verify Provider Sign Up Page Opens
-	Sleep	2
+	Sleep	1.0
 	${status}	Run Keyword and Return Status	Location Should Be	https://secure.adaptivetelehealth.com/index.php/provider/
 	Run Keyword Unless	${status}	Location Should Be	https://secure.adaptivetelehealth.com/index.php/privacy/
 	Capture Page Screenshot
 	Go Back
-	Sleep 	10.0
+	Sleep 	1.0
 	ath Wait Until Loaded	30
 
 
@@ -321,7 +323,7 @@ Verify Help Page Displayed
 	@{helplink}	Split String	${linkList} 	separator=,
 	ath check label	Help for ${Name}
 	:FOR 	${item}	IN 	@{helplink}
-	\	ath check links displayed	${item}
+	\	ath check links displayed	xpath=//h3/a[contains(normalize-space(),'${item}')] 	
 #	ath_check_button_existence 	xpath=//button[contains(normalize-space(),'Contact Us')]
 
 Create PDF File

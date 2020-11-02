@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/CommonPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/CommonPage_res.txt
 
 
 **** Keywords ****
@@ -93,7 +93,6 @@ Dashboard.NewUser.Select Client Gender
 
 Dashboard.NewClient.Click Create Client File Button
 	ath click button	Create Client File
-	Sleep 	2.0
 	ath wait until loaded 	30
 
 Messaging.Verify Client File Created
@@ -404,20 +403,20 @@ Dashboard.NewUser.ClientInfo.Select Client Status
 
 Dashboard.NewUser.ClientInfo.Click Update Client Status
 	ath click button	Update Client Status
-	Sleep 	3.0
+	Sleep 	1.0
 	ath wait until loaded 	60
 
 
 Dashboard.Select 3rd Column Display
 	[Arguments]	${column}
 	ath select drop down field value	//select[@name='option4']	${column}
-	Sleep 	3.0
+	Sleep 	1.0
 	ath wait until loaded 	60
 
 Dashboard.Select 5th Column Display
 	[Arguments]	${column}
 	ath select drop down field value	//select[@name='option6']	${column}
-	Sleep 	3.0
+	Sleep 	1.0
 	ath wait until loaded 	60
 
 
@@ -544,7 +543,7 @@ Dashboard.MeetingPopupDetails.Click Edit button
 
 
 Dashboard.TherapistRole.Verify Notifications Table Header Is Visible
-	ath verify element is visible	//h1[@id='dashboard_tour_notification'][contains(text(),'Notifications')]
+	ath verify element is visible	//h1[contains(@id,'dashboard_tour_notification')][contains(normalize-space(),'Notifications')]
 
 Dashboard.ClientRole.Verify Alerts Table Header Is Visible
 	ath verify element is visible	//*[@id='notification-section']/descendant::h3/a[contains(text(),'Alerts')]

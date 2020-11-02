@@ -1,5 +1,5 @@
 *** Settings ***
-Resource	C:/Ath.Git/AdaptiveTelehealth/ATH-Resources/Flows/CommonPage_res.txt
+Resource	${EXECDIR}../../ATH-Resources/Flows/CommonPage_res.txt
 
 
 **** Keywords ****
